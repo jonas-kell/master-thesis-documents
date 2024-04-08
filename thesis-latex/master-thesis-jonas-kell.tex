@@ -48,9 +48,10 @@ toc=bibliographynumbered            % bibliography gets a number and is listed i
 \author{Jonas Kell}
 \date{1$^\text{st}$ Mai 2024} %TODO
 
-\input{config}                                  % another file that holds the package/document configuration
-\input{format}                                  % another file that holds format information
-\input{commands}                                % another file that holds predefined commands
+\input{./../shared-latex/config}                % another file that holds the package/document configuration
+\input{./../shared-latex/format}                % another file that holds format information
+\input{./../shared-latex/commands}              % another file that holds predefined commands
+\input{localconfig}                             % another file that holds project-specialized configuration
 
 
 \begin{document}
@@ -95,7 +96,7 @@ toc=bibliographynumbered            % bibliography gets a number and is listed i
 \FloatBarrier
 
 % ! Addendum
-\input{bibliography}
+\input{./../shared-latex/bibliography}
 \input{appendix/appendix}
 \end{document}
 

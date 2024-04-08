@@ -1,4 +1,4 @@
-\graphicspath{{./images/}}              % custom paths for folders in that graphics can be found
+\graphicspath{{./../shared-latex/images/}}              % custom paths for folders in that graphics can be found
 
 \sisetup                                % setup for siunitx
 {
@@ -8,18 +8,6 @@ range-phrase={ \text{to} },             % word that is put into an si range
 range-units = single,                 % better display of error ranges
 per-mode=symbol-or-fraction,            % more dynamic frac usage in inline/displaymath mode
 separate-uncertainty,                   % for better +- , \pm when including an error range 
-}
-
-\hypersetup
-{
-colorlinks=true,
-linkcolor=dblue,                                    % dark blue linkcolor
-urlcolor=dblue,                                     % dark blue linkcolor
-citecolor=dblue,                                    % dark blue linkcolor
-pdfauthor = {Jonas Kell},                           % write details into the expanded file properties
-pdftitle = {Working Title}, % TODO
-pdfkeywords = {neural networks, ai, physics, quantum mechanics, machine learning, analytical calculations},           
-pdfsubject = {Master Thesis}                      
 }
 
 \AtBeginDocument{
