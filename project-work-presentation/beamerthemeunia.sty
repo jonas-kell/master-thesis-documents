@@ -1,0 +1,28 @@
+% Copyright 2024 by Jonas Kell
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+
+\mode<presentation>
+
+\newif\ifbeamer@secheader
+\beamer@secheaderfalse
+
+\DeclareOptionBeamer{secheader}{\beamer@secheadertrue}
+\ProcessOptionsBeamer
+
+\usefonttheme{structurebold}
+\usecolortheme{unia}
+\useinnertheme{rectangles}
+\useoutertheme{infolines}
+
+\setbeamersize{text margin left=2em,text margin right=2em}
+
+\ifbeamer@secheader\else\setbeamertemplate{headline}[default]\fi
+
+\logo{\includegraphics{slide-background-images/logo-small.png}}
+
+\mode
+<all>

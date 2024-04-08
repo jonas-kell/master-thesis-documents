@@ -14,5 +14,9 @@
 *.dvi
 **/_minted*
 
+*.nav
+*.snm
+
+project-work-presentation.pdf
 practical-traning-report-jonas-kell.pdf
 master-thesis-jonas-kell.pdf
