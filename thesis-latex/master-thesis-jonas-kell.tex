@@ -1,0 +1,105 @@
+\documentclass[
+headings=optiontohead,              % allows double headers
+12pt,                               % fontsize 
+DIV=13,                             % koma script diveider amount. tells koma how much of the site can be written to
+twoside=false,                      % if set to true, automatically formats as book style with different left and right pages
+open=right,                         % starting page on twosided texts 
+BCOR=00mm,                          % correction that accounts for the center of the pages being glued in
+toc=bibliographynumbered            % bibliography gets a number and is listed in the table of contents
+]{scrreport}
+
+\usepackage[utf8]{inputenc}                     % correct encoding of output, technically not needed anymore
+\usepackage[T1]{fontenc}                        % correct encoding of output, technically not needed anymore
+\usepackage[english]{babel}                     % font that supports English
+\usepackage{upgreek}                            % non-cursive Greek letters
+\usepackage[stretch=10,shrink=10,protrusion=true,expansion=true,final]{microtype} % prettier block format
+\usepackage{hyperref}                           % links for everything
+\usepackage{color}                              % allows for setting in different colors
+\usepackage[autooneside=false,automark]{scrlayer-scrpage} % page-style with "Kolumnentitel" (title of current chapter is displayed at the top)
+\usepackage[sb]{libertinus}                     % use the font libertinus (needs to be installed from the web)
+\usepackage[slantedGreek]{libertinust1math}     % math mode improvement for libertinus
+\usepackage{siunitx}                            % physical units setting
+\usepackage{icomma}                             % commas in lists get extra space if needed                        
+\usepackage{amsfonts,amssymb,amstext,amsmath,amsthm} % better math mode (\mathrm and \text) and symbols
+\usepackage{xspace}                             % works to improve own commands and provides "\xspace"-command, that puts a space if needed
+\usepackage{ifthen}                             % more control over non-obligatory parameters
+\usepackage{titling}                            % get title values as macros
+\usepackage[onehalfspacing]{setspace}           % control the spacing between lines and in enumeration lists
+\usepackage[backend=biber, style=phys, biblabel=brackets]{biblatex} % citations with "modern" backend and an physics-accepted citation style
+\usepackage{graphicx}                           % work with graphics 
+\usepackage{ragged2e}                           % ragged-commands (when no block format is wanted)
+\usepackage{pdfpages}                           % allows including of pdfs into this pdf
+\usepackage{booktabs}                           % better table formatting
+\usepackage{multicol}                           % allows for the definition of multi-columns in tables
+\usepackage{multirow}                           % allows for the definition of multi-row-tables instead of just multi-column
+\usepackage[section]{placeins}                  % provides the command "\FloatBarrier" to control the end of floatable regions for figures/tables
+\usepackage{float}                              % provides the "H" option for forcing placement of a figure
+\usepackage{floatpag}                           % make it possible for float-pages to not have a page number
+\usepackage{url}                                % sometimes needed by biblatex, technically no longer needed
+\usepackage{minted}                             % nice code highlighting (needs Python Package to compile!!)
+\usepackage{accents}                            % better control over accents
+\usepackage{mathtools}                          % more math control possibilities
+\usepackage[autostyle=true]{csquotes}           % context-sensitive-quotes -> quotation marks that are set correctly for the context
+\usepackage{physics}                            % bra-ket and more
+\usepackage{nicematrix}                         % label row/cols on matrix
+\usepackage{caption}                            % caption of different environments
+
+\title{Working Title} %TODO
+\author{Jonas Kell}
+\date{1$^\text{st}$ Mai 2024} %TODO
+
+\input{config}                                  % another file that holds the package/document configuration
+\input{format}                                  % another file that holds format information
+\input{commands}                                % another file that holds predefined commands
+
+
+\begin{document}
+
+% ! Bibliography, page numbering and Title setups
+\thispagestyle{empty}                           % make sure title page is not numbered or anything else
+\input{titlepage}                               % include title-page
+\cleardoublepage                                % make sure, that if double-page is active, to reset the double page counter
+\pagestyle{scrheadings}                         % puts current chapters title into the header in small gray font
+\pagenumbering{roman}                           % number the pages of the table of contents in roman numerals
+\renewcommand{\contentsname}{Table of Contents} % title of table of contents
+\tableofcontents                                % table of contents
+\input{lists}                                   % list of abbreviations, figures, etc
+\cleardoublepage                                % make sure, that if double-page is active, to reset the double page counter
+\pagenumbering{arabic}                          % number the pages of the main document in Arabic numerals
+
+% After this, the redefinition of the "Kolumnentitel" takes place
+\clearpairofpagestyles
+\ihead{\leftmark}
+\ohead{\Ifstr{\leftmark}{\rightmark}{}{\rightmark}}
+\cfoot*{\pagemark}
+% End of the "Kolumnentitel" redefinition
+
+
+% ! Main Document Body
+\chapter{Introduction}
+\label{sec:introduction}
+\input{./auxillary/introduction}
+\FloatBarrier
+\chapter{Theory}
+\label{sec:theory}
+    \section{Physical theory concepts}
+        \label{sec:theory-physics}
+        \input{./theory/physics/test/test.tex}
+        \FloatBarrier
+        \subsection{SUBSECTION STUFF}
+        \label{sec:theory-subsection-stuff}
+
+\chapter{Conclusion}
+\label{sec:conclusion}
+\input{./auxillary/conclusion}
+\FloatBarrier
+
+% ! Addendum
+\input{bibliography}
+\input{appendix/appendix}
+\end{document}
+
+
+
+
+

@@ -1,0 +1,24 @@
+%! Ref-Commands 
+\newcommand*{\fullref}[1]{\hyperref[{#1}]{\textit{\autoref*{#1} \nameref*{#1}}}}
+\newcommand*{\fullpage}[1]{\hyperref[{#1}]{Seite \pageref*{#1}}}
+\newcommand*{\fullpages}[1]{\hyperref[{#1}]{Seiten \pageref*{#1}ff}}
+
+%! Math operators and other small conveniences
+\newcommand\thickbar[1]{\accentset{\rule{.6em}{.8pt}}{#1}}
+\DeclareMathOperator{\ggt}{ggT}
+\DeclareMathOperator{\kgv}{kgV}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\renewcommand*{\arraystretch}{0.8}
+
+%! qm commands
+\newcommand{\hamiltonian}{\ensuremath{\mathcal{H}}\xspace}
+\newcommand{\operator}{\ensuremath{\hat{\mathrm{O}}}\xspace}
+\newcommand{\up}{\ensuremath{\uparrow}\xspace}
+\newcommand{\down}{\ensuremath{\downarrow}\xspace}
+
+\newcommand{\filepath}[2]{\colorbox{lgrey}{#1: \texttt{#2}}\xspace}
+
+%! replace German quotation marks with English ones (I always write the left and right quotes explicitly with the German command variants as they are nice to debug and already in my macros. Then in the end, I can swap them with the desired replacement quotes of my choice)
+\renewcommand*{\glqq}{``}
+\renewcommand*{\grqq}{''}

@@ -1,0 +1,7 @@
+[submodule "physics-code"]
+	path = physics-code
+	url = https://github.com/jonas-kell/master-thesis-code
+	
+[submodule "math-manipulator-code"]
+	path = math-manipulator-code
+	url = https://github.com/jonas-kell/math-manipulator

@@ -1,0 +1,17 @@
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.synctex(busy)
+*.toc
+*.run.xml
+*.bbl
+*.blg
+*blx.bib
+*.bcf
+*.dvi
+**/_minted*
+
+master-thesis-jonas-kell.pdf
