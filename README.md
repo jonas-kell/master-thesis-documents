@@ -2,9 +2,9 @@
 
 The work for my Masters-Thesis is split into multiple repositories (links for quick access, it may be possible that the repo is private).
 
--   [Main Latex Document and Markdown Notes](https://github.com/jonas-kell/master-thesis-documents)
+-   [Latex Documents, Reports and Notes](https://github.com/jonas-kell/master-thesis-documents)
 -   [Final Code to produce Measurements](https://github.com/jonas-kell/master-thesis-code)
--   [The MATH-MANIPULATOR project, developed in conjunction with the thesis](https://github.com/jonas-kell/math-manipulator)
+-   [The MATH-MANIPULATOR project, developed in conjunction with the thesis/practical training](https://github.com/jonas-kell/math-manipulator)
 
 # Pre-compiled Document
 
