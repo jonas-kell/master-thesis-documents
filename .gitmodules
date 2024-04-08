@@ -5,8 +5,7 @@
 [submodule "math-manipulator-code"]
 	path = math-manipulator-code
 	url = https://github.com/jonas-kell/math-manipulator
+	
 [submodule "latex-beamer-template"]
 	path = latex-beamer-template
 	url = https://github.com/jonas-kell/beamer-theme-unia-mntf
-	branch = master
-    ignore = all
