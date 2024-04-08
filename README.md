@@ -19,6 +19,14 @@ git submodule init
 git pull --recurse-submodules
 ```
 
+<!--
+Create The symbolic links
+
+ln -sf ./../latex-beamer-template/beamerthemeuniamntf.sty project-work-presentation/
+ln -sf ./../latex-beamer-template/beamercolorthemeuniamntf.sty project-work-presentation/
+ln -sf ./../latex-beamer-template/slide-background-images/ project-work-presentation/
+ -->
+
 # Compiling
 
 To compile the documents, run
