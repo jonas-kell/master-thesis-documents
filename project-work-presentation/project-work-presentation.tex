@@ -1,66 +1,102 @@
 \documentclass[aspectratio=169]{beamer}
 
-\usetheme{uniamntf}
+\usetheme[neutralbackground]{uniamntf}
 
-\title[asd]{Test}
-\subtitle{asdasd}
+\title[small title]{The full Title} % TODO
+\subtitle{subtitle}
 
 \author{Jonas Kell}
 \institute[TP III]{Chair for theoretical Physics III}
 
-\date[01.05.2024]{$1^{\text{st}}$ of Mai 2024}
+\date[01.05.2024]{$1^{\text{st}}$ of Mai 2024} % TODO
 
+\acknowledgement{
+    Jonas Kell\\
+    Augsburg University\\
+    jonas.kell@uni-augsburg.de\\
+    www.uni-augsburg.de
+}
 
 \begin{document}
-\maketitle
 
-\begin{frame}
-    \frametitle{Outline}
+    \begin{frame}[t,plain] 
+        \maketitle
+    \end{frame}
 
-    \tableofcontents
+    \begin{frame}
+        \frametitle{Outline}
+        \tableofcontents
+    \end{frame}
 
-\end{frame}
+    \section{Section TODO}
 
-\section{Test}
+    \begin{frame}[t]
+        \frametitle{Some stuff}
+    \end{frame}
 
-\begin{frame}
-    \frametitle{Random Text}
+    \begin{frame}
+        \frametitle{Blocks}
 
-    Hello
-    
-    asdasdasd
-\end{frame}
+        \begin{block}{Block}
+            Sample text
+        \end{block}
 
-\begin{frame}
-    \begin{block}{Block}
-        Sample text
-    \end{block}
+        \begin{exampleblock}{Example}
+            Sample text
+        \end{exampleblock}
 
-    \begin{exampleblock}{Example}
-        Sample text
-    \end{exampleblock}
+        \begin{alertblock}{Conclusion}
+            Sample text
+        \end{alertblock}
+    \end{frame}
 
-    \begin{alertblock}{Conclusion}
-        Sample text
-    \end{alertblock}
-\end{frame}
+    \begin{frame}{Title-Here}
+        \begin{columns}
+            \column{0.4\textwidth}
+                This is a text in first column.
+                $$E=mc^2$$
+                \begin{itemize}
+                    \item First item
+                    \item Second item
+                    \begin{itemize}
+                        \item asd
+                        \item asd
+                        \begin{itemize}
+                            \item asd
+                            \item asd
+                        \end{itemize}
+                    \end{itemize}
+                \end{itemize}
+            
+            \column{0.4\textwidth}
+                This text will be in the second column
+                and on a second thoughts, this is a nice looking
+                layout in some cases.
+                \begin{enumerate}
+                    \item test
+                    \item test test
+                    \begin{enumerate}
+                        \item test test test
+                        \item test test test
+                        \begin{enumerate}
+                            \item test test test
+                            \item test
+                        \end{enumerate}
+                    \end{enumerate}
+                \end{enumerate}
+        \end{columns}
+    \end{frame}
 
-\begin{frame}
-    \begin{columns}
-        \column{0.5\textwidth}
-            This is a text in first column.
-            $$E=mc^2$$
-            \begin{itemize}
-                \item First item
-                \item Second item
-            \end{itemize}
-        
-        \column{0.5\textwidth}
-            This text will be in the second column
-            and on a second thoughts, this is a nice looking
-            layout in some cases.
-    \end{columns}
-\end{frame}
+    \section{Summary}
+    {
+        \setbeamertemplate{frametitle}[uniamntfack] % use the acknowledgment-style for this slide
+        \begin{frame}[plain]{Acknowledgment}
+            Thank you for your kind attention
+        \end{frame}
+    }
 
+    \section*{Extra slides} % section* not included in toc/outline
+    \begin{frame}{Some extra slide}
+    \end{frame}
 
 \end{document}
