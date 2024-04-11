@@ -17,6 +17,9 @@
         "**/*-blx.bib": true,
         "**/*.nav": true,
         "**/*.snm": true,
+        "project-work-presentation/beamerthemeuniamntf.sty": true,
+        "project-work-presentation/beamercolorthemeuniamntf.sty": true,
+        "project-work-presentation/slide-background-images": true,
         "**/_minted*": true
     },
     "latex-workshop.latex.tools": [

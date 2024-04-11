@@ -1,9 +1,10 @@
-\documentclass[aspectratio=169]{beamer}
+% \documentclass[aspectratio=169]{beamer} % includes \pause in render
+\documentclass[aspectratio=169,handout]{beamer} % do not include \pause in render
 
 \usetheme[neutralbackground]{uniamntf}
 
-\title[small title]{The full Title} % TODO
-\subtitle{subtitle}
+\title[Computer aided calculations]{\vspace{-2em}Computer aided analytic calculations for physical many-body problems}
+\subtitle{ - Project Work Presentation - }
 
 \author{Jonas Kell}
 \institute[TP III]{Chair for theoretical Physics III}
@@ -13,9 +14,20 @@
 \acknowledgement{
     Jonas Kell\\
     Augsburg University\\
-    jonas.kell@uni-augsburg.de\\
+    jonas.kell@student.uni-augsburg.de\\
     www.uni-augsburg.de
 }
+
+\newcommand{\blankfootnote}[1]{%
+\let\thefootnote\relax\footnotetext{#1}%
+}
+\newcommand{\tab}{%
+\,\,\,\,
+}
+
+% bibtex/biber
+\usepackage[backend=biber, style=phys, biblabel=brackets]{biblatex} % citations with "modern" backend and an physics-accepted citation style
+\addbibresource{literature.bib}
 
 \begin{document}
 
@@ -28,66 +40,47 @@
         \tableofcontents
     \end{frame}
 
-    \section{Section TODO}
-
-    \begin{frame}[t]
-        \frametitle{Some stuff}
+    \section{Introduction of the problem}
+    
+    \begin{frame}{Physics of what we calculate}
     \end{frame}
 
-    \begin{frame}
-        \frametitle{Blocks}
-
-        \begin{block}{Block}
-            Sample text
-        \end{block}
-
-        \begin{exampleblock}{Example}
-            Sample text
-        \end{exampleblock}
-
-        \begin{alertblock}{Conclusion}
-            Sample text
-        \end{alertblock}
+    \begin{frame}{Working on paper: A Computer-Scientists view}
     \end{frame}
 
-    \begin{frame}{Title-Here}
+    \section{Solutions: Off the shelf}
+
+    \section{Math-Manipulator}
+
+    \subsection{What did I do?}
+    \subsection{How can you use it}
+
+    \section{Custom Python Scripts (Sympy)}
+
+    \section{Presentations? - Custom Beamer Template}
+    \begin{frame}{Beamer: LaTeX way of writing Presentations}
+        \begin{itemize}
+            \item Write presentations like your papers/thesis    \pause
+            \item Reuse formulas/images/code/sources    \pause
+            \item Consistent style \& references    \pause
+            \item Version control    \pause
+            \item Easier collaboration
+        \end{itemize}
+
+        \blankfootnote{Beamer\cite{beamerPackageCtan} \tab{} Template\cite{selfBeamerTemplateMNTF}}
+    \end{frame}
+
+    \begin{frame}{Minimal example for beamer presentation}
         \begin{columns}
             \column{0.4\textwidth}
-                This is a text in first column.
-                $$E=mc^2$$
-                \begin{itemize}
-                    \item First item
-                    \item Second item
-                    \begin{itemize}
-                        \item asd
-                        \item asd
-                        \begin{itemize}
-                            \item asd
-                            \item asd
-                        \end{itemize}
-                    \end{itemize}
-                \end{itemize}
-            
+                \includegraphics[width=1.1\textwidth]{./beamer-minimal-example/code.png}
             \column{0.4\textwidth}
-                This text will be in the second column
-                and on a second thoughts, this is a nice looking
-                layout in some cases.
-                \begin{enumerate}
-                    \item test
-                    \item test test
-                    \begin{enumerate}
-                        \item test test test
-                        \item test test test
-                        \begin{enumerate}
-                            \item test test test
-                            \item test
-                        \end{enumerate}
-                    \end{enumerate}
-                \end{enumerate}
+                \includegraphics[width=0.9\textwidth]{./beamer-minimal-example/result.png}
         \end{columns}
     \end{frame}
 
-    \section{Summary}
+
+    \section*{Summary \& Conclusion}
     {
         \setbeamertemplate{frametitle}[uniamntfack] % use the acknowledgment-style for this slide
         \begin{frame}[plain]{Acknowledgment}
@@ -95,8 +88,15 @@
         \end{frame}
     }
 
-    \section*{Extra slides} % section* not included in toc/outline
-    \begin{frame}{Some extra slide}
+    \begin{frame}[allowframebreaks]
+        \frametitle{References}
+        \nocite{*}
+        \printbibliography[title={Bibliography}]
+    \end{frame}
+    
+    \section*{Extra slides}
+    \begin{frame}{Theme alternative: Faculty of App. Computer Science}
+        \hspace{1cm}\includegraphics[height=.7\paperheight]{./../latex-beamer-template/rendered-preview-pictures/FAICompilation.png}
     \end{frame}
 
 \end{document}
