@@ -56,29 +56,6 @@
             "env": {}
         }
     ],
-    "cSpell.words": [
-        "biblatex",
-        "bibtex",
-        "citecolor",
-        "dblue",
-        "displaymath",
-        "Heyl",
-        "Hurenkind",
-        "Hurenkinder",
-        "Kell",
-        "Kolumnentitel",
-        "libertinus",
-        "linkcolor",
-        "Markus",
-        "pdfauthor",
-        "pdfkeywords",
-        "pdfs",
-        "pdfsubject",
-        "pdftitle",
-        "Schusterjunge",
-        "Schusterjungen",
-        "siunitx",
-        "urlcolor",
-        "Witwe"
-    ]
+    "gitlens.codeLens.authors.enabled": false,
+    "gitlens.codeLens.recentChange.enabled": false
 }
