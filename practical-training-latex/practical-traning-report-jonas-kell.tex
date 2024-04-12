@@ -10,7 +10,7 @@ toc=bibliographynumbered            % bibliography gets a number and is listed i
 
 \input{./../shared-latex/packages}  % required packages
 
-\title{Working Title for Practical Training Report} %TODO
+\title{Computer aided Analytical Calculations and Numerical Experimentation on the Hubbard-Model in an Electric Field}
 \author{Jonas Kell}
 \date{1$^\text{st}$ Mai 2024} %TODO
 \newcommand{\pdfkeywords}{neural networks, ai, physics, quantum mechanics, machine learning, analytical calculations} % TODO
@@ -51,12 +51,15 @@ toc=bibliographynumbered            % bibliography gets a number and is listed i
 \FloatBarrier
 \chapter{Theory}
 \label{sec:theory}
-    \section{Physical theory concepts}
-        \label{sec:theory-physics}
-        \input{./theory/physics/test/test.tex}
+
+\section{Physical theory}
+    \label{sec:theory-physics}
+    \input{./theory/physics/introduction.tex}
+    \FloatBarrier
+    \subsection{Hubbard Model and discussed Hamiltonian}
+        \label{sec:hubbard-hamiltonian}
+        \input{./theory/physics/hubbard/hubbard.tex}
         \FloatBarrier
-        \subsection{SUBSECTION STUFF}
-        \label{sec:theory-subsection-stuff}
 
 \chapter{Conclusion}
 \label{sec:conclusion}
