@@ -16,10 +16,41 @@ The system in question is described by a \emph{Hubbard-Model Hamiltonian}, that 
     \Vhamiltonian =  - J \cdot \neighborsumWSpin{l}{m}{\sigma} \left(\withspinop{l}{\sigma}{\dagger} \withspinop{m}{\sigma}{} + \withspinop{m}{\sigma}{\dagger} \withspinop{l}{\sigma}{} \right)
 \end{equation}
 
-Thereby $\vec{E}$ describes the vector of said electrical field and $\vec{r_l}$ teh position of the site with index $l$.
+$\vec{E}$ describes the vector of said electrical field and $\vec{r_l}$ the position of the site with index $l$.
 The number operators $\nop{l}{\sigma} = \withspinop{l}{\sigma}{\dagger}\withspinop{l}{\sigma}{}$ measure the occupation on site $l$ with the respective spin $\sigma$. 
 
+$U$, $J$ and \epsl[] are constants that describe the interaction strength. 
+They all have the unit of energy. 
+The scalar Product that is defined as \epsl[] can be evaluated, based on the system geometry. 
+In this case, the system described by a regular square pattern that can be seen in \autoref{fig:geometry-of-square-system}. 
+For such a system, the energy difference that is acquired from hopping from site $l$ to $m$ ($\Delta E_{l \rightarrow m}$) (provided, $l$ and $m$ are nearest neighbors) is described by \autoref{eq:energy-difference-hopping}. By assuming a default value for \epsl[0] one gets the relation from \autoref{eq:epsl} for \epsl{} (using the telescoping sum over nearest-neighbors-hopping along the path from $\vec{r_0}$ to $\vec{r_l}$). 
 
+\begin{figure}[htbp]
+    \centering
+            \input{./theory/physics/hubbard/geometry.tex}
+    \vspace{0.8cm}
+    \caption{Graphical representation of how the examined square system is laid out. The sites are labeled with the index $l$ they later can be identified by. Each of the sites has 4 nearest neighbors, except the ones on the borders, that have 3 or only 2 nearest neighbors (as the system is not periodic). A system of side-length $M$ with size $N$ is depicted, which means that it has $M^2 = N$ sites.
+    In green, the Electrical field vector $\vec{E}$ is depicted, it is parametrized by the field strength $E$ and the angle $\varphi$.}
+    \label{fig:geometry-of-square-system}
+\end{figure}
 
+\begin{equation}
+    \label{eq:energy-difference-hopping}
+    \begin{split}
+        \Delta E_{l \rightarrow m} &=  \epsl[m] - \epsl[l] = \vec{E} \cdot \left(\vec{r_m}-\vec{r_l}\right)\\
+        &= E \cdot \left[\cos(\varphi)\cdot \left(m \% M-l \% M\right) + \sin(\varphi)\cdot \left(\floor[\bigg]{\frac{m}{M}}-\floor[\bigg]{\frac{l}{M}}\right)\right]
+    \end{split}
+\end{equation}
+\vspace{0.5cm} % equations are not well enough separated otherwiese % TODO check in final render
+\begin{equation}
+    \label{eq:epsl}
+    \begin{split}
+        \epsl[0] = 0 \Rightarrow
+        \epsl[l] &= \epsl[l] - \epsl[0] = \Delta E_{0 \rightarrow x} + \dots + \Delta E_{y \rightarrow l}\\
+        &= E \cdot \left[\cos(\varphi)\cdot l \% M + \sin(\varphi)\cdot \floor[\bigg]{\frac{l}{M}}\right]
+    \end{split}
+\end{equation}
+
+% TODO spins
 
 % TODO 

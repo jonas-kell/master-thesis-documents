@@ -1,0 +1,57 @@
+
+\def\getFromArray#1{%
+    \ifcase#1 0\or
+    1\or
+    2\or
+    \dots\or
+    (M-1)\or
+    M\or
+    M+1\or
+    M+2\or
+    \dots\or
+    M+(M-1)\or
+    2\cdot M\or
+    2\cdot M+1\or
+    2\cdot M+2\or
+    \dots\or
+    2\cdot M+(M-1)\or
+    \dots\or
+    \dots\or
+    \dots\or
+    \dots\or
+    \dots\or
+    (M-1)\cdot M\or
+    M^2-M+1\or
+    M^2-M+2\or
+    \dots\or
+    M^2 -1\or
+    \else\fi
+}
+
+
+\begin{tikzpicture}[scale=0.38]
+    \def\m{5} % Change this value to adjust the grid size (m x m)
+    \def\side{6} % Change this value to adjust the square side length
+    \def\labelsize{\side/6} % Adjust label size
+    
+    % Draw dots and labels with custom text using a loop
+    \foreach \x in {0,...,\numexpr\m-1\relax} {
+        \foreach \y in {0,...,\numexpr\m-1\relax} {
+            \pgfmathtruncatemacro{\index}{(\m-\y-1) * \m + \x}
+            \node[scale=\labelsize] at (\x*\side + \side/2,\y*\side + \side/2) {$\getFromArray{\index}$};
+            \fill[color=dblue] (\x*\side + \side/2,\y*\side + \side/2 + \side/4) circle (0.4);
+        }
+    }
+
+    % Store coordinates for reference
+    \coordinate (top) at (current bounding box.north west);
+
+    % Draw horizontal black line
+    \draw[line width=2pt,overlay,lightgray,dashed] (top) ++ (0,-0.55*\side) -- ++(\m*\side,0);
+        
+    % Draw green arrow pointing downwards
+    \draw[green, ->, overlay, line width=2pt,>=stealth] (top) ++ (1.3*\side,-0.55*\side) -- ++(3*\side,-3*\side) node[pos=0.05,right] {$\varphi$};
+
+    % Draw angle circle
+    \draw[overlay, green, line width=1.5pt] (top) ++ (1.3*\side,-0.55*\side) +(0:0.5*\side) arc (0:-45:0.5*\side);
+\end{tikzpicture}
