@@ -22,3 +22,24 @@
 %! replace German quotation marks with English ones (I always write the left and right quotes explicitly with the German command variants as they are nice to debug and already in my macros. Then in the end, I can swap them with the desired replacement quotes of my choice)
 \renewcommand*{\glqq}{``}
 \renewcommand*{\grqq}{''}
+
+\newcommand{\bigo}[1]{\ensuremath{\mathcal{O}(#1)}}
+
+\newcommand{\schroedingerPicture}{\text{S}}
+\newcommand{\interactionPicture}{\text{I}}
+
+\newcommand{\generalop}[6]{\ensuremath{\hat{\text{#1}}^{#2\xspace #3}_{#4#5#6}}\xspace}
+\newcommand{\withspinop}[4][]{\generalop{c}{#4}{#1}{#2}{,\,}{#3}}
+\newcommand{\cop}[3][]{\generalop{c}{#3}{#1}{#2}{}{}}
+\newcommand{\dop}[3][]{\generalop{d}{#3}{#1}{#2}{}{}}
+\newcommand{\nop}[3][]{\generalop{n}{}{#1}{#2}{,\,}{#3}}
+
+\newcommand{\pictureHamiltonian}[1][]{\ensuremath{\hamiltonian^{#1}}\xspace}
+\newcommand{\Vhamiltonian}[1][]{\ensuremath{\text{V}}^{#1}\xspace}
+\newcommand{\HzeroHamiltonian}[1][]{\ensuremath{\hamiltonian_0}^{#1}\xspace}
+
+\newcommand{\lsum}[1][l]{\ensuremath{\sum\limits_{#1}}}
+\newcommand{\neighborsum}[3][]{\ensuremath{\sum\limits_{\left\langle#2, #3\right\rangle#1}}}
+\newcommand{\neighborsumWSpin}[3]{\neighborsum[,\,#3]{#1}{#2}}
+
+\newcommand{\epsl}[1][l]{\ensuremath{\varepsilon_{#1}}}

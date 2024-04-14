@@ -1,1 +1,25 @@
+The system in question is described by a \emph{Hubbard-Model Hamiltonian}, that includes an electrical field. It is shown in \autoref{eq:main-hamiltonian}.
+
+
+\begin{equation}
+    \label{eq:main-hamiltonian}
+    \pictureHamiltonian = \HzeroHamiltonian + \Vhamiltonian
+\end{equation}
+
+\begin{equation}
+    \label{eq:main-hamiltonian-h0}
+    \HzeroHamiltonian = U \cdot \lsum \nop{l}{\up}\nop{l}{\down} + \lsum[l,\,\sigma] \underbrace{\left(\vec{E} \cdot \vec{r_l}\right)}_{\text{\normalsize \epsl}} \nop{l}{\sigma}
+\end{equation}
+
+\begin{equation}
+    \label{eq:main-hamiltonian-pertubation}
+    \Vhamiltonian =  - J \cdot \neighborsumWSpin{l}{m}{\sigma} \left(\withspinop{l}{\sigma}{\dagger} \withspinop{m}{\sigma}{} + \withspinop{m}{\sigma}{\dagger} \withspinop{l}{\sigma}{} \right)
+\end{equation}
+
+Thereby $\vec{E}$ describes the vector of said electrical field and $\vec{r_l}$ teh position of the site with index $l$.
+The number operators $\nop{l}{\sigma} = \withspinop{l}{\sigma}{\dagger}\withspinop{l}{\sigma}{}$ measure the occupation on site $l$ with the respective spin $\sigma$. 
+
+
+
+
 % TODO 
