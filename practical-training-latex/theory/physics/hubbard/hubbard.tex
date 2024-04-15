@@ -54,6 +54,27 @@ For such a system, the energy difference that is acquired from hopping from site
 The Hubbard Model \cite{hubbardModelOriginalDerivation} is a spin-depending quantum-mechanical model. 
 Because of this, the Hamiltonian includes terms for both the spin directions $\up$ and $\down$ (most of the time denoted by a summation over $\sigma$).
 
+In principle, the operators $\withspinop[]{l}{\sigma}{(\dagger)}$ can be any type of quantum-mechanical ladder operator, like e.g. \emph{bosonic} or \emph{fermionic} ones.
+In this application, the desicion was made to use \emph{hard-core bosons} \cite[]{hardCoreBosonsBasics}.
+Typically for bosons, the Hubbard Model is tranformed into the \emph{Bose-Hubbard Model} \cite{boseHubbardModelOriginalDerivation}.
+However hard-core bosons have the added property, that the can only have the occupation numbers of $0$ and $1$ per-spin-and-site in the investigated energy range.
+This means they behave basically like fermions, only that their wave-function symmetrizes instead of anti-symmetrizes \cite{schwablBook}.
+Because of the restriction one term of the Bose-Hubbard Model drops out and the studied model in equations \ref{eq:main-hamiltonian}, \ref{eq:main-hamiltonian-h0} and \ref{eq:main-hamiltonian-pertubation} is produced.
+Also the typical Bose-Hubbard Model is not spin-dependent, while this property is kept here.
+Hard-core bosons on their own have relevant properties that makes them worth studying. 
+Experimental research on hard-core bosons can give insight into e.g. \emph{ultra-cold gasses} and \emph{Bose-Einstein condensation} \cite{hardCoreBosonsBasics}.
+For this reason, the calculations are performed on hard-core bosons in this application and the operators obey the \emph{commutation-relations} described in \autoref{eq:commutation-relations}, with $\delta$ the \emph{Kronecker-Delta} \cite{schwablBookII}. 
+But in principle, the calculations may be performed on fermions analogously. 
+
+\begin{equation}
+    \label{eq:commutation-relations}
+    \begin{split}
+        \left[\withspinop[]{l}{\sigma}{},\,\withspinop[]{l'}{\sigma'}{}\right] &= 
+        \left[\withspinop[]{l}{\sigma}{\dagger},\,\withspinop[]{l'}{\sigma'}{\dagger}\right] = 0\\
+        \left[\withspinop[]{l}{\sigma}{},\,\withspinop[]{l'}{\sigma'}{\dagger}\right] &= \delta(l,l')\cdot\delta(\sigma,\sigma') 
+    \end{split}
+\end{equation}
+
 For ease of notation (most importantly in the code), the two spin degrees of freedom may be described by the alternate naming scheme provided in \autoref{eq:alt-naming-scheme}.
 
 \begin{equation}
@@ -63,7 +84,43 @@ For ease of notation (most importantly in the code), the two spin degrees of fre
     \withspinop{l}{\down}{(\dagger)} \leftrightarrow \dop{l}{(\dagger)}
 \end{equation}
 
-For simplification purposes, the two spin directions are assumed to have the same coupeling constants ($U$, $J$ and \epsl).
+For simplification purposes, the two spin directions are assumed to have the same coupling constants ($U$, $J$ and \epsl).
+This means, all later results must be symmetrical in terms of the spin directions $\up$ and $\down$.
 
-% TODO tex the translated hamiltonian
-% TODO neighbor sum notation explanation
+
+Translated into the alternative notation, \autoref{eq:main-hamiltonian-h0} reads like \autoref{eq:main-hamiltonian-h0-alt-notation} and \autoref{eq:main-hamiltonian-pertubation} reads like \autoref{eq:main-hamiltonian-pertubation-alt-notation}.
+
+\begin{equation}
+    \label{eq:main-hamiltonian-h0-alt-notation}
+    \HzeroHamiltonian = U \cdot \lsum \cop[]{l}{\dagger}\cop[]{l}{} \dop[]{l}{\dagger}\dop[]{l}{} + \lsum\epsl \cop[]{l}{\dagger}\cop[]{l}{} \lsum\epsl \dop[]{l}{\dagger}\dop[]{l}{}
+\end{equation}
+
+\begin{equation}
+    \label{eq:main-hamiltonian-pertubation-alt-notation}
+    \Vhamiltonian =  - J \cdot \neighborsum{l}{m} \left(\cop[]{l}{\dagger}\cop[]{m}{} +\cop[]{m}{\dagger}\cop[]{l}{} + \dop[]{l}{\dagger}\dop[]{m}{} +\dop[]{m}{\dagger}\dop[]{l}{} \right)
+\end{equation}
+
+Several of the previous equations feature the \emph{nearest neighbor} summing notation with pointy brackets $\langle\rangle$.
+This is supposed to express, that in the case of $\neighborsum[]{l}{m}$ for each possible $l$, $m$ will take on the indices of all neighbor sites of $l$.
+However, if a pair $l=x,\,m=y$ is part of the sum, then the inverse $l=y,\,m=x$ will not be.
+To be more in-line with the code implementation, \autoref{eq:fullneigborsum} gives an alternative notation using $[]$.
+In such sums, each pair $l=x,\,m=y$ and $l=y,\,m=x$ will be included in the sum for each nearest-neighbor-relation $x,\,y$.
+
+\begin{equation}
+    \label{eq:fullneigborsum}
+    \begin{split}
+        &\neighborsum[]{l}{m} \left( F(l,m) \cop[]{l}{\dagger}\cop[]{m}{} + F(m,l) \cop[]{m}{\dagger}\cop[]{l}{} \right) \stackrel{\stackrel{\text{\scriptsize rename-swap}}{\text{$l$ and $m$}}}{=} \\
+        &\neighborsum[]{l}{m} F(l,m) \cop[]{l}{\dagger}\cop[]{m}{} + \neighborsum[]{m}{l} F(l,m) \cop[]{l}{\dagger}\cop[]{m}{} = \\
+        &\fullneighborsum[]{l}{m} F(l,m) \cop[]{l}{\dagger}\cop[]{m}{} \stackrel{\text{! caution !}}{\neq}
+        2 \cdot \neighborsum[]{l}{m} F(l,m) \cop[]{l}{\dagger}\cop[]{m}{}
+    \end{split}
+\end{equation}
+
+With that convention, you can rewrite \autoref{eq:main-hamiltonian-pertubation-alt-notation} to \autoref{eq:main-hamiltonian-pertubation-full-sum}.
+
+\begin{equation}
+    \label{eq:main-hamiltonian-pertubation-full-sum}
+    \begin{split}
+        \Vhamiltonian =  - J \cdot \fullneighborsum{l}{m} \left(\cop[]{l}{\dagger}\cop[]{m}{} + \dop[]{l}{\dagger}\dop[]{m}{} \right)
+    \end{split}
+\end{equation}
