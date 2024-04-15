@@ -1,1 +1,71 @@
+Solving the quantum-mechanical many-body time-evolution problem in general requires at least a time-complexity of \bigo{2^n}.
+For some special cases it is possible to solve analytically.
+E.g. for 1-dimensional systems, the Hubbard Model can be solved analytically even with the addition of an electrical field \cite{exactSolutionExampleHubbardEvenElectricalField}.
+
+For arbitrary geometry in two or even more dimensions, this is no longer possible.
+In that case, approximations are required to lower the computational complexity to get it to a reasonable level to obtain the required measurements.
+Here, the calculation is performed in the \emph{Interaction Picture} (relevant equations from \cite{schwablBook}), along the lines of the calculation performed in \cite{variationalClassicalNetworksPaper}.
+
+The equations that were provided so far, show operators from the \emph{Schrödinger Picture}. 
+For this section, the operators and states will be labeled whether they are Schrödinger- or Interaction Picture. All un-labeled elements are assumed to be Schrödinger Picture.
+
+A general state in the Schrödinger Picture can be expanded in a basis like shown in \autoref{eq:base-expansion-state}. It is time-evolved using the full Hamiltonian in the Schrödinger Picture (\autoref{eq:time-evolution-schroedinger}, all units so that $\hbar = 1$).
+
+\begin{equation}
+    \label{eq:base-expansion-state}
+    \ketpsi[\schroedingerPicture]{} = \ketpsiof[\schroedingerPicture]{t=0} = 
+    \lsum[N] \ketN{}\underbrace{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}_{\text{\normalsize\psiN}} = \lsum[N] \psiN \ketN{}
+\end{equation}
+
+\begin{equation}
+    \label{eq:time-evolution-schroedinger}
+    \ketpsiof[\schroedingerPicture]{t} = e^{-i \pictureHamiltonian[\schroedingerPicture] t} \ketpsiof[\schroedingerPicture]{t=0} = e^{-i \pictureHamiltonian[\schroedingerPicture] t} \ketpsi[\schroedingerPicture]{}
+\end{equation}
+
+In the Interaction Picture, operators have a time evolution, that depends only on the \HzeroHamiltonian[\schroedingerPicture]{}-part, shown in \autoref{eq:time-evolution-operator-interaction} (assuming the operators are time-independent in the Schrödinger Picture). 
+
+\begin{equation}
+    \label{eq:time-evolution-operator-interaction}
+    \begin{split}
+        \AopOfT[\interactionPicture] = &e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \Aop[\schroedingerPicture] e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}
+        \quad \Rightarrow \quad 
+        \HzeroHamiltonian[\schroedingerPicture]{} = \HzeroHamiltonian[\interactionPicture]{}= \HzeroHamiltonian[]{}\\
+        \text{especially:} \qquad \VhamiltonianOfT[\interactionPicture] = &e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \Vhamiltonian[\schroedingerPicture] e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}
+    \end{split}
+\end{equation}
+
+The time-evolution of a general state in the Interaction Picture on the other hand is obtained like \autoref{eq:time-evolution-interaction}.
+
+\begin{equation}
+    \label{eq:time-evolution-interaction}
+    \ketpsiof[\interactionPicture]{t} = e^{i \HzeroHamiltonian{} t} \ketpsiof[\schroedingerPicture]{t} \stackrel{\ref{eq:time-evolution-schroedinger}}{=} e^{i \HzeroHamiltonian{} t} e^{-i \pictureHamiltonian[\schroedingerPicture]{} t} \ketpsi[\schroedingerPicture]{} 
+    \quad \Rightarrow \quad 
+    \ketpsiof[\schroedingerPicture]{t} = e^{-i \HzeroHamiltonian{} t} \ketpsiof[\interactionPicture]{t}
+\end{equation}
+
+Differentiating \autoref{eq:time-evolution-interaction} and substituting the special case in \autoref{eq:time-evolution-operator-interaction} along the way, one gets \autoref{eq:equation-of-motion-interaction-picture}.
+
+\begin{equation}
+    \label{eq:equation-of-motion-interaction-picture}
+    \begin{split}
+        \difft{\ketpsiof[\interactionPicture]{t}} &\stackrel{\ref{eq:time-evolution-interaction}}{=}
+        \difft{} \left(e^{i \HzeroHamiltonian{} t} e^{-i \pictureHamiltonian[\schroedingerPicture]{} t} \right)\ketpsi[\schroedingerPicture]{} \\
+        &\stackrel{\phantom{\ref{eq:time-evolution-interaction}}}{=} -i \cdot e^{i \HzeroHamiltonian{} t}\left( \pictureHamiltonian[\schroedingerPicture]{} - \HzeroHamiltonian{} \right) e^{-i \pictureHamiltonian[\schroedingerPicture]{} t} \ketpsi[\schroedingerPicture]{}\\
+        &\stackrel{\ref{eq:main-hamiltonian}}{=} -i \cdot e^{i \HzeroHamiltonian{} t} \Vhamiltonian[\schroedingerPicture] \cdot 1 \cdot e^{-i \pictureHamiltonian[\schroedingerPicture]{} t} \ketpsi[\schroedingerPicture]{}\\
+        &\stackrel{\phantom{\ref{eq:main-hamiltonian}}}{=} -i \cdot e^{i \HzeroHamiltonian{} t} \Vhamiltonian[\schroedingerPicture] e^{-i \HzeroHamiltonian{} t}e^{i \HzeroHamiltonian{} t} e^{-i \pictureHamiltonian[\schroedingerPicture]{} t} \ketpsi[\schroedingerPicture]{}\\
+        &\stackrel{\ref{eq:time-evolution-interaction}}{=} -i \cdot e^{i \HzeroHamiltonian{} t} \Vhamiltonian[\schroedingerPicture] e^{-i \HzeroHamiltonian{} t}\ketpsiof[\interactionPicture]{t}\\
+        &\stackrel{\ref{eq:time-evolution-operator-interaction}}{=} -i \cdot \VhamiltonianOfT[\interactionPicture] \ketpsiof[\interactionPicture]{t}
+    \end{split}
+\end{equation}
+
+The equation of motion in \autoref{eq:equation-of-motion-interaction-picture}, is solved by the ansatz in \autoref{eq:solve-equation-of-motion} with the \emph{time-evolution-operator} \timeEvolutionOperator[\interactionPicture] and the \emph{time-ordering-operator} \timeOrderingOperator.
+
+\begin{equation}
+    \label{eq:solve-equation-of-motion}
+    \begin{split}
+        \ketpsiof[\interactionPicture]{t} &= \timeOrderingOperator \left\lbrace e^{-i\int\limits_0^t \text{d} t' \VhamiltonianOfTPrime[\interactionPicture]}\right\rbrace \ketpsiof[\interactionPicture]{0}\\
+        TODO
+    \end{split}
+\end{equation}
+
 % TODO

@@ -11,12 +11,6 @@
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 \renewcommand*{\arraystretch}{0.8}
 
-%! qm commands
-\newcommand{\hamiltonian}{\ensuremath{\mathcal{H}}\xspace}
-\newcommand{\operator}{\ensuremath{\hat{\mathrm{O}}}\xspace}
-\newcommand{\up}{\ensuremath{\uparrow}\xspace}
-\newcommand{\down}{\ensuremath{\downarrow}\xspace}
-
 \newcommand{\filepath}[2]{\colorbox{lgrey}{#1: \texttt{#2}}\xspace}
 
 %! replace German quotation marks with English ones (I always write the left and right quotes explicitly with the German command variants as they are nice to debug and already in my macros. Then in the end, I can swap them with the desired replacement quotes of my choice)
@@ -25,22 +19,51 @@
 
 \newcommand{\bigo}[1]{\ensuremath{\mathcal{O}(#1)}}
 
+
+%! qm commands
+\newcommand{\up}{\ensuremath{\uparrow}\xspace}
+\newcommand{\down}{\ensuremath{\downarrow}\xspace}
+
+\newcommand{\difft}[1]{\ensuremath{\frac{\text{d}#1}{\text{d}t}}\xspace}
+
 \newcommand{\schroedingerPicture}{\text{S}}
 \newcommand{\interactionPicture}{\text{I}}
 
-\newcommand{\generalop}[6]{\ensuremath{\hat{\text{#1}}^{#2\xspace #3}_{#4#5#6}}\xspace}
-\newcommand{\withspinop}[4][]{\generalop{c}{#4}{#1}{#2}{,\,}{#3}}
-\newcommand{\cop}[3][]{\generalop{c}{#3}{#1}{#2}{}{}}
-\newcommand{\dop}[3][]{\generalop{d}{#3}{#1}{#2}{}{}}
-\newcommand{\nop}[3][]{\generalop{n}{}{#1}{#2}{,\,}{#3}}
+\newcommand{\generalop}[7]{\ensuremath{\hat{\text{#1}}^{#2\xspace #3}_{#4#5#6}#7}\xspace}
+\newcommand{\withspinop}[4][]{\generalop{c}{#4}{#1}{#2}{,\,}{#3}{}}
+\newcommand{\cop}[3][]{\generalop{c}{#3}{#1}{#2}{}{}{}}
+\newcommand{\dop}[3][]{\generalop{d}{#3}{#1}{#2}{}{}{}}
+\newcommand{\nop}[3][]{\generalop{n}{}{#1}{#2}{,\,}{#3}{}}
+\newcommand{\Aop}[1][]{\generalop{A}{}{#1}{}{}{}{}}
+\newcommand{\copOfT}[3][]{\generalop{c}{#3}{#1}{#2}{}{}{(t)}}
+\newcommand{\dopOfT}[3][]{\generalop{d}{#3}{#1}{#2}{}{}{(t)}}
+\newcommand{\nopOfT}[3][]{\generalop{n}{}{#1}{#2}{,\,}{#3}{(t)}}
+\newcommand{\AopOfT}[1][]{\generalop{A}{}{#1}{}{}{}{(t)}}
 
+\newcommand{\hamiltonian}{\ensuremath{\mathcal{H}}\xspace}
 \newcommand{\pictureHamiltonian}[1][]{\ensuremath{\hamiltonian^{#1}}\xspace}
-\newcommand{\Vhamiltonian}[1][]{\ensuremath{\text{V}}^{#1}\xspace}
-\newcommand{\HzeroHamiltonian}[1][]{\ensuremath{\hamiltonian_0}^{#1}\xspace}
+\newcommand{\Vhamiltonian}[1][]{\ensuremath{\hat{\text{V}}^{#1}}\xspace}
+\newcommand{\HzeroHamiltonian}[1][]{\ensuremath{\hamiltonian_0^{#1}}\xspace}
+\newcommand{\VhamiltonianOfT}[1][]{\ensuremath{\hat{\text{V}}^{#1}(t)}\xspace}
+\newcommand{\VhamiltonianOfTPrime}[1][]{\ensuremath{\hat{\text{V}}^{#1}(t')}\xspace} % TODO refactor
 
-\newcommand{\lsum}[1][l]{\ensuremath{\sum\limits_{#1}}}
-\newcommand{\neighborsum}[3][]{\ensuremath{\sum\limits_{\left\langle#2, #3\right\rangle#1}}}
+\newcommand{\timeOrderingOperator}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\timeEvolutionOperator}[1][]{\ensuremath{\hat{\text{P}}^{#1}(t)}\xspace}
+
+\newcommand{\lsum}[1][l]{\ensuremath{\sum\limits_{#1}}\xspace}
+\newcommand{\neighborsum}[3][]{\ensuremath{\sum\limits_{\left\langle#2, #3\right\rangle#1}}\xspace}
 \newcommand{\neighborsumWSpin}[3]{\neighborsum[,\,#3]{#1}{#2}}
-\newcommand{\fullneighborsum}[3][]{\ensuremath{\sum\limits_{\left[#2, #3\right]#1}}}
+\newcommand{\fullneighborsum}[3][]{\ensuremath{\sum\limits_{\left[#2, #3\right]#1}}\xspace}
 
-\newcommand{\epsl}[1][l]{\ensuremath{\varepsilon_{#1}}}
+\newcommand{\epsl}[1][l]{\ensuremath{\varepsilon_{#1}}\xspace}
+
+\newcommand{\picturePsi}[2][]{\ensuremath{\varPsi^{#1}{#2}}\xspace}
+\newcommand{\psiN}{\ensuremath{\varPsi_N}\xspace}
+\newcommand{\brapsi}[2][]{\ensuremath{\bra{\picturePsi[#1]{#2}}}\xspace}
+\newcommand{\ketpsi}[2][]{\ensuremath{\ket{\picturePsi[#1]{#2}}}\xspace}
+\newcommand{\brapsiof}[2][]{\brapsi[#1]{(#2)}}
+\newcommand{\ketpsiof}[2][]{\ketpsi[#1]{(#2)}}
+\newcommand{\braketHelper}[2]{\ensuremath{\braket{#1}{#2}}\xspace}
+
+\newcommand{\braN}[1][N]{\ensuremath{\bra{#1}}\xspace}
+\newcommand{\ketN}[1][N]{\ensuremath{\ket{#1}}\xspace}
