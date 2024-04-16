@@ -45,8 +45,8 @@
 \newcommand{\pictureHamiltonian}[1][]{\ensuremath{\hamiltonian^{#1}}\xspace}
 \newcommand{\Vhamiltonian}[1][]{\ensuremath{\hat{\text{V}}^{#1}}\xspace}
 \newcommand{\HzeroHamiltonian}[1][]{\ensuremath{\hamiltonian_0^{#1}}\xspace}
-\newcommand{\VhamiltonianOfT}[1][]{\ensuremath{\hat{\text{V}}^{#1}(t)}\xspace}
-\newcommand{\VhamiltonianOfTPrime}[1][]{\ensuremath{\hat{\text{V}}^{#1}(t')}\xspace} % TODO refactor
+\newcommand{\VhamiltonianOf}[2][]{\ensuremath{\hat{\text{V}}^{#1}(#2)}\xspace}
+\newcommand{\VhamiltonianOfT}[1][]{\VhamiltonianOf[#1]{t}}
 \newcommand{\HeffOft}[1][N]{\ensuremath{\hamiltonian_\text{#1}(t)}\xspace}
 
 \newcommand{\timeOrderingOperator}{\ensuremath{\mathbb{T}}\xspace}

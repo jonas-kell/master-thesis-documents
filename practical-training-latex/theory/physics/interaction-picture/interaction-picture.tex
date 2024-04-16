@@ -63,7 +63,7 @@ The equation of motion in \autoref{eq:equation-of-motion-interaction-picture}, i
 \begin{equation}
     \label{eq:solve-equation-of-motion}
     \begin{split}
-        \ketpsiof[\interactionPicture]{t} &= \timeOrderingOperator \left\lbrace e^{-i\int\limits_0^t \text{d} t' \VhamiltonianOfTPrime[\interactionPicture]}\right\rbrace \ketpsiof[\interactionPicture]{0}\\
+        \ketpsiof[\interactionPicture]{t} &= \timeOrderingOperator \left\lbrace e^{-i\int\limits_0^t \text{d} t' \VhamiltonianOf[\interactionPicture]{t'}}\right\rbrace \ketpsiof[\interactionPicture]{0}\\
         &= \timeEvolutionOperator[\interactionPicture] \ketpsiof[\interactionPicture]{0} \stackrel{\ref{eq:time-evolution-interaction}}{=} \timeEvolutionOperator[\interactionPicture] \ketpsiof[\schroedingerPicture]{0}
     \end{split}
 \end{equation}
@@ -88,7 +88,6 @@ Plugging this in, one finally obtains the general time-evolution for the state i
 Up to this point, the calculation is still exact. Now the effective hamiltonian \HeffOft could be approximated in different ways. Typically $e^{\HeffOft}$ is \emph{Taylor-expanded}, but in this context this approximation would converge quite poorly. 
 To combat this and require a smaller order of expansion terms, one could employ the \emph{cumulant-expansion} \cite{cumulantExpansionOriginalDerivation} to expand the object in terms of its exponent \HeffOft and not the whole exponential $e^{\HeffOft}$.
 The first and second order cumulants for the cumulant-expansion are provided in \autoref{eq:cumulant-expansion-coefficients} \cite{variationalClassicalNetworksPaper} with the \emph{cumulant-average} in respect to the state $\ketN$, $\left\langle\cdot\right\rangle_{\text{c}(N)}$.
-Plugging this into the rearranged result from \autoref{eq:time-evolution-target} following the derivation in \cite{variationalClassicalNetworksPaper}, one obtains an expansion for \HeffOft in \autoref{eq:cumulant-expansion}.
 
 \begin{equation}
     \label{eq:cumulant-expansion-coefficients}
@@ -98,10 +97,20 @@ Plugging this into the rearranged result from \autoref{eq:time-evolution-target}
     \end{split}
 \end{equation}
 
+Plugging this into the rearranged result from \autoref{eq:time-evolution-target} following the derivation in \cite{variationalClassicalNetworksPaper}, one obtains an expansion for \HeffOft in \autoref{eq:cumulant-expansion}.
+
 \begin{equation}
     \label{eq:cumulant-expansion}
-    \braketHelper{N}{\picturePsi[\schroedingerPicture]{}} \cdot TODO
+    \begin{split}
+        \braketHelper{N}{\picturePsi[\schroedingerPicture]{}} \cdot e^{\HeffOft} &\stackrel{\ref{eq:time-evolution-target}}{=} \frac{\bracketHelper{N}{\timeEvolutionOperator[\interactionPicture]}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}
+        \stackrel{\ref{eq:solve-equation-of-motion}}{=}
+        \bracketHelper{N}{
+            \timeOrderingOperator e^{-i\int\limits_0^t \text{d} t' \VhamiltonianOf[\interactionPicture]{t'}}
+        }{\picturePsi[\schroedingerPicture]{}}\\
+        &\stackrel{\text{\cite{variationalClassicalNetworksPaper}}}{\Longleftrightarrow}\\
+        \HeffOft &= \sum\limits_{v=1}^\infty \frac{\left(-i\right)^v}{v!} \int\limits_0^t\mathrm{d}t_1 \int\limits_0^t\mathrm{d}t_2 \,\,\dots \int\limits_0^t\mathrm{d}t_v \left\langle \timeOrderingOperator\, \VhamiltonianOf[\interactionPicture]{t_1}\VhamiltonianOf[\interactionPicture]{t_2} \cdots \VhamiltonianOf[\interactionPicture]{t_v} \right\rangle_{\text{c}(N)}\\
+        &= -i \int\limits_0^t \mathrm{d}t' \frac{\bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t'}}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}} + \cdots
+    \end{split}
 \end{equation}
-
 
 % TODO
