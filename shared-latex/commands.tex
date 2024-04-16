@@ -35,6 +35,7 @@
 \newcommand{\dop}[3][]{\generalop{d}{#3}{#1}{#2}{}{}{}}
 \newcommand{\nop}[3][]{\generalop{n}{}{#1}{#2}{,\,}{#3}{}}
 \newcommand{\Aop}[1][]{\generalop{A}{}{#1}{}{}{}{}}
+\newcommand{\Bop}[1][]{\generalop{B}{}{#1}{}{}{}{}}
 \newcommand{\copOfT}[3][]{\generalop{c}{#3}{#1}{#2}{}{}{(t)}}
 \newcommand{\dopOfT}[3][]{\generalop{d}{#3}{#1}{#2}{}{}{(t)}}
 \newcommand{\nopOfT}[3][]{\generalop{n}{}{#1}{#2}{,\,}{#3}{(t)}}
@@ -46,8 +47,9 @@
 \newcommand{\HzeroHamiltonian}[1][]{\ensuremath{\hamiltonian_0^{#1}}\xspace}
 \newcommand{\VhamiltonianOfT}[1][]{\ensuremath{\hat{\text{V}}^{#1}(t)}\xspace}
 \newcommand{\VhamiltonianOfTPrime}[1][]{\ensuremath{\hat{\text{V}}^{#1}(t')}\xspace} % TODO refactor
+\newcommand{\HeffOft}[1][N]{\ensuremath{\hamiltonian_\text{#1}(t)}\xspace}
 
-\newcommand{\timeOrderingOperator}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\timeOrderingOperator}{\ensuremath{\mathbb{T}}\xspace}
 \newcommand{\timeEvolutionOperator}[1][]{\ensuremath{\hat{\text{P}}^{#1}(t)}\xspace}
 
 \newcommand{\lsum}[1][l]{\ensuremath{\sum\limits_{#1}}\xspace}
@@ -64,6 +66,7 @@
 \newcommand{\brapsiof}[2][]{\brapsi[#1]{(#2)}}
 \newcommand{\ketpsiof}[2][]{\ketpsi[#1]{(#2)}}
 \newcommand{\braketHelper}[2]{\ensuremath{\braket{#1}{#2}}\xspace}
+\newcommand{\bracketHelper}[3]{\ensuremath{\matrixel{#1}{#2}{#3}}\xspace}
 
 \newcommand{\braN}[1][N]{\ensuremath{\bra{#1}}\xspace}
 \newcommand{\ketN}[1][N]{\ensuremath{\ket{#1}}\xspace}

@@ -58,14 +58,50 @@ Differentiating \autoref{eq:time-evolution-interaction} and substituting the spe
     \end{split}
 \end{equation}
 
-The equation of motion in \autoref{eq:equation-of-motion-interaction-picture}, is solved by the ansatz in \autoref{eq:solve-equation-of-motion} with the \emph{time-evolution-operator} \timeEvolutionOperator[\interactionPicture] and the \emph{time-ordering-operator} \timeOrderingOperator.
+The equation of motion in \autoref{eq:equation-of-motion-interaction-picture}, is solved by the ansatz in \autoref{eq:solve-equation-of-motion} with the  \emph{time-ordering-operator} \timeOrderingOperator and the \emph{time-evolution-operator} \timeEvolutionOperator[\interactionPicture].
 
 \begin{equation}
     \label{eq:solve-equation-of-motion}
     \begin{split}
         \ketpsiof[\interactionPicture]{t} &= \timeOrderingOperator \left\lbrace e^{-i\int\limits_0^t \text{d} t' \VhamiltonianOfTPrime[\interactionPicture]}\right\rbrace \ketpsiof[\interactionPicture]{0}\\
-        TODO
+        &= \timeEvolutionOperator[\interactionPicture] \ketpsiof[\interactionPicture]{0} \stackrel{\ref{eq:time-evolution-interaction}}{=} \timeEvolutionOperator[\interactionPicture] \ketpsiof[\schroedingerPicture]{0}
     \end{split}
 \end{equation}
+
+Plugging this in, one finally obtains the general time-evolution for the state in the Schrödinger Picture in \autoref{eq:time-evolution-target}.
+
+\begin{equation}
+    \label{eq:time-evolution-target}
+    \begin{split}
+        \ketpsiof[\schroedingerPicture]{t} &\stackrel{\ref{eq:time-evolution-interaction}}{=} e^{-i \HzeroHamiltonian{} t} \ketpsiof[\interactionPicture]{t} 
+        \stackrel{\ref{eq:solve-equation-of-motion}}{=}
+        e^{-i \HzeroHamiltonian{} t} \timeEvolutionOperator[\interactionPicture] \ketpsi[\schroedingerPicture]{} \\
+        &\stackrel{\phantom{\ref{eq:solve-equation-of-motion}}}{=}
+        e^{-i \HzeroHamiltonian{} t} \cdot 1 \cdot  \timeEvolutionOperator[\interactionPicture] \ketpsi[\schroedingerPicture]{}\cdot 1\\
+        &\stackrel{\phantom{\ref{eq:solve-equation-of-motion}}}{=}
+        e^{-i \HzeroHamiltonian{} t} \lsum[N] \ketN{} \bracketHelper{N}{\timeEvolutionOperator[\interactionPicture]}{\picturePsi[\schroedingerPicture]{}} \cdot \frac{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}\\
+        &\stackrel{\ref{eq:base-expansion-state}}{=}
+        \lsum[N] \underbrace{e^{-i \HzeroHamiltonian{} t}}_{\text{\normalsize{$e^{-i E_0 t}$}}}  \underbrace{\frac{\bracketHelper{N}{\timeEvolutionOperator[\interactionPicture]}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}}_{\text{\normalsize{$e^{\HeffOft}$}}}  \psiN \ketN{}
+    \end{split}
+\end{equation}
+
+Up to this point, the calculation is still exact. Now the effective hamiltonian \HeffOft could be approximated in different ways. Typically $e^{\HeffOft}$ is \emph{Taylor-expanded}, but in this context this approximation would converge quite poorly. 
+To combat this and require a smaller order of expansion terms, one could employ the \emph{cumulant-expansion} \cite{cumulantExpansionOriginalDerivation} to expand the object in terms of its exponent \HeffOft and not the whole exponential $e^{\HeffOft}$.
+The first and second order cumulants for the cumulant-expansion are provided in \autoref{eq:cumulant-expansion-coefficients} \cite{variationalClassicalNetworksPaper} with the \emph{cumulant-average} in respect to the state $\ketN$, $\left\langle\cdot\right\rangle_{\text{c}(N)}$.
+Plugging this into the rearranged result from \autoref{eq:time-evolution-target} following the derivation in \cite{variationalClassicalNetworksPaper}, one obtains an expansion for \HeffOft in \autoref{eq:cumulant-expansion}.
+
+\begin{equation}
+    \label{eq:cumulant-expansion-coefficients}
+    \begin{split}
+        \left\langle\Aop\right\rangle_{\text{c}(N)} &= \frac{ \bracketHelper{N}{\Aop}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}\\
+        \left\langle\Aop\Bop\right\rangle_{\text{c}(N)} &= \frac{\bracketHelper{N}{\Aop\Bop}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}} -  \frac{\bracketHelper{N}{\Aop}{\picturePsi[\schroedingerPicture]{}} \cdot \bracketHelper{N}{\Bop}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}^2}\\
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    \label{eq:cumulant-expansion}
+    \braketHelper{N}{\picturePsi[\schroedingerPicture]{}} \cdot TODO
+\end{equation}
+
 
 % TODO
