@@ -36,10 +36,12 @@
 \newcommand{\nop}[3][]{\generalop{n}{}{#1}{#2}{,\,}{#3}{}}
 \newcommand{\Aop}[1][]{\generalop{A}{}{#1}{}{}{}{}}
 \newcommand{\Bop}[1][]{\generalop{B}{}{#1}{}{}{}{}}
+\newcommand{\ObservableOp}{\generalop{$\mathcal{O}$}{}{}{}{}{}{}}
 \newcommand{\copOfT}[3][]{\generalop{c}{#3}{#1}{#2}{}{}{(t)}}
 \newcommand{\dopOfT}[3][]{\generalop{d}{#3}{#1}{#2}{}{}{(t)}}
 \newcommand{\nopOfT}[3][]{\generalop{n}{}{#1}{#2}{,\,}{#3}{(t)}}
 \newcommand{\AopOfT}[1][]{\generalop{A}{}{#1}{}{}{}{(t)}}
+\newcommand{\localObservable}[2]{\ensuremath{{\ObservableOp}_\text{loc}(#1,\,#2)}\xspace}
 
 \newcommand{\hamiltonian}{\ensuremath{\mathcal{H}}\xspace}
 \newcommand{\pictureHamiltonian}[1][]{\ensuremath{\hamiltonian^{#1}}\xspace}
@@ -47,7 +49,10 @@
 \newcommand{\HzeroHamiltonian}[1][]{\ensuremath{\hamiltonian_0^{#1}}\xspace}
 \newcommand{\VhamiltonianOf}[2][]{\ensuremath{\hat{\text{V}}^{#1}(#2)}\xspace}
 \newcommand{\VhamiltonianOfT}[1][]{\VhamiltonianOf[#1]{t}}
-\newcommand{\HeffOft}[1][N]{\ensuremath{\hamiltonian_\text{#1}(t)}\xspace}
+\newcommand{\HNOft}[1][N]{\ensuremath{\hamiltonian_{#1}(t)}\xspace}
+\newcommand{\Heff}[3]{\ensuremath{{\hamiltonian_\text{eff}}^{#3}({#1}#2)}\xspace}
+\newcommand{\HeffOft}[1][N]{\Heff{#1}{,\,t}{}}
+\newcommand{\HeffOftStar}[1][N]{\Heff{#1}{,\,t}{\ast}}
 
 \newcommand{\timeOrderingOperator}{\ensuremath{\mathbb{T}}\xspace}
 \newcommand{\timeEvolutionOperator}[1][]{\ensuremath{\hat{\text{P}}^{#1}(t)}\xspace}
@@ -60,13 +65,18 @@
 \newcommand{\epsl}[1][l]{\ensuremath{\varepsilon_{#1}}\xspace}
 
 \newcommand{\picturePsi}[2][]{\ensuremath{\varPsi^{#1}{#2}}\xspace}
-\newcommand{\psiN}{\ensuremath{\varPsi_N}\xspace}
+\newcommand{\psiN}[1][N]{\ensuremath{\varPsi_{#1}}\xspace}
+\newcommand{\psiNStar}[1][N]{\ensuremath{\varPsi^\ast_{#1}}\xspace}
 \newcommand{\brapsi}[2][]{\ensuremath{\bra{\picturePsi[#1]{#2}}}\xspace}
 \newcommand{\ketpsi}[2][]{\ensuremath{\ket{\picturePsi[#1]{#2}}}\xspace}
 \newcommand{\brapsiof}[2][]{\brapsi[#1]{(#2)}}
 \newcommand{\ketpsiof}[2][]{\ketpsi[#1]{(#2)}}
+\newcommand{\psiOfT}[1][]{\ensuremath{\picturePsi[#1]{}(t)}\xspace}
 \newcommand{\braketHelper}[2]{\ensuremath{\braket{#1}{#2}}\xspace}
 \newcommand{\bracketHelper}[3]{\ensuremath{\matrixel{#1}{#2}{#3}}\xspace}
 
 \newcommand{\braN}[1][N]{\ensuremath{\bra{#1}}\xspace}
 \newcommand{\ketN}[1][N]{\ensuremath{\ket{#1}}\xspace}
+
+\newcommand{\absSquare}[1]{\ensuremath{{\left\vert{#1}\right\vert}^2}\xspace}
+\newcommand{\probabilityOf}[2]{\ensuremath{\text{P}(#1,\,#2)}\xspace}

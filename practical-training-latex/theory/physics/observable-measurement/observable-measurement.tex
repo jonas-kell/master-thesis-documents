@@ -1,1 +1,103 @@
+The evaluation of observables is a primary requirement for this application. 
+First it is necessary to formulate a more general formula, that one later can plug specific observables into.
+
+From \autoref{eq:time-evolution-target} and applying \emph{dagger} to said equation, \autoref{eq:time-evolved-state-and-dagger} follows.
+
+
+\begin{equation}
+    \label{eq:time-evolved-state-and-dagger}
+    \begin{split}
+        \braketHelper{N}{\psiOfT[\schroedingerPicture]} &\stackrel{\ref{eq:time-evolution-target}}{=} \braN{} \lsum[K] e^{\HeffOft[K]} \psiN[K] \ketN[K]{}\\
+        & \stackrel{\phantom{\ref{eq:time-evolution-target}}}{=} 
+        \lsum[K]   e^{\HeffOft[K]} \psiN[K] \underbrace{\braketHelper{N}{K}}_\text{$\delta_{N,K}$} = e^{\HeffOft} \psiN{} \\
+        %
+        \stackrel{\dagger}{\Rightarrow} \braketHelper{\psiOfT[\schroedingerPicture]}{N} &\stackrel{\phantom{\ref{eq:time-evolution-target}}}{=} e^{\HeffOftStar} \psiNStar
+    \end{split}
+\end{equation}
+
+In \autoref{eq:expectation-value} by starting with the default way of calculating a normalized \emph{expectation-value} for an observable \ObservableOp.
+
+\begin{equation}
+    \label{eq:expectation-value}
+    \begin{split}
+        &\frac{\bracketHelper{\psiOfT[\schroedingerPicture]}{\ObservableOp}{\psiOfT[\schroedingerPicture]}}{\braketHelper{\psiOfT[\schroedingerPicture]}{\psiOfT[\schroedingerPicture]}}
+        %
+        \stackrel{\phantom{\ref{eq:time-evolution-target}}}{=} 
+        \frac{
+            \lsum[N] \braketHelper{\psiOfT[\schroedingerPicture]}{N} \bracketHelper{N}{\ObservableOp}{\psiOfT[\schroedingerPicture]}
+        }{
+            \lsum[K] \braketHelper{\psiOfT[\schroedingerPicture]}{K} \braketHelper{K}{\psiOfT[\schroedingerPicture]}
+        }\\
+        %
+        &\stackrel{\ref{eq:time-evolved-state-and-dagger}}{=} 
+        \frac{
+            \lsum[N] e^{\HeffOftStar} \psiNStar \bracketHelper{N}{\ObservableOp}{\psiOfT[\schroedingerPicture]}
+        }{
+            \lsum[K] e^{\HeffOftStar[K]} \psiNStar[K] e^{\HeffOft[K]} \psiN[K] 
+        }\\
+        & \stackrel{\phantom{\ref{eq:time-evolved-state-and-dagger}}}{=} 
+        \frac{
+            \lsum[N] e^{\HeffOftStar} \psiNStar \bracketHelper{N}{\ObservableOp}{\psiOfT[\schroedingerPicture]}
+        }{
+            \lsum[K] \absSquare{e^{\HeffOft[K]}} \absSquare{\psiN[K]} 
+        } \cdot 
+        \frac{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}\\
+        & \stackrel{\phantom{\ref{eq:time-evolved-state-and-dagger}}}{=} 
+        \lsum[N]
+        \frac{
+            e^{\HeffOftStar} \psiNStar e^{\HeffOft} \psiN{} \braketHelper{N}{\psiOfT[\schroedingerPicture]}
+        }{
+            \lsum[K] \absSquare{e^{\HeffOft[K]}} \absSquare{\psiN[K]} 
+        }  \cdot 
+        \frac{\bracketHelper{N}{\ObservableOp}{\psiOfT[\schroedingerPicture]}}{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}\\
+        & \stackrel{\ref{eq:time-evolved-state-and-dagger}}{=} 
+        \lsum[N]
+        \underbrace{\frac{
+            \absSquare{e^{\HeffOft}} \absSquare{\psiN} 
+        }{
+            \lsum[K] \absSquare{e^{\HeffOft[K]}} \absSquare{\psiN[K]} 
+        }}_{\probabilityOf{N}{t}} \cdot 
+        \frac{\bracketHelper{N}{\ObservableOp}{\psiOfT[\schroedingerPicture]}}{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}\\
+        & \stackrel{\phantom{\ref{eq:time-evolved-state-and-dagger}}}{=} \lsum[N]
+        \probabilityOf{N}{t}
+        \frac{\bracketHelper{N}{\ObservableOp}{\psiOfT[\schroedingerPicture]}}{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}
+        %
+        \stackrel{\phantom{\ref{eq:time-evolved-state-and-dagger}}}{=} \lsum[N]
+        \probabilityOf{N}{t}
+        \frac{
+            \lsum[K] \bracketHelper{N}{\ObservableOp}{K} \braketHelper{K}{\psiOfT[\schroedingerPicture]} 
+        }{
+            \braketHelper{N}{\psiOfT[\schroedingerPicture]}
+        }\\
+        & \stackrel{\ref{eq:time-evolved-state-and-dagger}}{=} \lsum[N]
+        \probabilityOf{N}{t}
+        \frac{
+            \lsum[K] \bracketHelper{N}{\ObservableOp}{K} e^{\HeffOft[K]} \psiN[K]
+        }{
+            e^{\HeffOft[N]} \psiN[N]
+        }\\
+        %
+        &\stackrel{\phantom{\ref{eq:time-evolved-state-and-dagger}}}{=} \lsum[N]
+        \probabilityOf{N}{t}
+        \underbrace{\lsum[K] \bracketHelper{N}{\ObservableOp}{K} e^{\HeffOft[K]-\HeffOft[N]}
+        \frac{
+            \psiN[K]
+        }{
+            \psiN[N]
+        }}_{\localObservable{N}{t}}
+        %
+        \stackrel{\phantom{\ref{eq:time-evolved-state-and-dagger}}}{=} \lsum[N]
+        \probabilityOf{N}{t}
+        \localObservable{N}{t}
+    \end{split}
+\end{equation}
+
+By inserting \autoref{eq:time-evolved-state-and-dagger} into \autoref{eq:expectation-value}, a probability-dependent formula is obtained, that can be used to plug in specific observables.  
+The probability of a base-state at a specified time \probabilityOf{N}{t} is important for this calculation. 
+The \fullref{sec:theory-monte-carlo} will discuss the viability of obtaining these probabilities and strategies of doing so.
+The matrix-element $\bracketHelper{N}{\ObservableOp}{K}$ has the important property of being $0$ for almost all combinations of $\braN$ and $\ketN[K]$, depending on the chosen observable \ObservableOp, which is what makes the calculation of the \emph{local-observable} \localObservable{N}{t} possible in the first place.
+
+\paragraph*{Double-Occupation Observable}
+\paragraph*{Spin-Polarized Kinetics}
+
 % TODO

@@ -81,12 +81,15 @@ Plugging this in, one finally obtains the general time-evolution for the state i
         &\stackrel{\phantom{\ref{eq:solve-equation-of-motion}}}{=}
         e^{-i \HzeroHamiltonian{} t} \lsum[N] \ketN{} \bracketHelper{N}{\timeEvolutionOperator[\interactionPicture]}{\picturePsi[\schroedingerPicture]{}} \cdot \frac{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}\\
         &\stackrel{\ref{eq:base-expansion-state}}{=}
-        \lsum[N] \underbrace{e^{-i \HzeroHamiltonian{} t}}_{\text{\normalsize{$e^{-i E_0 t}$}}}  \underbrace{\frac{\bracketHelper{N}{\timeEvolutionOperator[\interactionPicture]}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}}_{\text{\normalsize{$e^{\HeffOft}$}}}  \psiN \ketN{}
+        \lsum[N] \underbrace{e^{-i \HzeroHamiltonian{} t}}_{\text{\normalsize{$e^{-i E_0 t}$}}}  \underbrace{\frac{\bracketHelper{N}{\timeEvolutionOperator[\interactionPicture]}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}}_{\text{\normalsize{$e^{\HNOft}$}}}  \psiN \ketN{}\\
+        &\stackrel{\phantom{\ref{eq:base-expansion-state}}}{=}
+        \lsum[N] e^{-i E_0 t}  e^{\HNOft} \psiN \ketN{} = 
+        \lsum[N] e^{\HeffOft} \psiN \ketN{}
     \end{split}
 \end{equation}
 
-Up to this point, the calculation is still exact. Now the effective hamiltonian \HeffOft could be approximated in different ways. Typically $e^{\HeffOft}$ is \emph{Taylor-expanded}, but in this context this approximation would converge quite poorly. 
-To combat this and require a smaller order of expansion terms, one could employ the \emph{cumulant-expansion} \cite{cumulantExpansionOriginalDerivation} to expand the object in terms of its exponent \HeffOft and not the whole exponential $e^{\HeffOft}$.
+Up to this point, the calculation is still exact. Now the effective hamiltonian \HNOft could be approximated in different ways. Typically $e^{\HNOft}$ is \emph{Taylor-expanded}, but in this context this approximation would converge quite poorly. 
+To combat this and require a smaller order of expansion terms, one could employ the \emph{cumulant-expansion} \cite{cumulantExpansionOriginalDerivation} to expand the object in terms of its exponent \HNOft and not the whole exponential $e^{\HNOft}$.
 The first and second order cumulants for the cumulant-expansion are provided in \autoref{eq:cumulant-expansion-coefficients} \cite{variationalClassicalNetworksPaper} with the \emph{cumulant-average} in respect to the state $\ketN$, $\left\langle\cdot\right\rangle_{\text{c}(N)}$.
 
 \begin{equation}
@@ -97,18 +100,18 @@ The first and second order cumulants for the cumulant-expansion are provided in 
     \end{split}
 \end{equation}
 
-Plugging this into the rearranged result from \autoref{eq:time-evolution-target} following the derivation in \cite{variationalClassicalNetworksPaper}, one obtains an expansion for \HeffOft in \autoref{eq:cumulant-expansion}.
+Plugging this into the rearranged result from \autoref{eq:time-evolution-target} following the derivation in \cite{variationalClassicalNetworksPaper}, one obtains an expansion for \HNOft in \autoref{eq:cumulant-expansion}.
 
 \begin{equation}
     \label{eq:cumulant-expansion}
     \begin{split}
-        \braketHelper{N}{\picturePsi[\schroedingerPicture]{}} \cdot e^{\HeffOft} &\stackrel{\ref{eq:time-evolution-target}}{=} \frac{\bracketHelper{N}{\timeEvolutionOperator[\interactionPicture]}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}
+        \braketHelper{N}{\picturePsi[\schroedingerPicture]{}} \cdot e^{\HNOft} &\stackrel{\ref{eq:time-evolution-target}}{=} \frac{\bracketHelper{N}{\timeEvolutionOperator[\interactionPicture]}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}
         \stackrel{\ref{eq:solve-equation-of-motion}}{=}
         \bracketHelper{N}{
             \timeOrderingOperator e^{-i\int\limits_0^t \text{d} t' \VhamiltonianOf[\interactionPicture]{t'}}
         }{\picturePsi[\schroedingerPicture]{}}\\
         &\stackrel{\text{\cite{variationalClassicalNetworksPaper}}}{\Longleftrightarrow}\\
-        \HeffOft &= \sum\limits_{v=1}^\infty \frac{\left(-i\right)^v}{v!} \int\limits_0^t\mathrm{d}t_1 \int\limits_0^t\mathrm{d}t_2 \,\,\dots \int\limits_0^t\mathrm{d}t_v \left\langle \timeOrderingOperator\, \VhamiltonianOf[\interactionPicture]{t_1}\VhamiltonianOf[\interactionPicture]{t_2} \cdots \VhamiltonianOf[\interactionPicture]{t_v} \right\rangle_{\text{c}(N)}\\
+        \HNOft &= \sum\limits_{v=1}^\infty \frac{\left(-i\right)^v}{v!} \int\limits_0^t\mathrm{d}t_1 \int\limits_0^t\mathrm{d}t_2 \,\,\dots \int\limits_0^t\mathrm{d}t_v \left\langle \timeOrderingOperator\, \VhamiltonianOf[\interactionPicture]{t_1}\VhamiltonianOf[\interactionPicture]{t_2} \cdots \VhamiltonianOf[\interactionPicture]{t_v} \right\rangle_{\text{c}(N)}\\
         &= -i \int\limits_0^t \mathrm{d}t' \frac{\bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t'}}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}} + \cdots
     \end{split}
 \end{equation}
