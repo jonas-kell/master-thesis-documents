@@ -1,1 +1,61 @@
+Generally, handling the computation of the difference of the effective Hamiltonian for two states $\HeffOft[\tilde{N}]-\HeffOft[N]$ is the most expensive computation per Monte-Carlo-step.
+It is required in \autoref{eq:form-heff-difference} for the calculation of the spin-polarized kinetics.
+As stated in \fullref{sec:theory-monte-carlo} it is also needed to compute the transition probability between two sampled states in \autoref{eq:transition-probability-final}.
+The calculation of $\HeffOft[N]$ on its own requires an effort of \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})}.
+However, for the states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected with only small changes, most of the elements in the sum cancel and the complexity may be here even reduced to \bigo{$\text{\#}(\text{nearest neighbors})$}.
+This is quite attractive for, because it de-couples the per-step computational costs from the number of lattice sites - a vital step for simulating large systems efficiency - however this requires extra analytical calculations.
+
+\paragraph*{Initial State} \makebox{}\\
+
+The initial state of the system before the start of the time-evolution is encoded in $\psiN$, defined by \autoref{eq:base-expansion-state}. Different configurations can be considered here.
+
+One natural choice would be the preparation of a single defined base-state which would result in all $\psiN$ being $0$ but one that would have the value of $1$. 
+This case needs to be considered with a specialized analytical calculation, because there are many instances in this calculation, where a division by $\psiN$ is performed. 
+
+However the current calculation is compatible with the concept of one base-state having a probability $y$ that is $x$ times (e.g. $x=100$-times) as large as the probability $z = y/x$ of all the other states.
+This effectively also concentrates the initial state to one base-state.
+
+With the additional restriction of normalization from \autoref{eq:normalization} (factor 2 in the exponent for the spin-degree) the individual values for \psiN{} can be calculated (see \autoref{eq:psi-n-concentrated}).
+
+\begin{equation}
+    \label{eq:normalization}
+    \lsum[N] \psiN{}^2 = 1 \qquad \text{\#}(\text{states}) = 2^{\text{\#}(\text{sites}) \cdot 2}
+\end{equation}
+
+\begin{equation}
+    \label{eq:psi-n-concentrated}
+    \begin{split}
+        \stackrel{\ref{eq:normalization}}{\Rightarrow} y^2 + \left[\text{\#}(\text{states}) - 1 \right] z^2 = 1\\
+        y^2 + \left[\text{\#}(\text{states}) - 1 \right] \frac{y^2}{x^2} = 1\\
+        y = \sqrt{\left(1+\left[\text{\#}(\text{states}) - 1 \right]\frac{1}{x^2}\right)^{-1}}
+    \end{split}
+\end{equation}
+
+This configuration was tested and verified for small systems with summation over the full Hilbert-space. 
+However when Monte-Carlo sampled, the configuration produced different results than for exact sampling.
+This can probably be explained by the fact that the energy landscape of base-states for this configuration is not smooth enough. 
+Causing the Metropolis-Algorithm not to perform as intended for the number of samples.
+As stated, treating non-uniform distribution requires a different analytical approach. Therefore no further experimentation on this was done.\\
+
+A second natural choice would be the perfectly uniform distribution of probability for all the base-states. 
+This results in a smooth energy-landscape, that can be properly sampled. 
+
+The calculation for this is straight-forward and listed in \autoref{eq:psi-n-homogenous}
+
+\begin{equation}
+    \label{eq:psi-n-homogenous}
+    \psiN{} = \frac{1}{\sqrt{\text{\#}(\text{states})}} \stackrel{\ref{eq:normalization}}{=} \frac{1}{\sqrt{2^{\text{\#}(\text{sites}) \cdot 2}}} = \frac{1}{2^{\text{\#}(\text{sites})}}
+\end{equation}
+
+One last advantage of the uniform distribution of base-state-probabilities is, that all $\psiN$ are equal, which makes it possible to optimize sums, as $\psiN{}/\psiN[\tilde{N}]{} = 1$.
+The following two calculations require this assumption.
+
+\paragraph*{Hopping-only modification} \makebox{}\\
+
+
+\paragraph*{Flipping-only modification} \makebox{}\\
+
+
+All simplifications in this section are implemented as options that are selectable in the control-script     \filepath{\cite{selfCode}}{/computation-scripts/script.py}.
+ 
 % TODO

@@ -134,16 +134,16 @@ In this case, the used basis-states are not eigenstates of the operators.
 $\bracketHelper{N}{\withspinop{m}{\sigma}{\dagger}\withspinop{l}{\sigma}{}}{K}$ becomes $\delta_{N,\,\tilde{N}}\cdot (1-n_{l,\,\sigma} )\cdot n_{m,\,\sigma}$, where \ketN[{\vphantom{N}\smash{\tilde{N}}}] is the state obtained when the particle number on site $m,\, \sigma$ is transferred to site $l,\, \sigma$ (this \emph{hopping} is only possible, when there is a particle on the original site and no particle yet on the target site, which is ensured by the occupation numbers).
 Evaluating the whole operator with the signs and $i$s correctly and in a efficient manner can best be looked up in the implementation \filepath{\cite{selfCode}}{/computation-scripts/observables.py}.
 
-Overall, the evaluation of this observable requires knowing the value of an object of the form presented in \autoref{eq:form-kinteic-obs}.
+Overall, the evaluation of this observable requires knowing the value of an object of the form presented in \autoref{eq:form-heff-difference}.
 
 \begin{equation}
-    \label{eq:form-kinteic-obs}
+    \label{eq:form-heff-difference}
     \frac{\psiN[\tilde{N}]}{\psiN} e^{\HeffOft[\tilde{N}]-\HeffOft[N]}
 \end{equation}
 
 The \fullref{sec:theory-special-cases} will go into how to compute this efficiently for states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected via the hopping between nearest-neighbor lattice sites.
 
-It is finally important to notice, that the objects from \autoref{eq:form-kinteic-obs} are not real-valued, but complex.
+It is finally important to notice, that the objects from \autoref{eq:form-heff-difference} are not real-valued, but complex.
 Only the complete observable from the full sum over all basis-states \ketN over \localObservable{N}{t} has a fully vanishing imaginary part. 
 Especially when the observable is approximated with an incomplete set of basis-states, computationally an imaginary component remains. 
 It is important to monitor the magnitude of this value and monitor it going to $0$.
