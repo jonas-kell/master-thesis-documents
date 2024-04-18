@@ -15,11 +15,11 @@ This case needs to be considered with a specialized analytical calculation, beca
 However the current calculation is compatible with the concept of one base-state having a probability $y$ that is $x$ times (e.g. $x=100$-times) as large as the probability $z = y/x$ of all the other states.
 This effectively also concentrates the initial state to one base-state.
 
-With the additional restriction of normalization from \autoref{eq:normalization} (factor 2 in the exponent for the spin-degree) the individual values for \psiN{} can be calculated (see \autoref{eq:psi-n-concentrated}).
+With the additional restriction of normalization from \autoref{eq:normalization} the individual values for \psiN{} can be calculated (see \autoref{eq:psi-n-concentrated}).
 
 \begin{equation}
     \label{eq:normalization}
-    \lsum[N] \psiN{}^2 = 1 \qquad \text{\#}(\text{states}) = 2^{\text{\#}(\text{sites}) \cdot 2}
+    \lsum[N] \psiN{}^2 = 1
 \end{equation}
 
 \begin{equation}
@@ -44,7 +44,7 @@ The calculation for this is straight-forward and listed in \autoref{eq:psi-n-hom
 
 \begin{equation}
     \label{eq:psi-n-homogenous}
-    \psiN{} = \frac{1}{\sqrt{\text{\#}(\text{states})}} \stackrel{\ref{eq:normalization}}{=} \frac{1}{\sqrt{2^{\text{\#}(\text{sites}) \cdot 2}}} = \frac{1}{2^{\text{\#}(\text{sites})}}
+    \psiN{} = \frac{1}{\sqrt{\text{\#}(\text{states})}} \stackrel{\ref{eq:system-size}}{=} \frac{1}{\sqrt{2^{\text{\#}(\text{sites}) \cdot 2}}} = \frac{1}{2^{\text{\#}(\text{sites})}}
 \end{equation}
 
 One last advantage of the uniform distribution of base-state-probabilities is, that all $\psiN$ are equal, which makes it possible to optimize sums, as $\psiN{}/\psiN[\tilde{N}]{} = 1$.
