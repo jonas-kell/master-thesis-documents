@@ -1,1 +1,102 @@
+As \autoref{eq:cumulant-expansion} reveals, by this process that problem was converted into finding $\VhamiltonianOf[\interactionPicture]{t'}$ to be able to calculate the first order of the expansion.
+
+Operators in the Interaction Picture can be derived from their Schrödinger Picture variants like previously shown in \autoref{eq:time-evolution-operator-interaction}. 
+With this, one can derive a useful expression for their \emph{equation of motion} (\autoref{eq:schroedinger-op-to-interaction-op}).
+
+\begin{equation}
+    \label{eq:schroedinger-op-to-interaction-op}
+    \begin{split}
+        \difft{}\AopOfT[\interactionPicture] &\stackrel{\phantom{\ref{eq:time-evolution-operator-interaction}}}{=} i \left[\HzeroHamiltonian[\schroedingerPicture], \AopOfT[\interactionPicture]\right]
+        %
+        \stackrel{\ref{eq:time-evolution-operator-interaction}}{=}
+        i \left[\HzeroHamiltonian[\schroedingerPicture],\,e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \Aop[\schroedingerPicture] e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}\right]\\
+        %
+        &\stackrel{\phantom{\ref{eq:time-evolution-operator-interaction}}}{=}
+        i e^{i \HzeroHamiltonian[\schroedingerPicture]{} t}\left[\HzeroHamiltonian[\schroedingerPicture],\, \Aop[\schroedingerPicture]\right]e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}
+        %
+        \stackrel{\phantom{\ref{eq:time-evolution-operator-interaction}}}{=}
+        i \left\{\left[\HzeroHamiltonian[\schroedingerPicture],\, \Aop[\schroedingerPicture]\right]\right\}(t)
+    \end{split}
+\end{equation}
+
+\autoref{eq:schroedinger-op-to-interaction-op} also defines the operator $\left\{\cdot \right\}(t)$, which simply is $e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \left\{\cdot \right\} e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}$.
+This section uses $(t)$ for indicating that operators in the Interaction Picture have a time dependence. 
+This is superficial and only for better readability, as in fact $\left(\cop[\interactionPicture]{m}{\dagger}\right)(t) = \cop[\interactionPicture]{m}{\dagger} = \left\{\cop[\schroedingerPicture]{m}{\dagger} \right\}(t)$.
+
+If now $\left[\HzeroHamiltonian[\schroedingerPicture],\, \Aop[\schroedingerPicture]\right]$ now is a function of $\Aop[\schroedingerPicture]$, one gets a \emph{differential equation} that can be solved to obtain $\AopOfT[\interactionPicture]$.
+
+For the repetitive calculation of the objects of type $\left[\HzeroHamiltonian[\schroedingerPicture],\, \Aop[\schroedingerPicture]\right]$ for various \Aop[\schroedingerPicture], the tool \emph{Math-Manipulator} was specifically developed. 
+Later in \fullref{sec:results-math-manipulator} an explanation will be given, where the derivations that are used here can be checked with this tool from scratch.
+The equations \ref{eq:stuff-from-math-manipulator-dd} and \ref{eq:stuff-from-math-manipulator-cm} list exemplary results that were computed with the tool.
+
+\begin{equation}
+    \label{eq:stuff-from-math-manipulator-dd}
+    \difft{}\left(\dop[\interactionPicture]{m}{\dagger}\dop[\interactionPicture]{m}{}\right)(t)
+    = i \left\{\left[\HzeroHamiltonian[],\,\dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right]\right\}(t) \stackrel{\text{MM}}{=} 0 \quad \Rightarrow \quad \left(\dop[\interactionPicture]{m}{\dagger}\dop[\interactionPicture]{m}{}\right)(t) = \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}
+\end{equation}
+
+\begin{equation}
+    \label{eq:stuff-from-math-manipulator-cm}
+    \begin{split}
+        \difft{}\left(\cop[\interactionPicture]{m}{\dagger}\right)(t)
+        &\stackrel{\phantom{\ref{eq:time-evolution-operator-interaction}}}{=} i \left\{\left[\HzeroHamiltonian[]{},\,\cop[\schroedingerPicture]{m}{\dagger}\right]\right\}(t) \stackrel{\text{MM}}{=} 
+        i \left\{ \left(\epsl[m] + U \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right)\cop[\schroedingerPicture]{m}{}\right\}(t)\\
+        &\stackrel{\phantom{\ref{eq:time-evolution-operator-interaction}}}{=}i e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \left(\epsl[m] + U \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right)\cop[\schroedingerPicture]{m}{}e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}\\
+        &\stackrel{\phantom{\ref{eq:time-evolution-operator-interaction}}}{=}i \left(\epsl[m] + U e^{i \HzeroHamiltonian[\schroedingerPicture]{} t}\dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}\right)e^{i \HzeroHamiltonian[\schroedingerPicture]{} t}\cop[\schroedingerPicture]{m}{}e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}\\
+        &\stackrel{\ref{eq:time-evolution-operator-interaction}}{=}
+        i \left(\epsl[m] + U \left(\dop[\interactionPicture]{m}{\dagger}\dop[\interactionPicture]{m}{}\right)(t)\right) \left(\cop[\interactionPicture]{m}{\dagger}\right)(t)\\
+    \end{split}
+\end{equation}
+
+
+Additionally, for fermions and hard-core bosons \autoref{eq:counting-op-fermions-property} holds for all $z \in \mathbb{N}$.
+
+\begin{equation}
+    \label{eq:counting-op-fermions-property}
+    \left(\nop[\schroedingerPicture]{l}{\sigma}\right)^z = 
+    \left(\withspinop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinop[\schroedingerPicture]{l}{\sigma}{}\right)^z = 
+    \withspinop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinop[\schroedingerPicture]{l}{\sigma}{} = 
+    \nop[\schroedingerPicture]{l}{\sigma}
+\end{equation}
+
+With this, one can first derive \autoref{eq:operator-out-from-exponent} and finally use an exponential function as a natural ansatz to solve \autoref{eq:stuff-from-math-manipulator-cm} with \autoref{eq:the-final-time-dependence-cop}.
+
+\begin{equation}
+    \label{eq:operator-out-from-exponent}
+    \begin{split}
+        e^{a \cdot \withspinop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinop[\schroedingerPicture]{l}{\sigma}{}} &= \sum\limits_{m=0}^\infty \frac{a^n \left(\withspinop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinop[\schroedingerPicture]{l}{\sigma}{}\right)^n}{n!}
+        \stackrel{\ref{eq:counting-op-fermions-property}}{=} 1 + \left[\sum\limits_{m=1}^\infty \frac{a^n}{n!}\right]\cdot \left(\withspinop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinop[\schroedingerPicture]{l}{\sigma}{}\right)\\
+        &= 1 + \left[\sum\limits_{m=0}^\infty \frac{a^n}{n!}-1\right]\cdot \left(\withspinop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinop[\schroedingerPicture]{l}{\sigma}{}\right)
+         = 1 + \left(e^a-1\right)\cdot \withspinop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinop[\schroedingerPicture]{l}{\sigma}{}
+    \end{split}
+\end{equation}
+
+
+\begin{equation}
+    \label{eq:the-final-time-dependence-cop}
+    \begin{split}
+        \stackrel{\ref{eq:stuff-from-math-manipulator-cm},\, \ref{eq:stuff-from-math-manipulator-dd}}{\Longrightarrow}
+        \left(\cop[\interactionPicture]{m}{\dagger}\right)(t) 
+        &\stackrel{\phantom{\ref{eq:stuff-from-math-manipulator-dd}}}{=}
+        e^{i \cdot \epsl[m]\cdot  t + i \cdot U \left(\dop[\interactionPicture]{m}{\dagger}\dop[\interactionPicture]{m}{}\right)(t) \cdot  t}  \cop[\schroedingerPicture]{m}{\dagger} 
+        \stackrel{\ref{eq:stuff-from-math-manipulator-dd}}{=}
+        e^{i \cdot \epsl[m]\cdot  t + i \cdot U \cdot \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{} \cdot  t}  \cop[\schroedingerPicture]{m}{\dagger} \\
+        &\stackrel{\ref{eq:operator-out-from-exponent}}{=}
+        e^{i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{i  \cdot U  \cdot  t}-1\right) \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right)  \cop[\schroedingerPicture]{m}{\dagger}
+    \end{split}
+\end{equation}
+
+From analogous calculations follows:
+
+\begin{equation*}
+    \begin{split}
+        \left(\cop[\interactionPicture]{m}{\dagger}\right)(t)  &= e^{i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{i  \cdot U  \cdot  t}-1\right) \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right)  \cop[\schroedingerPicture]{m}{\dagger}\\
+        \left(\cop[\interactionPicture]{m}{}\right)(t)  &= e^{-i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{-i  \cdot U  \cdot  t}-1\right) \dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{m}{}\right)  \cop[\schroedingerPicture]{m}{}\\
+        \left(\dop[\interactionPicture]{m}{\dagger}\right)(t)  &= e^{i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{i  \cdot U  \cdot  t}-1\right) \cop[\schroedingerPicture]{m}{\dagger}\cop[\schroedingerPicture]{m}{}\right)  \dop[\schroedingerPicture]{m}{\dagger}\\
+        \left(\dop[\interactionPicture]{m}{}\right)(t)  &= e^{-i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{-i  \cdot U  \cdot  t}-1\right) \cop[\schroedingerPicture]{m}{}\cop[\schroedingerPicture]{m}{}\right)  \dop[\schroedingerPicture]{m}{}\\
+    \end{split}
+\end{equation*}
+
+
+
 % TODO

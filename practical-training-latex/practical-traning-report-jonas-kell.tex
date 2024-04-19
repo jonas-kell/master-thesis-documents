@@ -13,7 +13,7 @@ toc=bibliographynumbered            % bibliography gets a number and is listed i
 \title{Computer aided Analytical Calculations and Numerical Experimentation on the spin-dependent two-dimensional square Hubbard Model in an Electric Field}
 \author{Jonas Kell}
 \date{1$^\text{st}$ Mai 2024} %TODO
-\newcommand{\pdfkeywords}{neural networks, ai, physics, quantum mechanics, machine learning, analytical calculations} % TODO
+\newcommand{\pdfkeywords}{neural networks, ai, physics, quantum mechanics, machine learning, analytical calculations, many body physics, condensed matter, math manipulator}
 \newcommand{\pdfsubject}{Practical Training Report}
 
 \input{./../shared-latex/config}                % another file that holds the package/document configuration
@@ -68,12 +68,11 @@ toc=bibliographynumbered            % bibliography gets a number and is listed i
         \input{./theory/physics/interaction-picture/interaction-picture.tex}
         \FloatBarrier
         
-        \subsection{Approximation Evaluation}
+        \subsection{Operators in the Interaction Picture}
         \label{sec:theory-approximation-evaluation}
         \input{./theory/physics/interaction-picture/approximation-evaluation.tex}
         \FloatBarrier
 
-        % TODO check that in final compile this starts on a new-page
         \subsection{Observable Measurement}
         \label{sec:theory-observables}
         \input{./theory/physics/observable-measurement/observable-measurement.tex}
@@ -110,11 +109,17 @@ toc=bibliographynumbered            % bibliography gets a number and is listed i
 \FloatBarrier
 
     \section{Math-Manipulator}
-    \label{sec:implementation-math-manipulator}
+    \label{sec:math-manipulator-introduction}
     \input{programming/math-manipulator/introduction.tex}
     \FloatBarrier
-        
-        \input{programming/math-manipulator/math-manipulator.tex}
+    
+        \subsection{Math-Manipulator Implementation}
+        \label{sec:implementation-math-manipulator}
+        \input{programming/math-manipulator/implementation.tex}
+
+        \subsection{Math-Manipulator Results}
+        \label{sec:results-math-manipulator}
+        \input{programming/math-manipulator/results.tex}
 
     \section{Python Scrips implementing Analytical Calculations}
     \label{sec:implementation-analytical-calculations}

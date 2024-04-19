@@ -27,10 +27,10 @@ In the Interaction Picture, operators have a time evolution, that depends only o
 \begin{equation}
     \label{eq:time-evolution-operator-interaction}
     \begin{split}
-        \AopOfT[\interactionPicture] = &e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \Aop[\schroedingerPicture] e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}
+        \AopOfT[\interactionPicture] &= e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \Aop[\schroedingerPicture] e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}
         \quad \Rightarrow \quad 
         \HzeroHamiltonian[\schroedingerPicture]{} = \HzeroHamiltonian[\interactionPicture]{}= \HzeroHamiltonian[]{}\\
-        \text{especially:} \qquad \VhamiltonianOfT[\interactionPicture] = &e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \Vhamiltonian[\schroedingerPicture] e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}
+        \text{especially:} \qquad \VhamiltonianOfT[\interactionPicture] &=  e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \Vhamiltonian[\schroedingerPicture] e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}
     \end{split}
 \end{equation}
 
@@ -116,4 +116,4 @@ Plugging this into the rearranged result from \autoref{eq:time-evolution-target}
     \end{split}
 \end{equation}
 
-% TODO
+As $\VhamiltonianOf[\interactionPicture]{t'} \propto J$, if $J$ is a small pertubation (in comparison to $U$) this quickly converges for few terms.
