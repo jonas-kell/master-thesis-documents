@@ -21,7 +21,7 @@ With this, one can derive a useful expression for their \emph{equation of motion
 
 \autoref{eq:schroedinger-op-to-interaction-op} also defines the operator $\left\{\cdot \right\}(t)$, which simply is $e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \left\{\cdot \right\} e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}$.
 This section uses $(t)$ for indicating that operators in the Interaction Picture have a time dependence. 
-This is superficial and only for better readability, as in fact $\left(\cop[\interactionPicture]{m}{\dagger}\right)(t) = \cop[\interactionPicture]{m}{\dagger} = \left\{\cop[\schroedingerPicture]{m}{\dagger} \right\}(t)$.
+This is superficial and only for better readability, as in fact $\copOfT[\interactionPicture]{m}{\dagger} = \cop[\interactionPicture]{m}{\dagger} = \left\{\cop[\schroedingerPicture]{m}{\dagger} \right\}(t)$.
 
 If now $\left[\HzeroHamiltonian[\schroedingerPicture],\, \Aop[\schroedingerPicture]\right]$ now is a function of $\Aop[\schroedingerPicture]$, one gets a \emph{differential equation} that can be solved to obtain $\AopOfT[\interactionPicture]$.
 
@@ -38,13 +38,13 @@ The equations \ref{eq:stuff-from-math-manipulator-dd} and \ref{eq:stuff-from-mat
 \begin{equation}
     \label{eq:stuff-from-math-manipulator-cm}
     \begin{split}
-        \difft{}\left(\cop[\interactionPicture]{m}{\dagger}\right)(t)
+        \difft{}\copOfT[\interactionPicture]{m}{\dagger}
         &\stackrel{\phantom{\ref{eq:time-evolution-operator-interaction}}}{=} i \left\{\left[\HzeroHamiltonian[]{},\,\cop[\schroedingerPicture]{m}{\dagger}\right]\right\}(t) \stackrel{\text{MM}}{=} 
         i \left\{ \left(\epsl[m] + U \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right)\cop[\schroedingerPicture]{m}{}\right\}(t)\\
         &\stackrel{\phantom{\ref{eq:time-evolution-operator-interaction}}}{=}i e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \left(\epsl[m] + U \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right)\cop[\schroedingerPicture]{m}{}e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}\\
         &\stackrel{\phantom{\ref{eq:time-evolution-operator-interaction}}}{=}i \left(\epsl[m] + U e^{i \HzeroHamiltonian[\schroedingerPicture]{} t}\dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}\right)e^{i \HzeroHamiltonian[\schroedingerPicture]{} t}\cop[\schroedingerPicture]{m}{}e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}\\
         &\stackrel{\ref{eq:time-evolution-operator-interaction}}{=}
-        i \left(\epsl[m] + U \left(\dop[\interactionPicture]{m}{\dagger}\dop[\interactionPicture]{m}{}\right)(t)\right) \left(\cop[\interactionPicture]{m}{\dagger}\right)(t)\\
+        i \left(\epsl[m] + U \left(\dop[\interactionPicture]{m}{\dagger}\dop[\interactionPicture]{m}{}\right)(t)\right) \copOfT[\interactionPicture]{m}{\dagger}\\
     \end{split}
 \end{equation}
 
@@ -76,7 +76,7 @@ With this, one can first derive \autoref{eq:operator-out-from-exponent} and fina
     \label{eq:the-final-time-dependence-cop}
     \begin{split}
         \stackrel{\ref{eq:stuff-from-math-manipulator-cm},\, \ref{eq:stuff-from-math-manipulator-dd}}{\Longrightarrow}
-        \left(\cop[\interactionPicture]{m}{\dagger}\right)(t) 
+        \copOfT[\interactionPicture]{m}{\dagger}
         &\stackrel{\phantom{\ref{eq:stuff-from-math-manipulator-dd}}}{=}
         e^{i \cdot \epsl[m]\cdot  t + i \cdot U \left(\dop[\interactionPicture]{m}{\dagger}\dop[\interactionPicture]{m}{}\right)(t) \cdot  t}  \cop[\schroedingerPicture]{m}{\dagger} 
         \stackrel{\ref{eq:stuff-from-math-manipulator-dd}}{=}
@@ -90,13 +90,26 @@ From analogous calculations follows:
 
 \begin{equation*}
     \begin{split}
-        \left(\cop[\interactionPicture]{m}{\dagger}\right)(t)  &= e^{i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{i  \cdot U  \cdot  t}-1\right) \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right)  \cop[\schroedingerPicture]{m}{\dagger}\\
-        \left(\cop[\interactionPicture]{m}{}\right)(t)  &= e^{-i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{-i  \cdot U  \cdot  t}-1\right) \dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{m}{}\right)  \cop[\schroedingerPicture]{m}{}\\
-        \left(\dop[\interactionPicture]{m}{\dagger}\right)(t)  &= e^{i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{i  \cdot U  \cdot  t}-1\right) \cop[\schroedingerPicture]{m}{\dagger}\cop[\schroedingerPicture]{m}{}\right)  \dop[\schroedingerPicture]{m}{\dagger}\\
-        \left(\dop[\interactionPicture]{m}{}\right)(t)  &= e^{-i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{-i  \cdot U  \cdot  t}-1\right) \cop[\schroedingerPicture]{m}{}\cop[\schroedingerPicture]{m}{}\right)  \dop[\schroedingerPicture]{m}{}\\
+        \copOfT[\interactionPicture]{m}{\dagger}  &= e^{i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{i  \cdot U  \cdot  t}-1\right) \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right)  \cop[\schroedingerPicture]{m}{\dagger}\\
+        \copOfT[\interactionPicture]{m}{}  &= e^{-i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{-i  \cdot U  \cdot  t}-1\right) \dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{m}{}\right)  \cop[\schroedingerPicture]{m}{}\\
+        \dopOfT[\interactionPicture]{m}{\dagger}  &= e^{i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{i  \cdot U  \cdot  t}-1\right) \cop[\schroedingerPicture]{m}{\dagger}\cop[\schroedingerPicture]{m}{}\right)  \dop[\schroedingerPicture]{m}{\dagger}\\
+        \dopOfT[\interactionPicture]{m}{}  &= e^{-i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{-i  \cdot U  \cdot  t}-1\right) \cop[\schroedingerPicture]{m}{}\cop[\schroedingerPicture]{m}{}\right)  \dop[\schroedingerPicture]{m}{}\\
     \end{split}
 \end{equation*}
 
+Injecting these derivations into \autoref{eq:main-hamiltonian-pertubation-full-sum}, finally \VhamiltonianOfT[\interactionPicture] can be derived in \autoref{eq:interaction-picture-v-ham-full}.
 
-
-% TODO
+\begin{equation}
+    \label{eq:interaction-picture-v-ham-full}
+    \begin{split}
+        \VhamiltonianOfT[\interactionPicture] &
+        \stackrel{\phantom{\text{MM}}}{=}
+        \left\{\Vhamiltonian[\schroedingerPicture]\right\}(t) \stackrel{\ref{eq:main-hamiltonian-pertubation-full-sum}}{=}
+        - J \cdot \fullneighborsum{l}{m}  \left\{
+              \left(\cop[\schroedingerPicture]{l}{\dagger}\cop[\schroedingerPicture]{m}{} + \dop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{m}{} \right)
+        \right\}(t) \\
+        &\stackrel{\phantom{\text{MM}}}{=}
+        -J \cdot \fullneighborsum{l}{m}\left(\copOfT[\interactionPicture]{l}{\dagger}\copOfT[\interactionPicture]{m}{} + \dopOfT[\interactionPicture]{l}{\dagger}\dopOfT[\interactionPicture]{m}{} \right)\\
+        &\stackrel{\text{MM}}{=} % TODO
+    \end{split}
+\end{equation}
