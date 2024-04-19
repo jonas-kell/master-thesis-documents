@@ -110,6 +110,72 @@ Injecting these derivations into \autoref{eq:main-hamiltonian-pertubation-full-s
         \right\}(t) \\
         &\stackrel{\phantom{\text{MM}}}{=}
         -J \cdot \fullneighborsum{l}{m}\left(\copOfT[\interactionPicture]{l}{\dagger}\copOfT[\interactionPicture]{m}{} + \dopOfT[\interactionPicture]{l}{\dagger}\dopOfT[\interactionPicture]{m}{} \right)\\
-        &\stackrel{\text{MM}}{=} % TODO
+        &\stackrel{\text{MM}}{=}
+        %
+        -J \cdot \fullneighborsum{l}{m} \left[
+            e^{i\cdot \left(\epsl[m]-\epsl\right)\cdot t} \cdot \VhamiltonianPartA{l}{m} + 
+            \right.\\
+            &\qquad\qquad\quad
+            \left.
+            e^{i\cdot \left(\epsl[m]-\epsl + U\right)\cdot t} \cdot \VhamiltonianPartB{l}{m} + 
+            e^{i\cdot \left(\epsl[m]-\epsl - U\right)\cdot t} \cdot \VhamiltonianPartC{l}{m} 
+        \right]
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    \label{eq:interaction-picture-v-ham-parts}
+    \begin{split}
+        \VhamiltonianPartA{l}{m} &\stackrel{\text{MM}}{=} 
+            \left(5 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(5 \cdot \dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(2 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{}\cop[\schroedingerPicture]{l}{\dagger}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(2 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +\\&\mkern-40mu+
+            \left(-3 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(-3 \cdot \cop[\schroedingerPicture]{m}{}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(-3 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{l}{\dagger}\right)
+            +
+            \left(-3 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+        \\
+        \VhamiltonianPartB{l}{m} &\stackrel{\text{MM}}{=} 
+            \left(-2 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(-2 \cdot \dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(-1 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{}\cop[\schroedingerPicture]{l}{\dagger}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(-1 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +\\&\mkern-40mu+
+            \left(1 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(2 \cdot \cop[\schroedingerPicture]{m}{}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(1 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{l}{\dagger}\right)
+            +
+            \left(2 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+        \\
+        \VhamiltonianPartC{l}{m} &\stackrel{\text{MM}}{=} 
+            \left(-2 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(-2 \cdot \dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(-1 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{}\cop[\schroedingerPicture]{l}{\dagger}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(-1 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +\\&\mkern-40mu+
+            \left(2 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(1 \cdot \cop[\schroedingerPicture]{m}{}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+            +
+            \left(2 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{l}{\dagger}\right)
+            +
+            \left(1 \cdot \cop[\schroedingerPicture]{l}{}\cop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
+        \\
     \end{split}
 \end{equation}
