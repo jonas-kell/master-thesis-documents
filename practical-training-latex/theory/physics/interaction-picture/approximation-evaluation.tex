@@ -265,5 +265,5 @@ The result of the integration can be seen in \autoref{eq:final-integrated-hn}.
 \end{equation}
 
 While it seems that $\lsum[K] \fullneighborsum{l}{m}$ is even a larger summation than the previously problematic ones, because the operators \VhamiltonianPartA{l}{m}, \VhamiltonianPartB{l}{m} and \VhamiltonianPartC{l}{m} have interaction range limited to nearest neighbors, actually the summation is really sparse and most entries are $0$.
-This summation can be efficiently evaluated in \bigo{\text{\#}(\text{sites})}.
+This summation can be efficiently evaluated in \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})}.
 How this could be done, can be looked up in the implementation \filepath{\cite{selfCode}}{/computation-scripts/hamiltonian.py} in the specialization class \emph{HardcoreBosonicHamiltonian}.
