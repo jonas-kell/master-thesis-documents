@@ -1,1 +1,14 @@
-% TODO
+This theoretical part is not relevant for the overall understanding of the physical calculation that was performed.
+It only serves as an introductory helper for the ones that are interested in the inner workings of the tools that were developed to calculate the analytical expressions that are necessary to generate meaningful physical simulation results.
+
+The tool \emph{Math-Manipulator} was developed as a tool to aid doing calculations that are repetitive and impractical to do by hand, but still complex enough in the sense that they can not be simply put into a computer algebra system (at least not with out extra effort and knowledge).
+
+Thereby can the operation of the tool be broken down into three regimes: 
+\begin{enumerate}
+    \item The \emph{lexing}/\emph{parsing} of a string input (the equation/term that should be handled as a text input from the keyboard) into a structural \emph{operator-tree} 
+    \item The \emph{modification} of existing operator-trees by applying algorithms to reshape parts of the operator tree into a simplified/preferred form
+    \item The \emph{rendering}/\emph{displaying} of the operator tree to give direct visual feedback, user-interface and export to \LaTeX
+\end{enumerate}
+
+The first two are touched upon in the following sections. 
+The third comparably easily implemented as the stored structure allows for direct conversion to hierarchical \emph{LaTeX} code, which lets the established rendering engine take care of all the complexity of rendering mathematical formulae.
