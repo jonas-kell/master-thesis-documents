@@ -67,4 +67,13 @@ The function $f(N,t)$, provided in \autoref{eq:proportional-function}, fulfills 
 Multiple factors must be considered, which kind of variation is applied to the states in this schema. 
 However probably the most important criteria is how quickly one can evaluate \autoref{eq:transition-probability-final}, as this will be done tens to hundreds of times between each sampled state.
 
-% TODO how calculate observables with this reduced sample size (jvmc source)
+Finally, the method of sampling a selection of distributed states results in \autoref{eq:final-sampling-equation} as a rewrite to \autoref{eq:expectation-value} \cite{monteCarloObservableSampling}.
+
+\begin{equation}
+    \label{eq:final-sampling-equation}
+    \frac{\bracketHelper{\psiOfT[\schroedingerPicture]}{\ObservableOp}{\psiOfT[\schroedingerPicture]}}{\braketHelper{\psiOfT[\schroedingerPicture]}{\psiOfT[\schroedingerPicture]}} \stackrel{\ref{eq:expectation-value}}{=} 
+    \lsum[N]
+    \probabilityOf{N}{t}
+    \localObservable{N}{t} 
+    \stackrel{\text{\cite{monteCarloObservableSampling}}}{\approx} \frac{1}{\left|\left\{N\right\}_\text{MC}\right|} \lsum[\left\{N\right\}_\text{MC}]\localObservable{N}{t}
+\end{equation}
