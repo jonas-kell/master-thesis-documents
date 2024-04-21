@@ -54,6 +54,7 @@ The following two calculations require this assumption.
 As the states under consideration are \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}], the occupation-numbers $n_{l,\,\sigma}$ will describe the occupation of \ketN[N] and $\tilde{n}_{l,\,\sigma}$ the occupation of \ketN[{\vphantom{N}\smash{\tilde{N}}}].
 Both the following modifications restrict the values $\tilde{n}_{l,\,\sigma}$ to make them dependent on $n_{l,\,\sigma}$.
 
+\newpage % TODO check newpage justified in final render
 \paragraph*{Hopping-only modification} \makebox{}\\
 
 In this simplification, the maximum difference that can happen, is that a \emph{hopping} event occurs from site $i$ and spin $\sigma_i$ to the site $j$ and spin $\sigma_j$. 
@@ -90,7 +91,26 @@ This simplifies the energy difference $E_0(N)-E_0(\tilde{N})$ like equation \aut
     \end{split}
 \end{equation}
 
-% $\HNOft - \HNOft[\tilde{N}]$
+The simplification of $\HNOft - \HNOft[\tilde{N}]$ can not be calculated as quickly as the difference of base-energies.
+Primarily this is because of the number of terms in this calculation. Each of the three \VhamiltonianPartA{N}{t}, \VhamiltonianPartB{N}{t} and \VhamiltonianPartC{N}{t} is a sum of 8 summands, as one can see in \autoref{eq:interaction-picture-v-ham-parts}.
+Each of those must be treated for for cases: $(\sigma_i = \up \land \sigma_j = \up)$, $(\sigma_i = \up \land \sigma_j = \down)$, $(\sigma_i = \down \land \sigma_j = \up)$ and $(\sigma_i = \down \land \sigma_j = \down)$.
+This makes 32 differently-shaped terms, or combined with the pre-factors 96 terms to fully write down.
+
+Different notation could be used, to lessen the number of calculations, but this seemed unnecessarily complex.
+
+A simpler solution was in fact, to let a python script generate all the final simplified analytical terms and output them as usable functions into a python script to include in the rest of the code.
+The generating script can be found here: 
+
+\filepath{\cite{selfCode}}{/calculation-helpers/simplificationtermhelper.py}
+
+and the output with the analytically fully optimized calculations in a unified format here:
+\filepath{\cite{selfCode}}{/computation-scripts/analyticalcalcfunctions.py}.
+
+As this needs to be run quite often, it is useful to reduce the number of calculations as much as possible and avoid running unnecessary calculations on every iteration (e.g. $n_{l,\,\up} + 1 - (1 + n_{l,\,\up})$ which is definitely 0, no matter the value of $n_{l,\,\up}$).
+For this reason, the terms were pre-optimized as much as possible, by trying to pre-evaluate to definite zeros or constants terms. 
+This was performed automatically with the python package \emph{SymPy} \cite{sympyPackage}.
+
+More details on how this was calculated can be found in \fullref{sec:implementation-analytical-calculations} and further resources, that that section redirects towards.
 
 \paragraph*{Flipping-only modification} \makebox{}\\
 
@@ -122,9 +142,12 @@ This simplifies the energy difference $E_0(N)-E_0(\tilde{N})$ like equation \aut
     \end{split}
 \end{equation}
 
+Like for the hopping problem, the calculation of $\HNOft - \HNOft[\tilde{N}]$ is more involved in the number of terms.
+
+More details on how this was calculated can be found in \fullref{sec:implementation-analytical-calculations} and further resources, that that section redirects towards.
 
 \vspace{1cm}
-All preseneted simplifications to the Hamiltonians and corresponding MC-modification-strategies in this section are implemented as options that are selectable in the control-script   
+All presented simplifications to the Hamiltonians and corresponding MC-modification strategies in this section are implemented as options that are selectable in the control-script   
 
 \filepath{\cite{selfCode}}{/computation-scripts/script.py}.
  
