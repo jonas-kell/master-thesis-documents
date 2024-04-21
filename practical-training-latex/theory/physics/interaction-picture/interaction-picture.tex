@@ -69,6 +69,7 @@ The equation of motion in \autoref{eq:equation-of-motion-interaction-picture}, i
 \end{equation}
 
 Plugging this in, one finally obtains the general time-evolution for the state in the Schrödinger Picture in \autoref{eq:time-evolution-target}.
+This requires the \emph{base-energies} $E_0(N)$, where $e^{-i \HzeroHamiltonian{} t}\ketN{} = e^{-i E_0(N) t}\ketN{}$.
 
 \begin{equation}
     \label{eq:time-evolution-target}
@@ -83,7 +84,7 @@ Plugging this in, one finally obtains the general time-evolution for the state i
         &\stackrel{\ref{eq:base-expansion-state}}{=}
         \lsum[N] \underbrace{e^{-i \HzeroHamiltonian{} t}}_{\text{\normalsize{$e^{-i E_0 t}$}}}  \underbrace{\frac{\bracketHelper{N}{\timeEvolutionOperator[\interactionPicture]}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}}_{\text{\normalsize{$e^{\HNOft}$}}}  \psiN \ketN{}\\
         &\stackrel{\phantom{\ref{eq:base-expansion-state}}}{=}
-        \lsum[N] e^{-i E_0 t}  e^{\HNOft} \psiN \ketN{} = 
+        \lsum[N] e^{-i E_0(N) t}  e^{\HNOft} \psiN \ketN{} = 
         \lsum[N] e^{\HeffOft} \psiN \ketN{}
     \end{split}
 \end{equation}

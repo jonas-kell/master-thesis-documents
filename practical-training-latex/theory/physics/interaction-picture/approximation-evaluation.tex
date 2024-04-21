@@ -179,3 +179,91 @@ Injecting these derivations into \autoref{eq:main-hamiltonian-pertubation-full-s
         \\
     \end{split}
 \end{equation}
+
+\paragraph*{Base Energy}\makebox{}\\
+
+In \autoref{eq:time-evolution-target}, the effective Hamiltonian $\HeffOft = -i E_0(N) t + \HNOft$ was defined.
+This construct will be necessary in the following sections. 
+$E_0(N)$ is luckily calculated quite swiftly, as one can see in \autoref{eq:base-energy} (with $n_{l,\,\sigma}$ - the occupation-number in $\ketN$, not the operator).
+
+\begin{equation}
+    \label{eq:base-energy}
+    \begin{split}
+        E_0(N) &\stackrel{\phantom{\ref{eq:main-hamiltonian-h0}}}{=} \frac{\bracketHelper{N}{\HzeroHamiltonian[]}{N}}{\braketHelper{N}{N}} \\
+        %
+        &\stackrel{\ref{eq:main-hamiltonian-h0}}{=} \bracketHelper{N}{U \cdot \lsum \nop{l}{\up}\nop{l}{\down}}{N} + \bracketHelper{N}{\lsum[l,\,\sigma] \epsl \nop{l}{\sigma}}{N}\\
+        %
+        &\stackrel{\phantom{\ref{eq:main-hamiltonian-h0}}}{=} U \cdot \lsum n_{l,\,\up}n_{l,\,\down} + \lsum \epsl n_{l,\,\sigma}
+    \end{split}
+\end{equation}
+
+\paragraph*{Calculate \HNOft to get the full effective Hamiltonian}\makebox{}\\
+
+The last missing element for $\HeffOft = -i E_0(N) t + \HNOft$ now is \HNOft.
+At least for the first order, the integration in \autoref{eq:cumulant-expansion} is easily doable, with now knowing the form of \VhamiltonianOf[\interactionPicture]{t}.
+
+The result of the integration can be seen in \autoref{eq:final-integrated-hn}.
+
+\begin{equation}
+    \label{eq:final-integrated-hn}
+    \begin{split}
+        \HNOft &\stackrel{\ref{eq:cumulant-expansion}}{\approx} -i \int\limits_0^t \mathrm{d}t' \frac{\bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t'}}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}\\
+        %
+        &\stackrel{\ref{eq:base-expansion-state}}{=}
+        -i \frac{1}{\psiN} \int\limits_0^t \mathrm{d}t' \lsum[K] \bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t'}}{K} \psiN[K]\\
+        &\stackrel{\ref{eq:interaction-picture-v-ham-full}}{=}
+        i \cdot J \lsum[K] \fullneighborsum{l}{m} \frac{\psiN[K]}{\psiN} \int\limits_0^t \mathrm{d}t' 
+        \left[
+            e^{i\cdot \left(\epsl[m]-\epsl\right)\cdot t'} \cdot 
+            \bracketHelper{N}{
+                \VhamiltonianPartA{l}{m} 
+            }{K}
+            + 
+            \right.\\
+            &\qquad
+            \left.
+            e^{i\cdot \left(\epsl[m]-\epsl + U\right)\cdot t'} \cdot 
+            \bracketHelper{N}{
+                \VhamiltonianPartB{l}{m}
+            }{K}
+            + 
+            e^{i\cdot \left(\epsl[m]-\epsl - U\right)\cdot t'} \cdot 
+            \bracketHelper{N}{
+                \VhamiltonianPartC{l}{m} 
+            }{K}
+        \right]
+        \\
+        %
+        &\stackrel{\phantom{\ref{eq:interaction-picture-v-ham-full}}}{=}
+        i \cdot J \lsum[K] \fullneighborsum{l}{m} \frac{\psiN[K]}{\psiN}
+        \left[
+            \frac{e^{i\cdot \left(\epsl[m]-\epsl\right)\cdot t}-1}{\epsl[m]-\epsl} \cdot 
+            \bracketHelper{N}{
+                \VhamiltonianPartA{l}{m} 
+            }{K}
+            + 
+            \right.\\
+            &\qquad
+            \left.
+            \frac{
+                e^{i\cdot \left(\epsl[m]-\epsl + U\right)\cdot t}-1
+            }{\epsl[m]-\epsl + U}
+             \cdot 
+            \bracketHelper{N}{
+                \VhamiltonianPartB{l}{m}
+            }{K}
+            + 
+            \frac{
+                e^{i\cdot \left(\epsl[m]-\epsl - U\right)\cdot t}
+            }{\epsl[m]-\epsl - U}
+             \cdot 
+            \bracketHelper{N}{
+                \VhamiltonianPartC{l}{m} 
+            }{K}
+        \right]
+    \end{split}
+\end{equation}
+
+While it seems that $\lsum[K] \fullneighborsum{l}{m}$ is even a larger summation than the previously problematic ones, because the operators \VhamiltonianPartA{l}{m}, \VhamiltonianPartB{l}{m} and \VhamiltonianPartC{l}{m} have interaction range limited to nearest neighbors, actually the summation is really sparse and most entries are $0$.
+This summation can be efficiently evaluated in \bigo{\text{\#}(\text{sites})}.
+How this could be done, can be looked up in the implementation \filepath{\cite{selfCode}}{/computation-scripts/hamiltonian.py} in the specialization class \emph{HardcoreBosonicHamiltonian}.
