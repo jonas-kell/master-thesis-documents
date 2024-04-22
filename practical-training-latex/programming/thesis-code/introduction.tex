@@ -1,1 +1,16 @@
-% TODO
+A missing part of the report is, how and what results were obtained that describe the 
+
+\bigo{\text{\#}(\text{nearest neighbors})} calculation of $\HeffOft[\tilde{N}]-\HeffOft[N]$ needed in \fullref{sec:theory-special-cases}.
+
+Like previously hinted, they consist of many repetitive terms.
+Therefore listing them here would just unnecessarily bloat the report and serve no further purpose.
+It is better to look at the generating script 
+\filepath{\cite{selfCode}}{/calculation-helpers/simplificationtermhelper.py}
+and the generated output script if one desires a specific term from it:
+
+\filepath{\cite{selfCode}}{/computation-scripts/analyticalcalcfunctions.py}.
+
+The algorithm that the script operates on, is explained in the accompanying Project Work Presentation  \cite{selfDocument}.
+The validity of the analytical simplifications was tested by direct comparison to the non-simplified terms.
+The checking script can be verified here:\\
+\filepath{\cite{selfCode}}{/computation-scripts/comparehamiltonians.py}.

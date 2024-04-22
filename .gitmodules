@@ -9,3 +9,7 @@
 [submodule "latex-beamer-template"]
 	path = latex-beamer-template
 	url = https://github.com/jonas-kell/beamer-theme-unia-mntf
+	
+[submodule "mm-calculations"]
+	path = mm-calculations
+	url = https://github.com/jonas-kell/master-thesis-mm-calculations
