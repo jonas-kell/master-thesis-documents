@@ -1,11 +1,12 @@
 \centering
 
-\begin{tabular}{l|cc|ccccccc} 
+\begin{tabular}{l||c|c|c||l} 
     \toprule
-    a&b&c\\
+    &Left Example&\,\hspace{4cm}\,&Right Example\\
     \midrule 
-    a&b&c\\
-    a&b&c\\
+    Infix&     \texttt{1 * 4 + 2 !}           &&   \texttt{4 * (3 - 2) }          &Infix\\
+    Postfix&   \texttt{2 ! 1 4 * +}           &&   \texttt{4 3 2 - *}          &Postfix\\
+    Prefix&    \texttt{+ * 1 4 ! 2}           &&   \texttt{* 4 - 3 2}          &Prefix\\
     \bottomrule
 \end{tabular}
 \vspace{0.5cm}
@@ -16,27 +17,27 @@
 
     \node[circle,draw] {+}
         child { 
-            node[circle,draw] {3} 
-            child { node[circle,draw] {5} }
-            child { node[circle,draw] {2} }
+            node[circle,draw] {*} 
+            child { node[circle,draw] {1} }
+            child { node[circle,draw] {4} }
         }
         child { 
-            node[circle,draw] {*}
+            node[circle,draw] {!}
             child { 
-                node[circle,draw] {*}
+                node[circle,draw] {2}
             }
         };
 
     \begin{scope}[xshift=6cm]
 
-        \node[circle,draw] {/}
+        \node[circle,draw] {*}
             child { 
-                node[circle,draw] {10} 
+                node[circle,draw] {4} 
             }
             child { 
                 node[circle,draw] {-}
-                child { node[circle,draw] {7} }
                 child { node[circle,draw] {3} }
+                child { node[circle,draw] {2} }
             };
 
     \end{scope}
