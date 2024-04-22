@@ -1,1 +1,30 @@
-% TODO
+Doing math on paper is mostly two things. 
+Trying and thinking what to do and executing steps by writing them down.
+
+The problem of \glqq what to do\grqq{} can become basically of unlimited difficulty. 
+There are programs that attempt to provide complex computations like integral evaluation or something similar. 
+Most of them are purpose-built calculation machines that require at the minimum some expertise on how to operate them.
+This program is not supposed to take any of this load, nor could it.
+The program Math-Manipulator is designed to help with the \glqq writing down\grqq{} and \glqq executing steps\grqq{} part of the calculation.
+
+\begin{itemize}
+    \item 
+    How to make the denominator of the fraction real-valued?
+    \item
+    How to expand a product of sums to a sums of product?
+    \item
+    How to remove al zero- and canceling terms from a sum?
+    \item
+    How to rename this one variable and copy all the rest of the equation?
+\end{itemize}
+
+All these problems are computationally easy, just tedious and error-prone if done by hand for many terms. 
+This is the problem the program is designed to solve. 
+A helper that mimics how math would be done by hand, but with the extra \glqq Expand these 50 terms, cancel and order for me\grqq{} built in.
+
+This requires many small algorithms and functions that are purpose built for every operator.
+Operations can be simple - like returning the numerical value of a constant \ref{appendix:numericals}.
+They become more difficult, when recursion over children may be required - computing a percent-sing operator \ref{appendix:numericals}.
+And can even become gigantic algorithms like for the general distribution operation \ref{appendix:distribute}.
+
+This report is not a place to present them in any shape or form, but just give an outlook, where some of the very interesting implementations can be found if one is interested. 
