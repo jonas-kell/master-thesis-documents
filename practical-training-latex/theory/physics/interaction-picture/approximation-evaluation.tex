@@ -180,6 +180,40 @@ Injecting these derivations into \autoref{eq:main-hamiltonian-pertubation-full-s
     \end{split}
 \end{equation}
 
+It is possible to rewrite the components from \autoref{eq:interaction-picture-v-ham-parts} and write them as single hoppings, decorated with  number operators. One receives \autoref{eq:interaction-picture-v-ham-parts-simplified}, that is symmetrical in \up and \down (with $\overline{\up} = \down$ and  $\overline{\down} = \up$).
+
+\begin{equation}
+    \label{eq:interaction-picture-v-ham-parts-simplified}
+    \begin{split}
+        \VhamiltonianPartA{l}{m} &\stackrel{\text{MM}}{=} 
+        \lsum[\sigma \in \left\{\up,\,\down\right\}]
+        \withspinop[\schroedingerPicture]{l}{\sigma}{}\withspinop[\schroedingerPicture]{m}{\sigma}{\dagger}
+        \left(
+            1+
+            2 \cdot \nop[\schroedingerPicture]{l}{\overline{\sigma}}\nop[\schroedingerPicture]{m}{\overline{\sigma}}
+            - \nop[\schroedingerPicture]{l}{\overline{\sigma}}
+            - \nop[\schroedingerPicture]{m}{\overline{\sigma}}
+        \right)
+        \\
+        \VhamiltonianPartB{l}{m} &\stackrel{\text{MM}}{=} 
+        \lsum[\sigma \in \left\{\up,\,\down\right\}]        
+        \withspinop[\schroedingerPicture]{l}{\sigma}{}\withspinop[\schroedingerPicture]{m}{\sigma}{\dagger}
+        \left(
+            \nop[\schroedingerPicture]{m}{\overline{\sigma}}
+            - \nop[\schroedingerPicture]{l}{\overline{\sigma}}\nop[\schroedingerPicture]{m}{\overline{\sigma}}
+        \right)
+        \\
+        \VhamiltonianPartC{l}{m} &\stackrel{\text{MM}}{=} 
+        \lsum[\sigma \in \left\{\up,\,\down\right\}]
+        \withspinop[\schroedingerPicture]{l}{\sigma}{}\withspinop[\schroedingerPicture]{m}{\sigma}{\dagger}
+        \left(
+            \nop[\schroedingerPicture]{l}{\overline{\sigma}}
+            - \nop[\schroedingerPicture]{l}{\overline{\sigma}}\nop[\schroedingerPicture]{m}{\overline{\sigma}}
+        \right)
+        \\
+    \end{split}
+\end{equation}
+
 \paragraph*{Base Energy}\makebox{}\\
 
 In \autoref{eq:time-evolution-target}, the effective Hamiltonian $\HeffOft = -i E_0(N) t + \HNOft$ was defined.
