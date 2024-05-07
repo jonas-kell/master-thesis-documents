@@ -3,7 +3,7 @@ It is required in \autoref{eq:form-heff-difference} for the calculation of the s
 As stated in \fullref{sec:theory-monte-carlo} it is also needed to compute the transition probability between two sampled states in \autoref{eq:transition-probability-final}.
 The calculation of $\HeffOft[N]$ on its own requires an effort of \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})}.
 However, for the states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected with only small changes, most of the elements in the sum cancel and the complexity may be here even reduced to \bigo{$\text{\#}(\text{nearest neighbors})$}.
-This is quite attractive for, because it de-couples the per-step computational costs from the number of lattice sites - a vital step for simulating large systems efficiency - however this requires extra analytical calculations.
+This is quite attractive, because it de-couples the per-step computational costs from the number of lattice sites - a vital step for simulating large systems efficiency - however this requires extra analytical calculations.
 In this section analytical simplifications are presented to get the objects $E_0(N)-E_0(\tilde{N})$ and $\HNOft - \HNOft[\tilde{N}]$ (Caution, do not miss the extra \emph{minus} required, to calculate the required $\HeffOft[\tilde{N}]-\HeffOft[N]$ from this!).
 
 \paragraph*{Initial State} \makebox{}\\
@@ -54,7 +54,7 @@ The following two calculations require this assumption.
 As the states under consideration are \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}], the occupation-numbers $n_{l,\,\sigma}$ will describe the occupation of \ketN[N] and $\tilde{n}_{l,\,\sigma}$ the occupation of \ketN[{\vphantom{N}\smash{\tilde{N}}}].
 Both the following modifications restrict the values $\tilde{n}_{l,\,\sigma}$ to make them dependent on $n_{l,\,\sigma}$.
 
-\newpage % TODO check new page justified in final render
+\newpage 
 \paragraph*{Hopping-only modification} \makebox{}\\
 
 In this simplification, the maximum difference that can happen, is that a \emph{hopping} event occurs from site $i$ and spin $\sigma_i$ to the site $j$ and spin $\sigma_j$. 

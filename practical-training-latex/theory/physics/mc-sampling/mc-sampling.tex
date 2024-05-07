@@ -1,6 +1,6 @@
 Mathematically, the problem of finding the solution to such a quantum-mechanical many-body model is solved by the calculations provided up to this point. 
 However when looking at \autoref{eq:expectation-value}, one can easily see why in practice this is not viable with larger systems. 
-The calculation requires the sum over all base-states. 
+The calculation requires summing over all base-states. 
 Their number is given in \autoref{eq:system-size} (factor 2 in the exponent for the spin-degree) to be of exponential size in regards to the number of lattice-sites.
 Considering a physical material has at least in the order of $10^{23}$ (from \emph{Avogadros-Constant}) degrees of freedom, an \bigo{2^{\text{\#}(\text{sites})}} computational-complexity is not good enough to simulate interestingly-sized systems. 
 
@@ -13,7 +13,7 @@ Multiple strategies have already been suggested to circumvent this limitation.
 Here, the focus will be put onto randomized algorithms that use \emph{Monte-Carlo sampling} in order generate a limited number of states, representative of the real probability-distribution, in order to not having to sum over the complete \emph{Hilbert-Space}.
 The strategy of solving problems of this kind with the strategy of \emph{variational Monte-Carlo} is e.g. suggested in \cite{metropolisAlgorithmAndVariationalMonteCarlo}.
 This means starting with a random state and applying modifications to it (= variation).
-When the accepting/rejecting of these modifications is coupled to the probability the state has, based on its energy in the systems energy-distribution, the resulting states will have a energy/probability distribution, that resembles the one as if they were sampled from the full Hilbert-Space.
+When the accepting/rejecting of these modifications is coupled to the probability the state has, based on its energy in the systems energy-distribution, the resulting states will have an energy/probability distribution, that resembles the one as if they were sampled from the full Hilbert-Space.
 The derivation for the whole process is shown in \cite{monteCarloObservableSampling}.
 
 However computing the normalized probability for the states is still required, in order to compare against a (e.g. thermal) reference-distribution.
