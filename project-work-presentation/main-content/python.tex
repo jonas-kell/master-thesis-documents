@@ -52,15 +52,32 @@
             \item replace
             \item simplify difference
         \end{itemize}
-        \item \texttt{simplificationtermhelper.py} script to generate the script
-        \item \texttt{analyticalcalcfunctions.py} script is generated and used in the code
-        \item Generated file: 1556 lines, script that generates: 534 lines
-        \item But: 
+        \item Still quite complicated and a lot of work, but: 
         \begin{itemize}
             \item way faster to write bacuse non-repetetive logic
             \item verifiably correct calculations
             \item multiple times re-done on changes to underlying code, each time only took seconds
             \item sometimes brute-force NEEDS to work, before optimization can be found
         \end{itemize}
+    }
+
+    \begin{frame}
+        \frametitle{Script-Generation: Difference of V(t) for Hopping}
+        
+        \begin{block}{Generating Script}
+            \href{https://github.com/jonas-kell/master-thesis-code/blob/master/calculation-helpers/simplificationtermhelper.py}{simplificationtermhelper.py}
+        \end{block}
+
+        \vspace{1cm}
+
+        \begin{block}{Generated Script}
+            \href{https://github.com/jonas-kell/master-thesis-code/blob/master/computation-scripts/analyticalcalcfunctions.py}{analyticalcalcfunctions.py}
+        \end{block}
+    \end{frame}
+
+    \note[enumerate]{
+        \item \texttt{simplificationtermhelper.py} script to generate the script
+        \item \texttt{analyticalcalcfunctions.py} script is generated and used in the code
+        \item Generated file: 1556 lines, script that generates: 534 lines
         \item Show the script that generates/is generated $\rightarrow$ simplification with Sympy \item Parallel to computer-science practice "Vendored" code
     }
