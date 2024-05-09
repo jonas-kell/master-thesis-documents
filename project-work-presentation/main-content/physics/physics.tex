@@ -13,7 +13,18 @@
             \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{./main-content/physics/hamiltonian.pdf}}
 
     \end{columns}
-\end{frame}
+\end{frame} 
+
+\note[enumerate]{
+    \item Hubbard-Model Hamiltonian with exterally applied electric field
+    \item Hard-Core Bosinic Operators (will be explained in later slide, do not need to elaborate on)
+    \item Spin-dependent lattice Model
+    \item External electric field acts symmetric on both spin directions 
+    \begin{itemize}
+        \item This will be important later, multiple times
+        \item All terms always need to be symmetric in terms of spin up/down
+    \end{itemize}
+}
 
 \begin{frame}
     \frametitle{Physics of what we calculate}
@@ -21,7 +32,7 @@
     \begin{columns}
         \column{0.4\textwidth}
             \begin{wideitemize}
-                \item 2-dimensinal geometry
+                \item 2-dimensional geometry
                 \item Square lattice arrangement
                 \item Computation for general size and field angle
             \end{wideitemize}
@@ -29,7 +40,7 @@
             \vspace{0.5cm}
             \begin{itemize}
                 \item[Goal:]
-                Approximate evaluation of time-evolution
+                Approximate evaluation of time-evolution using Monte-Carlo Sampling
             \end{itemize}
 
         \column{0.5\textwidth}
@@ -37,6 +48,10 @@
             
     \end{columns}
 \end{frame}
+
+\note[enumerate]{
+    \item 2-dimensional square geometry
+}
 
 \begin{frame}
     \frametitle{Physics of what we calculate}
@@ -58,3 +73,13 @@
             
     \end{columns}
 \end{frame}
+
+\note[enumerate]{
+    \item Operators are hard-core bosonic
+    \begin{itemize}
+        \item standard commutation relations
+        \item occupations are only either zero ore one
+    \end{itemize}
+    \item fermionic operators (anti-commutation) would work equivalent
+    \item other notation to rewrite the two spin degrees of freedom into two operators of different dof makes it more readable and comfortable to apply computationally in some cases
+}
