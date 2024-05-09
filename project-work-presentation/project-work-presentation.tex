@@ -1,5 +1,5 @@
 % \documentclass[aspectratio=169]{beamer} % includes \pause in render
-\documentclass[aspectratio=169,handout]{beamer} % do not include \pause in render
+\documentclass[aspectratio=169, handout]{beamer} % do not include \pause in render
 
 \usetheme[neutralbackground]{uniamntf}
 
@@ -31,41 +31,57 @@
 
 \newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{0.3em}}{\enditemize}
 
-\begin{document}
+%! notes control
 
+%\setbeameroption{hide notes} % Only slides
+%\setbeameroption{show only notes} % Only notes
+\setbeameroption{show notes on second screen=right} % Both, use for pympress mode
+
+% presentation tool https://github.com/Cimbali/pympress
+% run: pympress project-work-presentation.pdf 
+
+%! notes control
+
+\begin{document}
     \begin{frame}[t,plain] 
         \maketitle
     \end{frame}
 
+    \note[enumerate]{
+        \item Welcome
+        \item Presentation of "Project Work" (Projektarbeit)
+        \item Runs parallel to the "Practical Training" (Fachpraktikum)
+        \item Presentation in this Group-Slot
+    }
+
     \begin{frame}
         \frametitle{Outline}
-        \tableofcontents
+        \tableofcontents[pausesections] % pause toc before each section
+        % \tableofcontents % all toc at once
     \end{frame}
 
-    \include{main-content/slides}
+    \note[enumerate]{
+        \item Introduction of theme worked on in Project-Work, Practical Training and Master Thesis
+        \begin{itemize}
+            \item The mathematical Problem of Many-Body Physics
+            \item The computational/notational problem of "doing maths easily"
+        \end{itemize}
+        \item What was there to make it easier (Off the shelf solutions)
+        \item What I did:
+        \begin{itemize}
+            \item Math Manipulator
+            \item Tricks to use to improve your Python
+            \item Latex for presentations
+        \end{itemize}
+%
+        \item[]
+        \item Gist: after I (somewhat of a computer scientist by trade) learnt the process of being a theoretical physicist, I wnat to bring back some tools/workflows to maybe improve someones life here at TP III  
+    }
 
-    \section{Presentations? - Custom Beamer Template}
-        \begin{frame}{Beamer: LaTeX way of writing Presentations}
-            \begin{itemize}
-                \item Write presentations like your papers/thesis    \pause
-                \item Reuse formulas/images/code/sources    \pause
-                \item Consistent style \& references    \pause
-                \item Version control    \pause
-                \item Easier collaboration
-            \end{itemize}
-
-            \blankfootnote{Beamer \cite{beamerPackageCtan} \tab{} Template \cite{selfBeamerTemplateMNTF}}
-        \end{frame}
-
-        \begin{frame}{Minimal example for beamer presentation}
-            \begin{columns}
-                \column{0.4\textwidth}
-                    \includegraphics[width=1.1\textwidth]{./beamer-minimal-example/code.png}
-                \column{0.4\textwidth}
-                    \includegraphics[width=0.9\textwidth]{./beamer-minimal-example/result.png}
-            \end{columns}
-        \end{frame}
-
+    \input{main-content/introduction.tex}
+    \input{main-content/math-manipulator.tex}
+    \input{main-content/python.tex}
+    \input{main-content/beamer.tex}
 
     \section*{Summary \& Conclusion}
     {
@@ -74,17 +90,22 @@
             Thank you for your kind attention
         \end{frame}
     }
-    \begingroup
 
-    \begin{frame}[allowframebreaks,noframenumbering]
-        \frametitle{References}
-        \nocite{*}
-        \printbibliography[title={Bibliography}]
-    \end{frame}
-    
-    \section*{Extra slides}
-        \begin{frame}[noframenumbering]{Theme alternative: Faculty of App. Computer Science}
-            \hspace{1cm}\includegraphics[height=.7\paperheight]{./../latex-beamer-template/rendered-preview-pictures/FAICompilation.png}
+    \note[enumerate]{
+        \item Thank you for your kind attention
+        \item All tools and other resources are referenced in the presentation
+        \item You can also find everything on my Github
+    }
+
+    \begingroup % group to not count pages from here
+        \begin{frame}[allowframebreaks,noframenumbering]
+            \frametitle{References}
+            \nocite{*}
+            \printbibliography[title={Bibliography}]
         \end{frame}
+        
+        \section*{Extra slides}
+            \input{extra-slides/extra.tex}
+    \endgroup
 
 \end{document}
