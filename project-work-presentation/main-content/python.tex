@@ -1,8 +1,66 @@
 \section{Custom Python Scripts (SymPy)}
     \begin{frame}
-        \frametitle{title}
+        \frametitle{Optimization: Difference of V(t) for Hopping}
+
+        \begin{columns}
+            \column{0.4\textwidth}
+                \begin{itemize}
+                    \item Monte-Carlo sampling requires transition probabilities between "adjacent" states
+                    \item These require differences of $\hat{V}^\mathrm{I}(t)$ and $E_0$
+                    \item Too many terms for simple evaluation by hand
+                    \item Intelligent pre-computation required to speed up processing
+                \end{itemize}
+            \column{0.4\textwidth}
+                \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{main-content/python/sampling-probability.pdf}}
+                
+        \end{columns}
     \end{frame}
 
     \note[enumerate]{
-        \item asdadasdadsa
+        \item "Adjacent" states because from one Monte-Carlo step to the next we require a small change of one or two particle-sites. Could come from hopping or flipping.
+        \item The $E_0$ differences are quickly calculated by hand in the report
+    }
+
+    \begin{frame}
+        \frametitle{The process: Difference of V(t) for Hopping}
+        
+        \hspace{-1cm}
+        \makebox[\textwidth][c]{
+            \includegraphics[width=0.7\textwidth]{main-content/python/hopping-e0-example.pdf}
+            \includegraphics[width=0.28\textwidth]{main-content/python/n-redefinition.pdf}
+        }
+
+        \vspace{0.3cm}
+
+        \begin{itemize}
+            \item Setup difference
+            \item Replace one by appropriate new occupation
+            \item Simplify as much as possible
+            \item Sum over all possible neighbor combinations
+        \end{itemize}
+
+        \vspace{0.1cm}
+        
+        \textbf{Problem:} number of terms/combinations: $3 \cdot 8 \cdot 4 \cdot 2 = 192$
+    \end{frame}
+
+    \note[enumerate]{
+        \item The $V$ differences are $3 \cdot 8 \cdot = 32 \cdot 4 = 96 \cdot 2 = 192$ terms
+        \item The process is relatively straight forward:
+        \begin{itemize}
+            \item write down the terms
+            \item replace
+            \item simplify difference
+        \end{itemize}
+        \item \texttt{simplificationtermhelper.py} script to generate the script
+        \item \texttt{analyticalcalcfunctions.py} script is generated and used in the code
+        \item Generated file: 1556 lines, script that generates: 534 lines
+        \item But: 
+        \begin{itemize}
+            \item way faster to write bacuse non-repetetive logic
+            \item verifiably correct calculations
+            \item multiple times re-done on changes to underlying code, each time only took seconds
+            \item sometimes brute-force NEEDS to work, before optimization can be found
+        \end{itemize}
+        \item Show the script that generates/is generated $\rightarrow$ simplification with Sympy
     }
