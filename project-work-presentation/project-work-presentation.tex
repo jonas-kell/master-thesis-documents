@@ -58,25 +58,31 @@
         \frametitle{Outline}
         \tableofcontents[pausesections] % pause toc before each section
         % \tableofcontents % all toc at once
+
+        % toc notes do need to live inside the frame, to appear on all animated slides
+        \note[item] {
+            Introduction of theme worked on in Project-Work, Practical Training and Master Thesis
+            \begin{itemize}
+                \item The mathematical Problem of Many-Body Physics
+                \item The computational/notational problem of "doing maths easily"
+            \end{itemize}
+        }
+        \note[item] {
+            What was there to make it easier (Off the shelf solutions)
+        }
+        \note[item] {
+            What I did:
+            \begin{itemize}
+                \item Math Manipulator
+                \item Tricks to use to improve your Python
+                \item Latex for presentations
+            \end{itemize}
+        }
+        \note[item] {
+            Gist: after I (somewhat of a computer scientist by trade) learned the process of being a theoretical physicist, I want to bring back some tools/workflows to maybe improve someones life here at TP III  
+        }
     \end{frame}
 
-    \note[enumerate]{
-        \item Introduction of theme worked on in Project-Work, Practical Training and Master Thesis
-        \begin{itemize}
-            \item The mathematical Problem of Many-Body Physics
-            \item The computational/notational problem of "doing maths easily"
-        \end{itemize}
-        \item What was there to make it easier (Off the shelf solutions)
-        \item What I did:
-        \begin{itemize}
-            \item Math Manipulator
-            \item Tricks to use to improve your Python
-            \item Latex for presentations
-        \end{itemize}
-%
-        \item[]
-        \item Gist: after I (somewhat of a computer scientist by trade) learnt the process of being a theoretical physicist, I wnat to bring back some tools/workflows to maybe improve someones life here at TP III  
-    }
 
     \input{main-content/introduction.tex}
     \input{main-content/math-manipulator.tex}
