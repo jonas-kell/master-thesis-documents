@@ -48,13 +48,19 @@
             \begin{block}{Available here}
                 \href{https://jonas-kell.github.io/math-manipulator/}{https://jonas-kell.github.io/math-manipulator/}
             \end{block}
+
+            % notes 
+            \onslide % on all slides of frame
+            \note[item] {
+                Source code available
+            }
+            \note[item] {
+                (Relatively) easily extensible, tutorial and issues available
+            }
+            \note[item] {
+                Instantly usable, offline and online
+            }
         \end{frame}
-    
-        \note[enumerate]{
-            \item Source code available
-            \item (Relatively) easily extensible, tutorial and issues available
-            \item Instantly usable, offline and online
-        }
     
         \begin{frame}
             \frametitle{Usage as VS-Code Extension}
@@ -71,22 +77,27 @@
                 Do not allow a spellchecker to run on the file, it will break everything performance-wise
             \end{alertblock}
 
+            % notes 
+            \onslide % on all slides of frame
+            \note[item] {
+                For more serious use, integrated in the code-editor VS-Code as an Extension
+            }
+            \note[item] {
+                Allows for all features, but includes 
+                \begin{itemize}
+                    \item Offline use out of the box
+                    \item Storage of files (with that version control)
+                    \item Multiple parallel projects 
+                \end{itemize}
+            }
+            \note[item] {
+                Has already taken entry into my personal workflow by now
+                \begin{itemize}
+                    \item Probably I will never make back my WHOLE time-investment
+                    \item But I already saved hours upon hours when I noticed sign mistakes, symmetry issues or similar in calculations I did with it
+                \end{itemize}
+            }
         \end{frame}
-
-        \note[enumerate]{
-            \item For more serious use, integrated in the code-editor VS-Code as an Extension
-            \item Allows for all features, but includes 
-            \begin{itemize}
-                \item Offline use out of the box
-                \item Storage of files (with that version control)
-                \item Multiple parallel projects 
-            \end{itemize}
-            \item Has already taken entry into my personal workflow by now
-            \begin{itemize}
-                \item Probably I will never make back my WHOLE time-investment
-                \item But I already saved hours upon hours when I noticed sign mistakes, symmetry issues or similar in calculations I did with it
-            \end{itemize}
-        }
 
     \subsection{Interactive Demonstration}
 
@@ -122,11 +133,19 @@
             \makebox[0.9\textwidth][c]{
                 \includegraphics[page=4,width=.76\textwidth]{./main-content/paper/V_interaction_picture.pdf}
             }
-        \end{frame}
 
-        \note[enumerate]{
-            \item Go to Demo in VS-Code submodule mm-calculations. 
-            \item Think of disabling spellchecker
-            \item Show process of how V is calculated
-            \item Story: at the end at first result was no longer symmetrical in up and down, but it should have been. Mistake was in the very first input. But because of the upfornt configuration (and in my case programming) effort, re-calculating the endresult took 20min instead of one week
-        }
+            % notes 
+            \onslide % on all slides of frame
+            \note[item] {
+                Go to Demo in VS-Code submodule mm-calculations. 
+            }
+            \note[item] {
+                Think of disabling spellchecker
+            }
+            \note[item] {
+                Show process of how V is calculated
+            }
+            \note[item] {
+                Story: at the end at first result was no longer symmetrical in up and down, but it should have been. Mistake was in the very first input. But because of the upfornt configuration (and in my case programming) effort, re-calculating the endresult took 20min instead of one week
+            }
+        \end{frame}

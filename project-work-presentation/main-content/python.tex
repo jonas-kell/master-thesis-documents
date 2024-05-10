@@ -14,12 +14,16 @@
                 \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{main-content/python/sampling-probability.pdf}}
                 
         \end{columns}
-    \end{frame}
 
-    \note[enumerate]{
-        \item "Adjacent" states because from one Monte-Carlo step to the next we require a small change of one or two particle-sites. Could come from hopping or flipping.
-        \item The $E_0$ differences are quickly calculated by hand in the report
-    }
+        % notes 
+        \onslide % on all slides of frame
+        \note[item] {
+            "Adjacent" states because from one Monte-Carlo step to the next we require a small change of one or two particle-sites. Could come from hopping or flipping.
+        }
+        \note[item] {
+            The $E_0$ differences are quickly calculated by hand in the report
+        }
+    \end{frame}
 
     \begin{frame}
         \frametitle{The process: Difference of V(t) for Hopping}
@@ -42,24 +46,30 @@
         \vspace{0.1cm}
         
         \textbf{Problem:} number of terms/combinations: $3 \cdot 8 \cdot 4 \cdot 2 = 192$
-    \end{frame}
 
-    \note[enumerate]{
-        \item The $V$ differences are $3 \cdot 8 \cdot = 32 \cdot 4 = 96 \cdot 2 = 192$ terms
-        \item The process is relatively straight forward:
-        \begin{itemize}
-            \item write down the terms
-            \item replace
-            \item simplify difference
-        \end{itemize}
-        \item Still quite complicated and a lot of work, but: 
-        \begin{itemize}
-            \item way faster to write bacuse non-repetetive logic
-            \item verifiably correct calculations
-            \item multiple times re-done on changes to underlying code, each time only took seconds
-            \item sometimes brute-force NEEDS to work, before optimization can be found
-        \end{itemize}
-    }
+        % notes 
+        \onslide % on all slides of frame
+        \note[item] {
+            The $V$ differences are $3 \cdot 8 \cdot = 32 \cdot 4 = 96 \cdot 2 = 192$ terms
+        }
+        \note[item] {
+            The process is relatively straight forward:
+            \begin{itemize}
+                \item write down the terms
+                \item replace
+                \item simplify difference
+            \end{itemize}
+        }
+        \note[item] {
+            Still quite complicated and a lot of work, but: 
+            \begin{itemize}
+                \item way faster to write bacuse non-repetetive logic
+                \item verifiably correct calculations
+                \item multiple times re-done on changes to underlying code, each time only took seconds
+                \item sometimes brute-force NEEDS to work, before optimization can be found
+            \end{itemize}
+        }
+    \end{frame}
 
     \begin{frame}
         \frametitle{Script-Generation: Difference of V(t) for Hopping}
@@ -73,11 +83,19 @@
         \begin{block}{Generated Script}
             \href{https://github.com/jonas-kell/master-thesis-code/blob/master/computation-scripts/analyticalcalcfunctions.py}{analyticalcalcfunctions.py}
         \end{block}
-    \end{frame}
 
-    \note[enumerate]{
-        \item \texttt{simplificationtermhelper.py} script to generate the script
-        \item \texttt{analyticalcalcfunctions.py} script is generated and used in the code
-        \item Generated file: 1556 lines, script that generates: 534 lines
-        \item Show the script that generates/is generated $\rightarrow$ simplification with Sympy \item Parallel to computer-science practice "Vendored" code
-    }
+        % notes 
+        \onslide % on all slides of frame
+        \note[item] {
+            \texttt{simplificationtermhelper.py} script to generate the script
+        }
+        \note[item] {
+            \texttt{analyticalcalcfunctions.py} script is generated and used in the code
+        }
+        \note[item] {
+            Generated file: 1556 lines, script that generates: 534 lines
+        }
+        \note[item] {
+            Show the script that generates/is generated $\rightarrow$ simplification with Sympy \item Parallel to computer-science practice "Vendored" code
+        }
+    \end{frame}

@@ -4,27 +4,36 @@
     \begin{columns}
         \column{0.4\textwidth}
             \begin{wideitemize}
-                \item Content of my Practical Training (Fachpraktikum)
-                \item Hubbard Model Hamiltonian
+                \item Content of my Practical Training (Fachpraktikum) \pause
+                \item Hubbard Model Hamiltonian \pause
                 \item System under influence of external electric field
             \end{wideitemize}
 
         \column{0.4\textwidth}
+            \onslide
             \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{./main-content/physics/hamiltonian.pdf}}
 
     \end{columns}
-\end{frame} 
 
-\note[enumerate]{
-    \item Hubbard-Model Hamiltonian with exterally applied electric field
-    \item Hard-Core Bosinic Operators (will be explained in later slide, do not need to elaborate on)
-    \item Spin-dependent lattice Model
-    \item External electric field acts symmetric on both spin directions 
-    \begin{itemize}
-        \item This will be important later, multiple times
-        \item All terms always need to be symmetric in terms of spin up/down
-    \end{itemize}
-}
+    % notes 
+    \onslide % on all slides of frame
+    \note[item] {
+        Hubbard-Model Hamiltonian with exterally applied electric field
+    }
+    \note[item] {
+        Hard-Core Bosinic Operators (will be explained in later slide, do not need to elaborate on)
+    }
+    \note[item] {
+        Spin-dependent lattice Model
+    }
+    \note[item] {
+        External electric field acts symmetric on both spin directions 
+        \begin{itemize}
+            \item This will be important later, multiple times
+            \item All terms always need to be symmetric in terms of spin up/down
+        \end{itemize}
+    }
+\end{frame} 
 
 \begin{frame}
     \frametitle{Physics of what we calculate}
@@ -47,13 +56,19 @@
             \makebox[\textwidth][c]{\includegraphics[width=.9\textwidth]{./main-content/physics/geometry.pdf}}
             
     \end{columns}
-\end{frame}
 
-\note[enumerate]{
-    \item 2-dimensional square geometry
-    \item Program supports already for general size inputs
-    \item Thanks to the Monte-Carlo Sampling we can even efficiently evaluate larger systems already
-}
+    % notes 
+    \onslide % on all slides of frame
+    \note[item] {
+        2-dimensional square geometry
+    }
+    \note[item] {
+        Program supports already for general size inputs
+    }
+    \note[item] {
+        Thanks to the Monte-Carlo Sampling we can even efficiently evaluate larger systems already
+    }
+\end{frame}
 
 \begin{frame}
     \frametitle{Physics of what we calculate}
@@ -74,14 +89,21 @@
             \makebox[\textwidth][c]{\includegraphics[page=3,width=.75\textwidth]{./main-content/physics/rewrite.pdf}}
             
     \end{columns}
+    
+    % notes 
+    \onslide % on all slides of frame
+    \note[item] {
+        Operators are hard-core bosonic
+        \begin{itemize}
+            \item standard commutation relations
+            \item occupations are only either zero ore one
+        \end{itemize}
+    }
+    \note[item] {
+        fermionic operators (anti-commutation) would work equivalent
+    }
+    \note[item] {
+        other notation to rewrite the two spin degrees of freedom into two operators of different dof makes it more readable and comfortable to apply computationally in some cases
+    }
 \end{frame}
 
-\note[enumerate]{
-    \item Operators are hard-core bosonic
-    \begin{itemize}
-        \item standard commutation relations
-        \item occupations are only either zero ore one
-    \end{itemize}
-    \item fermionic operators (anti-commutation) would work equivalent
-    \item other notation to rewrite the two spin degrees of freedom into two operators of different dof makes it more readable and comfortable to apply computationally in some cases
-}
