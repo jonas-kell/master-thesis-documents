@@ -5,12 +5,16 @@
         \begin{columns}
             \column{0.4\textwidth}
                 \begin{itemize}
+                    \onslide
                     \item Monte-Carlo sampling requires transition probabilities between "adjacent" states
+                    \pause
                     \item These require differences of $\hat{V}^\mathrm{I}(t)$ and $E_0$
+                    \pause
                     \item Too many terms for simple evaluation by hand
                     \item Intelligent pre-computation required to speed up processing
                 \end{itemize}
             \column{0.4\textwidth}
+                \onslide
                 \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{main-content/python/sampling-probability.pdf}}
                 
         \end{columns}
@@ -30,21 +34,27 @@
         
         \hspace{-1cm}
         \makebox[\textwidth][c]{
+            \onslide<1->
             \includegraphics[width=0.7\textwidth]{main-content/python/hopping-e0-example.pdf}
+            \onslide<2->
             \includegraphics[width=0.28\textwidth]{main-content/python/n-redefinition.pdf}
         }
 
         \vspace{0.3cm}
 
         \begin{itemize}
+            \onslide<1->
             \item Setup difference
+            \onslide<2->
             \item Replace one by appropriate new occupation
+            \onslide<3->
             \item Simplify as much as possible
             \item Sum over all possible neighbor combinations
         \end{itemize}
 
         \vspace{0.1cm}
         
+        \onslide<4->
         \textbf{Problem:} number of terms/combinations: $3 \cdot 8 \cdot 4 \cdot 2 = 192$
 
         % notes 
