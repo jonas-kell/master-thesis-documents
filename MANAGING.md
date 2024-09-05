@@ -1,6 +1,6 @@
 # Institution:
 
-The thesis was produced during my studies at the [Augsburg University](https://www.uni-augsburg.de/).
+The thesis was produced during my studies at the [University of Augsburg](https://www.uni-augsburg.de/).
 
 The scientific chair that supported the creation of the thesis:
 
