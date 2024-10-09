@@ -23,7 +23,7 @@ The pre-compiled version of the thesis is available # TODO
 
 The code that gets referenced in the thesis is managed via git-submodules and needed for building the document. Make sure to initialize the submodules before building
 
-```cmd
+```shell
 git submodule init
 git pull --recurse-submodules
 ```
@@ -41,7 +41,7 @@ ln -sf ./../latex-beamer-template/slide-background-images/ project-work-presenta
 
 To compile the documents, run
 
-```cmd
+```shell
 cd thesis-latex/
 # TODO
 ```
@@ -52,7 +52,7 @@ The libertinus font family need to be available on the system. ([GitHub](https:/
 
 You need [Python](https://www.python.org/) (best is Python 3, use lower two commands) and [Minted](https://ctan.org/pkg/minted?lang=de)
 
-```cmd
+```shell
 python3 --version
 pip3 install Pygments
 ```
@@ -63,7 +63,7 @@ The graphs in the experiments section are compiled with [gnuplot](http://www.gnu
 
 Compilation:
 
-```cmd
+```shell
 gnuplot <filename>.gp
 ```
 
