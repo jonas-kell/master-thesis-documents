@@ -11,7 +11,7 @@ The work for my Master-Thesis is split into multiple repositories (links for qui
 
 This currently only contains the finished Report and Presentation held at the University of Augsburg on the 15th of May 2024.
 
-The Thesis is not yet available, therefor final usage instructions are not completed.
+The Thesis is not yet available, therefore final usage instructions are not completed.
 
 <!--
 # Pre-compiled Document
