@@ -17,6 +17,11 @@
 *.nav
 *.snm
 
+**/data/*
+**/__pycache__
+**/*.pth
+**/nohup.out
+
 # project-work-presentation.pdf
 # practical-traning-report-jonas-kell.pdf
 master-thesis-jonas-kell.pdf
