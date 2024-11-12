@@ -35,9 +35,9 @@ extracted_files = []
 # List all files in the current directory
 for file_name in os.listdir(current_directory):
     if os.path.isfile(os.path.join(current_directory, file_name)):
-        if (
-            file_name.endswith(".zip")
-            and file_name.replace(".zip", "") == args["zip_file_name"]
+        if file_name.endswith(".zip") and (
+            file_name.replace(".zip", "") == args["zip_file_name"]
+            or file_name == args["zip_file_name"]
         ):
             with zipfile.ZipFile(file_name, "r") as zip_ref:
                 if args["unzip"]:
