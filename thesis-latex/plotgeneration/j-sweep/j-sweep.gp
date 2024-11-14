@@ -1,7 +1,7 @@
 set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 16cm, 12cm       # sets output format, font and plotsize
 set samples 600                                                                         # sets count for the amount of sampled points
 
-set output "mc-variance.pdf"          # name of the output pdf
+set output "j-sweep.pdf"          # name of the output pdf
 
 # legend
 set key Left                                                            # key text justify left
@@ -39,9 +39,12 @@ set xtics 100
 set mxtics 10
 set xlabel "time [1/U]"
 
+# set format y "%.2t*10^{%+03T}";
+set format y "10^{%+03T}";
+set logscale y 10
 set ylabel "difference to exact"
 set yrange []
-set ytics 0.001
+set ytics log
 set mytics 5
 
 # plot 1,1
@@ -52,9 +55,8 @@ plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerblue title " J=0.05⋅U", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " J=0.01⋅U", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerpink title " J=0.005⋅U", \
-     "compare-mc-400-current.csv" using ($1 / U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred, \
-     "compare-mc-4000-current.csv" using ($1 / U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
-     "compare-mc-4000-current.csv" using ($1 / U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
-     "compare-mc-4000-current.csv" using ($1 / U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
-     "compare-mc-40000-current.csv" using ($1 / U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerpink
-# end plot 1,1
+     "out-j02-o1-current_border.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred, \
+     "out-j01-o1-current_border.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
+     "out-j005-o1-current_border.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
+     "out-j001-o1-current_border.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
+     "out-j0005-o1-current_border.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerpink

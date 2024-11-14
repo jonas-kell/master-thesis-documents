@@ -98,7 +98,7 @@ for json_file_name in extracted_files:
                 f"{descriptor}-{finer_descriptor}-{args['out_file_suffix']}.csv"
             )
             with open(out_file_name, mode="w", newline="") as file:
-                writer = csv.writer(file)
+                writer = csv.writer(file, lineterminator="\n")
                 writer.writerow([label_to_write])  # Descriptor
                 writer.writerow(["Time", "Value"])  # Header
                 for time, value in zip(times_to_extract, values_to_extract):
@@ -164,7 +164,7 @@ for json_file_name in extracted_files:
 
             out_file_name = f"{descriptor}-mc-{args['out_file_suffix']}.csv"
             with open(out_file_name, mode="w", newline="") as file:
-                writer = csv.writer(file)
+                writer = csv.writer(file, lineterminator="\n")
                 writer.writerow([label_to_write])  # Descriptor
                 writer.writerow(["Time", "Value", "StdDev"])  # Header
                 for time, value_array in zip(times_to_extract, values_to_extract):
