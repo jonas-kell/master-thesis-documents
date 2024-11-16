@@ -1,0 +1,126 @@
+The system in question is described by a \emph{Hubbard Model Hamiltonian}, that includes an electrical field. It is shown in \autoref{eq:main-hamiltonian}.
+
+
+\begin{equation}
+    \label{eq:main-hamiltonian}
+    \pictureHamiltonian = \HzeroHamiltonian + \Vhamiltonian
+\end{equation}
+
+\begin{equation}
+    \label{eq:main-hamiltonian-h0}
+    \HzeroHamiltonian = U \cdot \lsum \nop{l}{\up}\nop{l}{\down} + \lsum[l,\,\sigma] \underbrace{\left(\vec{E} \cdot \vec{r_l}\right)}_{\text{\normalsize \epsl}} \nop{l}{\sigma}
+\end{equation}
+
+\begin{equation}
+    \label{eq:main-hamiltonian-perturbation}
+    \Vhamiltonian =  - J \cdot \neighborsumWSpin{l}{m}{\sigma} \left(\withspinop{l}{\sigma}{\dagger} \withspinop{m}{\sigma}{} + \withspinop{m}{\sigma}{\dagger} \withspinop{l}{\sigma}{} \right)
+\end{equation}
+
+$\vec{E}$ describes the vector of said electrical field and $\vec{r_l}$ the position of the site with index $l$.
+The number operators $\nop{l}{\sigma} = \withspinop{l}{\sigma}{\dagger}\withspinop{l}{\sigma}{}$ measure the occupation on site $l$ with the respective spin $\sigma$. 
+
+$U$, $J$ and \epsl[] are constants that describe the interaction strength. 
+They all have the unit of energy. 
+The scalar Product that is defined as \epsl[] can be evaluated, based on the system geometry. 
+In this case, the system described by a regular square pattern that can be seen in \autoref{fig:geometry-of-square-system}. 
+For such a system, the energy difference that is acquired from hopping from site $l$ to $m$ ($\Delta E_{l \rightarrow m}$) (provided, $l$ and $m$ are nearest neighbors) is described by \autoref{eq:energy-difference-hopping}. By assuming a default value for \epsl[0] one gets the relation from \autoref{eq:epsl} for \epsl{} (using the telescoping sum over nearest-neighbors-hopping along the path from $\vec{r_0}$ to $\vec{r_l}$). 
+
+\begin{figure}[htbp]
+    \centering
+            \input{./theory/hubbard/geometry.tex}
+    \vspace{0.8cm}
+    \caption{Graphical representation of how the examined square system is laid out. The sites are labeled with the index $l$ they later can be identified by. Each of the sites has 4 nearest neighbors, except the ones on the borders, that have 3 or only 2 nearest neighbors (as the system is not periodic). A system of side-length $M$ with size $N$ is depicted, which means that it has $M^2 = N$ sites.
+    In green, the Electrical field vector $\vec{E}$ is depicted, it is parametrized by the field strength $E$ and the angle $\varphi$.}
+    \label{fig:geometry-of-square-system}
+\end{figure}
+
+\begin{equation}
+    \label{eq:energy-difference-hopping}
+    \begin{split}
+        \Delta E_{l \rightarrow m} &=  \epsl[m] - \epsl[l] = \vec{E} \cdot \left(\vec{r_m}-\vec{r_l}\right)\\
+        &= E \cdot \left[\cos(\varphi)\cdot \left(m \% M-l \% M\right) + \sin(\varphi)\cdot \left(\floor[\bigg]{\frac{m}{M}}-\floor[\bigg]{\frac{l}{M}}\right)\right]
+    \end{split}
+\end{equation}
+\vspace{0.5cm} % equations are not well enough separated otherwise
+\begin{equation}
+    \label{eq:epsl}
+    \begin{split}
+        \epsl[0] = 0 \Rightarrow
+        \epsl[l] &= \epsl[l] - \epsl[0] = \Delta E_{0 \rightarrow x} + \dots + \Delta E_{y \rightarrow l}\\
+        &= E \cdot \left[\cos(\varphi)\cdot l \% M + \sin(\varphi)\cdot \floor[\bigg]{\frac{l}{M}}\right]
+    \end{split}
+\end{equation}
+
+The Hubbard Model \cite{hubbardModelOriginalDerivation} is a spin-depending quantum-mechanical model. 
+Because of this, the Hamiltonian includes terms for both the spin directions $\up$ and $\down$ (most of the time denoted by a summation over $\sigma$).
+
+In principle, the operators $\withspinop[]{l}{\sigma}{(\dagger)}$ can be any type of quantum-mechanical ladder operator, like e.g. \emph{bosonic} or \emph{fermionic} ones.
+In this application, the desicion was made to use \emph{hard-core bosons} \cite[]{hardCoreBosonsBasics}.
+Typically for bosons, the Hubbard Model is tranformed into the \emph{Bose-Hubbard Model} \cite{boseHubbardModelOriginalDerivation}.
+However hard-core bosons have the added property, that the can only have the occupation numbers of $0$ and $1$ per-spin-and-site in the investigated energy range.
+This means they behave basically like fermions, only that their wave-function symmetrizes instead of anti-symmetrizes \cite{schwablBook}.
+Because of the restriction one term of the Bose-Hubbard Model drops out and the studied model in equations \ref{eq:main-hamiltonian}, \ref{eq:main-hamiltonian-h0} and \ref{eq:main-hamiltonian-perturbation} is produced.
+Also the typical Bose-Hubbard Model is not spin-dependent, while this property is kept here.
+Hard-core bosons on their own have relevant properties that makes them worth studying. 
+Experimental research on hard-core bosons can give insight into e.g. \emph{ultra-cold gasses} and \emph{Bose-Einstein condensation} \cite{hardCoreBosonsBasics}.
+For this reason, the calculations are performed on hard-core bosons in this application and the operators obey the \emph{commutation-relations} described in \autoref{eq:commutation-relations}, with $\delta$ the \emph{Kronecker-Delta} \cite{schwablBookII}. 
+But in principle, the calculations may be performed on fermions analogously. 
+
+\begin{equation}
+    \label{eq:commutation-relations}
+    \begin{split}
+        \left[\withspinop[]{l}{\sigma}{},\,\withspinop[]{l'}{\sigma'}{}\right] &= 
+        \left[\withspinop[]{l}{\sigma}{\dagger},\,\withspinop[]{l'}{\sigma'}{\dagger}\right] = 0\\
+        \left[\withspinop[]{l}{\sigma}{},\,\withspinop[]{l'}{\sigma'}{\dagger}\right] &= \delta(l,l')\cdot\delta(\sigma,\sigma') 
+    \end{split}
+\end{equation}
+
+For ease of notation (most importantly in the code), the two spin degrees of freedom may be described by the alternate naming scheme provided in \autoref{eq:alt-naming-scheme}.
+
+\begin{equation}
+    \label{eq:alt-naming-scheme}
+    \withspinop{l}{\up}{(\dagger)} \leftrightarrow \cop{l}{(\dagger)}
+    \qquad\qquad
+    \withspinop{l}{\down}{(\dagger)} \leftrightarrow \dop{l}{(\dagger)}
+\end{equation}
+
+For simplification purposes, the two spin directions are assumed to have the same coupling constants ($U$, $J$ and \epsl).
+This means, all later results must be symmetrical in terms of the spin directions $\up$ and $\down$.
+
+
+Translated into the alternative notation, \autoref{eq:main-hamiltonian-h0} reads like \autoref{eq:main-hamiltonian-h0-alt-notation} and \autoref{eq:main-hamiltonian-perturbation} reads like \autoref{eq:main-hamiltonian-perturbation-alt-notation}.
+
+\begin{equation}
+    \label{eq:main-hamiltonian-h0-alt-notation}
+    \HzeroHamiltonian = U \cdot \lsum \cop[]{l}{\dagger}\cop[]{l}{} \dop[]{l}{\dagger}\dop[]{l}{} + \lsum\epsl \cop[]{l}{\dagger}\cop[]{l}{} \lsum\epsl \dop[]{l}{\dagger}\dop[]{l}{}
+\end{equation}
+
+\begin{equation}
+    \label{eq:main-hamiltonian-perturbation-alt-notation}
+    \Vhamiltonian =  - J \cdot \neighborsum{l}{m} \left(\cop[]{l}{\dagger}\cop[]{m}{} +\cop[]{m}{\dagger}\cop[]{l}{} + \dop[]{l}{\dagger}\dop[]{m}{} +\dop[]{m}{\dagger}\dop[]{l}{} \right)
+\end{equation}
+
+Several of the previous equations feature the \emph{nearest neighbor} summing notation with pointy brackets $\langle\rangle$.
+This is supposed to express, that in the case of $\neighborsum[]{l}{m}$ for each possible $l$, $m$ will take on the indices of all neighbor sites of $l$.
+However, if a pair $l=x,\,m=y$ is part of the sum, then the inverse $l=y,\,m=x$ will not be.
+To be more in-line with the code implementation, \autoref{eq:fullneigborsum} gives an alternative notation using $[]$.
+In such sums, each pair $l=x,\,m=y$ and $l=y,\,m=x$ will be included in the sum for each nearest-neighbor-relation $x,\,y$.
+
+\begin{equation}
+    \label{eq:fullneigborsum}
+    \begin{split}
+        &\neighborsum[]{l}{m} \left( F(l,m)\, \cop[]{l}{\dagger}\cop[]{m}{} + F(m,l)\, \cop[]{m}{\dagger}\cop[]{l}{} \right) \stackrel{\stackrel{\text{\scriptsize rename-swap}}{\text{$l$ and $m$}}}{=} \\
+        &\neighborsum[]{l}{m} F(l,m)\, \cop[]{l}{\dagger}\cop[]{m}{} + \neighborsum[]{m}{l} F(l,m)\, \cop[]{l}{\dagger}\cop[]{m}{} = \\
+        &\fullneighborsum[]{l}{m} F(l,m)\, \cop[]{l}{\dagger}\cop[]{m}{} \stackrel{\text{! caution !}}{\neq}
+        2 \cdot \neighborsum[]{l}{m} F(l,m)\, \cop[]{l}{\dagger}\cop[]{m}{}
+    \end{split}
+\end{equation}
+
+With that convention, you can rewrite \autoref{eq:main-hamiltonian-perturbation-alt-notation} to \autoref{eq:main-hamiltonian-perturbation-full-sum}.
+
+\begin{equation}
+    \label{eq:main-hamiltonian-perturbation-full-sum}
+    \begin{split}
+        \Vhamiltonian =  - J \cdot \fullneighborsum{l}{m} \left(\cop[]{l}{\dagger}\cop[]{m}{} + \dop[]{l}{\dagger}\dop[]{m}{} \right)
+    \end{split}
+\end{equation}

@@ -1,0 +1,153 @@
+Generally, handling the computation of the difference of the effective Hamiltonian for two states $\HeffOft[\tilde{N}]-\HeffOft[N]$ is the most expensive computation per Monte-Carlo-step.
+It is required in \autoref{eq:form-heff-difference} for the calculation of the spin-polarized kinetics.
+As stated in \fullref{sec:theory-monte-carlo} it is also needed to compute the transition probability between two sampled states in \autoref{eq:transition-probability-final}.
+The calculation of $\HeffOft[N]$ on its own requires an effort of \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})}.
+However, for the states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected with only small changes, most of the elements in the sum cancel and the complexity may be here even reduced to \bigo{$\text{\#}(\text{nearest neighbors})$}.
+This is quite attractive, because it de-couples the per-step computational costs from the number of lattice sites - a vital step for simulating large systems efficiency - however this requires extra analytical calculations.
+In this section analytical simplifications are presented to get the objects $E_0(N)-E_0(\tilde{N})$ and $\HNOft - \HNOft[\tilde{N}]$ (Caution, do not miss the extra \emph{minus} required, to calculate the required $\HeffOft[\tilde{N}]-\HeffOft[N]$ from this!).
+
+\paragraph*{Initial State} \makebox{}\\
+
+The initial state of the system before the start of the time-evolution is encoded in $\psiN$, defined by \autoref{eq:base-expansion-state}. Different configurations can be considered here.
+
+One natural choice would be the preparation of a single defined base-state which would result in all $\psiN$ being $0$ but one that would have the value of $1$. 
+This case needs to be considered with a specialized analytical calculation, because there are many instances in this calculation, where a division by $\psiN$ is performed. 
+
+However the current calculation is compatible with the concept of one base-state having a probability $y$ that is $x$ times (e.g. $x=100$-times) as large as the probability $z = y/x$ of all the other states.
+This effectively also concentrates the initial state to one base-state.
+
+With the additional restriction of normalization from \autoref{eq:normalization} the individual values for \psiN{} can be calculated (see \autoref{eq:psi-n-concentrated}).
+
+\begin{equation}
+    \label{eq:normalization}
+    \lsum[N] \psiN{}^2 = 1
+\end{equation}
+
+\begin{equation}
+    \label{eq:psi-n-concentrated}
+    \begin{split}
+        \stackrel{\ref{eq:normalization}}{\Rightarrow} y^2 + \left[\text{\#}(\text{states}) - 1 \right] z^2 = 1\\
+        y^2 + \left[\text{\#}(\text{states}) - 1 \right] \frac{y^2}{x^2} = 1\\
+        y = \sqrt{\left(1+\left[\text{\#}(\text{states}) - 1 \right]\frac{1}{x^2}\right)^{-1}}
+    \end{split}
+\end{equation}
+
+This configuration was tested and verified for small systems with summation over the full Hilbert-space. 
+However when Monte-Carlo sampled, the configuration produced different results than for exact sampling.
+This can probably be explained by the fact that the energy landscape of base-states for this configuration is not smooth enough. 
+Causing the Metropolis-Algorithm not to perform as intended for the number of samples.
+As stated, treating non-uniform distribution requires a different analytical approach. Therefore no further experimentation on this was done.\\
+
+A second natural choice would be the perfectly uniform distribution of probability for all the base-states. 
+This results in a smooth energy-landscape, that can be properly sampled. 
+
+The calculation for this is straight-forward and listed in \autoref{eq:psi-n-homogenous}
+
+\begin{equation}
+    \label{eq:psi-n-homogenous}
+    \psiN{} = \frac{1}{\sqrt{\text{\#}(\text{states})}} \stackrel{\ref{eq:system-size}}{=} \frac{1}{\sqrt{2^{\text{\#}(\text{sites}) \cdot 2}}} = \frac{1}{2^{\text{\#}(\text{sites})}}
+\end{equation}
+
+One last advantage of the uniform distribution of base-state-probabilities is, that all $\psiN$ are equal, which makes it possible to optimize sums, as $\psiN{}/\psiN[\tilde{N}]{} = 1$.
+The following two calculations require this assumption.
+
+As the states under consideration are \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}], the occupation-numbers $n_{l,\,\sigma}$ will describe the occupation of \ketN[N] and $\tilde{n}_{l,\,\sigma}$ the occupation of \ketN[{\vphantom{N}\smash{\tilde{N}}}].
+Both the following modifications restrict the values $\tilde{n}_{l,\,\sigma}$ to make them dependent on $n_{l,\,\sigma}$.
+
+\newpage 
+\paragraph*{Hopping-only modification} \makebox{}\\
+
+In this simplification, the maximum difference that can happen, is that a \emph{hopping} event occurs from site $i$ and spin $\sigma_i$ to the site $j$ and spin $\sigma_j$. 
+This can only happen if $n_{i,\,\sigma_i} \neq n_{j,\,\sigma_j}$, because if they are the same, the swapping doesn't change the state. 
+This check can be performed beforehand, to save on computational resources (if they are equal, $\HeffOft[\tilde{N}]-\HeffOft[N] = 0$).
+Because the inverse (hopping backwards) is also an equivalently valid change of state, this really looks at the \emph{swapping} of the two occupations.
+
+The hopping results in the values for $\tilde{n}_{l,\,\sigma}$ are given in \autoref{eq:new-n-hopping}.
+
+\begin{equation}
+    \label{eq:new-n-hopping}
+    \tilde{n}_{l,\,\sigma} = \begin{cases}
+        n_{i,\,\sigma_i}&\text{ : } l = j \land \sigma = \sigma_j   \\
+        n_{j,\,\sigma_j}&\text{ : } l = i \land \sigma = \sigma_i   \\
+        n_{l,\,\sigma} &\text{ : else}
+    \end{cases}
+\end{equation}
+
+This simplifies the energy difference $E_0(N)-E_0(\tilde{N})$ like equation \autoref{eq:simplified-base-energy-hopping} presents.
+
+\begin{equation}
+    \label{eq:simplified-base-energy-hopping}
+    \begin{split}
+        E_0(N)-E_0(\tilde{N}) 
+        &\stackrel{\phantom{\ref{eq:new-n-hopping}}}{=} U\lsum n_{l,\,\down}n_{l,\,\up}-U\lsum \tilde{n}_{l,\,\down}\tilde{n}_{l,\,\up} 
+        + \lsum[l,\,\sigma] \epsl n_{l,\,\sigma} - \lsum[l,\,\sigma] \epsl \tilde{n}_{l,\,\sigma}\\
+        &\stackrel{\ref{eq:new-n-hopping}}{=} \left(\epsl[i]-\epsl[j]\right)\left(n_{i,\,\sigma_i} - n_{j,\,\sigma_j}\right) +
+        U\cdot \begin{cases}
+            \left(n_{i,\,\up}-n_{j,\,\up}\right) \left(n_{i,\,\down}-n_{j,\,\down}\right) &\text{ : } \sigma_i = \sigma_j   \\
+            \left(n_{i,\,\up}-n_{j,\,\down}\right) \left(n_{i,\,\down}-n_{j,\,\up}\right) &\text{ : } \sigma_i \neq \sigma_j
+        \end{cases}\\
+        &\stackrel{\phantom{\ref{eq:new-n-hopping}}}{=} \left(\epsl[i]-\epsl[j]\right)\left(n_{i,\,\sigma_i} - n_{j,\,\sigma_j}\right) +
+        U \left(n_{i,\,\sigma_i}-n_{j,\,\sigma_j}\right) \left(n_{i,\,\overline{\sigma_i}}-n_{j,\,\overline{\sigma_j}}\right)
+    \end{split}
+\end{equation}
+
+The simplification of $\HNOft - \HNOft[\tilde{N}]$ can not be calculated as quickly as the difference of base-energies.
+Primarily this is because of the number of terms in this calculation. Each of the three \VhamiltonianPartA{N}{t}, \VhamiltonianPartB{N}{t} and \VhamiltonianPartC{N}{t} is a sum of 8 summands, as one can see in \autoref{eq:interaction-picture-v-ham-parts}.
+Each of those must be treated for for cases: $(\sigma_i = \up \land \sigma_j = \up)$, $(\sigma_i = \up \land \sigma_j = \down)$, $(\sigma_i = \down \land \sigma_j = \up)$ and $(\sigma_i = \down \land \sigma_j = \down)$.
+This makes 32 differently-shaped terms, or combined with the pre-factors 96 terms to fully write down.
+
+Different notation could be used, to lessen the number of calculations, but this seemed unnecessarily complex.
+
+A simpler solution was in fact, to let a python script generate all the final simplified analytical terms and output them as usable functions into a python script to include in the rest of the code.
+The generating script can be found here: 
+
+\filepath{\cite{selfCode}}{/calculation-helpers/simplificationtermhelper.py}
+
+and the output with the analytically fully optimized calculations in a unified format here:
+\filepath{\cite{selfCode}}{/computation-scripts/analyticalcalcfunctions.py}.
+
+As this needs to be run quite often, it is useful to reduce the number of calculations as much as possible and avoid running unnecessary calculations on every iteration (e.g. $n_{l,\,\up} + 1 - (1 + n_{l,\,\up})$ which is definitely 0, no matter the value of $n_{l,\,\up}$).
+For this reason, the terms were pre-optimized as much as possible, by trying to pre-evaluate to definite zeros or constants terms. 
+This was performed automatically with the python package \emph{SymPy} \cite{sympyPackage}.
+
+More details on how this was calculated can be found in \fullref{sec:implementation-analytical-calculations} and further resources, that that section redirects towards.
+
+\paragraph*{Flipping-only modification} \makebox{}\\
+
+In this simplification, the maximum difference that can happen, is that a \emph{flipping} event occurs on site $i$ and spin $\sigma_i$. 
+
+The flipping results in the values for $\tilde{n}_{l,\,\sigma}$ are given in \autoref{eq:new-n-flipping}.
+
+\begin{equation}
+    \label{eq:new-n-flipping}
+    \tilde{n}_{l,\,\sigma} = \begin{cases}
+        (1 - n_{i,\,\sigma_i})&\text{ : } l = i \land \sigma = \sigma_i   \\
+        n_{l,\,\sigma} &\text{ : else}
+    \end{cases}
+\end{equation}
+
+This simplifies the energy difference $E_0(N)-E_0(\tilde{N})$ like equation \autoref{eq:simplified-base-energy-flipping} presents.
+
+\begin{equation}
+    \label{eq:simplified-base-energy-flipping}
+    \begin{split}
+        E_0(N)-E_0(\tilde{N}) 
+        &\stackrel{\phantom{\ref{eq:new-n-flipping}}}{=} U\lsum n_{l,\,\down}n_{l,\,\up}-U\lsum \tilde{n}_{l,\,\down}\tilde{n}_{l,\,\up} 
+        + \lsum[l,\,\sigma] \epsl n_{l,\,\sigma} - \lsum[l,\,\sigma] \epsl \tilde{n}_{l,\,\sigma}\\
+        &\stackrel{\ref{eq:new-n-flipping}}{=} \epsl[i] \left(2 n_{i,\,\sigma_i} - 1\right) +
+        U\cdot \begin{cases}
+            n_{i,\,\down} (2 n_{i,\,\up} - 1) &\text{ : } \sigma_i = \up   \\
+            n_{i,\,\up} (2 n_{i,\,\down} - 1) &\text{ : } \sigma_i = \down 
+        \end{cases}
+    \end{split}
+\end{equation}
+
+Like for the hopping problem, the calculation of $\HNOft - \HNOft[\tilde{N}]$ is more involved in the number of terms.
+
+More details on how this was calculated can be found in \fullref{sec:implementation-analytical-calculations} and further resources, that that section redirects towards.
+
+\vspace{1cm}
+All presented simplifications to the Hamiltonian and corresponding MC-modification strategies in this section are implemented as options that are selectable in the control-script   
+
+\filepath{\cite{selfCode}}{/computation-scripts/script.py}.
+ 

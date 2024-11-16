@@ -1,0 +1,150 @@
+The evaluation of observables is a primary requirement for this application. 
+First it is necessary to acquire a more general formula, that one later can plug specific observables into.
+
+From \autoref{eq:time-evolution-target} and applying \emph{dagger} $\dagger$ to said equation, \autoref{eq:time-evolved-state-and-dagger} follows.
+
+
+\begin{equation}
+    \label{eq:time-evolved-state-and-dagger}
+    \begin{split}
+        \braketHelper{N}{\psiOfT[\schroedingerPicture]} &\stackrel{\ref{eq:time-evolution-target}}{=} \braN{} \lsum[K] e^{\HeffOft[K]} \psiN[K] \ketN[K]{}\\
+        & \stackrel{\phantom{\ref{eq:time-evolution-target}}}{=} 
+        \lsum[K]   e^{\HeffOft[K]} \psiN[K] \underbrace{\braketHelper{N}{K}}_\text{$\delta_{N,K}$} = e^{\HeffOft} \psiN{} \\
+        %
+        \stackrel{\dagger}{\Rightarrow} \braketHelper{\psiOfT[\schroedingerPicture]}{N} &\stackrel{\phantom{\ref{eq:time-evolution-target}}}{=} e^{\HeffOftStar} \psiNStar
+    \end{split}
+\end{equation}
+
+In \autoref{eq:expectation-value} by starting with the default way of calculating a normalized \emph{expectation-value} for an observable \ObservableOp \cite{monteCarloObservableSampling} and applying multiple modifications, one gets a representation that can be effectively sampled later. 
+
+\begin{equation}
+    \label{eq:expectation-value}
+    \begin{split}
+        &\frac{\bracketHelper{\psiOfT[\schroedingerPicture]}{\ObservableOp}{\psiOfT[\schroedingerPicture]}}{\braketHelper{\psiOfT[\schroedingerPicture]}{\psiOfT[\schroedingerPicture]}}
+        %
+        \stackrel{\phantom{\ref{eq:time-evolution-target}}}{=} 
+        \frac{
+            \lsum[N] \braketHelper{\psiOfT[\schroedingerPicture]}{N} \bracketHelper{N}{\ObservableOp}{\psiOfT[\schroedingerPicture]}
+        }{
+            \lsum[K] \braketHelper{\psiOfT[\schroedingerPicture]}{K} \braketHelper{K}{\psiOfT[\schroedingerPicture]}
+        }\\
+        %
+        &\stackrel{\ref{eq:time-evolved-state-and-dagger}}{=} 
+        \frac{
+            \lsum[N] e^{\HeffOftStar} \psiNStar \bracketHelper{N}{\ObservableOp}{\psiOfT[\schroedingerPicture]}
+        }{
+            \lsum[K] e^{\HeffOftStar[K]} \psiNStar[K] e^{\HeffOft[K]} \psiN[K] 
+        }\\
+        & \stackrel{\phantom{\ref{eq:time-evolved-state-and-dagger}}}{=} 
+        \frac{
+            \lsum[N] e^{\HeffOftStar} \psiNStar \bracketHelper{N}{\ObservableOp}{\psiOfT[\schroedingerPicture]}
+        }{
+            \lsum[K] \absSquare{e^{\HeffOft[K]}} \absSquare{\psiN[K]} 
+        } \cdot 
+        \frac{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}\\
+        & \stackrel{\phantom{\ref{eq:time-evolved-state-and-dagger}}}{=} 
+        \lsum[N]
+        \frac{
+            e^{\HeffOftStar} \psiNStar e^{\HeffOft} \psiN{} \braketHelper{N}{\psiOfT[\schroedingerPicture]}
+        }{
+            \lsum[K] \absSquare{e^{\HeffOft[K]}} \absSquare{\psiN[K]} 
+        }  \cdot 
+        \frac{\bracketHelper{N}{\ObservableOp}{\psiOfT[\schroedingerPicture]}}{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}\\
+        & \stackrel{\ref{eq:time-evolved-state-and-dagger}}{=} 
+        \lsum[N]
+        \underbrace{\frac{
+            \absSquare{e^{\HeffOft}} \absSquare{\psiN} 
+        }{
+            \lsum[K] \absSquare{e^{\HeffOft[K]}} \absSquare{\psiN[K]} 
+        }}_{\probabilityOf{N}{t}} \cdot 
+        \frac{\bracketHelper{N}{\ObservableOp}{\psiOfT[\schroedingerPicture]}}{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}\\
+        & \stackrel{\phantom{\ref{eq:time-evolved-state-and-dagger}}}{=} \lsum[N]
+        \probabilityOf{N}{t}
+        \frac{\bracketHelper{N}{\ObservableOp}{\psiOfT[\schroedingerPicture]}}{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}
+        %
+        \stackrel{\phantom{\ref{eq:time-evolved-state-and-dagger}}}{=} \lsum[N]
+        \probabilityOf{N}{t}
+        \frac{
+            \lsum[K] \bracketHelper{N}{\ObservableOp}{K} \braketHelper{K}{\psiOfT[\schroedingerPicture]} 
+        }{
+            \braketHelper{N}{\psiOfT[\schroedingerPicture]}
+        }\\
+        & \stackrel{\ref{eq:time-evolved-state-and-dagger}}{=} \lsum[N]
+        \probabilityOf{N}{t}
+        \frac{
+            \lsum[K] \bracketHelper{N}{\ObservableOp}{K} e^{\HeffOft[K]} \psiN[K]
+        }{
+            e^{\HeffOft[N]} \psiN[N]
+        }\\
+        %
+        &\stackrel{\phantom{\ref{eq:time-evolved-state-and-dagger}}}{=} \lsum[N]
+        \probabilityOf{N}{t}
+        \underbrace{\lsum[K] \bracketHelper{N}{\ObservableOp}{K} e^{\HeffOft[K]-\HeffOft[N]}
+        \frac{
+            \psiN[K]
+        }{
+            \psiN[N]
+        }}_{\localObservable{N}{t}}
+        %
+        \stackrel{\phantom{\ref{eq:time-evolved-state-and-dagger}}}{=} \lsum[N]
+        \probabilityOf{N}{t}
+        \localObservable{N}{t}
+    \end{split}
+\end{equation}
+
+By inserting \autoref{eq:time-evolved-state-and-dagger} into \autoref{eq:expectation-value}, a probability-dependent formula is obtained, that can be used to plug in specific observables.  
+The probability of a base-state at a specified time \probabilityOf{N}{t} is important for this calculation. 
+The \fullref{sec:theory-monte-carlo} will discuss the viability of obtaining these probabilities and strategies of doing so.
+The matrix-element $\bracketHelper{N}{\ObservableOp}{K}$ has the important property of being $0$ for almost all combinations of $\braN$ and $\ketN[K]$, depending on the chosen observable \ObservableOp, which is what makes the calculation of the \emph{local-observable} \localObservable{N}{t} possible in the first place.
+
+\paragraph*{Double-Occupation}\makebox{}\\
+
+One possibly interesting observable would be the measurement of \emph{double-occupation} (one particle of spin-up and one of spin-down) per site.
+
+The operator $\doubleOccupationOperator{l}$ that measure the double-occupation on site $l$ can be easily written as $\doubleOccupationOperator{l} = \nop{l}{\up}\nop{l}{\down}$.
+
+As the used basis-states are eigenstates of the number-operators, the evaluation of this operator is quite straight forward. 
+$\bracketHelper{N}{\doubleOccupationOperator{l}}{K}$ becomes $\delta_{N,\,K}\cdot n_{l,\,\up}\cdot n_{l,\,\down}$ with the occupation-number (not operator) of the specific site and spin in \braN, $n_{l,\,\sigma}$. 
+With that \localObservable{N}{t} can be simply evaluated to the result in \autoref{eq:double-occupation-loc}.
+
+\begin{equation}
+    \label{eq:double-occupation-loc}
+    \localObservable{N}{t} = \lsum[K] \bracketHelper{N}{\doubleOccupationOperator{l}}{K} e^{\HeffOft[K]-\HeffOft[N]}
+    \frac{
+        \psiN[K]
+    }{
+        \psiN[N]
+    } = n_{l,\,\up}\cdot n_{l,\,\down}
+\end{equation}
+
+\paragraph*{Spin-Polarized Kinetics}\makebox{}\\
+
+For measuring the spin-polarized flow of particles, a slightly more complex observable must be employed. 
+In \autoref{eq:spin-polarized-kinetics-operator-definition} a possible observable is listed, that measures such kinetics direction in-dependent (\spinPolarizedKineticsOperator{l}{m}{\sigma}) or direction dependent (\spinPolarizedKineticsOperatorDir{l}{m}{\sigma}, caution: needs $i$ to obtain hermitian operator).
+
+\begin{equation}
+    \label{eq:spin-polarized-kinetics-operator-definition}
+    \begin{split}
+        \spinPolarizedKineticsOperator{l}{m}{\sigma} &= - J \left(\withspinop{l}{\sigma}{\dagger}\withspinop{m}{\sigma}{} + \withspinop{m}{\sigma}{\dagger}\withspinop{l}{\sigma}{}\right)\\
+        \spinPolarizedKineticsOperatorDir{l}{m}{\sigma} &= i J \left(\withspinop{m}{\sigma}{\dagger}\withspinop{l}{\sigma}{} - \withspinop{l}{\sigma}{\dagger}\withspinop{m}{\sigma}{}\right)\\
+    \end{split}
+\end{equation}
+
+In this case, the used basis-states are not eigenstates of the operators. 
+$\bracketHelper{N}{\withspinop{m}{\sigma}{\dagger}\withspinop{l}{\sigma}{}}{K}$ becomes $\delta_{N,\,\tilde{N}}\cdot (1-n_{l,\,\sigma} )\cdot n_{m,\,\sigma}$, where \ketN[{\vphantom{N}\smash{\tilde{N}}}] is the state obtained when the particle number on site $m,\, \sigma$ is transferred to site $l,\, \sigma$ (this \emph{hopping} is only possible, when there is a particle on the original site and no particle yet on the target site, which is ensured by the occupation numbers).
+Evaluating the whole operator with the signs and $i$s correctly and in a efficient manner can best be looked up in the implementation \filepath{\cite{selfCode}}{/computation-scripts/observables.py}.
+
+Overall, the evaluation of this observable requires knowing the value of an object of the form presented in \autoref{eq:form-heff-difference}.
+
+\begin{equation}
+    \label{eq:form-heff-difference}
+    \frac{\psiN[\tilde{N}]}{\psiN} e^{\HeffOft[\tilde{N}]-\HeffOft[N]}
+\end{equation}
+
+The \fullref{sec:theory-special-cases} will go into how to compute this efficiently for states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected via the hopping between nearest-neighbor lattice sites.
+
+It is finally important to notice, that the objects from \autoref{eq:form-heff-difference} are not real-valued, but complex.
+Only the complete observable from the full sum over all basis-states \ketN over \localObservable{N}{t} has a fully vanishing imaginary part. 
+Especially when the observable is approximated with an incomplete set of basis-states, computationally an imaginary component remains. 
+It is important to monitor the magnitude of this value and monitor it going to $0$.
+If it doesn't fully vanish, this indicates an error in the sampling strategy or the implementation or the number of sampled states is not great enough.

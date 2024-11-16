@@ -1,0 +1,9 @@
+To achieve the goal of calculating observables for a specified Hamiltonian and system geometry, mathematical simplifications are required. 
+While mathematically doing so is quite straight forward, the computational complexity for solving the time-evolution for arbitrary quantum-mechanical problems is too large, in relation to the system size.
+
+Here, the goal is to bring down the necessary number of sampled states from \bigo{2^n} to something around the \bigo{n}-range (depending on the required precision) with the use of Monte-Carlo sampling. 
+
+The time-evolution will be made by employing an expansion in the Interaction Picture to first degree, which results in a computational complexity of \bigo{n^2} per evaluated state in the worst case. 
+Depending on the geometry (number of nearest neighbors $c$), this can be reduced to \bigo{c \cdot n} in general.
+
+By placing further restrictions on the Hamiltonian, the act of choosing the next state in the Monte-Carlo-Markov chain can be brought down from \bigo{c \cdot n} to \bigo{c} and similarly also the cost of evaluating the most expensive observable drops to \bigo{c}.

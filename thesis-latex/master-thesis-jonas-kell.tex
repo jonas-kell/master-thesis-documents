@@ -12,7 +12,7 @@ toc=bibliographynumbered            % bibliography gets a number and is listed i
 
 \title{Classical networks for the Hubbard model with a tilted potential}
 \author{Jonas Kell}
-\date{1$^\text{st}$ November 2024} %TODO
+\date{15$^\text{th}$ December 2024} %TODO
 \newcommand{\pdfkeywords}{neural networks, ai, physics, quantum mechanics, machine learning, analytical calculations, classical networks, hubbard model}
 \newcommand{\pdfsubject}{Master Thesis}
 
@@ -49,6 +49,97 @@ toc=bibliographynumbered            % bibliography gets a number and is listed i
 \label{sec:introduction}
 \input{./auxillary/introduction}
 \FloatBarrier
+
+\chapter{Theory}
+\label{sec:theory}
+
+    \section{Physical Basics}
+    \label{sec:theory-physics}
+    \input{./theory/introduction.tex}
+    \FloatBarrier
+
+        \subsection{Hubbard Model and discussed Hamiltonian}
+        \label{sec:theory-hubbard-hamiltonian}
+        \input{./theory/hubbard/hubbard.tex}
+        \FloatBarrier
+
+        \subsection{Different Particle-Types and their Mappings}
+        
+        \subsection{Interaction Picture and Time Evolution}
+        \label{sec:theory-interaction-picture}
+        \input{./theory/interaction-picture/interaction-picture.tex}
+        \FloatBarrier
+        
+        \subsection{Operators in the Interaction Picture}
+        \label{sec:theory-approximation-evaluation}
+        \input{./theory/interaction-picture/approximation-evaluation.tex}
+        \FloatBarrier
+
+    \section{Observable Measurements}
+
+        \subsection{Observable Sampling}
+        \label{sec:theory-observables}
+        \input{./theory/observable-measurement/observable-measurement.tex}
+        \FloatBarrier
+
+        \subsection{Occupation Types}
+
+        \subsection{Spin-Current}
+
+        \subsection{Entanglement Measurements}
+
+        \subsection{Monte Carlo Sampling}
+        \label{sec:theory-monte-carlo}
+        \input{./theory/mc-sampling/mc-sampling.tex}
+        \FloatBarrier
+        
+    \section{Time-Complexity Optimizations}
+
+        \subsection{Analytical Simplifications for Special Cases}
+        \label{sec:theory-special-cases}
+        \input{./theory/special-cases/special-case-simplifications.tex}
+        \FloatBarrier
+
+        \subsection{Geometry-Dependent Interaction-Range}
+
+    \section{Variational Classical Networks}
+
+        \subsection{General Theory of VCN}
+
+        \subsection{Application to this Task}
+        
+
+\chapter{Implementation and Calculation Details}
+\label{sec:implementation-details}
+\input{implementation/introduction.tex}
+\FloatBarrier
+
+    \section{Math-Manipulator}
+
+    \section{Programming Style Optimizations}
+
+    \section{Python-Script Generation}
+
+    \section{Numerical Alternatives}
+
+    \section{Simplification Verifications}
+
+\chapter{Numerical Experiments}
+\label{sec:numerical-experiments}
+\input{experiments/introduction.tex}
+\FloatBarrier
+
+    \section{Time-Complexity Verification}
+
+    \section{Perturbation-Approximation Convergence}
+
+    \section{Monte-Carlo-Sampling Convergence}
+
+    \section{Observable-Dependent Noise}
+
+    \section{Improvements through VCN}
+
+    \section{System-Size Dependency of Measurements}
 
 \chapter{Conclusion}
 \label{sec:conclusion}
