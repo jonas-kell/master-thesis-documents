@@ -31,11 +31,15 @@
 
 \newcommand{\generalop}[7]{\ensuremath{\hat{\text{#1}}^{#2\xspace #3}_{#4#5#6}#7}\xspace}
 \newcommand{\withspinop}[4][]{\generalop{c}{#4}{#1}{#2}{,\,}{#3}{}}
+\newcommand{\withspinhcop}[4][]{\generalop{h}{#4}{#1}{#2}{,\,}{#3}{}}
 \newcommand{\cop}[3][]{\generalop{c}{#3}{#1}{#2}{}{}{}}
+\newcommand{\bop}[3][]{\generalop{b}{#3}{#1}{#2}{}{}{}}
+\newcommand{\hop}[3][]{\generalop{h}{#3}{#1}{#2}{}{}{}}
 \newcommand{\dop}[3][]{\generalop{d}{#3}{#1}{#2}{}{}{}}
 \newcommand{\nop}[3][]{\generalop{n}{}{#1}{#2}{,\,}{#3}{}}
 \newcommand{\Aop}[1][]{\generalop{A}{}{#1}{}{}{}{}}
 \newcommand{\Bop}[1][]{\generalop{B}{}{#1}{}{}{}{}}
+\newcommand{\pauli}[2][]{\generalop{$\sigma$}{\text{#2}}{}{#1}{}{}{}}
 \newcommand{\ObservableOp}{\generalop{$\mathcal{O}$}{}{}{}{}{}{}}
 \newcommand{\copOfT}[3][]{\generalop{c}{#3}{#1}{#2}{}{}{(t)}}
 \newcommand{\dopOfT}[3][]{\generalop{d}{#3}{#1}{#2}{}{}{(t)}}
@@ -45,6 +49,8 @@
 \newcommand{\doubleOccupationOperator}[1]{\ensuremath{{\ObservableOp}_\text{do}(#1)}\xspace}
 \newcommand{\spinPolarizedKineticsOperator}[3]{\ensuremath{{\ObservableOp}_\text{sp-kin}(#1 \leftrightarrow #2,\,#3)}\xspace}
 \newcommand{\spinPolarizedKineticsOperatorDir}[3]{\ensuremath{{\ObservableOp}_\text{sp-kin, dir}(#1 \rightarrow #2,\,#3)}\xspace}
+\newcommand{\one}[1][]{\ensuremath{\mathbbm{1}_{#1}}\xspace}
+
 
 \newcommand{\hamiltonian}{\ensuremath{\mathcal{H}}\xspace}
 \newcommand{\pictureHamiltonian}[1][]{\ensuremath{\hamiltonian^{#1}}\xspace}

@@ -51,7 +51,7 @@ Differentiating \autoref{eq:time-evolution-interaction} and substituting the spe
         \difft{\ketpsiof[\interactionPicture]{t}} &\stackrel{\ref{eq:time-evolution-interaction}}{=}
         \difft{} \left(e^{i \HzeroHamiltonian{} t} e^{-i \pictureHamiltonian[\schroedingerPicture]{} t} \right)\ketpsi[\schroedingerPicture]{} \\
         &\stackrel{\phantom{\ref{eq:time-evolution-interaction}}}{=} -i \cdot e^{i \HzeroHamiltonian{} t}\left( \pictureHamiltonian[\schroedingerPicture]{} - \HzeroHamiltonian{} \right) e^{-i \pictureHamiltonian[\schroedingerPicture]{} t} \ketpsi[\schroedingerPicture]{}\\
-        &\stackrel{\ref{eq:main-hamiltonian}}{=} -i \cdot e^{i \HzeroHamiltonian{} t} \Vhamiltonian[\schroedingerPicture] \cdot 1 \cdot e^{-i \pictureHamiltonian[\schroedingerPicture]{} t} \ketpsi[\schroedingerPicture]{}\\
+        &\stackrel{\ref{eq:main-hamiltonian}}{=} -i \cdot e^{i \HzeroHamiltonian{} t} \Vhamiltonian[\schroedingerPicture] \cdot \one \cdot e^{-i \pictureHamiltonian[\schroedingerPicture]{} t} \ketpsi[\schroedingerPicture]{}\\
         &\stackrel{\phantom{\ref{eq:main-hamiltonian}}}{=} -i \cdot e^{i \HzeroHamiltonian{} t} \Vhamiltonian[\schroedingerPicture] e^{-i \HzeroHamiltonian{} t}e^{i \HzeroHamiltonian{} t} e^{-i \pictureHamiltonian[\schroedingerPicture]{} t} \ketpsi[\schroedingerPicture]{}\\
         &\stackrel{\ref{eq:time-evolution-interaction}}{=} -i \cdot e^{i \HzeroHamiltonian{} t} \Vhamiltonian[\schroedingerPicture] e^{-i \HzeroHamiltonian{} t}\ketpsiof[\interactionPicture]{t}\\
         &\stackrel{\ref{eq:time-evolution-operator-interaction}}{=} -i \cdot \VhamiltonianOfT[\interactionPicture] \ketpsiof[\interactionPicture]{t}
@@ -78,7 +78,7 @@ This requires the \emph{base-energies} $E_0(N)$, where $e^{-i \HzeroHamiltonian{
         \stackrel{\ref{eq:solve-equation-of-motion}}{=}
         e^{-i \HzeroHamiltonian{} t} \timeEvolutionOperator[\interactionPicture] \ketpsi[\schroedingerPicture]{} \\
         &\stackrel{\phantom{\ref{eq:solve-equation-of-motion}}}{=}
-        e^{-i \HzeroHamiltonian{} t} \cdot 1 \cdot  \timeEvolutionOperator[\interactionPicture] \ketpsi[\schroedingerPicture]{}\cdot 1\\
+        e^{-i \HzeroHamiltonian{} t} \cdot \one \cdot  \timeEvolutionOperator[\interactionPicture] \ketpsi[\schroedingerPicture]{}\cdot \one\\
         &\stackrel{\phantom{\ref{eq:solve-equation-of-motion}}}{=}
         e^{-i \HzeroHamiltonian{} t} \lsum[N] \ketN{} \bracketHelper{N}{\timeEvolutionOperator[\interactionPicture]}{\picturePsi[\schroedingerPicture]{}} \cdot \frac{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}\\
         &\stackrel{\ref{eq:base-expansion-state}}{=}

@@ -1,0 +1,190 @@
+To describe different particle-classes in the setting of many-body-physics on discrete lattices, the \emph{ladder operator formalism} is a useful tool. 
+The inherit properties of the respective particle are guaranteed to be upheld by the \emph{(anti-) commutation relations}.
+
+In some cases, transformations may be used to map problems formulated in one particle type onto equivalent formulations in a different particle type.
+
+For the examples a discrete lattice of arbitrary enumeration - which also takes care of potential additional spin-degrees - is assumed.
+
+\paragraph{Bosons}
+
+\begin{equation}
+    \label{eq:boson-commutators}
+    \begin{split}
+        \left[\bop{l}{},\,\bop{m}{}\right] &= 0\\
+        \left[\bop{l}{\dagger},\,\bop{m}{\dagger}\right] &= 0\\
+        \left[\bop{l}{},\,\bop{m}{\dagger}\right] &= \delta_{l,\,m}\\
+    \end{split}
+\end{equation}
+
+The bosonic operators follow the commutation-relations described in \autoref{eq:boson-commutators}, with $\delta$ the \emph{Kronecker-Delta} \cite{schwablBookII}, which allows for occupation numbers of all natural numbers or $0$ per site.
+
+\paragraph{Fermions}\makebox{}\\
+
+For fermionic systems it is important, that their wavefunction anti-symmetrizes. This results in the anti-commutation relations of  \autoref{eq:fermion-commutators}.
+
+\begin{equation}
+    \label{eq:fermion-commutators}
+    \begin{split}
+        \left\{\cop{l}{},\,\cop{m}{}\right\} &= 0\\
+        \left\{\cop{l}{\dagger},\,\cop{m}{\dagger}\right\} &= 0\\
+        \left\{\cop{l}{},\,\cop{m}{\dagger}\right\} &= \delta_{l,\,m}\\
+    \end{split}
+\end{equation}
+
+From \autoref{eq:fermion-commutators}, one can derive that the operator combination $\cop{l}{\dagger}\cop{l}{}$, the \emph{number operator}, is \emph{idempotent}: 
+
+\begin{equation}
+    \label{eq:fermion-counting-op-idempotent}
+    \left(\cop{l}{\dagger}\cop{l}{}\right)^n = 
+    \cop{l}{\dagger}\cop{l}{} \qquad \forall n \in \mathbb{N}
+\end{equation}
+
+This is a property that is necessary for performing a specific calculation later and makes sense, once one realizes, this restricts the  fermionic occupations to the values $0$ and $1$.
+
+\paragraph{Hard-Core Bosons}\makebox{}\\
+
+While we require the number operator for the investigated particle type to be idempotent, it would be convenient to work with an operator that commutes and doesn't anti-commute like the fermions. 
+In this regard, the hard-core bosons behave like a typical boson, but with extra restrictions that limit the occupation to either $0$ or $1$, meaning $\hop{l}{\dagger}\hop{l}{\dagger} = \hop{l}{}\hop{l}{} = 0$ \cite{hardCoreBosonsBasics}.
+The required properties are fulfilled, if the particles obey the commutation-relations from \autoref{eq:hard-core-commutators} \cite{hardCoreBosonsFullCommutationRelation}, which in turn makes it possible to derive the idempotence-relation in \autoref{eq:hc-counting-op-idempotent}.
+
+\begin{equation}
+    \label{eq:hard-core-commutators}
+    \begin{split}
+        \left[\hop{l}{},\,\hop{m}{}\right] &= 0\\
+        \left[\hop{l}{\dagger},\,\hop{m}{\dagger}\right] &= 0\\
+        \left[\hop{l}{},\,\hop{m}{\dagger}\right] &= \left(1 - 2 \cdot \hop{m}{\dagger}\hop{m}{} \right)\delta_{l,\,m}
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    \label{eq:hc-counting-op-idempotent}
+    \left(\hop{l}{\dagger}\hop{l}{}\right)^n = 
+    \hop{l}{\dagger}\hop{l}{} \qquad \forall n \in \mathbb{N}
+\end{equation}
+
+This additionally grants the helpful property $\hop{l}{\dagger}\hop{l}{} + \hop{l}{}\hop{l}{\dagger}  = 1$.
+
+\paragraph{Spins / Pauli-Matrices}\makebox{}\\
+
+Basic Hamiltonians, like the \emph{Ising-Model} are often expressed in the \emph{spin basis}. 
+The operators that act on this basis are the \emph{Pauli matrices}, which have the useful property of being a basis for complex matrices.
+Most \emph{quantum computing} formalisms are expressed in the spin basis and heavily rely on the Pauli matrices \cite{quantumBookPaulisAndBasics}:
+
+\begin{equation}
+    \label{eq:pauli-matrices}
+    \begin{split}
+        \pauli{0} = \one = \left(\begin{matrix}
+            1& 0 \\
+            0& 1
+        \end{matrix}\right) 
+        \qquad & \qquad
+        \pauli{1} = \pauli{x} = \left(\begin{matrix}
+            0& 1 \\
+            1& 0
+        \end{matrix}\right) \\
+        \pauli{2} = \pauli{y} = \left(\begin{matrix}
+            0& -i \\
+            i& 0
+        \end{matrix}\right) 
+        \qquad & \qquad
+        \pauli{3} = \pauli{z} = \left(\begin{matrix}
+            1& 0 \\
+            0& -1
+        \end{matrix}\right)
+    \end{split}
+\end{equation}
+
+For spin-particles on a lattice, the operators need to obey the relations in \autoref{eq:pauli-commutators}.
+
+\begin{equation}
+    \label{eq:pauli-commutators}
+    \begin{split}
+        \left\{\pauli[l]{$\alpha$},\,\pauli[l]{$\beta$}\right\} &= 2 \cdot \delta_{\alpha,\,\beta}\\
+        \left[\pauli[l]{$\alpha$},\,\pauli[m]{$\beta$}\right] &= 2 \cdot i \cdot \varepsilon_{\alpha,\,\beta,\,\gamma} \cdot \delta_{l,\,m}\cdot \pauli[l]{$\gamma$}
+    \end{split}
+\end{equation}
+
+With the complex unit $i$ and the \emph{Levi-Civita-Symbol} $\varepsilon_{\alpha,\,\beta,\,\gamma}$.
+
+\paragraph{Transformation: Express Spins as Fermions}\makebox{}\\
+For mapping between fermions and spins, there exists a well known transformation, the \emph{Jordan-Wigner-Transformation} \cite{jordanWignerBaseCase} (\autoref{eq:jordan-wigner-classical}).
+
+The following transformations use \autoref{eq:jordan-wigner-p-factor}, where the equality follows from the fact that these operators are all different representations of the number operator.
+
+\begin{equation}
+    \label{eq:jordan-wigner-p-factor}
+\left(-1\right)^{\sum\limits_{k=0}^{l-1} \left( \pauli[k]{z} +1 \right)/2 } = 
+\left(-1\right)^{\sum\limits_{k=0}^{l-1}\cop{k}{\dagger}\cop{k}{} } =
+\left(-1\right)^{\sum\limits_{k=0}^{l-1}\hop{k}{\dagger}\hop{k}{} } = 
+\text{P}(l)
+\end{equation}
+
+With the easily verifiable property $\text{P}(l)\cdot \text{P}(l) = 1$. Also $\text{P}(l)$ commutates with all $\cop{m}{}$, $\cop{m}{\dagger}$, $\hop{m}{}$ and $\hop{m}{\dagger}$ if $l\leq m$ and $\left[\text{P}(l),\, \text{P}(m)\right] = 0$.
+
+\begin{equation}
+    \label{eq:jordan-wigner-classical}
+    \begin{split}
+        \cop{l}{\dagger} &= \text{P}(l) \cdot \frac{\pauli[l]{x} + i\cdot \pauli[l]{y}}{2} = \text{P}(l) \cdot \pauli[l]{+}\\
+        \cop{l}{} &= \text{P}(l) \cdot \frac{\pauli[l]{x} - i\cdot \pauli[l]{y}}{2} = \text{P}(l) \cdot \pauli[l]{-}\\
+        \cop{l}{\dagger}\cop{l}{} &= \left( \pauli[l]{z} +1 \right)/2\\
+        &\Longleftrightarrow \\
+        \pauli[l]{x} &= \left(\cop{l}{} + \cop{l}{\dagger}\right) \cdot \text{P}(l) \\
+        \pauli[l]{y} &= i \cdot \left(\cop{l}{} - \cop{l}{\dagger}\right) \cdot \text{P}(l)\\
+        \pauli[l]{z} &= 2 \cdot \cop{l}{\dagger}\cop{l}{} -1
+    \end{split}
+\end{equation}
+
+For performing commutation-relation calculations, a helper program was written in conjunction with this thesis and related submissions.
+The program is called \emph{Math-Manipulator} \cite{selfMathManipulator} and the transformations in this chapter have been validated with it in a supplementary repository:\\ \filepath{\cite{selfMathManipulatorCalculations}}{/jordan-wigner-transformation}.
+
+
+\paragraph{Transformation: Express Fermions as Hard-Core Bosons}\makebox{}\\
+The tensor-network library \emph{ITensor} provides in their documentation an example for a mapping between fermions and hard-core bosons, used to simplify their calculations \cite{itensorFermionizationLibrary}.
+The transformations may be called \emph{fermionization/bosonization} or respectively also Jordan-Wigner-Transformation.
+
+\autoref{eq:jordan-wigner-hcb-fermions} presents the transformation:
+
+\begin{equation}
+    \label{eq:jordan-wigner-hcb-fermions}
+    \begin{split}
+        \cop{l}{\dagger} &= \text{P}(l) \cdot \hop{l}{\dagger}\\
+        \cop{l}{} &= \text{P}(l) \cdot \hop{l}{}\\
+        &\Longleftrightarrow \\
+        \hop{l}{\dagger} &= \text{P}(l) \cdot \cop{l}{\dagger}\\
+        \hop{l}{} &= \text{P}(l) \cdot \cop{l}{}\\
+    \end{split}
+\end{equation}
+
+\paragraph{Transformation: Express Spins as Hard-Core Bosons}\makebox{}\\
+Finally this confirms the transformation that will be required later: expressing a measurement in the spin-basis in terms of hard-core bosonic operators.
+
+\autoref{eq:jordan-wigner-spin-hcb} can be directly obtained, by plugging \autoref{eq:jordan-wigner-hcb-fermions} into \autoref{eq:jordan-wigner-classical}.
+
+\begin{equation}
+    \label{eq:jordan-wigner-spin-hcb}
+    \begin{split}
+        \pauli[l]{x} &= \hop{l}{} + \hop{l}{\dagger} \\
+        \pauli[l]{y} &= i \cdot \left(\hop{l}{} - \hop{l}{\dagger}\right) \\
+        \pauli[l]{z} &= 2 \cdot \hop{l}{\dagger}\hop{l}{} -1
+    \end{split}
+\end{equation}
+
+This connection shows, that spin-$\frac{1}{2}$ systems and hard-core bosonic systems can be used to investigate the same problems in different notations.
+\autoref{eq:spin-hcb-state-mapping} shows, what states are equivalent for these two notations.
+
+\begin{equation}
+    \label{eq:spin-hcb-state-mapping}
+    \begin{split}
+        \ketN[\down] &= \left(\begin{matrix}
+            0 \\
+            1
+        \end{matrix}\right) = \ketN[0] \\
+        \pauli[]{+}\ketN[\down] = \ketN[\up] &= \left(\begin{matrix}
+            1 \\
+            0
+        \end{matrix}\right) = \ketN[1] = \hop{}{\dagger}\ketN[0] \\
+    \end{split}
+\end{equation}
+
+This exact mapping is important to conserve sign-consistency across all calculations. 
+E.g. swapping the $\ketN[0] = \ketN[\down]$ correspondence to $\ketN[0] = \ketN[\up]$, would introduce a hidden minus sign in observables depending on $\pauli[]{y}$, because of the implicit order of basis states in the definition of $\pauli[]{y}$.
