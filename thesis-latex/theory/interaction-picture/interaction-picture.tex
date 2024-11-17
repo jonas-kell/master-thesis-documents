@@ -1,5 +1,5 @@
 Solving the quantum-mechanical many-body time-evolution problem in general requires at least a time-complexity of \bigo{2^n}.
-For some special cases it is possible to solve analytically.
+For some special cases it is possible to solve it analytically.
 E.g. for 1-dimensional systems, the Hubbard Model can be solved analytically even with the addition of an electrical field \cite{exactSolutionExampleHubbardEvenElectricalField}.
 
 For arbitrary geometry in two or even more dimensions, this is no longer possible.
@@ -113,8 +113,15 @@ Plugging this into the rearranged result from \autoref{eq:time-evolution-target}
         }{\picturePsi[\schroedingerPicture]{}}\\
         &\stackrel{\text{\cite{variationalClassicalNetworksPaper}}}{\Longleftrightarrow}\\
         \HNOft &= \sum\limits_{v=1}^\infty \frac{\left(-i\right)^v}{v!} \int\limits_0^t\mathrm{d}t_1 \int\limits_0^t\mathrm{d}t_2 \,\,\dots \int\limits_0^t\mathrm{d}t_v \left\langle \timeOrderingOperator\, \VhamiltonianOf[\interactionPicture]{t_1}\VhamiltonianOf[\interactionPicture]{t_2} \cdots \VhamiltonianOf[\interactionPicture]{t_v} \right\rangle_{\text{c}(N)}\\
-        &= -i \int\limits_0^t \mathrm{d}t' \frac{\bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t'}}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}} + \cdots
+        &= -i \int\limits_0^t \mathrm{d}t_1 \frac{\bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t_1}}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}\\ 
+        &- \frac{1}{2} \int\limits_0^t\mathrm{d}t_1 \int\limits_0^t\mathrm{d}t_2
+        \left(
+        \frac{\bracketHelper{N}{\timeOrderingOperator
+        \VhamiltonianOf[\interactionPicture]{t_1}\VhamiltonianOf[\interactionPicture]{t_2}
+        }{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}} -  \frac{\bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t_1}}{\picturePsi[\schroedingerPicture]{}} \cdot \bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t_2}}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}^2}
+        \right)\\
+        &+ \cdots
     \end{split}
 \end{equation}
 
-As $\VhamiltonianOf[\interactionPicture]{t'} \propto J$, if $J$ is a small perturbation (in comparison to $U$) this quickly converges for few terms.
+As $\VhamiltonianOf[\interactionPicture]{t'} \propto J$, if $J$ is a small perturbation (in comparison to $U$ and $\varepsilon$) this quickly converges event when taking only few terms into account.
