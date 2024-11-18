@@ -262,10 +262,191 @@ The result of the integration can be seen in \autoref{eq:hn-integrated-first-ord
             \bracketHelper{N}{
                 \VhamiltonianOperatorPart{C}{l}{m} 
             }{K}
+        \right]\\
+        %
+        &\stackrel{\phantom{\ref{eq:interaction-picture-v-ham-full}}}{=}
+        J \lsum[K] \fullneighborsum{l}{m} \frac{\psiN[K]}{\psiN}
+        \left[
+            \VhamiltonianAnalyticalPartIntegrated{A}{l}{m}{t} \cdot 
+            \bracketHelper{N}{
+                \VhamiltonianOperatorPart{A}{l}{m} 
+            }{K}
+            + 
+            \right.\\
+            &\qquad
+            \left.
+            \VhamiltonianAnalyticalPartIntegrated{B}{l}{m}{t}
+             \cdot 
+            \bracketHelper{N}{
+                \VhamiltonianOperatorPart{B}{l}{m}
+            }{K}
+            + 
+            \VhamiltonianAnalyticalPartIntegrated{C}{l}{m}{t}
+             \cdot 
+            \bracketHelper{N}{
+                \VhamiltonianOperatorPart{C}{l}{m} 
+            }{K}
         \right]
     \end{split}
 \end{equation}
 
+In the second to last step, the $i$ is moved into the integral.
+
 While it seems that $\lsum[K] \fullneighborsum{l}{m}$ is even a larger summation than the previously problematic ones, because the operators $\VhamiltonianOperatorPart{A}{l}{m}$, $\VhamiltonianOperatorPart{B}{l}{m}$ and $\VhamiltonianOperatorPart{C}{l}{m}$ have interaction range limited to nearest neighbors, actually the summation is really sparse and most entries are $0$.
 This summation can be efficiently evaluated in \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})}.
 How this could be done, can be looked up in the implementation \filepath{\cite{selfCode}}{/computation-scripts/hamiltonian.py} in the specialization class \emph{HardcoreBosonicHamiltonian}.
+
+\paragraph*{Calculate the second order of \HNOft}\makebox{}\\
+
+For the calculation of the second order, the time-ordering-operator is relevant again. 
+It however is not necessary for the right side of the integral, as the two integrals can be fully localized to one factor each.
+For the left side, it is necessary to integrate different cases separately.
+
+\begin{equation}
+    \label{eq:hn-integrated-second-order}
+    \begin{split}
+        \HNOftOrder{2} &\stackrel{\ref{eq:cumulant-expansion}}{=} - \frac{1}{2} \int\limits_0^t\mathrm{d}t_1 \int\limits_0^t\mathrm{d}t_2
+        \left(
+        \frac{\bracketHelper{N}{\timeOrderingOperator
+        \VhamiltonianOf[\interactionPicture]{t_1}\VhamiltonianOf[\interactionPicture]{t_2}
+        }{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}} -  \frac{\bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t_1}}{\picturePsi[\schroedingerPicture]{}} \cdot \bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t_2}}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}^2}
+        \right)\\
+        %
+        &\stackrel{\ref{eq:base-expansion-state}}{=}
+        - \frac{1}{2} \lsum[K] \frac{\psiN[K]}{\psiN} \int\limits_0^t \int\limits_0^t        \bracketHelper{N}{\timeOrderingOperator
+        \VhamiltonianOf[\interactionPicture]{t_1}\VhamiltonianOf[\interactionPicture]{t_2}
+        }{K}            \mathrm{d}t_1\mathrm{d}t_2 \\
+        &\stackrel{\phantom{\ref{eq:base-expansion-state}}}{+} 
+        \frac{1}{2}
+        \lsum[M]\lsum[L]
+        \frac{\psiN[M]\psiN[L]}{\psiN{}^2}
+        \int\limits_0^t \bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t_1}}{M}  \mathrm{d}t_1
+        \cdot
+        \int\limits_0^t \bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t_2}}{L}  \mathrm{d}t_2\\
+        %
+        &\stackrel{\ref{eq:interaction-picture-v-ham-full}}{=}
+        - \frac{J^2}{2} \lsum[K]\lsum[X,Y \in \left\{\text{A}, \text{B}, \text{C}\right\}] \fullneighborsum{l}{m}\fullneighborsum{j}{k}
+        \frac{\psiN[K]}{\psiN} \\&\quad
+        \int\limits_0^t \int\limits_0^t        \bracketHelper{N}{\timeOrderingOperator
+        \VhamiltonianAnalyticalPart{$X$}{l}{m}{t_1} \VhamiltonianOperatorPart[t_1]{$X$}{l}{m}
+        \cdot 
+        \VhamiltonianAnalyticalPart{$Y$}{j}{k}{t_2} \VhamiltonianOperatorPart[t_2]{$Y$}{j}{k}
+        }{K}            \mathrm{d}t_1\mathrm{d}t_2 \\
+        &\stackrel{\phantom{\ref{eq:interaction-picture-v-ham-full}}}{+} 
+        \frac{J^2}{2}
+        \lsum[M]\lsum[L]\lsum[V,W \in \left\{\text{A}, \text{B}, \text{C}\right\}]
+        \fullneighborsum{o}{p}\fullneighborsum{q}{r}
+        \frac{\psiN[M]\psiN[L]}{\psiN{}^2}\\&\quad
+        \int\limits_0^t \bracketHelper{N}{\VhamiltonianAnalyticalPart{$V$}{o}{p}{t_1} \cdot \VhamiltonianOperatorPart{$V$}{o}{p}}{M}  \mathrm{d}t_1
+        \cdot
+        \int\limits_0^t \bracketHelper{N}{\VhamiltonianAnalyticalPart{$W$}{q}{r}{t_2} \cdot \VhamiltonianOperatorPart{$W$}{q}{r}}{M}  \mathrm{d}t_2\\
+        %
+        &=
+        - \frac{J^2}{2} \lsum[K]\lsum[X,Y \in \left\{\text{A}, \text{B}, \text{C}\right\}] \fullneighborsum{l}{m}\fullneighborsum{j}{k}
+        \frac{\psiN[K]}{\psiN} \\&\quad
+        \int\limits_0^t \int\limits_0^t  
+        \VhamiltonianAnalyticalPart{$X$}{l}{m}{t_1}
+        \cdot 
+        \VhamiltonianAnalyticalPart{$Y$}{j}{k}{t_2}
+        \bracketHelper{N}{\timeOrderingOperator
+            \VhamiltonianOperatorPart[t_1]{$X$}{l}{m}
+        \cdot 
+            \VhamiltonianOperatorPart[t_2]{$Y$}{j}{k}
+        }{K}            \mathrm{d}t_1\mathrm{d}t_2 \\
+        &-\frac{J^2}{2}
+        \lsum[M]\lsum[L]\lsum[V,W \in \left\{\text{A}, \text{B}, \text{C}\right\}]
+        \fullneighborsum{o}{p}\fullneighborsum{q}{r}
+        \frac{\psiN[M]\psiN[L]}{\psiN{}^2}\\&\quad
+        \VhamiltonianAnalyticalPartIntegrated{$V$}{o}{p}{t} 
+        \cdot
+        \VhamiltonianAnalyticalPartIntegrated{$W$}{q}{r}{t}
+        \bracketHelper{N}{\VhamiltonianOperatorPart{$V$}{o}{p}}{M}
+        \bracketHelper{N}{\VhamiltonianOperatorPart{$W$}{q}{r}}{M}
+    \end{split}
+\end{equation}
+
+Notice in the second to last step, the \VhamiltonianOperatorPart[t_\ast]{$\ast$}{\ast}{\ast} is indicated with a $t_\ast$ to keep its time-ordering association, even after writing out the \VhamiltonianOf[\interactionPicture]{t_\ast}.
+In the last step, the sign of the second term flips, because of a $-1 = i \cdot i$ that was introduced, to allow for integration of \VhamiltonianAnalyticalPart{$\ast$}{\ast}{\ast}{t_\ast} like in \autoref{eq:hn-integrated-first-order}.\\
+
+\begin{equation}
+    \label{eq:u-eps-substitution}
+    \begin{split}
+        \epsl-\epsl[m] &= \ueps{A}{l}{m}\\
+        \epsl-\epsl[m]+U &= \ueps{B}{l}{m}\\
+        \epsl-\epsl[m]-U &= \ueps{C}{l}{m}\\
+    \end{split}
+\end{equation}
+
+Inverting the steps performed in \cite{dissectTimeOrderingIntegrals}, one can easily see how to split integrals with the time-ordering-operator for evaluation in \autoref{eq:split-integral-time-ordering}.
+
+\begin{equation}
+    \label{eq:split-integral-time-ordering}
+    \begin{split}
+        &\int\limits_0^t \mathrm{d}t_1 \int\limits_0^{t_1} \mathrm{d}t_2 A(t_1) B(t_2)  = \int\limits_0^t \mathrm{d}t_1 \int\limits_0^{t_1} \mathrm{d}t_2  \timeOrderingOperator A(t_1) B(t_2) \\
+        &\int\limits_0^t \mathrm{d}t_1 \int\limits_{t_1}^t \mathrm{d}t_2  B(t_2) A(t_1)  = \int\limits_0^t \mathrm{d}t_1 \int\limits_{t_1}^t \mathrm{d}t_2  \timeOrderingOperator A(t_1) B(t_2) \\\\
+        %
+        &\int\limits_0^t \mathrm{d}t_1 \left( \int\limits_0^{t_1} \mathrm{d}t_2 \timeOrderingOperator A(t_1) B(t_2) +  \int\limits_{t_1}^t \mathrm{d}t_2 \timeOrderingOperator A(t_1) B(t_2)\right) =
+        \int\limits_0^t \mathrm{d}t_1\int\limits_0^t \mathrm{d}t_2 \timeOrderingOperator A(t_1) B(t_2)
+    \end{split}
+\end{equation}
+
+What is left, is to evaluate the integral that needs to respect the time-ordering.
+
+\begin{equation}
+    \label{eq:time-ordered-integral}
+    \begin{split}
+        &\int\limits_0^t \int\limits_0^t  
+        \VhamiltonianAnalyticalPart{$X$}{l}{m}{t_1}
+        \cdot 
+        \VhamiltonianAnalyticalPart{$Y$}{j}{k}{t_2}
+        \bracketHelper{N}{\timeOrderingOperator
+            \VhamiltonianOperatorPart[t_1]{$X$}{l}{m}
+        \cdot 
+            \VhamiltonianOperatorPart[t_2]{$Y$}{j}{k}
+        }{K}            \mathrm{d}t_1\mathrm{d}t_2
+        \stackrel{\ref{eq:u-eps-substitution},\,\ref{eq:interaction-picture-v-ham-parts}}{=}\\
+        %
+        &\int\limits_0^t \int\limits_0^t  
+        e^{
+            i \cdot \ueps{$X$}{l}{m} \cdot t_1
+        }
+        \cdot 
+        e^{
+            i \cdot \ueps{$Y$}{j}{k} \cdot t_2
+        }
+        \bracketHelper{N}{\timeOrderingOperator
+            \VhamiltonianOperatorPart[t_1]{$X$}{l}{m}
+        \cdot 
+            \VhamiltonianOperatorPart[t_2]{$Y$}{j}{k}
+        }{K}            \mathrm{d}t_1\mathrm{d}t_2 \stackrel{\ref{eq:split-integral-time-ordering}}{=} \\
+        %
+        &\int\limits_0^t  \int\limits_0^{t_1}
+        e^{
+            i \cdot \ueps{$X$}{l}{m} \cdot t_1
+        }
+        e^{
+            i \cdot \ueps{$Y$}{j}{k} \cdot t_2
+        }
+        \mathrm{d}t_2
+        \mathrm{d}t_1
+        \cdot 
+        \bracketHelper{N}{
+            \VhamiltonianOperatorPart[]{$X$}{l}{m}
+            \VhamiltonianOperatorPart[]{$Y$}{j}{k}
+        }{K}            + \\
+        &\int\limits_0^t  \int\limits_{t_1}^t
+        e^{
+            i \cdot \ueps{$X$}{l}{m} \cdot t_1
+        }
+        e^{
+            i \cdot \ueps{$Y$}{j}{k} \cdot t_2
+        }
+        \mathrm{d}t_2
+        \mathrm{d}t_1
+        \cdot 
+        \bracketHelper{N}{
+            \VhamiltonianOperatorPart[]{$Y$}{j}{k}
+            \VhamiltonianOperatorPart[]{$X$}{l}{m}
+        }{K} 
+    \end{split}
+\end{equation}
