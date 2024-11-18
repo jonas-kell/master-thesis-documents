@@ -87,8 +87,6 @@ From analogous calculations follows:
     \end{split}
 \end{equation*}
 
-% TODO from here get rid of outdated V-Parts formulation
-
 Injecting these derivations into \autoref{eq:main-hamiltonian-perturbation-full-sum}, finally \VhamiltonianOfT[\interactionPicture] can be derived in \autoref{eq:interaction-picture-v-ham-full}.
 
 \begin{equation}
@@ -105,81 +103,22 @@ Injecting these derivations into \autoref{eq:main-hamiltonian-perturbation-full-
         &\stackrel{\text{MM}}{=}
         %
         -J \cdot \fullneighborsum{l}{m} \left[
-            e^{i\cdot \left(\epsl[m]-\epsl\right)\cdot t} \cdot \VhamiltonianPartA{l}{m} + 
-            \right.\\
-            &\qquad\qquad\quad
-            \left.
-            e^{i\cdot \left(\epsl[m]-\epsl + U\right)\cdot t} \cdot \VhamiltonianPartB{l}{m} + 
-            e^{i\cdot \left(\epsl[m]-\epsl - U\right)\cdot t} \cdot \VhamiltonianPartC{l}{m} 
+            \VhamiltonianAnalyticalPart{A}{l}{m}{t} \cdot \VhamiltonianOperatorPart{A}{l}{m} + 
+            \VhamiltonianAnalyticalPart{B}{l}{m}{t} \cdot \VhamiltonianOperatorPart{B}{l}{m} + 
+            \VhamiltonianAnalyticalPart{C}{l}{m}{t} \cdot \VhamiltonianOperatorPart{C}{l}{m} 
         \right]
     \end{split}
 \end{equation}
 
+It is possible to express these operator-strings as single hoppings, decorated with number operators. One receives \autoref{eq:interaction-picture-v-ham-parts}, that is symmetrical in \up and \down (with $\overline{\up} = \down$ and  $\overline{\down} = \up$).
+
 \begin{equation}
     \label{eq:interaction-picture-v-ham-parts}
     \begin{split}
-        \VhamiltonianPartA{l}{m} &\stackrel{\text{MM}}{=} 
-            \left(5 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(5 \cdot \dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(2 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{}\hop[\schroedingerPicture]{l}{\dagger}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(2 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +\\&\mkern-40mu+
-            \left(-3 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(-3 \cdot \hop[\schroedingerPicture]{m}{}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(-3 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{l}{\dagger}\right)
-            +
-            \left(-3 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-        \\
-        \VhamiltonianPartB{l}{m} &\stackrel{\text{MM}}{=} 
-            \left(-2 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(-2 \cdot \dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(-1 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{}\hop[\schroedingerPicture]{l}{\dagger}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(-1 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +\\&\mkern-40mu+
-            \left(1 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(2 \cdot \hop[\schroedingerPicture]{m}{}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(1 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{l}{\dagger}\right)
-            +
-            \left(2 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-        \\
-        \VhamiltonianPartC{l}{m} &\stackrel{\text{MM}}{=} 
-            \left(-2 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(-2 \cdot \dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(-1 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{}\hop[\schroedingerPicture]{l}{\dagger}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(-1 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +\\&\mkern-40mu+
-            \left(2 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(1 \cdot \hop[\schroedingerPicture]{m}{}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-            +
-            \left(2 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{l}{}\dop[\schroedingerPicture]{l}{\dagger}\right)
-            +
-            \left(1 \cdot \hop[\schroedingerPicture]{l}{}\hop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\dop[\schroedingerPicture]{m}{\dagger}\right)
-        \\
-    \end{split}
-\end{equation}
-
-It is possible to rewrite the components from \autoref{eq:interaction-picture-v-ham-parts} and write them as single hoppings, decorated with  number operators. One receives \autoref{eq:interaction-picture-v-ham-parts-simplified}, that is symmetrical in \up and \down (with $\overline{\up} = \down$ and  $\overline{\down} = \up$).
-
-\begin{equation}
-    \label{eq:interaction-picture-v-ham-parts-simplified}
-    \begin{split}
-        \VhamiltonianPartA{l}{m} &\stackrel{\text{MM}}{=} 
+        \VhamiltonianAnalyticalPart{A}{l}{m}{t} \stackrel{\text{MM}}{=} e^{i\cdot \left(\epsl-\epsl[m]\right)\cdot t} \qquad
+        \VhamiltonianOperatorPart{A}{l}{m} &\stackrel{\text{MM}}{=} 
         \lsum[\sigma \in \left\{\up,\,\down\right\}]
-        \withspinhcop[\schroedingerPicture]{l}{\sigma}{}\withspinhcop[\schroedingerPicture]{m}{\sigma}{\dagger}
+        \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinhcop[\schroedingerPicture]{m}{\sigma}{}
         \left(
             1+
             2 \cdot \nop[\schroedingerPicture]{l}{\overline{\sigma}}\nop[\schroedingerPicture]{m}{\overline{\sigma}}
@@ -187,24 +126,61 @@ It is possible to rewrite the components from \autoref{eq:interaction-picture-v-
             - \nop[\schroedingerPicture]{m}{\overline{\sigma}}
         \right)
         \\
-        \VhamiltonianPartB{l}{m} &\stackrel{\text{MM}}{=} 
+        \VhamiltonianAnalyticalPart{B}{l}{m}{t} \stackrel{\text{MM}}{=} e^{i\cdot \left(\epsl-\epsl[m] + U\right)\cdot t} \qquad
+        \VhamiltonianOperatorPart{B}{l}{m} &\stackrel{\text{MM}}{=} 
         \lsum[\sigma \in \left\{\up,\,\down\right\}]        
-        \withspinhcop[\schroedingerPicture]{l}{\sigma}{}\withspinhcop[\schroedingerPicture]{m}{\sigma}{\dagger}
-        \left(
-            \nop[\schroedingerPicture]{m}{\overline{\sigma}}
-            - \nop[\schroedingerPicture]{l}{\overline{\sigma}}\nop[\schroedingerPicture]{m}{\overline{\sigma}}
-        \right)
-        \\
-        \VhamiltonianPartC{l}{m} &\stackrel{\text{MM}}{=} 
-        \lsum[\sigma \in \left\{\up,\,\down\right\}]
-        \withspinhcop[\schroedingerPicture]{l}{\sigma}{}\withspinhcop[\schroedingerPicture]{m}{\sigma}{\dagger}
+        \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinhcop[\schroedingerPicture]{m}{\sigma}{}
         \left(
             \nop[\schroedingerPicture]{l}{\overline{\sigma}}
             - \nop[\schroedingerPicture]{l}{\overline{\sigma}}\nop[\schroedingerPicture]{m}{\overline{\sigma}}
         \right)
         \\
+        \VhamiltonianAnalyticalPart{C}{l}{m}{t} \stackrel{\text{MM}}{=} e^{i\cdot \left(\epsl-\epsl[m] - U\right)\cdot t} \qquad
+        \VhamiltonianOperatorPart{C}{l}{m} &\stackrel{\text{MM}}{=} 
+        \lsum[\sigma \in \left\{\up,\,\down\right\}]
+        \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinhcop[\schroedingerPicture]{m}{\sigma}{}
+        \left(
+            \nop[\schroedingerPicture]{m}{\overline{\sigma}}
+            - \nop[\schroedingerPicture]{m}{\overline{\sigma}}\nop[\schroedingerPicture]{l}{\overline{\sigma}}
+        \right)
+        \\
     \end{split}
 \end{equation}
+
+The expressions for the dressed operators in \autoref{eq:interaction-picture-v-ham-parts} can be rearranged, to reflect more their physical effects.
+\autoref{eq:interaction-picture-v-ham-parts-simplified} can be obtained and verified by comparing the measurements in a truth table (the \nop[\schroedingerPicture]{}{} measure either a $0$ or $1$ on a state, without modifying it).
+
+\begin{equation}
+    \label{eq:interaction-picture-v-ham-parts-simplified}
+    \begin{split}
+        \VhamiltonianOperatorPart{A}{l}{m} &\stackrel{\text{MM}}{=} 
+        \lsum[\sigma \in \left\{\up,\,\down\right\}]
+        \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinhcop[\schroedingerPicture]{m}{\sigma}{}
+        \left(\nop[\schroedingerPicture]{l}{\overline{\sigma}}
+            \equivalentOperator 
+            \nop[\schroedingerPicture]{m}{\overline{\sigma}}
+        \right)
+        \\
+        \VhamiltonianOperatorPart{B}{l}{m} &\stackrel{\text{MM}}{=} 
+        \lsum[\sigma \in \left\{\up,\,\down\right\}]        
+        \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinhcop[\schroedingerPicture]{m}{\sigma}{}
+        \nop[\schroedingerPicture]{l}{\overline{\sigma}}
+        \left(
+            1 - \nop[\schroedingerPicture]{m}{\overline{\sigma}}
+        \right)
+        \\
+        \VhamiltonianOperatorPart{C}{l}{m} &\stackrel{\text{MM}}{=} 
+        \lsum[\sigma \in \left\{\up,\,\down\right\}]
+        \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinhcop[\schroedingerPicture]{m}{\sigma}{}
+        \nop[\schroedingerPicture]{m}{\overline{\sigma}}
+        \left(
+           1 - \nop[\schroedingerPicture]{l}{\overline{\sigma}}
+        \right)
+        \\
+    \end{split}
+\end{equation}
+
+The \equivalentOperator here means \glqq $1$ if the measurements of the operators are equivalent, $0$ otherwise\grqq.
 
 \paragraph*{Base Energy}\makebox{}\\
 
@@ -223,73 +199,73 @@ $E_0(N)$ is luckily calculated quite swiftly, as one can see in \autoref{eq:base
     \end{split}
 \end{equation}
 
-\paragraph*{Calculate \HNOft to get the full effective Hamiltonian}\makebox{}\\
+\paragraph*{Calculate the first order of \HNOft}\makebox{}\\
 
 The last missing element for $\HeffOft = -i E_0(N) t + \HNOft$ now is \HNOft.
 At least for the first order, the integration in \autoref{eq:cumulant-expansion} is easily doable, with now knowing the form of \VhamiltonianOf[\interactionPicture]{t}.
 
-The result of the integration can be seen in \autoref{eq:final-integrated-hn}.
+The result of the integration can be seen in \autoref{eq:hn-integrated-first-order}.
 
 \begin{equation}
-    \label{eq:final-integrated-hn}
+    \label{eq:hn-integrated-first-order}
     \begin{split}
-        \HNOft &\stackrel{\ref{eq:cumulant-expansion}}{\approx} -i \int\limits_0^t \mathrm{d}t' \frac{\bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t'}}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}\\
+        \HNOftOrder{1} &\stackrel{\ref{eq:cumulant-expansion}}{=} -i \int\limits_0^t \mathrm{d}t' \frac{\bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t'}}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}\\
         %
         &\stackrel{\ref{eq:base-expansion-state}}{=}
         -i \frac{1}{\psiN} \int\limits_0^t \mathrm{d}t' \lsum[K] \bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t'}}{K} \psiN[K]\\
         &\stackrel{\ref{eq:interaction-picture-v-ham-full}}{=}
         i \cdot J \lsum[K] \fullneighborsum{l}{m} \frac{\psiN[K]}{\psiN} \int\limits_0^t \mathrm{d}t' 
         \left[
-            e^{i\cdot \left(\epsl[m]-\epsl\right)\cdot t'} \cdot 
+            e^{i\cdot \left(\epsl-\epsl[m]\right)\cdot t'} \cdot 
             \bracketHelper{N}{
-                \VhamiltonianPartA{l}{m} 
+                \VhamiltonianOperatorPart{A}{l}{m} 
             }{K}
             + 
             \right.\\
             &\qquad
             \left.
-            e^{i\cdot \left(\epsl[m]-\epsl + U\right)\cdot t'} \cdot 
+            e^{i\cdot \left(\epsl-\epsl[m] + U\right)\cdot t'} \cdot 
             \bracketHelper{N}{
-                \VhamiltonianPartB{l}{m}
+                \VhamiltonianOperatorPart{B}{l}{m}
             }{K}
             + 
-            e^{i\cdot \left(\epsl[m]-\epsl - U\right)\cdot t'} \cdot 
+            e^{i\cdot \left(\epsl-\epsl[m] - U\right)\cdot t'} \cdot 
             \bracketHelper{N}{
-                \VhamiltonianPartC{l}{m} 
+                \VhamiltonianOperatorPart{C}{l}{m} 
             }{K}
         \right]
         \\
         %
         &\stackrel{\phantom{\ref{eq:interaction-picture-v-ham-full}}}{=}
-        i \cdot J \lsum[K] \fullneighborsum{l}{m} \frac{\psiN[K]}{\psiN}
+        J \lsum[K] \fullneighborsum{l}{m} \frac{\psiN[K]}{\psiN}
         \left[
-            \frac{e^{i\cdot \left(\epsl[m]-\epsl\right)\cdot t}-1}{\epsl[m]-\epsl} \cdot 
+            \frac{e^{i\cdot \left(\epsl-\epsl[m]\right)\cdot t}-1}{\epsl-\epsl[m]} \cdot 
             \bracketHelper{N}{
-                \VhamiltonianPartA{l}{m} 
+                \VhamiltonianOperatorPart{A}{l}{m} 
             }{K}
             + 
             \right.\\
             &\qquad
             \left.
             \frac{
-                e^{i\cdot \left(\epsl[m]-\epsl + U\right)\cdot t}-1
-            }{\epsl[m]-\epsl + U}
+                e^{i\cdot \left(\epsl-\epsl[m] + U\right)\cdot t}-1
+            }{\epsl-\epsl[m] + U}
              \cdot 
             \bracketHelper{N}{
-                \VhamiltonianPartB{l}{m}
+                \VhamiltonianOperatorPart{B}{l}{m}
             }{K}
             + 
             \frac{
-                e^{i\cdot \left(\epsl[m]-\epsl - U\right)\cdot t}
-            }{\epsl[m]-\epsl - U}
+                e^{i\cdot \left(\epsl-\epsl[m] - U\right)\cdot t}-1
+            }{\epsl-\epsl[m] - U}
              \cdot 
             \bracketHelper{N}{
-                \VhamiltonianPartC{l}{m} 
+                \VhamiltonianOperatorPart{C}{l}{m} 
             }{K}
         \right]
     \end{split}
 \end{equation}
 
-While it seems that $\lsum[K] \fullneighborsum{l}{m}$ is even a larger summation than the previously problematic ones, because the operators \VhamiltonianPartA{l}{m}, \VhamiltonianPartB{l}{m} and \VhamiltonianPartC{l}{m} have interaction range limited to nearest neighbors, actually the summation is really sparse and most entries are $0$.
+While it seems that $\lsum[K] \fullneighborsum{l}{m}$ is even a larger summation than the previously problematic ones, because the operators $\VhamiltonianOperatorPart{A}{l}{m}$, $\VhamiltonianOperatorPart{B}{l}{m}$ and $\VhamiltonianOperatorPart{C}{l}{m}$ have interaction range limited to nearest neighbors, actually the summation is really sparse and most entries are $0$.
 This summation can be efficiently evaluated in \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})}.
 How this could be done, can be looked up in the implementation \filepath{\cite{selfCode}}{/computation-scripts/hamiltonian.py} in the specialization class \emph{HardcoreBosonicHamiltonian}.
