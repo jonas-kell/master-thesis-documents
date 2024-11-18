@@ -32,13 +32,6 @@ lineorange="#fca438"
 set datafile separator ','
 
 U = 1.0
-Ja = 0.1
-Jb = 0.09
-Jc = 0.08
-Jd = 0.07
-Je = 0.06
-Jf = 0.04
-Jg = 0.02
 
 # axes and label
 set xrange [] 
@@ -49,7 +42,7 @@ set xlabel "time [1/U]"
 # set format y "%.2t*10^{%+03T}";
 set format y "10^{%+03T}";
 set logscale y 10
-set ylabel "difference to exact"
+set ylabel "relative error"
 # set yrange [0.3e-4:]
 set ytics log
 set mytics 5
@@ -64,10 +57,10 @@ plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " J=0.06⋅U", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerpink title " J=0.04⋅U", \
      NaN with points pt 5 pointsize 0.6 lc rgb markeryellow title " J=0.02⋅U", \
-      "out-j01-o1-single_occ_center_nb.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred, \
-     "out-j009-o1-single_occ_center_nb.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
-     "out-j008-o1-single_occ_center_nb.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
-     "out-j007-o1-single_occ_center_nb.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markermint, \
-     "out-j006-o1-single_occ_center_nb.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
-     "out-j004-o1-single_occ_center_nb.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerpink, \
-     "out-j002-o1-single_occ_center_nb.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markeryellow
+      "out-j01-o1-single_occ_center.csv" using ($1 / U):(abs($2-$4)*2/(abs($2)+abs($4))) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred, \
+     "out-j009-o1-single_occ_center.csv" using ($1 / U):(abs($2-$4)*2/(abs($2)+abs($4))) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
+     "out-j008-o1-single_occ_center.csv" using ($1 / U):(abs($2-$4)*2/(abs($2)+abs($4))) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
+     "out-j007-o1-single_occ_center.csv" using ($1 / U):(abs($2-$4)*2/(abs($2)+abs($4))) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markermint, \
+     "out-j006-o1-single_occ_center.csv" using ($1 / U):(abs($2-$4)*2/(abs($2)+abs($4))) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
+     "out-j004-o1-single_occ_center.csv" using ($1 / U):(abs($2-$4)*2/(abs($2)+abs($4))) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerpink, \
+     "out-j002-o1-single_occ_center.csv" using ($1 / U):(abs($2-$4)*2/(abs($2)+abs($4))) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markeryellow
