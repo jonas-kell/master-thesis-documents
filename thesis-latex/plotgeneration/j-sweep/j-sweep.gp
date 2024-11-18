@@ -5,7 +5,7 @@ set output "j-sweep.pdf"          # name of the output pdf
 
 # legend
 set key Left                                                            # key text justify left
-set key left center                                                     # moves legend
+set key right bottom                                                     # moves legend
 set style line 999 dashtype 1 linewidth 1 linecolor rgb "#0000AA"       # legend linestyle
 set key box linestyle 999                                               # apply box style
 set key spacing 1                                                       # vertical spacing of entries
@@ -15,23 +15,30 @@ markerred="#AA0000"
 markergreen="#00AA00"
 markerblue="#0000AA"
 markeryellow="#EEBE00"
-markerorange="#FF8E00"
 markerpink="#db10e9"
 markermint="#1fc6a1"
+markerorange="#FF8E00"
 
 linered="#FF9999"
 linegreen="#77FF77"
 lineblue="#9999FF"
 lineyellow="#F6D140"
-lineorange="#fca438"
 linepink="#db10e9"
 linemint="#59f7d4"
+lineorange="#fca438"
 
 
 # plot
 set datafile separator ','
 
 U = 1.0
+Ja = 0.1
+Jb = 0.09
+Jc = 0.08
+Jd = 0.07
+Je = 0.06
+Jf = 0.04
+Jg = 0.02
 
 # axes and label
 set xrange [] 
@@ -43,20 +50,24 @@ set xlabel "time [1/U]"
 set format y "10^{%+03T}";
 set logscale y 10
 set ylabel "difference to exact"
-set yrange []
+# set yrange [0.3e-4:]
 set ytics log
 set mytics 5
 
 # plot 1,1
 set label 1 "TODO" at graph 0.27,0.96
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred title " J=0.2⋅U", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " J=0.1⋅U", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue title " J=0.05⋅U", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " J=0.01⋅U", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerpink title " J=0.005⋅U", \
-     "out-j02-o1-current_border.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred, \
-     "out-j01-o1-current_border.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
-     "out-j005-o1-current_border.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
-     "out-j001-o1-current_border.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
-     "out-j0005-o1-current_border.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerpink
+     NaN with points pt 5 pointsize 0.6 lc rgb markerred title " J=0.1⋅U", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " J=0.09⋅U", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerblue title " J=0.08⋅U", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markermint title " J=0.07⋅U", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " J=0.06⋅U", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerpink title " J=0.04⋅U", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markeryellow title " J=0.02⋅U", \
+      "out-j01-o1-single_occ_center_nb.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred, \
+     "out-j009-o1-single_occ_center_nb.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
+     "out-j008-o1-single_occ_center_nb.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
+     "out-j007-o1-single_occ_center_nb.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markermint, \
+     "out-j006-o1-single_occ_center_nb.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
+     "out-j004-o1-single_occ_center_nb.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerpink, \
+     "out-j002-o1-single_occ_center_nb.csv" using ($1 / U):(abs($2-$4)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markeryellow

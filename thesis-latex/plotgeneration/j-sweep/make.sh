@@ -2,7 +2,7 @@
 # Change the working directory to the script's directory
 cd "$(dirname "$0")"
 
-jvalues=("02" "01" "005" "001" "0005")
+jvalues=("01" "009" "008" "007" "006" "004" "002")
 observables=( "current_border" "current_center" "double_occ_border" "double_occ_bordernb" "double_occ_center" "double_occ_centernb" "single_occ_border" "single_occ_bordernb" "single_occ_center" "single_occ_centernb" )
 
 python3 ./../convert-json-zip-to-csv.py --clear --zip_file_name "clear" --observable_index 0 --out_file_suffix "clear"
