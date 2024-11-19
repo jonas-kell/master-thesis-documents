@@ -43,7 +43,7 @@ set xlabel "time [1/U]"
 set format y "10^{%+03T}";
 set logscale y 10
 set ylabel "relative error"
-# set yrange [0.3e-4:]
+set yrange [0.1e-6:1e-2]
 set ytics log
 set mytics 5
 
