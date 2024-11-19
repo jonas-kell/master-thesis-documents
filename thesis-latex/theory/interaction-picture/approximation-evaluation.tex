@@ -302,6 +302,8 @@ For the calculation of the second order, the time-ordering-operator is relevant 
 It however is not necessary for the right side of the integral, as the two integrals can be fully localized to one factor each.
 For the left side, it is necessary to integrate different cases separately.
 
+\vspace{-0.2cm} % TODO check this page-breaks properly in the end
+
 \begin{equation}
     \label{eq:hn-integrated-second-order}
     \begin{split}
@@ -313,37 +315,44 @@ For the left side, it is necessary to integrate different cases separately.
         \right)\\
         %
         &\stackrel{\ref{eq:base-expansion-state}}{=}
-        - \frac{1}{2} \lsum[K] \frac{\psiN[K]}{\psiN} \int\limits_0^t \int\limits_0^t        \bracketHelper{N}{\timeOrderingOperator
+        - \frac{1}{2} 
+        \left[
+        \lsum[K] \frac{\psiN[K]}{\psiN} \int\limits_0^t \int\limits_0^t        \bracketHelper{N}{\timeOrderingOperator
         \VhamiltonianOf[\interactionPicture]{t_1}\VhamiltonianOf[\interactionPicture]{t_2}
-        }{K}            \mathrm{d}t_1\mathrm{d}t_2 \\
-        &\stackrel{\phantom{\ref{eq:base-expansion-state}}}{+} 
-        \frac{1}{2}
+        }{K}            \mathrm{d}t_1\mathrm{d}t_2 \right. \\
+        &\stackrel{\phantom{\ref{eq:base-expansion-state}}}{-} 
+        \left.
         \lsum[M]\lsum[L]
         \frac{\psiN[M]\psiN[L]}{\psiN{}^2}
         \int\limits_0^t \bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t_1}}{M}  \mathrm{d}t_1
         \cdot
-        \int\limits_0^t \bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t_2}}{L}  \mathrm{d}t_2\\
+        \int\limits_0^t \bracketHelper{N}{\VhamiltonianOf[\interactionPicture]{t_2}}{L}  \mathrm{d}t_2 \right]\\
         %
         &\stackrel{\ref{eq:interaction-picture-v-ham-full}}{=}
-        - \frac{J^2}{2} \lsum[K]\lsum[X,Y \in \left\{\text{A}, \text{B}, \text{C}\right\}] \fullneighborsum{l}{m}\fullneighborsum{j}{k}
-        \frac{\psiN[K]}{\psiN} \\&\quad
+        - \frac{J^2}{2} 
+        \left[
+        \lsum[K]\lsum[X,Y \in \left\{\text{A}, \text{B}, \text{C}\right\}] \fullneighborsum{l}{m}\fullneighborsum{j}{k}
+        \frac{\psiN[K]}{\psiN} \right. \\&\quad
         \int\limits_0^t \int\limits_0^t        \bracketHelper{N}{\timeOrderingOperator
         \VhamiltonianAnalyticalPart{$X$}{l}{m}{t_1} \VhamiltonianOperatorPart[t_1]{$X$}{l}{m}
         \cdot 
         \VhamiltonianAnalyticalPart{$Y$}{j}{k}{t_2} \VhamiltonianOperatorPart[t_2]{$Y$}{j}{k}
         }{K}            \mathrm{d}t_1\mathrm{d}t_2 \\
-        &\stackrel{\phantom{\ref{eq:interaction-picture-v-ham-full}}}{+} 
-        \frac{J^2}{2}
+        &\stackrel{\phantom{\ref{eq:interaction-picture-v-ham-full}}}{-} 
         \lsum[M]\lsum[L]\lsum[V,W \in \left\{\text{A}, \text{B}, \text{C}\right\}]
         \fullneighborsum{o}{p}\fullneighborsum{q}{r}
         \frac{\psiN[M]\psiN[L]}{\psiN{}^2}\\&\quad
+        \left.
         \int\limits_0^t \bracketHelper{N}{\VhamiltonianAnalyticalPart{$V$}{o}{p}{t_1} \cdot \VhamiltonianOperatorPart{$V$}{o}{p}}{M}  \mathrm{d}t_1
         \cdot
-        \int\limits_0^t \bracketHelper{N}{\VhamiltonianAnalyticalPart{$W$}{q}{r}{t_2} \cdot \VhamiltonianOperatorPart{$W$}{q}{r}}{M}  \mathrm{d}t_2\\
+        \int\limits_0^t \bracketHelper{N}{\VhamiltonianAnalyticalPart{$W$}{q}{r}{t_2} \cdot \VhamiltonianOperatorPart{$W$}{q}{r}}{L}  \mathrm{d}t_2 \right]\\
         %
         &=
-        - \frac{J^2}{2} \lsum[K]\lsum[X,Y \in \left\{\text{A}, \text{B}, \text{C}\right\}] \fullneighborsum{l}{m}\fullneighborsum{j}{k}
-        \frac{\psiN[K]}{\psiN} \\&\quad
+        - \frac{J^2}{2} \left[ 
+        \lsum[K]\lsum[X,Y \in \left\{\text{A}, \text{B}, \text{C}\right\}] \fullneighborsum{l}{m}\fullneighborsum{j}{k}
+        \frac{\psiN[K]}{\psiN} 
+        \right.
+        \\&\quad
         \int\limits_0^t \int\limits_0^t  
         \VhamiltonianAnalyticalPart{$X$}{l}{m}{t_1}
         \cdot 
@@ -353,20 +362,25 @@ For the left side, it is necessary to integrate different cases separately.
         \cdot 
             \VhamiltonianOperatorPart[t_2]{$Y$}{j}{k}
         }{K}            \mathrm{d}t_1\mathrm{d}t_2 \\
-        &-\frac{J^2}{2}
+        & - 
         \lsum[M]\lsum[L]\lsum[V,W \in \left\{\text{A}, \text{B}, \text{C}\right\}]
         \fullneighborsum{o}{p}\fullneighborsum{q}{r}
         \frac{\psiN[M]\psiN[L]}{\psiN{}^2}\\&\quad
-        \VhamiltonianAnalyticalPartIntegrated{$V$}{o}{p}{t} 
-        \cdot
-        \VhamiltonianAnalyticalPartIntegrated{$W$}{q}{r}{t}
-        \bracketHelper{N}{\VhamiltonianOperatorPart{$V$}{o}{p}}{M}
-        \bracketHelper{N}{\VhamiltonianOperatorPart{$W$}{q}{r}}{M}
+        \left.
+            (-1) \cdot \VhamiltonianAnalyticalPartIntegrated{$V$}{o}{p}{t} 
+            \cdot
+            \VhamiltonianAnalyticalPartIntegrated{$W$}{q}{r}{t}
+            \bracketHelper{N}{\VhamiltonianOperatorPart{$V$}{o}{p}}{M}
+            \bracketHelper{N}{\VhamiltonianOperatorPart{$W$}{q}{r}}{L}
+            \vphantom{
+                \lsum[M]
+            }
+        \right]
     \end{split}
 \end{equation}
 
 Notice in the second to last step, the \VhamiltonianOperatorPart[t_\ast]{$\ast$}{\ast}{\ast} is indicated with a $t_\ast$ to keep its time-ordering association, even after writing out the \VhamiltonianOf[\interactionPicture]{t_\ast}.
-In the last step, the sign of the second term flips, because of a $-1 = i \cdot i$ that was introduced, to allow for integration of \VhamiltonianAnalyticalPart{$\ast$}{\ast}{\ast}{t_\ast} like in \autoref{eq:hn-integrated-first-order}.\\
+In the last step an additional -1 appears, because of a $-1 = i \cdot i$ that was introduced, to allow for integration of \VhamiltonianAnalyticalPart{$\ast$}{\ast}{\ast}{t_\ast} like in \autoref{eq:hn-integrated-first-order}.
 
 \begin{equation}
     \label{eq:u-eps-substitution}
@@ -403,8 +417,8 @@ What is left, is to evaluate the integral that needs to respect the time-orderin
             \VhamiltonianOperatorPart[t_1]{$X$}{l}{m}
         \cdot 
             \VhamiltonianOperatorPart[t_2]{$Y$}{j}{k}
-        }{K}            \mathrm{d}t_1\mathrm{d}t_2
-        \stackrel{\ref{eq:u-eps-substitution},\,\ref{eq:interaction-picture-v-ham-parts}}{=}\\
+        }{K}            \mathrm{d}t_1\mathrm{d}t_2\\
+        \stackrel{\ref{eq:u-eps-substitution},\,\ref{eq:interaction-picture-v-ham-parts}}{=}
         %
         &\int\limits_0^t \int\limits_0^t  
         e^{
@@ -418,7 +432,8 @@ What is left, is to evaluate the integral that needs to respect the time-orderin
             \VhamiltonianOperatorPart[t_1]{$X$}{l}{m}
         \cdot 
             \VhamiltonianOperatorPart[t_2]{$Y$}{j}{k}
-        }{K}            \mathrm{d}t_1\mathrm{d}t_2 \stackrel{\ref{eq:split-integral-time-ordering}}{=} \\
+        }{K}            \mathrm{d}t_1\mathrm{d}t_2\\
+        \stackrel{\ref{eq:split-integral-time-ordering}}{=}
         %
         &\int\limits_0^t  \int\limits_0^{t_1}
         e^{
@@ -433,7 +448,7 @@ What is left, is to evaluate the integral that needs to respect the time-orderin
         \bracketHelper{N}{
             \VhamiltonianOperatorPart[]{$X$}{l}{m}
             \VhamiltonianOperatorPart[]{$Y$}{j}{k}
-        }{K}            + \\
+        }{K}           \\ +
         &\int\limits_0^t  \int\limits_{t_1}^t
         e^{
             i \cdot \ueps{$X$}{l}{m} \cdot t_1
@@ -450,3 +465,295 @@ What is left, is to evaluate the integral that needs to respect the time-orderin
         }{K} 
     \end{split}
 \end{equation}
+
+\begin{equation}
+    \label{eq:time-ordered-integral-part1}
+    \begin{split}
+        \Gamma_1 &\left(X,\,l,\,m,\,Y,\,j,\,k\right) = \\=&\int\limits_0^t  \int\limits_0^{t_1}
+        e^{
+            i \cdot \ueps{$X$}{l}{m} \cdot t_1
+        }
+        e^{
+            i \cdot \ueps{$Y$}{j}{k} \cdot t_2
+        }
+        \mathrm{d}t_2
+        \mathrm{d}t_1 = 
+        %
+        \int\limits_0^t 
+        e^{
+            i \cdot \ueps{$X$}{l}{m} \cdot t_1
+        }
+        \int\limits_0^{t_1}
+        e^{
+            i \cdot \ueps{$Y$}{j}{k} \cdot t_2
+        }
+        \mathrm{d}t_2
+        \mathrm{d}t_1 \\=
+        %
+        &\int\limits_0^t 
+        e^{
+            i \cdot \ueps{$X$}{l}{m} \cdot t_1
+        }
+        \frac{
+            e^{
+                i \cdot \ueps{$Y$}{j}{k} \cdot t
+            }
+            -1
+        }{
+            i \cdot\ueps{$Y$}{j}{k}
+        }
+        \mathrm{d}t_1 =
+        %
+        \frac{
+            e^{
+                i \cdot \ueps{$X$}{l}{m} \cdot t
+            }
+            -1
+        }{
+            \ueps{$X$}{l}{m} \cdot\ueps{$Y$}{j}{k}
+        } + 
+        \int\limits_0^t 
+        \frac{
+            e^{
+                i \cdot \left(\ueps{$X$}{l}{m} + \ueps{$Y$}{j}{k} \right) \cdot t_1
+            }
+        }{
+            i \cdot\ueps{$Y$}{j}{k}
+        }
+        \mathrm{d}t_1\\=
+        %
+        &\begin{cases}
+            \ueps{$X$}{l}{m} + \ueps{$Y$}{j}{k} = 0: \quad
+            \frac{
+                e^{
+                    i \cdot \ueps{$X$}{l}{m} \cdot t
+                }
+                -1
+            }{
+                \ueps{$X$}{l}{m} \cdot\ueps{$Y$}{j}{k}
+            } - \frac{i \cdot t}{\ueps{$Y$}{j}{k}}            \\
+            %%%%%
+            \ueps{$X$}{l}{m} + \ueps{$Y$}{j}{k} \neq 0: \quad
+            \frac{
+                e^{
+                    i \cdot \ueps{$X$}{l}{m} \cdot t
+                }
+                -1
+            }{
+                \ueps{$X$}{l}{m} \cdot\ueps{$Y$}{j}{k}
+            } - \frac{
+                e^{
+                    i \cdot \left(\ueps{$X$}{l}{m} + \ueps{$Y$}{j}{k} \right) \cdot t
+                }
+                -1
+            }{\ueps{$Y$}{j}{k} \cdot \left(\ueps{$X$}{l}{m} + \ueps{$Y$}{j}{k} \right)}        
+        \end{cases}
+    \end{split}
+\end{equation}
+
+
+\begin{equation}
+    \label{eq:time-ordered-integral-part2}
+    \begin{split}
+        \Gamma_2&\left(X,\,l,\,m,\,Y,\,j,\,k\right) =\\ =&\int\limits_0^t  \int\limits_{t_1}^t
+        e^{
+            i \cdot \ueps{$X$}{l}{m} \cdot t_1
+        }
+        e^{
+            i \cdot \ueps{$Y$}{j}{k} \cdot t_2
+        }
+        \mathrm{d}t_2
+        \mathrm{d}t_1 = 
+        %
+        \int\limits_0^t 
+        e^{
+            i \cdot \ueps{$X$}{l}{m} \cdot t_1
+        }
+        \int\limits_{t_1}^t
+        e^{
+            i \cdot \ueps{$Y$}{j}{k} \cdot t_2
+        }
+        \mathrm{d}t_2
+        \mathrm{d}t_1 \\=
+        %
+        &\int\limits_0^t 
+        e^{
+            i \cdot \ueps{$X$}{l}{m} \cdot t_1
+        }
+        \frac{
+            e^{
+                i \cdot \ueps{$Y$}{j}{k} \cdot t
+            }
+            -
+            e^{
+                i \cdot \ueps{$Y$}{j}{k} \cdot t_1
+            }
+        }{
+            i \cdot\ueps{$Y$}{j}{k}
+        }
+        \mathrm{d}t_1 \\=
+        %
+        &\frac{
+            e^{
+                i \cdot \ueps{$Y$}{j}{k} \cdot t
+            }
+            -
+            e^{
+                i \cdot \left(\ueps{$X$}{l}{m} + \ueps{$Y$}{j}{k} \right) \cdot t
+            }
+        }{
+            \ueps{$X$}{l}{m} \cdot\ueps{$Y$}{j}{k}
+        } -
+        \int\limits_0^t 
+        \frac{
+            e^{
+                i \cdot \left(\ueps{$X$}{l}{m} + \ueps{$Y$}{j}{k} \right) \cdot t_1
+            }
+        }{
+            i \cdot\ueps{$Y$}{j}{k}
+        }
+        \mathrm{d}t_1\\=
+        %
+        &\begin{cases}
+            \ueps{$X$}{l}{m} + \ueps{$Y$}{j}{k} = 0: \quad
+            \frac{
+                e^{
+                    i \cdot \ueps{$Y$}{j}{k} \cdot t
+                }
+                -
+                e^{
+                    i \cdot \left(\ueps{$X$}{l}{m} + \ueps{$Y$}{j}{k} \right) \cdot t
+                }
+            }{
+                \ueps{$X$}{l}{m} \cdot\ueps{$Y$}{j}{k}
+            } + \frac{i \cdot t}{\ueps{$Y$}{j}{k}}            \\
+            %%%%%
+            \ueps{$X$}{l}{m} + \ueps{$Y$}{j}{k} \neq 0: \quad
+            \frac{
+                e^{
+                    i \cdot \ueps{$Y$}{j}{k} \cdot t
+                }
+                -
+                e^{
+                    i \cdot \left(\ueps{$X$}{l}{m} + \ueps{$Y$}{j}{k} \right) \cdot t
+                }
+            }{
+                \ueps{$X$}{l}{m} \cdot\ueps{$Y$}{j}{k}
+            } + \frac{
+                e^{
+                    i \cdot \left(\ueps{$X$}{l}{m} + \ueps{$Y$}{j}{k} \right) \cdot t
+                }
+                -1
+            }{\ueps{$Y$}{j}{k} \cdot \left(\ueps{$X$}{l}{m} + \ueps{$Y$}{j}{k} \right)}  
+        \end{cases}
+    \end{split}
+\end{equation}
+
+Adding \autoref{eq:time-ordered-integral-part1} and \autoref{eq:time-ordered-integral-part2}, \autoref{eq:time-ordered-integral-parts-sum} can be verified, which is necessary when comparing with the integration result of the second half of \autoref{eq:hn-integrated-second-order}.
+
+\begin{equation}
+    \label{eq:time-ordered-integral-parts-sum}
+    \begin{split}
+        &\Gamma_1 \left(X,\,l,\,m,\,Y,\,j,\,k\right) + \Gamma_2 \left(X,\,l,\,m,\,Y,\,j,\,k\right) = \\
+        &=
+        \frac{
+            e^{
+                i \cdot \ueps{$X$}{l}{m} \cdot t
+            }
+            -1
+        }{
+            \ueps{$X$}{l}{m} \cdot\ueps{$Y$}{j}{k}
+        }
+         + 
+        \frac{
+            e^{
+                i \cdot \ueps{$Y$}{j}{k} \cdot t
+            }
+            -
+            e^{
+                i \cdot \left(\ueps{$X$}{l}{m} + \ueps{$Y$}{j}{k} \right) \cdot t
+            }
+        }{
+            \ueps{$X$}{l}{m} \cdot\ueps{$Y$}{j}{k}
+        } \\
+        & = 
+        -\frac{
+            e^{
+                i \cdot \ueps{$X$}{l}{m} \cdot t
+            }
+            -
+            1
+        }{
+            \ueps{$X$}{l}{m}
+        }
+        \cdot 
+        \frac{
+            e^{
+                i \cdot \ueps{$Y$}{j}{k} \cdot t
+            }
+            -
+            1
+        }{
+            \ueps{$Y$}{j}{k}
+        }
+         = 
+         - \VhamiltonianAnalyticalPartIntegrated{$X$}{l}{m}{t} 
+         \cdot
+         \VhamiltonianAnalyticalPartIntegrated{$Y$}{j}{k}{t}
+    \end{split}
+\end{equation}
+
+With the integrals rewritten, \autoref{eq:hn-integrated-second-order} can be re-arranged to obtain the final result: 
+
+\begin{equation}
+    \label{eq:hn-integrated-second-order-final}
+    \begin{split}
+        &\HNOftOrder{2} \stackrel{\ref{eq:time-ordered-integral},\,\ref{eq:time-ordered-integral-part1},\,\ref{eq:time-ordered-integral-part2}}{=} 
+        - \frac{J^2}{2} 
+        \lsum[X,Y \in \left\{\text{A}, \text{B}, \text{C}\right\}] \fullneighborsum{l}{m}\fullneighborsum{j}{k}\\
+        %
+        \left[         \vphantom{\lsum[K]}        \right.
+        &\phantom{+}
+        \lsum[K]
+        \frac{\psiN[K]}{\psiN} 
+        \Gamma_1 \left(X,\,l,\,m,\,Y,\,j,\,k\right)
+        \cdot 
+        \bracketHelper{N}{
+            \VhamiltonianOperatorPart[]{$X$}{l}{m}
+            \cdot 
+            \VhamiltonianOperatorPart[]{$Y$}{j}{k}
+            }{K}
+        \\
+        &+ 
+        \lsum[K]
+        \frac{\psiN[K]}{\psiN} 
+        \Gamma_2 \left(X,\,l,\,m,\,Y,\,j,\,k\right)
+        \cdot 
+        \bracketHelper{N}{
+            \VhamiltonianOperatorPart[]{$Y$}{j}{k}
+        \cdot 
+            \VhamiltonianOperatorPart[]{$X$}{l}{m}
+        }{K} \\
+        &-
+        \left.
+        \lsum[M]\lsum[L]
+        \frac{\psiN[M]\psiN[L]}{\psiN{}^2}
+            \left[\Gamma_1 \left(X,\,l,\,m,\,Y,\,j,\,k\right) + \Gamma_2 \left(X,\,l,\,m,\,Y,\,j,\,k\right)\right] \cdot
+            \bracketHelper{N}{\VhamiltonianOperatorPart{$X$}{l}{m}}{M}
+            \cdot
+            \bracketHelper{N}{\VhamiltonianOperatorPart{$Y$}{j}{k}}{L}
+        \right]
+    \end{split}
+\end{equation}
+
+As for the first order perturbation, this seems to have made this computationally more expensive than the full diagonalization.
+But again, because of the limited interaction range (for second order the range is a sphere of at most two nearest-neighbor-hops), this can be efficiently evaluated in 
+\bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})^2} by using the sparse nature of the operators.
+
+The Operator $\VhamiltonianOperatorPart[]{$X$}{l}{m}\VhamiltonianOperatorPart[]{$Y$}{j}{k}$ is actually already much too complicated, to write down any of its mixed terms in a ordered, closed form.
+To get around this, in the implementation, the first half is applied to the left, the state modified accordingly and then the second half is applied - as this is much more efficient than calculating the closed form.
+
+See \filepath{\cite{selfCode}}{/calculation-helpers/generatesecondorder.py}.
+
+Finally - upon close inspection - one can spot, that \autoref{eq:hn-integrated-second-order-final} is $0$ for all cases, where $l \neq j \land l \neq k \land m \neq j \land n \neq k$, if specific properties hold for \psiN[\ast].
+In a subsequent section this optimization will be used.
