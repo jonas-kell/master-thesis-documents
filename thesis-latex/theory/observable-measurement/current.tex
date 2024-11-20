@@ -13,7 +13,7 @@ The current operator is dependent on the hamiltonian and must be derived from th
     \end{split}
 \end{equation}
 
-It is important to notice, that the time-evolution in the Heisenberg Picture \heisenbergTimeEvolution{\ast} is a different one, that the previous \interactionTimeEvolution{\ast}.
+It is important to notice, that the time-evolution in the Heisenberg Picture \heisenbergTimeEvolution{\ast} is a different one, than the previous \interactionTimeEvolution{\ast}.
 For the discrete gradient \discreteGradient it is important to remember, that the system lives on a discrete, 2-dimensional lattice.
 There, $\partial_\text{x} f(k) = f(k+1) - f(k)$, with any site $k$ and $k+1$ being the \glqq{}next\grqq{} site in positive $\text{x}$-direction.
 
@@ -103,7 +103,7 @@ This bisects the sites along the primary diagonal of the coordinate system and m
             \withspinhcop[\schroedingerPicture]{l}{\sigma}{}
             \cdot \delta_{k,\,l}
         \right)\\
-        &\stackrel{\phantom{\text{MM}}}{+} J \cdot \lsum[m] \sum\limits_{\biggerNeighbor{l}{m}}
+        &\stackrel{\phantom{\text{MM}}}{+} J \cdot \lsum[m] \sum\limits_{\smallerNeighbor{m}{l}}
         \left(
             \withspinhcop[\schroedingerPicture]{m}{\sigma}{\dagger}
             \withspinhcop[\schroedingerPicture]{l}{\sigma}{}
@@ -121,7 +121,7 @@ This bisects the sites along the primary diagonal of the coordinate system and m
             \withspinhcop[\schroedingerPicture]{m}{\sigma}{\dagger}
             \withspinhcop[\schroedingerPicture]{k}{\sigma}{}
         \right)
-        + J \cdot \sum\limits_{\biggerNeighbor{l}{k}}
+        + J \cdot \sum\limits_{\smallerNeighbor{k}{l}}
         \left(
             \withspinhcop[\schroedingerPicture]{k}{\sigma}{\dagger}
             \withspinhcop[\schroedingerPicture]{l}{\sigma}{}
@@ -129,7 +129,7 @@ This bisects the sites along the primary diagonal of the coordinate system and m
             \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}
             \withspinhcop[\schroedingerPicture]{k}{\sigma}{}
         \right)\\
-        &\stackrel{\phantom{\text{MM}}}{=} J \cdot \neighborsum{k}{l}
+        &\stackrel{\phantom{\text{MM}}}{=} J \cdot \sum\limits_{l: \,\left\langle k,\,l\right\rangle}
         \left(
             \withspinhcop[\schroedingerPicture]{k}{\sigma}{\dagger}
             \withspinhcop[\schroedingerPicture]{l}{\sigma}{}
