@@ -36,7 +36,6 @@ set yrange []
 set ytics 0.01
 set mytics 5
 
-# plot 1,1
 set label 1 "J = 0.1⋅U" at graph 0.27,0.96
 plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerred title " Diagonalization External", \
@@ -44,9 +43,10 @@ plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markeryellow title " Perturbation Oth Order", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerblue title " Perturbation 1st Order", \
      NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " Perturbation 2nd Order", \
-     "diagonal-external-concurrence.csv" using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.6 linecolor rgb markerred, \
-     "diagonal-sampled-concurrence.csv"  using ($1 / U):2 notitle      axis x1y1 pointtype 17 pointsize 0.6 linecolor rgb linered, \
-     "perturbation-o0-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 17 pointsize 0.6 linecolor rgb markeryellow, \
-     "perturbation-o1-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 17 pointsize 0.6 linecolor rgb markerblue, \
-     "perturbation-o2-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 17 pointsize 0.6 linecolor rgb markergreen
-# end plot 1,1
+     "external-exact-concurrence.csv" using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.6 linecolor rgb markerred, \
+     "exact-exact-concurrence.csv"  using ($1 / U):2 notitle      axis x1y1 pointtype 17 pointsize 0.6 linecolor rgb linered, \
+     "compareo0-exact-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 17 pointsize 0.6 linecolor rgb markeryellow, \
+     "compareo1-exact-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 17 pointsize 0.6 linecolor rgb markerblue, \
+     "compareo2-exact-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 17 pointsize 0.6 linecolor rgb markergreen
+     
+     
