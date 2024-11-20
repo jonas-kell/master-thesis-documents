@@ -182,7 +182,7 @@ The expressions for the dressed operators in \autoref{eq:interaction-picture-v-h
 
 The \equivalentOperator here means \glqq $1$ if the measurements of the operators are equivalent, $0$ otherwise\grqq.
 
-\paragraph*{Base Energy}\makebox{}\\
+\subsubsection*{Base Energy}
 
 In \autoref{eq:time-evolution-target}, the effective Hamiltonian $\HeffOft = -i E_0(N) t + \HNOft$ was defined.
 This construct will be necessary in the following sections. 
@@ -199,7 +199,7 @@ $E_0(N)$ is luckily calculated quite swiftly, as one can see in \autoref{eq:base
     \end{split}
 \end{equation}
 
-\paragraph*{Calculate the first order of \HNOft}\makebox{}\\
+\subsubsection*{Calculate the first order of \HNOft}
 
 The last missing element for $\HeffOft = -i E_0(N) t + \HNOft$ now is \HNOft.
 At least for the first order, the integration in \autoref{eq:cumulant-expansion} is easily doable, with now knowing the form of \VhamiltonianOf[\interactionPicture]{t}.
@@ -296,7 +296,7 @@ While it seems that $\lsum[K] \fullneighborsum{l}{m}$ is even a larger summation
 This summation can be efficiently evaluated in \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})}.
 How this could be done, can be looked up in the implementation \filepath{\cite{selfCode}}{/computation-scripts/hamiltonian.py} in the specialization class \emph{HardcoreBosonicHamiltonian}.
 
-\paragraph*{Calculate the second order of \HNOft}\makebox{}\\
+\subsubsection*{Calculate the second order of \HNOft}
 
 For the calculation of the second order, the time-ordering-operator is relevant again. 
 It however is not necessary for the right side of the integral, as the two integrals can be fully localized to one factor each.

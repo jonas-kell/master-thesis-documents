@@ -5,7 +5,7 @@ In some cases, transformations may be used to map problems formulated in one par
 
 For the examples a discrete lattice of arbitrary enumeration - which also takes care of potential additional spin-degrees - is assumed.
 
-\paragraph{Bosons}
+\subsubsection*{Bosons}
 
 \begin{equation}
     \label{eq:boson-commutators}
@@ -18,7 +18,7 @@ For the examples a discrete lattice of arbitrary enumeration - which also takes 
 
 The bosonic operators follow the commutation-relations described in \autoref{eq:boson-commutators}, with $\delta$ the \emph{Kronecker-Delta} \cite{schwablBookII}, which allows for occupation numbers of all natural numbers or $0$ per site.
 
-\paragraph{Fermions}\makebox{}\\
+\subsubsection*{Fermions}
 
 For fermionic systems it is important, that their wavefunction anti-symmetrizes. This results in the anti-commutation relations of  \autoref{eq:fermion-commutators}.
 
@@ -41,7 +41,7 @@ From \autoref{eq:fermion-commutators}, one can derive that the operator combinat
 
 This is a property that is necessary for performing a specific calculation later and makes sense, once one realizes, this restricts the  fermionic occupations to the values $0$ and $1$.
 
-\paragraph{Hard-Core Bosons}\makebox{}\\
+\subsubsection*{Hard-Core Bosons}
 
 While we require the number operator for the investigated particle type to be idempotent, it would be convenient to work with an operator that commutes and doesn't anti-commute like the fermions. 
 In this regard, the hard-core bosons behave like a typical boson, but with extra restrictions that limit the occupation to either $0$ or $1$, meaning $\hop{l}{\dagger}\hop{l}{\dagger} = \hop{l}{}\hop{l}{} = 0$ \cite{hardCoreBosonsBasics}.
@@ -64,7 +64,7 @@ The required properties are fulfilled, if the particles obey the commutation-rel
 
 This additionally grants the helpful property $\hop{l}{\dagger}\hop{l}{} + \hop{l}{}\hop{l}{\dagger}  = 1$.
 
-\paragraph{Spins / Pauli-Matrices}\makebox{}\\
+\subsubsection*{Spins / Pauli-Matrices}
 
 Basic Hamiltonians, like the \emph{Ising-Model} are often expressed in the \emph{spin basis}. 
 The operators that act on this basis are the \emph{Pauli matrices}, which have the useful property of being a basis for complex matrices.
@@ -106,7 +106,7 @@ For spin-particles on a lattice, the operators need to obey the relations in \au
 
 With the complex unit $i$ and the \emph{Levi-Civita-Symbol} $\varepsilon_{\alpha,\,\beta,\,\gamma}$.
 
-\paragraph{Transformation: Express Spins as Fermions}\makebox{}\\
+\subsubsection*{Transformation: Express Spins as Fermions}
 For mapping between fermions and spins, there exists a well known transformation, the \emph{Jordan-Wigner-Transformation} \cite{jordanWignerBaseCase} (\autoref{eq:jordan-wigner-classical}).
 
 The following transformations use \autoref{eq:jordan-wigner-p-factor}, where the equality follows from the fact that these operators are all different representations of the number operator.
@@ -138,7 +138,7 @@ For performing commutation-relation calculations, a helper program was written i
 The program is called \emph{Math-Manipulator} \cite{selfMathManipulator} and the transformations in this chapter have been validated with it in a supplementary repository:\\ \filepath{\cite{selfMathManipulatorCalculations}}{/jordan-wigner-transformation}.
 
 
-\paragraph{Transformation: Express Fermions as Hard-Core Bosons}\makebox{}\\
+\subsubsection*{Transformation: Express Fermions as Hard-Core Bosons}
 The tensor-network library \emph{ITensor} provides in their documentation an example for a mapping between fermions and hard-core bosons, used to simplify their calculations \cite{itensorFermionizationLibrary}.
 The transformations may be called \emph{fermionization/bosonization} or respectively also Jordan-Wigner-Transformation.
 
@@ -155,7 +155,7 @@ The transformations may be called \emph{fermionization/bosonization} or respecti
     \end{split}
 \end{equation}
 
-\paragraph{Transformation: Express Spins as Hard-Core Bosons}\makebox{}\\
+\subsubsection*{Transformation: Express Spins as Hard-Core Bosons}
 Finally this confirms the transformation that will be required later: expressing a measurement in the spin-basis in terms of hard-core bosonic operators.
 
 \autoref{eq:jordan-wigner-spin-hcb} can be directly obtained, by plugging \autoref{eq:jordan-wigner-hcb-fermions} into \autoref{eq:jordan-wigner-classical}.

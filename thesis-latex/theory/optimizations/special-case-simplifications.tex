@@ -6,7 +6,7 @@ However, for the states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that
 This is quite attractive, because it de-couples the per-step computational costs from the number of lattice sites - a vital step for simulating large systems efficiency - however this requires extra analytical calculations.
 In this section analytical simplifications are presented to get the objects $E_0(N)-E_0(\tilde{N})$ and $\HNOft - \HNOft[\tilde{N}]$ (Caution, do not miss the extra \emph{minus} required, to calculate the required $\HeffOft[\tilde{N}]-\HeffOft[N]$ from this!).
 
-\paragraph*{Initial State} \makebox{}\\
+\subsubsection*{Initial State}
 
 The initial state of the system before the start of the time-evolution is encoded in $\psiN$, defined by \autoref{eq:base-expansion-state}. Different configurations can be considered here.
 
@@ -54,8 +54,7 @@ The following two calculations require this assumption.
 As the states under consideration are \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}], the occupation-numbers $n_{l,\,\sigma}$ will describe the occupation of \ketN[N] and $\tilde{n}_{l,\,\sigma}$ the occupation of \ketN[{\vphantom{N}\smash{\tilde{N}}}].
 Both the following modifications restrict the values $\tilde{n}_{l,\,\sigma}$ to make them dependent on $n_{l,\,\sigma}$.
 
-\newpage 
-\paragraph*{Hopping-only modification} \makebox{}\\
+\subsubsection*{Hopping-only modification}
 
 In this simplification, the maximum difference that can happen, is that a \emph{hopping} event occurs from site $i$ and spin $\sigma_i$ to the site $j$ and spin $\sigma_j$. 
 This can only happen if $n_{i,\,\sigma_i} \neq n_{j,\,\sigma_j}$, because if they are the same, the swapping doesn't change the state. 
@@ -112,7 +111,7 @@ This was performed automatically with the python package \emph{SymPy} \cite{symp
 
 More details on how this was calculated can be found in \fullref{sec:implementation-analytical-calculations} and further resources, that that section redirects towards.
 
-\paragraph*{Flipping-only modification} \makebox{}\\
+\subsubsection*{Flipping-only modification}
 
 In this simplification, the maximum difference that can happen, is that a \emph{flipping} event occurs on site $i$ and spin $\sigma_i$. 
 

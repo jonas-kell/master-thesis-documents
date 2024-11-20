@@ -1,0 +1,19 @@
+% \subsubsection*{Double-Occupation}
+
+One possibly interesting observable would be the measurement of \emph{double-occupation} (one particle of spin-up and one of spin-down) per site.
+
+The operator $\doubleOccupationOperator{l}$ that measure the double-occupation on site $l$ can be easily written as $\doubleOccupationOperator{l} = \nop{l}{\up}\nop{l}{\down}$.
+
+As the used basis-states are eigenstates of the number-operators, the evaluation of this operator is quite straight forward. 
+$\bracketHelper{N}{\doubleOccupationOperator{l}}{K}$ becomes $\delta_{N,\,K}\cdot n_{l,\,\up}\cdot n_{l,\,\down}$ with the occupation-number (not operator) of the specific site and spin in \braN, $n_{l,\,\sigma}$. 
+With that \localObservable{N}{t} can be simply evaluated to the result in \autoref{eq:double-occupation-loc}.
+
+\begin{equation}
+    \label{eq:double-occupation-loc}
+    \localObservable{N}{t} = \lsum[K] \bracketHelper{N}{\doubleOccupationOperator{l}}{K} e^{\HeffOft[K]-\HeffOft[N]}
+    \frac{
+        \psiN[K]
+    }{
+        \psiN[N]
+    } = n_{l,\,\up}\cdot n_{l,\,\down}
+\end{equation}
