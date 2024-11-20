@@ -15,7 +15,7 @@ The current operator is dependent on the hamiltonian and must be derived from th
 
 It is important to notice, that the time-evolution in the Heisenberg Picture \heisenbergTimeEvolution{\ast} is a different one, that the previous \interactionTimeEvolution{\ast}.
 For the discrete gradient \discreteGradient it is important to remember, that the system lives on a discrete, 2-dimensional lattice.
-There, $\partial_\text{x} f(k) = f(k+1) - f(k)$, with any site $l$ and $l+1$ being the \glqq{}next\grqq{} site in positive $\text{x}$-direction.
+There, $\partial_\text{x} f(k) = f(k+1) - f(k)$, with any site $k$ and $k+1$ being the \glqq{}next\grqq{} site in positive $\text{x}$-direction.
 
 \begin{equation}
     \label{eq:continuity-equation}
@@ -33,13 +33,13 @@ There, $\partial_\text{x} f(k) = f(k+1) - f(k)$, with any site $l$ and $l+1$ bei
             \partial_\text{y}\\
         \end{matrix}\right) \cdot 
         \left(\begin{matrix}
-            j_{\text{x}\,\,l,\,\sigma}^{\,\,\schroedingerPicture}\\
-            j_{\text{y}\,\,l,\,\sigma}^{\,\,\schroedingerPicture}
+            j_{\text{x}\,\,k,\,\sigma}^{\,\,\schroedingerPicture}\\
+            j_{\text{y}\,\,k,\,\sigma}^{\,\,\schroedingerPicture}
         \end{matrix}\right) &=
         \partial_\text{x}
-        j_{\text{x}\,\,l,\,\sigma}^{\,\,\schroedingerPicture}+
+        j_{\text{x}\,\,k,\,\sigma}^{\,\,\schroedingerPicture}+
         \partial_\text{y} 
-        j_{\text{y}\,\,l,\,\sigma}^{\,\,\schroedingerPicture}
+        j_{\text{y}\,\,k,\,\sigma}^{\,\,\schroedingerPicture}
          = - i \cdot \left[\pictureHamiltonian[\schroedingerPicture],\, \nop[\schroedingerPicture]{k}{\sigma}\right]
     \end{split}
 \end{equation}
@@ -140,6 +140,8 @@ This bisects the sites along the primary diagonal of the coordinate system and m
     \end{split}
 \end{equation}
 
+\input{theory/observable-measurement/current-square-pic.tex}
+
 \autoref{eq:spin-polarized-kinetics-operator-definition} describes the resulting observable, that measures such kinetics, depending on the direction \spinPolarizedKineticsOperatorDir{l}{m}{\sigma}.
 
 \begin{equation}
@@ -150,14 +152,25 @@ This bisects the sites along the primary diagonal of the coordinate system and m
 \end{equation}
 
 In this case, the used basis-states are not eigenstates of the operators. 
-$\bracketHelper{N}{\withspinhcop{m}{\sigma}{\dagger}\withspinhcop{l}{\sigma}{}}{K}$ becomes $\delta_{N,\,\tilde{N}}\cdot (1-n_{l,\,\sigma} )\cdot n_{m,\,\sigma}$, where \ketN[{\vphantom{N}\smash{\tilde{N}}}] is the state obtained when the particle number on site $m,\, \sigma$ is transferred to site $l,\, \sigma$ (this \emph{hopping} is only possible, when there is a particle on the original site and no particle yet on the target site, which is ensured by the occupation numbers).
-Evaluating the whole operator with the signs and $i$s correctly and in a efficient manner can best be looked up in the implementation \filepath{\cite{selfCode}}{/computation-scripts/observables.py}.
+$\bracketHelper{N}{\withspinhcop{m}{\sigma}{\dagger}\withspinhcop{l}{\sigma}{}}{K}$ becomes $\delta_{N,\,\tilde{N}}\cdot n_{m,\,\sigma} \cdot (1-n_{l,\,\sigma} )$, where \ketN[{\vphantom{N}\smash{\tilde{N}}}] is the state obtained when the particle number on site $m,\, \sigma$ and the one of site $l,\, \sigma$ are swapped (this \emph{hopping} only has an effect, when there is a particle on the original site and no particle yet on the target site, or vice versa).
+Evaluating the whole operator with the signs correctly and in a efficient manner can best be looked up in the implementation 
+
+\filepath{\cite{selfCode}}{/computation-scripts/observables.py}.
 
 Overall, the evaluation of this observable requires knowing the value of an object of the form presented in \autoref{eq:form-heff-difference}.
 
 \begin{equation}
     \label{eq:form-heff-difference}
-    \frac{\psiN[\tilde{N}]}{\psiN} e^{\HeffOft[\tilde{N}]-\HeffOft[N]}
+    i \cdot 
+    \left[
+        n_{m,\,\sigma} \cdot (1-n_{l,\,\sigma})
+        -
+        n_{l,\,\sigma} \cdot (1-n_{m,\,\sigma})
+    \right]
+    \cdot 
+    \frac{\psiN[\tilde{N}]}{\psiN}
+    \cdot 
+     e^{\HeffOft[\tilde{N}]-\HeffOft[N]}
 \end{equation}
 
 The \fullref{sec:theory-optimizations-analytical} will go into how to compute this efficiently for states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected via the hopping between nearest-neighbor lattice sites.
@@ -167,3 +180,5 @@ Only the complete observable from the full sum over all basis-states \ketN over 
 Especially when the observable is approximated with an incomplete set of basis-states, computationally an imaginary component remains. 
 It is important to monitor the magnitude of this value and monitor it going to $0$.
 If it doesn't fully vanish, this indicates an error in the sampling strategy or the implementation or the number of sampled states is not great enough.
+
+% TODO proof this is still real if properly sampled
