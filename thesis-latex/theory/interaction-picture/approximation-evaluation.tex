@@ -15,13 +15,13 @@ With this, one can derive a useful expression for their \emph{equation of motion
         i e^{i \HzeroHamiltonian[\schroedingerPicture]{} t}\left[\HzeroHamiltonian[\schroedingerPicture],\, \Aop[\schroedingerPicture]\right]e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}
         %
         \stackrel{\phantom{\ref{eq:time-evolution-operator-interaction}}}{=}
-        i \left\{\left[\HzeroHamiltonian[\schroedingerPicture],\, \Aop[\schroedingerPicture]\right]\right\}(t)
+        i \interactionTimeEvolution{\left[\HzeroHamiltonian[\schroedingerPicture],\, \Aop[\schroedingerPicture]\right]}
     \end{split}
 \end{equation}
 
-\autoref{eq:schroedinger-op-to-interaction-op} also defines the operator $\left\{\cdot \right\}(t)$, which simply is $e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \left\{\cdot \right\} e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}$.
+\autoref{eq:schroedinger-op-to-interaction-op} also defines the operator \interactionTimeEvolution{\ast}, which simply is $e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \left\{\ast \right\} e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}$.
 This section uses $(t)$ for indicating that operators in the Interaction Picture have a time dependence. 
-This is superficial and only for better readability, as in fact $\hopOfT[\interactionPicture]{m}{\dagger} = \hop[\interactionPicture]{m}{\dagger} = \left\{\hop[\schroedingerPicture]{m}{\dagger} \right\}(t)$.
+This is superficial and only for better readability, as in fact $\hopOfT[\interactionPicture]{m}{\dagger} = \hop[\interactionPicture]{m}{\dagger} = \interactionTimeEvolution{\hop[\schroedingerPicture]{m}{\dagger}}$.
 
 If now $\left[\HzeroHamiltonian[\schroedingerPicture],\, \Aop[\schroedingerPicture]\right]$ now is a function of $\Aop[\schroedingerPicture]$, one gets a \emph{differential equation} that can be solved to obtain $\AopOfT[\interactionPicture]$.
 
@@ -33,15 +33,15 @@ The equations \ref{eq:stuff-from-math-manipulator-dd} and \ref{eq:stuff-from-mat
 \begin{equation}
     \label{eq:stuff-from-math-manipulator-dd}
     \difft{}\left(\dop[\interactionPicture]{m}{\dagger}\dop[\interactionPicture]{m}{}\right)(t)
-    = i \left\{\left[\HzeroHamiltonian[],\,\dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right]\right\}(t) \stackrel{\text{MM}}{=} 0 \quad \Rightarrow \quad \left(\dop[\interactionPicture]{m}{\dagger}\dop[\interactionPicture]{m}{}\right)(t) = \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}
+    = i \interactionTimeEvolution{\left[\HzeroHamiltonian[],\,\dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right]} \stackrel{\text{MM}}{=} 0 \quad \Rightarrow \quad \left(\dop[\interactionPicture]{m}{\dagger}\dop[\interactionPicture]{m}{}\right)(t) = \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}
 \end{equation}
 
 \begin{equation}
     \label{eq:stuff-from-math-manipulator-cm}
     \begin{split}
         \difft{}\hopOfT[\interactionPicture]{m}{\dagger}
-        &\stackrel{\phantom{\ref{eq:time-evolution-operator-interaction}}}{=} i \left\{\left[\HzeroHamiltonian[]{},\,\hop[\schroedingerPicture]{m}{\dagger}\right]\right\}(t) \stackrel{\text{MM}}{=} 
-        i \left\{ \left(\epsl[m] + U \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right)\hop[\schroedingerPicture]{m}{}\right\}(t)\\
+        &\stackrel{\phantom{\ref{eq:time-evolution-operator-interaction}}}{=} i \interactionTimeEvolution{\left[\HzeroHamiltonian[]{},\,\hop[\schroedingerPicture]{m}{\dagger}\right]} \stackrel{\text{MM}}{=} 
+        i \interactionTimeEvolution{ \left(\epsl[m] + U \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right)\hop[\schroedingerPicture]{m}{}}\\
         &\stackrel{\phantom{\ref{eq:time-evolution-operator-interaction}}}{=}i e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \left(\epsl[m] + U \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right)\hop[\schroedingerPicture]{m}{}e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}\\
         &\stackrel{\phantom{\ref{eq:time-evolution-operator-interaction}}}{=}i \left(\epsl[m] + U e^{i \HzeroHamiltonian[\schroedingerPicture]{} t}\dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}\right)e^{i \HzeroHamiltonian[\schroedingerPicture]{} t}\hop[\schroedingerPicture]{m}{}e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}\\
         &\stackrel{\ref{eq:time-evolution-operator-interaction}}{=}
@@ -94,10 +94,10 @@ Injecting these derivations into \autoref{eq:main-hamiltonian-perturbation-full-
     \begin{split}
         \VhamiltonianOfT[\interactionPicture] &
         \stackrel{\phantom{\text{MM}}}{=}
-        \left\{\Vhamiltonian[\schroedingerPicture]\right\}(t) \stackrel{\ref{eq:main-hamiltonian-perturbation-full-sum}}{=}
-        - J \cdot \fullneighborsum{l}{m}  \left\{
+        \interactionTimeEvolution{\Vhamiltonian[\schroedingerPicture]} \stackrel{\ref{eq:main-hamiltonian-perturbation-full-sum}}{=}
+        - J \cdot \fullneighborsum{l}{m}  \interactionTimeEvolution{
               \left(\hop[\schroedingerPicture]{l}{\dagger}\hop[\schroedingerPicture]{m}{} + \dop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{m}{} \right)
-        \right\}(t) \\
+        } \\
         &\stackrel{\phantom{\text{MM}}}{=}
         -J \cdot \fullneighborsum{l}{m}\left(\hopOfT[\interactionPicture]{l}{\dagger}\hopOfT[\interactionPicture]{m}{} + \dopOfT[\interactionPicture]{l}{\dagger}\dopOfT[\interactionPicture]{m}{} \right)\\
         &\stackrel{\text{MM}}{=}

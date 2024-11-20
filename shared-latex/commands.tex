@@ -28,6 +28,7 @@
 
 \newcommand{\schroedingerPicture}{\text{S}}
 \newcommand{\interactionPicture}{\text{I}}
+\newcommand{\heisenbergPicture}{\text{H}}
 
 \newcommand{\generalop}[7]{\ensuremath{\hat{\text{#1}}^{#2\xspace #3}_{#4#5#6}#7}\xspace}
 \newcommand{\withspinop}[4][]{\generalop{c}{#4}{#1}{#2}{,\,}{#3}{}}
@@ -48,6 +49,7 @@
 \newcommand{\AopOfT}[1][]{\generalop{A}{}{#1}{}{}{}{(t)}}
 \newcommand{\localObservable}[2]{\ensuremath{{\ObservableOp}_\text{loc}(#1,\,#2)}\xspace}
 \newcommand{\doubleOccupationOperator}[1]{\ensuremath{{\ObservableOp}_\text{do}(#1)}\xspace}
+\newcommand{\singleOccupationOperator}[2]{\ensuremath{{\ObservableOp}_\text{so}(#1,\,#2)}\xspace}
 \newcommand{\spinPolarizedKineticsOperator}[3]{\ensuremath{{\ObservableOp}_\text{sp-kin}(#1 \leftrightarrow #2,\,#3)}\xspace}
 \newcommand{\spinPolarizedKineticsOperatorDir}[3]{\ensuremath{{\ObservableOp}_\text{sp-kin, dir}(#1 \rightarrow #2,\,#3)}\xspace}
 \newcommand{\one}[1][]{\ensuremath{\mathbbm{1}_{#1}}\xspace}
@@ -100,3 +102,10 @@
 \newcommand{\probabilityOf}[2]{\ensuremath{\text{P}(#1,\,#2)}\xspace}
 
 \newcommand{\equivalentOperator}{\ensuremath{\hat{=}}\xspace}
+\newcommand{\interactionTimeEvolution}[1]{\ensuremath{\left\{#1\right\}^{\interactionPicture}(t)}\xspace}
+\newcommand{\heisenbergTimeEvolution}[1]{\ensuremath{\left\{#1\right\}^{\heisenbergPicture}(t)}\xspace}
+\newcommand{\discreteGradient}{\ensuremath{\vec{\grad}_\text{disc}}\xspace}
+\newcommand{\generaljvecop}[4]{\ensuremath{\vec{j}_{#2,\,#3}^{\,\,#1}#4}\xspace}
+\newcommand{\currentvec}[3][]{\generaljvecop{#1}{#2}{#3}{}}
+\newcommand{\currentvecOft}[3][]{\generaljvecop{#1}{#2}{#3}{(t)}}
+\newcommand{\biggerNeighbor}[2]{\ensuremath{\left\langle#1 \stackrel{+}{<} #2\right\rangle}\xspace}

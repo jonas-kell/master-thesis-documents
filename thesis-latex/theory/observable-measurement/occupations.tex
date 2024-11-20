@@ -17,3 +17,15 @@ With that \localObservable{N}{t} can be simply evaluated to the result in \autor
         \psiN[N]
     } = n_{l,\,\up}\cdot n_{l,\,\down}
 \end{equation}
+
+The operator, that measures \emph{single-occupation} $\singleOccupationOperator{l}{\sigma}$ is derived exactly in the same way.
+
+\begin{equation}
+    \label{eq:single-occupation-loc}
+    \localObservable{N}{t} = \lsum[K] \bracketHelper{N}{\singleOccupationOperator{l}{\sigma}}{K} e^{\HeffOft[K]-\HeffOft[N]}
+    \frac{
+        \psiN[K]
+    }{
+        \psiN[N]
+    } = n_{l,\,\sigma}
+\end{equation}

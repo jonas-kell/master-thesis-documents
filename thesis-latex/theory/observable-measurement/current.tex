@@ -1,12 +1,150 @@
 % \subsubsection*{Spin-Polarized Kinetics}
 
 For measuring the spin-polarized flow of particles, a slightly more complex observable must be employed. 
-In \autoref{eq:spin-polarized-kinetics-operator-definition} a possible observable is listed, that measures such kinetics direction in-dependent (\spinPolarizedKineticsOperator{l}{m}{\sigma}) or direction dependent (\spinPolarizedKineticsOperatorDir{l}{m}{\sigma}, caution: needs $i$ to obtain hermitian operator).
+The current operator is dependent on the hamiltonian and must be derived from the \emph{continuity equation} (\autoref{eq:continuity-equation}) in the \emph{Heisenberg Picture} (\autoref{eq:heisenberg-picture}) \cite{discreteDivergenceAndOtherCurrentDerivation}.
+
+\begin{equation}
+    \label{eq:heisenberg-picture}
+    \begin{split}
+        \AopOfT[\heisenbergPicture] &= e^{i \pictureHamiltonian[\schroedingerPicture]{} t} \Aop[\schroedingerPicture] e^{-i \pictureHamiltonian[\schroedingerPicture]{} t}
+        =  \heisenbergTimeEvolution{\Aop[\schroedingerPicture]}
+        \quad \Rightarrow \quad 
+        \pictureHamiltonian[\schroedingerPicture]{} = \pictureHamiltonian[\heisenbergPicture]{}\\
+    \end{split}
+\end{equation}
+
+It is important to notice, that the time-evolution in the Heisenberg Picture \heisenbergTimeEvolution{\ast} is a different one, that the previous \interactionTimeEvolution{\ast}.
+For the discrete gradient \discreteGradient it is important to remember, that the system lives on a discrete, 2-dimensional lattice.
+There, $\partial_\text{x} f(k) = f(k+1) - f(k)$, with any site $l$ and $l+1$ being the \glqq{}next\grqq{} site in positive $\text{x}$-direction.
+
+\begin{equation}
+    \label{eq:continuity-equation}
+    \begin{split}
+        \difft{\nopOfT[\heisenbergPicture]{k}{\sigma}} &= 
+        i \left[\pictureHamiltonian[\heisenbergPicture],\, \nopOfT[\heisenbergPicture]{k}{\sigma}\right] = 
+        i \heisenbergTimeEvolution{
+            \left[\pictureHamiltonian[\schroedingerPicture],\, \nop[\schroedingerPicture]{k}{\sigma}\right]
+        }\\ 
+        &= - \discreteGradient \cdot \currentvecOft[\heisenbergPicture]{k}{\sigma}
+         = - \heisenbergTimeEvolution{\discreteGradient \cdot \currentvec[\schroedingerPicture]{k}{\sigma} } \\
+        \stackrel{\text{2-dim.}}{\Rightarrow}
+        \left(\begin{matrix}
+            \partial_\text{x}\\
+            \partial_\text{y}\\
+        \end{matrix}\right) \cdot 
+        \left(\begin{matrix}
+            j_{\text{x}\,\,l,\,\sigma}^{\,\,\schroedingerPicture}\\
+            j_{\text{y}\,\,l,\,\sigma}^{\,\,\schroedingerPicture}
+        \end{matrix}\right) &=
+        \partial_\text{x}
+        j_{\text{x}\,\,l,\,\sigma}^{\,\,\schroedingerPicture}+
+        \partial_\text{y} 
+        j_{\text{y}\,\,l,\,\sigma}^{\,\,\schroedingerPicture}
+         = - i \cdot \left[\pictureHamiltonian[\schroedingerPicture],\, \nop[\schroedingerPicture]{k}{\sigma}\right]
+    \end{split}
+\end{equation}
+
+The commutator can swiftly be evaluated, a reference calculation can also be found in 
+
+\filepath{\cite{selfMathManipulatorCalculations}}{/current}. The calculation is somewhat specific to the dimension and geometry, in terms of what neighbor indices are summed over.
+For arguing about indices and directions, without worrying about geometric details, \biggerNeighbor{l}{m} will describe all possible values of $m$ that fulfill both the properties that the site $m$ is a nearest neighbor of the site $l$ and the site of $m$ lies either in positive $\text{x}$-direction, or $\text{y}$-direction of the other site, but not in negative direction.
+This bisects the sites along the primary diagonal of the coordinate system and makes the calculation work for all lattices with symmetry around the $\text{x}$- and $\text{y}$-axis.
+
+\begin{equation}
+    \label{eq:calculation-current-commutator}
+    \begin{split}
+         \left[\pictureHamiltonian[\schroedingerPicture],\, \nop[\schroedingerPicture]{k}{\sigma}\right] &\stackrel{\ref{eq:main-hamiltonian}}{=}
+         \left[\HzeroHamiltonian[\schroedingerPicture],\, \nop[\schroedingerPicture]{k}{\sigma}\right] + \left[\Vhamiltonian[\schroedingerPicture],\, \nop[\schroedingerPicture]{k}{\sigma}\right] \stackrel{\ref{eq:stuff-from-math-manipulator-dd}}{=}
+         \left[\Vhamiltonian[\schroedingerPicture],\, \nop[\schroedingerPicture]{k}{\sigma}\right]\\
+         &\stackrel{\ref{eq:main-hamiltonian-perturbation-full-sum}}{=}
+         - J \cdot \fullneighborsum{l}{m} 
+        \left(
+            \left[\hop[\schroedingerPicture]{l}{\dagger}\hop[\schroedingerPicture]{m}{},\, \nop[\schroedingerPicture]{k}{\sigma}\right]
+            + 
+            \left[\dop[\schroedingerPicture]{l}{\dagger}\dop[\schroedingerPicture]{m}{},\, \nop[\schroedingerPicture]{k}{\sigma}\right]
+        \right)\\
+        &\stackrel{\text{MM}}{=}
+        J \cdot \fullneighborsum{l}{m} 
+        \left(
+            \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{m}{\sigma}{}
+            \cdot \delta_{k,\,l}
+            -
+            \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{m}{\sigma}{}
+            \cdot \delta_{k,\,m}
+        \right)\\
+        &\stackrel{\phantom{\text{MM}}}{=}
+        J \cdot \neighborsum{l}{m} 
+        \left(
+            \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{m}{\sigma}{}
+            \cdot \delta_{k,\,l}
+            -
+            \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{m}{\sigma}{}
+            \cdot \delta_{k,\,m}
+            +
+            \withspinhcop[\schroedingerPicture]{m}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{l}{\sigma}{}
+            \cdot \delta_{k,\,m}
+            -
+            \withspinhcop[\schroedingerPicture]{m}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{l}{\sigma}{}
+            \cdot \delta_{k,\,l}
+        \right)\\
+        &\stackrel{\phantom{\text{MM}}}{=} J \cdot \lsum \sum\limits_{\biggerNeighbor{l}{m}}
+        \left(
+            \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{m}{\sigma}{}
+            \cdot \delta_{k,\,l}
+            -
+            \withspinhcop[\schroedingerPicture]{m}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{l}{\sigma}{}
+            \cdot \delta_{k,\,l}
+        \right)\\
+        &\stackrel{\phantom{\text{MM}}}{+} J \cdot \lsum[m] \sum\limits_{\biggerNeighbor{l}{m}}
+        \left(
+            \withspinhcop[\schroedingerPicture]{m}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{l}{\sigma}{}
+            \cdot \delta_{k,\,m}
+            -
+            \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{m}{\sigma}{}
+            \cdot \delta_{k,\,m}
+        \right)\\
+        &\stackrel{\phantom{\text{MM}}}{=} J \cdot \sum\limits_{\biggerNeighbor{k}{m}}
+        \left(
+            \withspinhcop[\schroedingerPicture]{k}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{m}{\sigma}{}
+            -
+            \withspinhcop[\schroedingerPicture]{m}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{k}{\sigma}{}
+        \right)
+        + J \cdot \sum\limits_{\biggerNeighbor{l}{k}}
+        \left(
+            \withspinhcop[\schroedingerPicture]{k}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{l}{\sigma}{}
+            -
+            \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{k}{\sigma}{}
+        \right)\\
+        &\stackrel{\phantom{\text{MM}}}{=} J \cdot \neighborsum{k}{l}
+        \left(
+            \withspinhcop[\schroedingerPicture]{k}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{l}{\sigma}{}
+            -
+            \withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}
+            \withspinhcop[\schroedingerPicture]{k}{\sigma}{}
+        \right)
+    \end{split}
+\end{equation}
+
+\autoref{eq:spin-polarized-kinetics-operator-definition} describes the resulting observable, that measures such kinetics, depending on the direction \spinPolarizedKineticsOperatorDir{l}{m}{\sigma}.
 
 \begin{equation}
     \label{eq:spin-polarized-kinetics-operator-definition}
     \begin{split}
-        \spinPolarizedKineticsOperator{l}{m}{\sigma} &= - J \left(\withspinhcop{l}{\sigma}{\dagger}\withspinhcop{m}{\sigma}{} + \withspinhcop{m}{\sigma}{\dagger}\withspinhcop{l}{\sigma}{}\right)\\
         \spinPolarizedKineticsOperatorDir{l}{m}{\sigma} &= i J \left(\withspinhcop{m}{\sigma}{\dagger}\withspinhcop{l}{\sigma}{} - \withspinhcop{l}{\sigma}{\dagger}\withspinhcop{m}{\sigma}{}\right)\\
     \end{split}
 \end{equation}
