@@ -1,0 +1,37 @@
+Typically, the \emph{density matrix} $\rho = \ketpsiof[]{t}\brapsiof[]{t}$ encodes the full quantum information of the state. 
+Because the number of entries in the matrix is the number of base-states squared - which is exponential in the number of sites, exactly what the approximation is supposed to avoid - it is not feasible to access this quantity.
+
+While it is not possible to access the complete matrix, there exists one closely related entity, that has multiple uses that are going to be utilized in the subsequent section.
+The \emph{reduced density matrix} $\rho_A$ is obtained upon \emph{tracing out} (\autoref{eq:tracing-out}, \cite{partialTraceEntanglementOfSubsystemsBlochVector}) the part $B$ from a system that is completely partitioned into two parts $A$ and $B$.
+The basis of $A$ is $\left\{\ketN[\Phi_k]\right\}_{k=0}^{2^{2}-1 = 3 = N} = \left\{\ketN[11],\,\ketN[10],\,\ketN[01],\,\ketN[00]\right\}$ and the basis of $B$ $\left\{\ketN[\Chi_k]\right\}_{k=0}^{2^{2 \cdot \#\left(\text{sites}\right) - 2}-1 = M}$.
+Notice, the order of basis states starting with $\ketN[1\dots1]$ then $\ketN[1\dots10]$ and ending with $\ketN[0\dots0]$. As stated in \autoref{eq:spin-hcb-state-mapping}, this is the convention that is necessary to keep consistent sings, as $\ketN[0\dots0] \rightarrow \ketN[1\dots1]$ would introduce exactly one $-1$ into all measurements with \pauli{y}.
+
+\begin{equation}
+    \label{eq:tracing-out}
+    \rho_A = \partialTrace{B}{\rho_{AB}} = \sum\limits_{k=0}^{M} \left(\one[A]\otimes\braN[\Chi_k] \right)\rho_{AB}\left(\one[A]\otimes\ketN[\Chi_k]\right)
+\end{equation}
+
+If - for this application - one reduces the part $A$ to contain only two sides $l, \sigma$ and $m, \mu$, then $\rho_A$ will be a complex $4\times 4$ matrix.
+As it is again not feasible to obtain via tracing out, the matrix can be calculated by rewriting it in the basis of Pauli matrices (\ref{sec:particles}):
+
+\begin{equation}
+    \label{eq:reduced-density-matrix-via-paulis}
+    \rho_A (t) = \rho_{l,\,\sigma,\,m,\,\mu} (t) = \frac{1}{4} \sum\limits_{\alpha,\beta\in\left\{0,\text{x},\text{y},\text{z}\right\}}
+    {\left\langle \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} \right\rangle}_{\psiOfT} \left(\pauli[l,\,\sigma]{$\alpha$}\otimes\pauli[m,\,\mu]{$\beta$}\right)
+\end{equation}
+
+\autoref{eq:reduced-density-matrix-via-paulis} uses the property, that the 16 matrices $\pauli{$\alpha$}\otimes\pauli{$\beta$}$ are a complete basis of the complex $4\times 4$ matrices.
+The observable $\pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$}$ can be translated into hard-core bosonic operators, thanks to the previously derived \autoref{eq:jordan-wigner-spin-hcb} and with that can easily be measured like all other observables.
+The factor $\frac{1}{4}$ follows from a normalization argument in \autoref{eq:reduced-density-matrix-normalization}, that uses properties of density matrices \cite{partialTraceEntanglementOfSubsystemsBlochVector} and algebraic properties of the Pauli matrices.
+
+\begin{equation}
+    \label{eq:reduced-density-matrix-normalization}
+    \begin{split}
+        {\left\langle \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} \right\rangle}_{\psiOfT} &= \partialTrace{}{\rho_{l,\,\sigma,\,m,\,\mu} (t) \left(\pauli[l,\,\sigma]{$\alpha$}\otimes\pauli[m,\,\mu]{$\beta$}\right)}  \\
+        &\stackrel{\ref{eq:reduced-density-matrix-via-paulis}}{=}\sum\limits_{\alpha',\beta'\in\left\{0,\text{x},\text{y},\text{z}\right\}} \frac{{\left\langle \pauli[l,\,\sigma]{$\alpha'$}\pauli[m,\,\mu]{$\beta'$} \right\rangle}_{\psiOfT}}{4}
+        \partialTrace{}{\left(\pauli{$\alpha'$}\otimes\pauli{$\beta'$}\right)\left(\pauli{$\alpha$}\otimes\pauli{$\beta$}\right)}\\
+        &\stackrel{\phantom{\ref{eq:reduced-density-matrix-via-paulis}}}{=}\sum\limits_{\alpha',\beta'\in\left\{0,\text{x},\text{y},\text{z}\right\}} \frac{{\left\langle \pauli[l,\,\sigma]{$\alpha'$}\pauli[m,\,\mu]{$\beta'$} \right\rangle}_{\psiOfT}}{4}
+        \delta_{\alpha',\,\alpha}\delta_{\beta',\,\beta}\partialTrace{}{\one[4\times 4]}\\
+        &\stackrel{\phantom{\ref{eq:reduced-density-matrix-via-paulis}}}{=}\frac{4}{4} \cdot {\left\langle \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} \right\rangle}_{\psiOfT}
+    \end{split}
+\end{equation}

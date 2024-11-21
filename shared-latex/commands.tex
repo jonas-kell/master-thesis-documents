@@ -110,3 +110,8 @@
 \newcommand{\currentvecOft}[3][]{\generaljvecop{#1}{#2}{#3}{(t)}}
 \newcommand{\biggerNeighbor}[2]{\ensuremath{\left\langle#1 \stackrel{+}{<} #2\right\rangle}\xspace}
 \newcommand{\smallerNeighbor}[2]{\ensuremath{\left\langle#1 \stackrel{+}{>} #2\right\rangle}\xspace}
+
+\newcommand{\partialTrace}[2]{\ensuremath{\text{Tr}_{#1}\left(#2\right)}\xspace}
+
+\DeclareRobustCommand{\Chi}{{\mathpalette\irchi\relax}}
+\newcommand{\irchi}[2]{\raisebox{\depth}{$#1\chi$}} % inner command, used by \rchi
