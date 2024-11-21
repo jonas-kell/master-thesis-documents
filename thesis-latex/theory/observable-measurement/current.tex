@@ -181,4 +181,27 @@ Especially when the observable is approximated with an incomplete set of basis-s
 It is important to monitor the magnitude of this value and monitor it going to $0$.
 If it doesn't fully vanish, this indicates an error in the sampling strategy or the implementation or the number of sampled states is not great enough.
 
-% TODO proof this is still real if properly sampled
+One could entertain the question, whether is is guaranteed for the imaginary part to vanish with a large enough sample size.
+On first thought, if the hamiltonian is only approximated, might there be a possibility for asymmetrical terms to introduce a non-vanishing imaginary part?
+
+Conveniently, rewriting \autoref{eq:expectation-value} in the manner of \autoref{eq:imaginary-part-vanishes}, yields two expressions for the value of the observation that are complex conjugations of each other.
+This again means, that no matter how \glqq bad\grqq{} the \psiOfT[\schroedingerPicture] approximates the real wave-function, for full sampling the result must have an imaginary part of 0.
+
+\begin{equation}
+    \label{eq:imaginary-part-vanishes}
+    \begin{split}
+        \frac{\bracketHelper{\psiOfT[\schroedingerPicture]}{\ObservableOp}{\psiOfT[\schroedingerPicture]}}{\braketHelper{\psiOfT[\schroedingerPicture]}{\psiOfT[\schroedingerPicture]}}
+        &\cdot
+        \left(
+            \lsum[K] \absSquare{e^{\HeffOft[K]}} \absSquare{\psiN[K]} 
+        \right) =\\
+        %
+        \lsum[N]
+        \absSquare{e^{\HeffOft}} \absSquare{\psiN} 
+        \frac{\bracketHelper{N}{\ObservableOp}{\psiOfT[\schroedingerPicture]}}{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}
+        &\stackrel{\ast}{=}
+        \lsum[N]
+        \absSquare{e^{\HeffOft}} \absSquare{\psiN} 
+        \frac{\bracketHelper{\psiOfT[\schroedingerPicture]}{\ObservableOp}{N}}{\braketHelper{\psiOfT[\schroedingerPicture]}{N}}
+    \end{split}
+\end{equation}
