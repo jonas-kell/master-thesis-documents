@@ -152,7 +152,7 @@ This bisects the sites along the primary diagonal of the coordinate system and m
 \end{equation}
 
 In this case, the used basis-states are not eigenstates of the operators. 
-$\bracketHelper{N}{\withspinhcop{m}{\sigma}{\dagger}\withspinhcop{l}{\sigma}{}}{K}$ becomes $\delta_{N,\,\tilde{N}}\cdot n_{m,\,\sigma} \cdot (1-n_{l,\,\sigma} )$, where \ketN[{\vphantom{N}\smash{\tilde{N}}}] is the state obtained when the particle number on site $m,\, \sigma$ and the one of site $l,\, \sigma$ are swapped (this \emph{hopping} only has an effect, when there is a particle on the original site and no particle yet on the target site, or vice versa).
+$\bracketHelper{N}{\withspinhcop{m}{\sigma}{\dagger}\withspinhcop{l}{\sigma}{}}{K}$ becomes $\delta_{N,\,\vphantom{N}\smash{\tilde{N}}}\cdot n_{m,\,\sigma} \cdot (1-n_{l,\,\sigma} )$, where \ketN[{\vphantom{N}\smash{\tilde{N}}}] is the state obtained when the particle number on site $m,\, \sigma$ and the one of site $l,\, \sigma$ are swapped (this \emph{hopping} only has an effect, when there is a particle on the original site and no particle yet on the target site, or vice versa).
 Evaluating the whole operator with the signs correctly and in a efficient manner can best be looked up in the implementation 
 
 \filepath{\cite{selfCode}}{/computation-scripts/observables.py}.
@@ -168,9 +168,9 @@ Overall, the evaluation of this observable requires knowing the value of an obje
         n_{l,\,\sigma} \cdot (1-n_{m,\,\sigma})
     \right]
     \cdot 
-    \frac{\psiN[\tilde{N}]}{\psiN}
+    \frac{\psiN[\vphantom{N}\smash{\tilde{N}}]}{\psiN}
     \cdot 
-     e^{\HeffOft[\tilde{N}]-\HeffOft[N]}
+     e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]}
 \end{equation}
 
 The \fullref{sec:theory-optimizations-analytical} will go into how to compute this efficiently for states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected via the hopping between nearest-neighbor lattice sites.

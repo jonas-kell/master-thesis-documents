@@ -11,18 +11,18 @@ Notice, the order of basis states starting with $\ketN[1\dots1]$ then $\ketN[1\d
     \rho_A = \partialTrace{B}{\rho_{AB}} = \sum\limits_{k=0}^{M} \left(\one[A]\otimes\braN[\Chi_k] \right)\rho_{AB}\left(\one[A]\otimes\ketN[\Chi_k]\right)
 \end{equation}
 
-If - for this application - one reduces the part $A$ to contain only two sides $l, \sigma$ and $m, \mu$, then $\rho_A$ will be a complex $4\times 4$ matrix.
+If - for this application - one reduces the part $A$ to contain only two particles $l, \sigma$ and $m, \mu$, then $\rho_A$ will be a complex $4\times 4$ matrix.
 As it is again not feasible to obtain via tracing out, the matrix can be calculated by rewriting it in the basis of Pauli matrices (\ref{sec:particles}):
 
 \begin{equation}
     \label{eq:reduced-density-matrix-via-paulis}
     \rho_A (t) = \rho_{l,\,\sigma,\,m,\,\mu} (t) = \frac{1}{4} \sum\limits_{\alpha,\beta\in\left\{0,\text{x},\text{y},\text{z}\right\}}
-    {\left\langle \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} \right\rangle}_{\psiOfT} \left(\pauli[l,\,\sigma]{$\alpha$}\otimes\pauli[m,\,\mu]{$\beta$}\right)
+    {\left\langle \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} \right\rangle}_{\psiOfT} \left(\pauli[]{$\alpha$}\otimes\pauli[]{$\beta$}\right)
 \end{equation}
 
 \autoref{eq:reduced-density-matrix-via-paulis} uses the property, that the 16 matrices $\pauli{$\alpha$}\otimes\pauli{$\beta$}$ are a complete basis of the complex $4\times 4$ matrices.
 The observable $\pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$}$ can be translated into hard-core bosonic operators, thanks to the previously derived \autoref{eq:jordan-wigner-spin-hcb} and with that can easily be measured like all other observables.
-The factor $\frac{1}{4}$ follows from a normalization argument in \autoref{eq:reduced-density-matrix-normalization}, that uses properties of density matrices \cite{partialTraceEntanglementOfSubsystemsBlochVector} and algebraic properties of the Pauli matrices.
+The factor $\frac{1}{4}$ follows from a normalization argument in \autoref{eq:reduced-density-matrix-normalization}, that uses properties of density matrices \cite{partialTraceEntanglementOfSubsystemsBlochVector} and algebraic properties of the Pauli matrices \cite{pauliPropertiesAndBlochVector}.
 
 \begin{equation}
     \label{eq:reduced-density-matrix-normalization}
@@ -35,3 +35,41 @@ The factor $\frac{1}{4}$ follows from a normalization argument in \autoref{eq:re
         &\stackrel{\phantom{\ref{eq:reduced-density-matrix-via-paulis}}}{=}\frac{4}{4} \cdot {\left\langle \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} \right\rangle}_{\psiOfT}
     \end{split}
 \end{equation}
+
+\autoref{eq:reduced-density-matrix-via-paulis} now has the advantage, that the ${\left\langle \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} \right\rangle}_{\psiOfT}$ can be evaluated by sampling from a state \psiOfT, that has been acquired by any desired means or sampling methods.
+
+The operators $\left(\pauli[]{$\alpha$}\otimes\pauli[]{$\beta$}\right)$ were manually translated into the required complex base-matrices in 
+\filepath{\cite{selfCode}}{/calculation-helpers/concurrence/spin-to-z-basis-transformation.py}, which is the same as the \emph{Kronecker product} \cite{kroneckerProduct} of the known matrix-representations (\autoref{eq:pauli-matrices}), precisely because of the consistent basis-convention.
+
+As hinted, one can now employ \autoref{eq:jordan-wigner-spin-hcb} to translate the operators $\pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$}$ into a form that may be inserted into \localObservable{N}{t} in \autoref{eq:expectation-value}. The non-trivial translations are listed in \autoref{eq:reduced-density-matrix-final-operators} (given $l\neq m$, the rest of the 16 factors can be trivially mirrored or multiplied from the give ones, because the $\pauli[]{0} = \one[]$ and \pauli[]{z} operators are diagonal in the used basis and the eigenvalue of all \one[] is 1).
+
+\begin{equation}
+    \label{eq:reduced-density-matrix-final-operators}
+    \begin{split}
+        \pauli[l,\,\sigma]{x} \pauli[m,\,\mu]{0}  &\hat{=}
+        \frac{\psiN[\vphantom{N}\smash{\tilde{N}}]}{\psiN}        \cdot         e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]}
+        \\
+        \pauli[l,\,\sigma]{y} \pauli[m,\,\mu]{0}  &\hat{=}
+        \frac{\psiN[\vphantom{N}\smash{\tilde{N}}]}{\psiN}        \cdot         e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]} \cdot i \cdot (1-2 \cdot n_{l,\,\sigma}) 
+        \\
+        \pauli[l,\,\sigma]{z} \pauli[m,\,\mu]{0}  &\hat{=}
+        \frac{\psiN[\vphantom{N}\smash{\tilde{N}}]}{\psiN}        \cdot         e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]} \cdot (2 \cdot n_{l,\,\sigma} - 1) 
+        \\
+        \pauli[l,\,\sigma]{x} \pauli[m,\,\mu]{x}  &\hat{=}
+        \frac{\psiN[\vphantom{N}\smash{\tildetilde{N}}]}{\psiN}        \cdot         e^{\HeffOft[\vphantom{N}\smash{\tildetilde{N}}]-\HeffOft[N]}
+        \\
+        \pauli[l,\,\sigma]{y} \pauli[m,\,\mu]{y}  &\hat{=}
+        \frac{\psiN[\vphantom{N}\smash{\tildetilde{N}}]}{\psiN}        \cdot         e^{\HeffOft[\vphantom{N}\smash{\tildetilde{N}}]-\HeffOft[N]} \cdot (2 \cdot n_{l,\,\sigma} - 1) \cdot (1- 2 \cdot n_{m,\,\mu})
+        \\
+        \pauli[l,\,\sigma]{x} \pauli[m,\,\mu]{y}  &\hat{=}
+        \frac{\psiN[\vphantom{N}\smash{\tildetilde{N}}]}{\psiN}        \cdot         e^{\HeffOft[\vphantom{N}\smash{\tildetilde{N}}]-\HeffOft[N]} \cdot i \cdot (1-2 \cdot n_{m,\,\mu}) 
+        \\
+        \pauli[l,\,\sigma]{y} \pauli[m,\,\mu]{x}  &\hat{=}
+        \frac{\psiN[\vphantom{N}\smash{\tildetilde{N}}]}{\psiN}        \cdot         e^{\HeffOft[\vphantom{N}\smash{\tildetilde{N}}]-\HeffOft[N]} \cdot i \cdot (1-2 \cdot n_{l,\,\sigma}) 
+    \end{split}
+\end{equation}
+
+Based on the sampled state \ketN[N], in \autoref{eq:reduced-density-matrix-final-operators} the state \ketN[\vphantom{N}\smash{\tilde{N}}] is the same state as \ketN[N], but with the occupation of site $l$ and spin direction $\sigma$ \emph{flipped}, meaning an occupation of 0 in \ketN[N] is 1 in \ketN[\vphantom{N}\smash{\tilde{N}}] and vice versa.
+Furthermore, \ketN[\vphantom{N}\smash{\tildetilde{N}}] indicates a flipping of both the occupation of $l,\, \sigma$ and $m,\, \mu$.
+
+The difference of effective hamiltonian with either one or two flipped occupations can be evaluated efficiently and is the last necessary optimization that will be presented in \fullref{sec:theory-optimizations}.

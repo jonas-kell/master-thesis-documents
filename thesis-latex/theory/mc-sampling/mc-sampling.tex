@@ -41,26 +41,26 @@ The function $f(N,t)$, provided in \autoref{eq:proportional-function}, fulfills 
 \begin{equation}
     \label{eq:transition-probability-final}
     \begin{split}
-        \alpha &\stackrel{\phantom{\ref{eq:proportional-function}}}{=} \frac{\probabilityOf{\tilde{N}}{t}}{\probabilityOf{N}{t}} =  \frac{f(\tilde{N},t)}{f(N,t)}
+        \alpha &\stackrel{\phantom{\ref{eq:proportional-function}}}{=} \frac{\probabilityOf{\vphantom{N}\smash{\tilde{N}}}{t}}{\probabilityOf{N}{t}} =  \frac{f(\vphantom{N}\smash{\tilde{N}},t)}{f(N,t)}
         \stackrel{\ref{eq:proportional-function}}{=}
         \frac{
-            \absSquare{e^{\HeffOft[\tilde{N}]}} \absSquare{\psiN[\tilde{N}]}
+            \absSquare{e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}]}} \absSquare{\psiN[\vphantom{N}\smash{\tilde{N}}]}
         }{
             \absSquare{e^{\HeffOft}} \absSquare{\psiN}
         }\\
         &\stackrel{\phantom{\ref{eq:proportional-function}}}{=}
-        \frac{\absSquare{\psiN[\tilde{N}]}}{\absSquare{\psiN}}
+        \frac{\absSquare{\psiN[\vphantom{N}\smash{\tilde{N}}]}}{\absSquare{\psiN}}
         \frac{
-            e^{\real\left(\HeffOft[\tilde{N}]\right) + i\imaginary\left(\HeffOft[\tilde{N}]\right) +\real\left(\HeffOft[\tilde{N}]\right)-i \imaginary\left(\HeffOft[\tilde{N}]\right)}
+            e^{\real\left(\HeffOft[\vphantom{N}\smash{\tilde{N}}]\right) + i\imaginary\left(\HeffOft[\vphantom{N}\smash{\tilde{N}}]\right) +\real\left(\HeffOft[\vphantom{N}\smash{\tilde{N}}]\right)-i \imaginary\left(\HeffOft[\vphantom{N}\smash{\tilde{N}}]\right)}
         }{
             e^{\real\left(\HeffOft\right) + i\imaginary\left(\HeffOft\right) +\real\left(\HeffOft\right)-i \imaginary\left(\HeffOft\right)}
         }\\
         &\stackrel{\phantom{\ref{eq:proportional-function}}}{=}
-        \frac{\absSquare{\psiN[\tilde{N}]}}{\absSquare{\psiN}}
-        e^{2\cdot \real\left(\HeffOft[\tilde{N}]\right) - 2\cdot \real\left(\HeffOft\right)}\\
+        \frac{\absSquare{\psiN[\vphantom{N}\smash{\tilde{N}}]}}{\absSquare{\psiN}}
+        e^{2\cdot \real\left(\HeffOft[\vphantom{N}\smash{\tilde{N}}]\right) - 2\cdot \real\left(\HeffOft\right)}\\
         &\stackrel{\phantom{\ref{eq:proportional-function}}}{=}
-        \frac{\absSquare{\psiN[\tilde{N}]}}{\absSquare{\psiN}}
-        e^{2\cdot \real\left(\HeffOft[\tilde{N}] - \HeffOft\right)}
+        \frac{\absSquare{\psiN[\vphantom{N}\smash{\tilde{N}}]}}{\absSquare{\psiN}}
+        e^{2\cdot \real\left(\HeffOft[\vphantom{N}\smash{\tilde{N}}] - \HeffOft\right)}
     \end{split}
 \end{equation}
 

@@ -1,10 +1,10 @@
-Generally, handling the computation of the difference of the effective Hamiltonian for two states $\HeffOft[\tilde{N}]-\HeffOft[N]$ is the most expensive computation per Monte-Carlo-step.
+Generally, handling the computation of the difference of the effective Hamiltonian for two states $\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]$ is the most expensive computation per Monte-Carlo-step.
 It is required in \autoref{eq:form-heff-difference} for the calculation of the spin-polarized kinetics.
 As stated in \fullref{sec:theory-monte-carlo} it is also needed to compute the transition probability between two sampled states in \autoref{eq:transition-probability-final}.
 The calculation of $\HeffOft[N]$ on its own requires an effort of \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})}.
 However, for the states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected with only small changes, most of the elements in the sum cancel and the complexity may be here even reduced to \bigo{$\text{\#}(\text{nearest neighbors})$}.
 This is quite attractive, because it de-couples the per-step computational costs from the number of lattice sites - a vital step for simulating large systems efficiency - however this requires extra analytical calculations.
-In this section analytical simplifications are presented to get the objects $E_0(N)-E_0(\tilde{N})$ and $\HNOft - \HNOft[\tilde{N}]$ (Caution, do not miss the extra \emph{minus} required, to calculate the required $\HeffOft[\tilde{N}]-\HeffOft[N]$ from this!).
+In this section analytical simplifications are presented to get the objects $E_0(N)-E_0(\vphantom{N}\smash{\tilde{N}})$ and $\HNOft - \HNOft[\vphantom{N}\smash{\tilde{N}}]$ (Caution, do not miss the extra \emph{minus} required, to calculate the required $\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]$ from this!).
 
 \paragraph*{Initial State} \makebox{}\\
 
@@ -73,7 +73,7 @@ The hopping results in the values for $\tilde{n}_{l,\,\sigma}$ are given in \aut
     \end{cases}
 \end{equation}
 
-This simplifies the energy difference $E_0(N)-E_0(\tilde{N})$ like equation \autoref{eq:simplified-base-energy-hopping} presents.
+This simplifies the energy difference $E_0(N)-E_0(\vphantom{N}\smash{\tilde{N}})$ like equation \autoref{eq:simplified-base-energy-hopping} presents.
 
 \begin{equation}
     \label{eq:simplified-base-energy-hopping}
@@ -126,12 +126,12 @@ The flipping results in the values for $\tilde{n}_{l,\,\sigma}$ are given in \au
     \end{cases}
 \end{equation}
 
-This simplifies the energy difference $E_0(N)-E_0(\tilde{N})$ like equation \autoref{eq:simplified-base-energy-flipping} presents.
+This simplifies the energy difference $E_0(N)-E_0(\vphantom{N}\smash{\tilde{N}})$ like equation \autoref{eq:simplified-base-energy-flipping} presents.
 
 \begin{equation}
     \label{eq:simplified-base-energy-flipping}
     \begin{split}
-        E_0(N)-E_0(\tilde{N}) 
+        E_0(N)-E_0(\vphantom{N}\smash{\tilde{N}}) 
         &\stackrel{\phantom{\ref{eq:new-n-flipping}}}{=} U\lsum n_{l,\,\down}n_{l,\,\up}-U\lsum \tilde{n}_{l,\,\down}\tilde{n}_{l,\,\up} 
         + \lsum[l,\,\sigma] \epsl n_{l,\,\sigma} - \lsum[l,\,\sigma] \epsl \tilde{n}_{l,\,\sigma}\\
         &\stackrel{\ref{eq:new-n-flipping}}{=} \epsl[i] \left(2 n_{i,\,\sigma_i} - 1\right) +
@@ -142,7 +142,7 @@ This simplifies the energy difference $E_0(N)-E_0(\tilde{N})$ like equation \aut
     \end{split}
 \end{equation}
 
-Like for the hopping problem, the calculation of $\HNOft - \HNOft[\tilde{N}]$ is more involved in the number of terms.
+Like for the hopping problem, the calculation of $\HNOft - \HNOft[\vphantom{N}\smash{\tilde{N}}]$ is more involved in the number of terms.
 
 More details on how this was calculated can be found in \fullref{sec:implementation-analytical-calculations} and further resources, that that section redirects towards.
 

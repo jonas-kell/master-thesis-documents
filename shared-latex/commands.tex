@@ -115,3 +115,25 @@
 
 \DeclareRobustCommand{\Chi}{{\mathpalette\irchi\relax}}
 \newcommand{\irchi}[2]{\raisebox{\depth}{$#1\chi$}} % inner command, used by \rchi
+
+\let\oldtilde\tilde
+\newcommand{\tildetilde}[1]{{\smash[b]{\overset{
+    \mathchoice {\approx}% doesn't do anything in any of my formulas
+                {\approx}% doesn't do anything in any of my formulas
+                {   \vphantom{\raisebox{0pt}{\scaleobj{0.3}{\approx}}}
+                    \smash{\raisebox{-3.0pt}{\scaleobj{1.1}{\approx}}}
+                }
+                {   \vphantom{\raisebox{0pt}{\scaleobj{0.3}{\approx}}}
+                    \smash{\raisebox{-1.5pt}{\scaleobj{0.6}{\approx}}}
+                }
+    }{#1}}}}
+\renewcommand{\tilde}[1]{{\smash[b]{\overset{
+    \mathchoice {\sim} % doesn't do anything in any of my formulas
+                {\sim} % doesn't do anything in any of my formulas
+                {   \vphantom{\raisebox{0pt}{\scaleobj{0.22}{\sim}}}
+                    \smash{\raisebox{-3.4pt}{\scaleobj{1.1}{\sim}}}
+                }
+                {   \vphantom{\raisebox{0pt}{\scaleobj{0.22}{\sim}}}
+                    \smash{\raisebox{-1.9pt}{\scaleobj{0.6}{\sim}}}
+                }
+    }{#1}}}}
