@@ -5,7 +5,7 @@ set output "mc-variance.pdf"          # name of the output pdf
 
 # legend
 set key Left                                                            # key text justify left
-set key left center                                                     # moves legend
+set key top right                                                     # moves legend
 set style line 999 dashtype 1 linewidth 1 linecolor rgb "#0000AA"       # legend linestyle
 set key box linestyle 999                                               # apply box style
 set key spacing 1                                                       # vertical spacing of entries
@@ -38,10 +38,12 @@ set xtics 100
 set mxtics 10
 set xlabel "time [1/U]"
 
+set logscale y 10
 set ylabel "std-dev"
-set yrange []
-set ytics 0.001
-set mytics 5
+set yrange [:0.004]
+set ytics log
+set mytics 10
+set format y "10^{%+03T}";
 
 # plot 1,1
 set label 1 "J = 0.1⋅U" at graph 0.27,0.96

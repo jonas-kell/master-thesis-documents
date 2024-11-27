@@ -64,7 +64,7 @@ plot \
 set ytics 0.02
 set mytics 4
 set xrange [:5] 
-set yrange [4.01:4.078] 
+set yrange [4.01:4.073] 
 set key right bottom
 
 # plot 2,1

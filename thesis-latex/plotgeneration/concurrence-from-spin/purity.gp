@@ -1,11 +1,11 @@
 set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 16cm, 10cm       # sets output format, font and plotsize
 set samples 600                                                                         # sets count for the amount of sampled points
 
-set output "concurrence-comparison.pdf"          # name of the output pdf
+set output "purity-comparison.pdf"          # name of the output pdf
 
 # legend
 set key Left                                                            # key text justify left
-set key left center                                                     # moves legend
+set key at graph 0.53, graph 0.97                                       # moves legend
 set style line 999 dashtype 1 linewidth 1 linecolor rgb "#0000AA"       # legend linestyle
 set key box linestyle 999                                               # apply box style
 set key spacing 1                                                       # vertical spacing of entries
@@ -31,22 +31,22 @@ set xtics 1
 set mxtics 2
 set xlabel "time [1/U]"
 
-set ylabel "Concurrence"
+set ylabel "Purity"
 set yrange []
-set ytics 0.01
+set ytics 0.1
 set mytics 5
 
-set label 1 "J = 0.1⋅U" at graph 0.27,0.96
+# set label 1 "J = 0.1⋅U" at graph 0.27,0.96
 plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerred title " Diagonalization External", \
      NaN with points pt 5 pointsize 0.6 lc rgb linered title " Diagonalization Sampled", \
      NaN with points pt 5 pointsize 0.6 lc rgb markeryellow title " Perturbation Oth Order", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerblue title " Perturbation 1st Order", \
      NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " Perturbation 2nd Order", \
-     "external-exact-concurrence.csv"    using ($1 / U):2 notitle      axis x1y1 pointtype 17 pointsize 0.7 linecolor rgb markerred, \
-     "exact-exact-concurrence.csv"       using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb linered, \
-     "compareo0-exact-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.9 linecolor rgb markeryellow, \
-     "compareo1-exact-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.9 linecolor rgb markerblue, \
-     "compareo2-exact-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.9 linecolor rgb markergreen
+     "external-exact-purity.csv"    using ($1 / U):2 notitle      axis x1y1 pointtype 17 pointsize 0.7 linecolor rgb markerred, \
+     "exact-exact-purity.csv"       using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb linered, \
+     "compareo0-exact-purity.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.9 linecolor rgb markeryellow, \
+     "compareo1-exact-purity.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.9 linecolor rgb markerblue, \
+     "compareo2-exact-purity.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.9 linecolor rgb markergreen
      
      
