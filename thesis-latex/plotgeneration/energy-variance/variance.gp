@@ -49,15 +49,15 @@ set ytics 0.05
 set mytics 5
 
 # plot 1,1
-set label 1 "TODO" at graph 0.27,0.96
+# set label 1 "TODO" at graph 0.27,0.96
 plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " Exact", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerpink   title " O0-pert.", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " O1-pert.", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerorange   title " O0-pert.", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " O1-pert.", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " O2-pert.", \
      "exact-exact-variance.csv"     using ($1 / U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
-     "compareo0-exact-variance.csv" using ($1 / U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerpink, \
-     "compareo1-exact-variance.csv" using ($1 / U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
+     "compareo0-exact-variance.csv" using ($1 / U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
+     "compareo1-exact-variance.csv" using ($1 / U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
      "compareo2-exact-variance.csv" using ($1 / U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred
 # end plot 1,1
 
@@ -68,12 +68,12 @@ set yrange [4.01:4.073]
 set key right bottom
 
 # plot 2,1
-set label 1 "TODO" at graph 0.27,0.96
+# set label 1 "TODO" at graph 0.27,0.96
 plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " Exact", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " O1-pert.", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " O1-pert.", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " O2-pert.", \
      "exact-exact-variance.csv"     using ($1 / U):($2/U) notitle     w l axis x1y1 linecolor rgb markerblue, \
-     "compareo1-exact-variance.csv" using ($1 / U):($2/U) notitle     w l axis x1y1 linecolor rgb markerorange, \
+     "compareo1-exact-variance.csv" using ($1 / U):($2/U) notitle     w l axis x1y1 linecolor rgb markergreen, \
      "compareo2-exact-variance.csv" using ($1 / U):($2/U) notitle     w l axis x1y1 linecolor rgb markerred
 # end plot 2,1

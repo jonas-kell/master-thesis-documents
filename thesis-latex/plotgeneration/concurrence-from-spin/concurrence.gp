@@ -15,10 +15,17 @@ markerred="#AA0000"
 markergreen="#00AA00"
 markerblue="#0000AA"
 markeryellow="#EEBE00"
+markerpink="#db10e9"
+markermint="#1fc6a1"
+markerorange="#FF8E00"
+
 linered="#FF9999"
 linegreen="#77FF77"
 lineblue="#9999FF"
 lineyellow="#F6D140"
+linepink="#db10e9"
+linemint="#59f7d4"
+lineorange="#fca438"
 
 # plot
 set datafile separator ','
@@ -36,17 +43,17 @@ set yrange []
 set ytics 0.01
 set mytics 5
 
-set label 1 "J = 0.1⋅U" at graph 0.27,0.96
+# set label 1 "J = 0.1⋅U" at graph 0.27,0.96
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred title " Diagonalization External", \
-     NaN with points pt 5 pointsize 0.6 lc rgb linered title " Diagonalization Sampled", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markeryellow title " Perturbation Oth Order", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue title " Perturbation 1st Order", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " Perturbation 2nd Order", \
-     "external-exact-concurrence.csv"    using ($1 / U):2 notitle      axis x1y1 pointtype 17 pointsize 0.7 linecolor rgb markerred, \
-     "exact-exact-concurrence.csv"       using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb linered, \
-     "compareo0-exact-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.9 linecolor rgb markeryellow, \
-     "compareo1-exact-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.9 linecolor rgb markerblue, \
-     "compareo2-exact-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.9 linecolor rgb markergreen
+     NaN with points pt 5 pointsize 0.6 lc rgb markerblue title " Diagonalization External", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markermint title " Diagonalization Sampled", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " Perturbation Oth Order", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " Perturbation 1st Order", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerred title " Perturbation 2nd Order", \
+     "external-exact-concurrence.csv"    using ($1 / U):2 notitle      axis x1y1 pointtype 17 pointsize 0.8 linecolor rgb markerblue, \
+     "exact-exact-concurrence.csv"       using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.9 linecolor rgb markermint, \
+     "compareo0-exact-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.9 linecolor rgb markerorange, \
+     "compareo1-exact-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.9 linecolor rgb markergreen, \
+     "compareo2-exact-concurrence.csv"   using ($1 / U):2 notitle      axis x1y1 pointtype 16 pointsize 0.9 linecolor rgb markerred
      
      
