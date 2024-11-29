@@ -56,10 +56,10 @@ do for [pauli_op in pauli_ops] {
           NaN with points pt 5 pointsize 0.6 lc rgb markerorange   title " O0-pert.", \
           NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " O1-pert.", \
           NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " O2-pert.", \
-          sprintf("exact-exact-pauli_%s.csv", pauli_op)       using ($1 / U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerblue, \
-          sprintf("compareo0-exact-pauli_%s.csv", pauli_op)   using ($1 / U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerorange, \
-          sprintf("compareo1-exact-pauli_%s.csv", pauli_op)   using ($1 / U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markergreen, \
-          sprintf("compareo2-exact-pauli_%s.csv", pauli_op)   using ($1 / U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerred
+          sprintf("exact-exact-pauli_%s.csv", pauli_op)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerblue, \
+          sprintf("compareo0-exact-pauli_%s.csv", pauli_op)   using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerorange, \
+          sprintf("compareo1-exact-pauli_%s.csv", pauli_op)   using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markergreen, \
+          sprintf("compareo2-exact-pauli_%s.csv", pauli_op)   using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerred
           
 }
      

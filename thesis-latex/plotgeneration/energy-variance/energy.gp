@@ -55,10 +55,10 @@ plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerorange   title " O0-pert.", \
      NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " O1-pert.", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " O2-pert.", \
-     "exact-exact-energy.csv"     using ($1 / U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
-     "compareo0-exact-energy.csv" using ($1 / U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
-     "compareo1-exact-energy.csv" using ($1 / U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
-     "compareo2-exact-energy.csv" using ($1 / U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred
+     "exact-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
+     "compareo0-exact-energy.csv" using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
+     "compareo1-exact-energy.csv" using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
+     "compareo2-exact-energy.csv" using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred
 # end plot 1,1
 
 set ytics 0.01
@@ -69,7 +69,7 @@ plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " Exact", \
      NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " O1-pert.", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " O2-pert.", \
-     "exact-exact-energy.csv"     using ($1 / U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
-     "compareo1-exact-energy.csv" using ($1 / U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
-     "compareo2-exact-energy.csv" using ($1 / U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred
+     "exact-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
+     "compareo1-exact-energy.csv" using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
+     "compareo2-exact-energy.csv" using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred
 # end plot 2,1

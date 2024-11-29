@@ -53,9 +53,9 @@ plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerblue title " 4000 samples", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " 20000 samples", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerpink title " 40000 samples", \
-       "compareo2-mc-400-current.csv" using ($1 / U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred, \
-      "compareo2-mc-2000-current.csv" using ($1 / U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
-      "compareo2-mc-4000-current.csv" using ($1 / U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
-     "compareo2-mc-20000-current.csv" using ($1 / U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
-     "compareo2-mc-40000-current.csv" using ($1 / U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerpink
+       "compareo2-mc-400-current.csv" using ($1 * U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred, \
+      "compareo2-mc-2000-current.csv" using ($1 * U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
+      "compareo2-mc-4000-current.csv" using ($1 * U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
+     "compareo2-mc-20000-current.csv" using ($1 * U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
+     "compareo2-mc-40000-current.csv" using ($1 * U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerpink
 # end plot 1,1
