@@ -1,4 +1,4 @@
-set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 16cm, 12cm       # sets output format, font and plotsize
+set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 16cm, 20cm       # sets output format, font and plotsize
 set samples 600                                                                         # sets count for the amount of sampled points
 
 set output "vcn-energy.pdf"          # name of the output pdf
@@ -37,39 +37,64 @@ U = 1.0
 J = 0.1
 
 # axes and label
-set xrange [:12.5] 
+set xrange [:] 
 set xtics 1
 set mxtics 5
 set xlabel "time [1/U]"
 
-set ylabel "Energy per site [U]"
 set yrange []
-set ytics log
 set ytics 0.05
 set mytics 5
 
+set logscale y2 10
+set y2tics log
+set my2tics 5
+
+set ylabel "Energy per site [U]"
+first_y = NaN
 # plot 1,1
-# set label 1 "TODO" at graph 0.27,0.96
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " Exact", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerorange   title " O0-pert.", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " O1-pert.", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " O2-pert.", \
-     "exact-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
-     "compareo0-exact-energy.csv" using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
-     "compareo1-exact-energy.csv" using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
-     "compareo2-exact-energy.csv" using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred
+     NaN with points pt 5 pointsize 0.6 lc rgb markerblue      title " Exact", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen     title " O1-pert.", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerred       title " O2-pert.", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markermint      title " vcn step 6e-2", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markeryellow    title " vcn step 2e-2", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerpink      title " vcn step 6e-3", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerorange    title " vcn step 2e-3", \
+     "compareo1-exact-energy.csv"     using ($1 * U):(first_y = (first_y != first_y ? ($2/U) : first_y)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
+     "compareo1-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
+     "compareo2-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred, \
+     "comparevcn006-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markermint, \
+     "comparevcn002-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markeryellow, \
+     "comparevcn0006-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerpink, \
+     "comparevcn0002-exact-energy.csv" using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
+     \
+     "compareo1-exact-energyimag.csv"         using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markergreen, \
+     "compareo2-exact-energyimag.csv"         using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markerred, \
+     "comparevcn006-exact-energyimag.csv"     using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markermint, \
+     "comparevcn002-exact-energyimag.csv"     using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markeryellow, \
+     "comparevcn0006-exact-energyimag.csv"    using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markerpink, \
+     "comparevcn0002-exact-energyimag.csv"    using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markerorange, \
 # end plot 1,1
 
-set ytics 0.01
-
+set key left bottom                                                       # moves legend
+set ylabel "Var(E per site) [U²]"
+set ytics 0.05
+first_y = NaN
 # plot 2,1
-# set label 1 "TODO" at graph 0.27,0.96
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " Exact", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " O1-pert.", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " O2-pert.", \
-     "exact-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
-     "compareo1-exact-energy.csv" using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
-     "compareo2-exact-energy.csv" using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred
+     NaN with points pt 5 pointsize 0.6 lc rgb markerblue      title " Exact", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen     title " O1-pert.", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerred       title " O2-pert.", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markermint      title " vcn step 6e-2", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markeryellow    title " vcn step 2e-2", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerpink      title " vcn step 6e-3", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerorange    title " vcn step 2e-3", \
+     "compareo1-exact-variance.csv"     using ($1 * U):(first_y = (first_y != first_y ? ($2/U/U) : first_y)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
+     "compareo1-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
+     "compareo2-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred, \
+     "comparevcn006-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markermint, \
+     "comparevcn002-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markeryellow, \
+     "comparevcn0006-exact-variance.csv" using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerpink, \
+     "comparevcn0002-exact-variance.csv" using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
 # end plot 2,1

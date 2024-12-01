@@ -1,4 +1,4 @@
-set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 30cm, 30cm       # sets output format, font and plotsize
+set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 25cm, 25cm       # sets output format, font and plotsize
 set samples 900                                                                         # sets count for the amount of sampled points
 
 set output "vcn-params.pdf"          # name of the output pdf
@@ -33,14 +33,15 @@ set xtics 1
 set mxtics 2
 set mytics 5
 
-pauli_ops = "00 0x 0y 0z x0 xx xy xz y0 yx yy yz z0 zx zy zz"
+parameters = "param0 param1 param2 param3 param4 param5"
 
-do for [pauli_op in pauli_ops] {
-     if (pauli_op eq "00") {
-          set label "x-Axis: time [1/U]" at graph 0.23,0.92
+do for [i = 1:words(parameters)] {
+     vcnparam = word(parameters, i)
+     if (vcnparam eq "param0") {
+          set label "x-Axis: time [1/U]" at graph 0.20,0.92
 
           set key Left                                                            # key text justify left
-          set key bottom center                                                   # moves legend
+          set key at graph 0.40,0.31                                              # moves legend
           set style line 999 dashtype 1 linewidth 1 linecolor rgb "#0000AA"       # legend linestyle
           set key box linestyle 999                                               # apply box style
           set key spacing 1                                                       # vertical spacing of entries
@@ -48,16 +49,15 @@ do for [pauli_op in pauli_ops] {
           unset key
           unset label
      }
-     set ylabel sprintf("Variational Param %s", pauli_op)
+     set ylabel sprintf("Variational Param. %d", i)
      plot \
-          NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " Exact", \
-          NaN with points pt 5 pointsize 0.6 lc rgb markerorange   title " O0-pert.", \
-          NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " O1-pert.", \
-          NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " O2-pert.", \
-          sprintf("exact-exact-pauli_%s.csv", pauli_op)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerblue, \
-          sprintf("compareo0-exact-pauli_%s.csv", pauli_op)   using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerorange, \
-          sprintf("compareo1-exact-pauli_%s.csv", pauli_op)   using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markergreen, \
-          sprintf("compareo2-exact-pauli_%s.csv", pauli_op)   using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerred
+          NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " Re(ana.)", \
+          NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " Im(ana.)", \
+          NaN with points pt 5 pointsize 0.6 lc rgb markermint   title " Re(var.).", \
+          NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " Im(var.)", \
+          sprintf("comparevcnanalytical-exact-param%dre.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerblue, \
+          sprintf("comparevcnanalytical-exact-param%dim.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerred, \
+          sprintf("comparevcn0006-exact-param%dre.csv", i-1)                 using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markermint, \
+          sprintf("comparevcn0006-exact-param%dim.csv", i-1)                 using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerorange, \
           
 }
-     

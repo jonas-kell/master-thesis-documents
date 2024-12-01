@@ -16,6 +16,7 @@ parser = argparse.ArgumentParser(description="Parse command-line arguments.")
 parser.add_argument("--zip_file_name", required=True)
 parser.add_argument("--unzip", action="store_true", required=False)
 parser.add_argument("--clear", action="store_true", required=False)
+parser.add_argument("--imag", action="store_true", required=False)
 parser.add_argument("--observable_index", required=True)
 parser.add_argument("--out_file_suffix", required=True)
 
@@ -29,6 +30,8 @@ if args["clear"]:
 
     for file in csv_files + json_files:
         os.remove(file)
+
+has_imag_measurements = args["imag"]
 
 print("Extracting/locating files from:", args["zip_file_name"])
 extracted_files = []
@@ -80,29 +83,34 @@ for json_file_name in extracted_files:
 
             observable = loaded_data["observables"][observable_index]
             print(observable)
-            label_to_write = observable["label"]
 
             data_array = loaded_data["measurements"]
 
-            times_to_extract = []
-            values_to_extract = []
+            for use_imag_vals in [True, False] if has_imag_measurements else [False]:
+                label_to_write = str(observable["label"]) + (
+                    " imagenary part" if use_imag_vals else ""
+                )
 
-            for measurement_point in data_array:
-                time = measurement_point["time"]
-                val = measurement_point["data"][observable_index]
+                times_to_extract = []
+                values_to_extract = []
 
-                times_to_extract.append(time)
-                values_to_extract.append(val)
+                for measurement_point in data_array:
+                    time = measurement_point["time"]
+                    if use_imag_vals:
+                        val = measurement_point["data_imag"][observable_index]
+                    else:
+                        val = measurement_point["data"][observable_index]
 
-            out_file_name = (
-                f"{descriptor}-{finer_descriptor}-{args['out_file_suffix']}.csv"
-            )
-            with open(out_file_name, mode="w", newline="") as file:
-                writer = csv.writer(file, lineterminator="\n")
-                writer.writerow([label_to_write])  # Descriptor
-                writer.writerow(["Time", "Value"])  # Header
-                for time, value in zip(times_to_extract, values_to_extract):
-                    writer.writerow([time, value])
+                    times_to_extract.append(time)
+                    values_to_extract.append(val)
+
+                out_file_name = f"{descriptor}-{finer_descriptor}-{args['out_file_suffix']}{'imag' if use_imag_vals else ''}.csv"
+                with open(out_file_name, mode="w", newline="") as file:
+                    writer = csv.writer(file, lineterminator="\n")
+                    writer.writerow([label_to_write])  # Descriptor
+                    writer.writerow(["Time", "Value"])  # Header
+                    for time, value in zip(times_to_extract, values_to_extract):
+                        writer.writerow([time, value])
         else:
             # treat a monte-carlo multi-sample
 
