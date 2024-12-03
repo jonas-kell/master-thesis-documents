@@ -60,5 +60,5 @@
     ],
     "gitlens.codeLens.authors.enabled": false,
     "gitlens.codeLens.recentChange.enabled": false,
-    "cSpell.words": ["Bosonic", "diagonalization", "mult"]
+    "cSpell.words": ["Bosonic", "cumulant", "cumulants", "diagonalization", "mult"]
 }

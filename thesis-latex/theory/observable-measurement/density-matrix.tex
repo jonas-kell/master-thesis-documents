@@ -41,7 +41,7 @@ The factor $\frac{1}{4}$ follows from a normalization argument in \autoref{eq:re
 The operators $\left(\pauli[]{$\alpha$}\otimes\pauli[]{$\beta$}\right)$ were manually translated into the required complex base-matrices in 
 \filepath{\cite{selfCode}}{/calculation-helpers/concurrence/spin-to-z-basis-transformation.py}, which is the same as the \emph{Kronecker product} \cite{kroneckerProduct} of the known matrix-representations (\autoref{eq:pauli-matrices}), precisely because of the consistent basis-convention.
 
-As hinted, one can now employ \autoref{eq:jordan-wigner-spin-hcb} to translate the operators $\pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$}$ into a form that may be inserted into \localObservable{N}{t} in \autoref{eq:expectation-value}. The non-trivial translations are listed in \autoref{eq:reduced-density-matrix-final-operators} (given $l\neq m$, the rest of the 16 factors can be trivially mirrored or multiplied from the give ones, because the $\pauli[]{0} = \one[]$ and \pauli[]{z} operators are diagonal in the used basis and the eigenvalue of all \one[] is 1).
+As hinted, one can now employ \autoref{eq:jordan-wigner-spin-hcb} to translate the operators $\pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$}$ into a form that may be inserted into the calculation of \localObservable{N}{t} in \autoref{eq:expectation-value}. The non-trivial translations are listed in \autoref{eq:reduced-density-matrix-final-operators} (given $l\neq m$, the rest of the 16 factors can be trivially mirrored or multiplied from the give ones, because the $\pauli[]{0} = \one[]$ and \pauli[]{z} operators are diagonal in the used basis and the eigenvalue of all \one[] is 1).
 
 \begin{equation}
     \label{eq:reduced-density-matrix-final-operators}
@@ -73,3 +73,5 @@ Based on the sampled state \ketN[N], in \autoref{eq:reduced-density-matrix-final
 Furthermore, \ketN[\vphantom{N}\smash{\tildetilde{N}}] indicates a flipping of both the occupation of $l,\, \sigma$ and $m,\, \mu$.
 
 The difference of effective hamiltonian with either one or two flipped occupations can be evaluated efficiently and is the last necessary optimization that will be presented in \fullref{sec:theory-optimizations}.
+
+It should be noted, that $\pauli[l,\,\sigma]{z}$ measurements are equivalent to re-scaled single-site-occupation measurements like in \autoref{eq:single-occupation-loc}.

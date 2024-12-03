@@ -161,6 +161,7 @@ Overall, the evaluation of this observable requires knowing the value of an obje
 
 \begin{equation}
     \label{eq:form-heff-difference}
+    \localObservable{N}{t} =
     i \cdot 
     \left[
         n_{m,\,\sigma} \cdot (1-n_{l,\,\sigma})
@@ -170,13 +171,13 @@ Overall, the evaluation of this observable requires knowing the value of an obje
     \cdot 
     \frac{\psiN[\vphantom{N}\smash{\tilde{N}}]}{\psiN}
     \cdot 
-     e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]}
+    e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]}
 \end{equation}
 
 The \fullref{sec:theory-optimizations-analytical} will go into how to compute this efficiently for states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected via the hopping between nearest-neighbor lattice sites.
 
 It is finally important to notice, that the objects from \autoref{eq:form-heff-difference} are not real-valued, but complex.
-Only the complete observable from the full sum over all basis-states \ketN over \localObservable{N}{t} has a fully vanishing imaginary part. 
+Only the complete observable with the full sum over all basis-states \ketN over \localObservable{N}{t} has a fully vanishing imaginary part. 
 Especially when the observable is approximated with an incomplete set of basis-states, computationally an imaginary component remains. 
 It is important to monitor the magnitude of this value and monitor it going to $0$.
 If it doesn't fully vanish, this indicates an error in the sampling strategy or the implementation or the number of sampled states is not great enough.

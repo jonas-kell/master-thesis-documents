@@ -1,4 +1,129 @@
-% TODO
+The energy \energyOft (\autoref{eq:energy-main}) is a key measure of many quantum-mechanical experiments, with the observable being the hamiltonian that governs the time-evolution.
+The variance \varianceOft of this quantity (\autoref{eq:variance-main}) describes the energy-fluctuations in the system.
 
+\begin{equation}
+    \label{eq:energy-main}
+    \energyOft = \frac{\bracketHelper{\psiOfT[\schroedingerPicture]}{\pictureHamiltonian[\schroedingerPicture]}{\psiOfT[\schroedingerPicture]}}{\braketHelper{\psiOfT[\schroedingerPicture]}{\psiOfT[\schroedingerPicture]}}
+       = \timeExpectationVal{\pictureHamiltonian[\schroedingerPicture]}
+\end{equation}
+\begin{equation}
+    \label{eq:variance-main}
+    \varianceOft = \frac{\bracketHelper{\psiOfT[\schroedingerPicture]}{{\pictureHamiltonian[\schroedingerPicture]}^2}{\psiOfT[\schroedingerPicture]}}{\braketHelper{\psiOfT[\schroedingerPicture]}{\psiOfT[\schroedingerPicture]}}-\left(\frac{\bracketHelper{\psiOfT[\schroedingerPicture]}{\pictureHamiltonian[\schroedingerPicture]}{\psiOfT[\schroedingerPicture]}}{\braketHelper{\psiOfT[\schroedingerPicture]}{\psiOfT[\schroedingerPicture]}}\right)^2
+       = \timeExpectationVal{{\pictureHamiltonian[\schroedingerPicture]}^2} - {\timeExpectationVal{\pictureHamiltonian[\schroedingerPicture]}}^2
+\end{equation}
 
-%TODO swapping == double flipping if controlled....
+Without any additional constrictions (like e.g. conservation of particle number) the energy - as well as all other cumulants of the hamiltonian operator - must be conserved under normal time evolution, as \autoref{eq:energy-conserved} shows. This uses the fact that an exact hamiltonian commutes with itself in all instances and allows to show that the energy $\energyOft = \energyOft[t=0]$.
+Because equivalent reasoning, all higher order cumulants must necessarily equal $0$ for all times, while the first cumulant % https://en.wikipedia.org/wiki/Cumulant (yes, energy is the first, not the zeroth)
+is constant (the first order being 0 comes only down to the choice of energy reference).
+
+\begin{equation}
+    \label{eq:energy-conserved}
+    \begin{split}
+        \energyOft &\stackrel{\ref{eq:energy-main}}{=}
+        \frac{\bracketHelper{\psiOfT[\schroedingerPicture]}{\pictureHamiltonian[\schroedingerPicture]}{\psiOfT[\schroedingerPicture]}}{\braketHelper{\psiOfT[\schroedingerPicture]}{\psiOfT[\schroedingerPicture]}}
+        \stackrel{\ref{eq:time-evolution-schroedinger}}{=}
+        \frac{\bracketHelper{\picturePsi[\schroedingerPicture]{}}{e^{i \pictureHamiltonian[\schroedingerPicture] t}{\pictureHamiltonian[\schroedingerPicture]}e^{-i \pictureHamiltonian[\schroedingerPicture] t}}{\picturePsi[\schroedingerPicture]{}}}{\bracketHelper{\picturePsi[\schroedingerPicture]{}}{e^{i \pictureHamiltonian[\schroedingerPicture] t}e^{-i \pictureHamiltonian[\schroedingerPicture] t}}{\picturePsi[\schroedingerPicture]{}}}\\
+        &\stackrel{\phantom{\ref{eq:time-evolution-schroedinger}}}{=}
+        \frac{\bracketHelper{\picturePsi[\schroedingerPicture]{}}{e^{i \pictureHamiltonian[\schroedingerPicture] t}e^{-i \pictureHamiltonian[\schroedingerPicture] t}{\pictureHamiltonian[\schroedingerPicture]}}{\picturePsi[\schroedingerPicture]{}}}{\bracketHelper{\picturePsi[\schroedingerPicture]{}}{e^{i \pictureHamiltonian[\schroedingerPicture] t}e^{-i \pictureHamiltonian[\schroedingerPicture] t}}{\picturePsi[\schroedingerPicture]{}}} = 
+        \frac{\bracketHelper{\picturePsi[\schroedingerPicture]{}}{\pictureHamiltonian[\schroedingerPicture]}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{\picturePsi[\schroedingerPicture]{}}{\picturePsi[\schroedingerPicture]{}}}
+         = \energyOft[t=0]
+    \end{split}
+\end{equation}
+
+While it might not seem to give much insight to calculate the time evolved measurements of these values if they are constant, in reality this serves the purpose of \emph{checking} the accuracy of potential approximations.
+If the time evolution is performed with an approximated, effective hamiltonian, then the exact one will no longer commute with it and the energy will vary over time and the variance will have nonzero readings.
+
+Measuring \localObservable{N}{t} for $\ObservableOp = \pictureHamiltonian[\schroedingerPicture]$ is straight forward, as \autoref{eq:energy-local-observable} shows.
+
+\begin{equation}
+    \label{eq:energy-local-observable}
+    \begin{split}
+        \localObservable{N}{t} &\stackrel{\ref{eq:expectation-value}}{=}
+        \lsum[K] \bracketHelper{N}{\pictureHamiltonian[\schroedingerPicture]}{K} e^{\HeffOft[K]-\HeffOft[N]}
+        \frac{
+            \psiN[K]
+        }{
+            \psiN[N]
+        } \\
+        &\stackrel{\ref{eq:main-hamiltonian-h0},\,\ref{eq:main-hamiltonian-perturbation}}{=}
+        %
+        \lsum[K] \bracketHelper{N}{U \cdot \lsum \nop{l}{\up}\nop{l}{\down} + \lsum[l,\,\sigma] \epsl \nop{l}{\sigma}}{K} e^{\HeffOft[K]-\HeffOft[N]}
+        \frac{
+            \psiN[K]
+        }{
+            \psiN[N]
+        }
+        %
+        \\&\stackrel{\phantom{\ref{eq:base-energy}}}{-}
+        %
+        J \cdot 
+        \lsum[K] \bracketHelper{N}{\neighborsumWSpin{l}{m}{\sigma} \left(\withspinhcop{l}{\sigma}{\dagger} \withspinhcop{m}{\sigma}{} + \withspinhcop{m}{\sigma}{\dagger} \withspinhcop{l}{\sigma}{} \right)}{K} e^{\HeffOft[K]-\HeffOft[N]}
+        \frac{
+            \psiN[K]
+        }{
+            \psiN[N]
+        }
+        \\&\stackrel{\phantom{\ref{eq:base-energy}}}{=}
+        %
+        \lsum \lsum[K] \bracketHelper{N}{U \cdot  \nop{l}{\up}\nop{l}{\down} + \epsl \left(\nop{l}{\up} + \nop{l}{\down}\right)}{K} e^{\HeffOft[K]-\HeffOft[N]}
+        \frac{
+            \psiN[K]
+        }{
+            \psiN[N]
+        }
+        %
+        \\&\stackrel{\phantom{\ref{eq:base-energy}}}{-}
+        %
+        J \cdot \neighborsumWSpin{l}{m}{\sigma}
+        \lsum[K] \bracketHelper{N}{ \withspinhcop{l}{\sigma}{\dagger} \withspinhcop{m}{\sigma}{} + \withspinhcop{m}{\sigma}{\dagger} \withspinhcop{l}{\sigma}{} }{K} e^{\HeffOft[K]-\HeffOft[N]}
+        \frac{
+            \psiN[K]
+        }{
+            \psiN[N]
+        }
+        \\&\stackrel{\phantom{\ref{eq:base-energy}}}{=}
+        %
+        \lsum \left(U \cdot  n_{l,\,\up}n_{l,\,\down} + \epsl \left(n_{l,\,\up} + n_{l,\,\down}\right)\right)
+        %
+        \\&\stackrel{\phantom{\ref{eq:base-energy}}}{-}
+        %
+        J \cdot \neighborsumWSpin{l}{m}{\sigma}
+        \lsum[K] \bracketHelper{N}{ \withspinhcop{l}{\sigma}{\dagger} \withspinhcop{m}{\sigma}{} + \withspinhcop{m}{\sigma}{\dagger} \withspinhcop{l}{\sigma}{} }{K} e^{\HeffOft[K]-\HeffOft[N]}
+        \frac{
+            \psiN[K]
+        }{
+            \psiN[N]
+        }\\
+        %
+        &\stackrel{\ref{eq:base-energy}}{=} E_0(N,\,t)-
+        %
+        J \cdot \neighborsumWSpin{l}{m}{\sigma}
+        \left(n_{l,\,\sigma} (1- n_{m,\,\sigma}) + (1-n_{l,\,\sigma}) n_{m,\,\sigma}\right)
+         e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]}
+        \frac{
+            \psiN[\vphantom{N}\smash{\tilde{N}}]
+        }{
+            \psiN[N]
+        }\\
+        %
+        &\stackrel{\phantom{\ref{eq:base-energy}}}{=} E_0(N,\,t)-
+        %
+        J \cdot \neighborsumWSpin{l}{m}{\sigma}
+        \left(n_{l,\,\sigma} \neq n_{m,\,\sigma}\right)
+         e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]}
+        \frac{
+            \psiN[\vphantom{N}\smash{\tilde{N}}]
+        }{
+            \psiN[N]
+        }\\
+        %
+        &\stackrel{\phantom{\ref{eq:base-energy}}}{=} E_0(N,\,t) + E_\text{V}(N,\,t)
+    \end{split}
+\end{equation}
+
+\ketN[\vphantom{N}\smash{\tilde{N}}] is here the state that is obtained, when starting on state \ketN and performing a swapping of the occupations of sites $l,\,\sigma$ and $m,\,\sigma$.
+On comparison with \autoref{eq:base-energy} one can see, that the definition for $E_0(N,\,t)$ is consistent for the expansion and the observable calculation.
+Newly defined is the energy $E_\text{V}(N,\,t)$, originating from \Vhamiltonian[].
+As hinted for the other observables earlier, the difference of hamiltonians with local modifications $\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]$ can be evaluated in constant time.
+However the energy is the first observable that requires \bigo{\text{\#}(\text{sites})} on its own to evaluate. This can not be reduced, however as will become apparent in the calculation of the variance, this should be an upper bound for observable-calculations.
+
