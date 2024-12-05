@@ -12,9 +12,12 @@ The variance \varianceOft of this quantity (\autoref{eq:variance-main}) describe
        = \timeExpectationVal{{\pictureHamiltonian[\schroedingerPicture]}^2} - {\timeExpectationVal{\pictureHamiltonian[\schroedingerPicture]}}^2
 \end{equation}
 
-Without any additional constrictions (like e.g. conservation of particle number) the energy - as well as all other cumulants of the hamiltonian operator - must be conserved under normal time evolution, as \autoref{eq:energy-conserved} shows. This uses the fact that an exact hamiltonian commutes with itself in all instances and allows to show that the energy $\energyOft = \energyOft[t=0]$.
-Because equivalent reasoning, all higher order cumulants must necessarily equal $0$ for all times, while the first cumulant % https://en.wikipedia.org/wiki/Cumulant (yes, energy is the first, not the zeroth)
-is constant (the first order being 0 comes only down to the choice of energy reference).
+Without any additional constrictions %(like e.g. conservation of particle number) 
+the energy - as well as all other cumulants of the hamiltonian operator - must be conserved under normal time evolution, as \autoref{eq:energy-conserved} shows. 
+This comes from the fact, that an exact hamiltonian commutes with itself in all instances and allows to show that the energy $\energyOft = \energyOft[t=0]$.
+With equivalent reasoning, also the higher order cumulants must necessarily be constant for all times.
+The energy as first cumulant % https://en.wikipedia.org/wiki/Cumulant (yes, energy is the first, not the zeroth) 
+being 0 or constant comes down to the choice of energy reference.
 
 \begin{equation}
     \label{eq:energy-conserved}
@@ -30,8 +33,47 @@ is constant (the first order being 0 comes only down to the choice of energy ref
     \end{split}
 \end{equation}
 
+The higher order cumulants vanish, depending on the initial state. 
+\autoref{eq:variance-constant} shows, the variance calculation expanded in the eigenbasis of the hamiltonian.
+For initial states that are comprised of only one element of that basis $\ketN[{\picturePsi[\schroedingerPicture]{}}] \propto \ketN[E_i],\,\,\pictureHamiltonian[\schroedingerPicture]\ketN[E_i] = E_i\cdot\ketN[E_i]$, the higher order cumulants vanish. 
+Looking at the last statement, in \autoref{eq:variance-constant}, in the case that all $c(E_i) = 0$ except for one specific $i$, the difference must vanish.
+Otherwise the variance is non-zero, but still constant in time, because of the argument in \autoref{eq:energy-conserved}.
+
+\begin{equation}
+    \label{eq:variance-constant}
+    \begin{split}
+        \varianceOft[t=0] &\stackrel{\ref{eq:variance-main}}{=} \frac{\bracketHelper{\picturePsi[\schroedingerPicture]{}}{{\pictureHamiltonian[\schroedingerPicture]}^2}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{\picturePsi[\schroedingerPicture]{}}{\picturePsi[\schroedingerPicture]{}}}-\left(\frac{\bracketHelper{\picturePsi[\schroedingerPicture]{}}{\pictureHamiltonian[\schroedingerPicture]}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{\picturePsi[\schroedingerPicture]{}}{\picturePsi[\schroedingerPicture]{}}}\right)^2
+        \\ &\stackrel{\phantom{\ref{eq:variance-main}}}{=} 
+        \lsum[i]
+        \lsum[j]
+        \frac{\bracketHelper{E_i}{c^\ast(E_i)c(E_j){\pictureHamiltonian[\schroedingerPicture]}^2}{E_j}}{\braketHelper{\picturePsi[\schroedingerPicture]{}}{\picturePsi[\schroedingerPicture]{}}}
+        -\left(
+            \lsum[i]
+            \lsum[j]
+            \frac{\bracketHelper{E_i}{c^\ast(E_i)c(E_j)\pictureHamiltonian[\schroedingerPicture]}{E_j}}{\braketHelper{\picturePsi[\schroedingerPicture]{}}{\picturePsi[\schroedingerPicture]{}}}
+        \right)^2
+        \\ &\stackrel{\phantom{\ref{eq:variance-main}}}{=} 
+        \frac{
+            \lsum[i]
+            \absSquare{c(E_i)}{E_i}^2}{\braketHelper{\picturePsi[\schroedingerPicture]{}}{\picturePsi[\schroedingerPicture]{}}}
+        -\left(
+            \lsum[i]
+            \frac{\absSquare{c(E_i)}E_i}{\braketHelper{\picturePsi[\schroedingerPicture]{}}{\picturePsi[\schroedingerPicture]{}}}
+        \right)^2
+        =
+        \frac{
+            \lsum[i]
+            \absSquare{c(E_i)}{E_i}^2 
+            -\left(
+                \lsum[i]
+                \absSquare{c(E_i)}E_i
+            \right)^2
+        }{\braketHelper{\picturePsi[\schroedingerPicture]{}}{\picturePsi[\schroedingerPicture]{}}}
+    \end{split}
+\end{equation}
+
 While it might not seem to give much insight to calculate the time evolved measurements of these values if they are constant, in reality this serves the purpose of \emph{checking} the accuracy of potential approximations.
-If the time evolution is performed with an approximated, effective hamiltonian, then the exact one will no longer commute with it and the energy will vary over time and the variance will have nonzero readings.
+If the time evolution is performed with an approximated, effective hamiltonian, then the exact one will no longer commute with it and the energy and variance will vary over time.
 
 Measuring \localObservable{N}{t} for $\ObservableOp = \pictureHamiltonian[\schroedingerPicture]$ is straight forward, as \autoref{eq:energy-local-observable} shows.
 
