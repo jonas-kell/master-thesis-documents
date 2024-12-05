@@ -46,25 +46,25 @@ As hinted, one can now employ \autoref{eq:jordan-wigner-spin-hcb} to translate t
 \begin{equation}
     \label{eq:reduced-density-matrix-final-operators}
     \begin{split}
-        \pauli[l,\,\sigma]{x} \pauli[m,\,\mu]{0}  &\hat{=}
+        \ObservableOp = \pauli[l,\,\sigma]{x} \pauli[m,\,\mu]{0}   &: \quad \localObservable{N}{t} =
         \frac{\psiN[\vphantom{N}\smash{\tilde{N}}]}{\psiN}        \cdot         e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]}
         \\
-        \pauli[l,\,\sigma]{y} \pauli[m,\,\mu]{0}  &\hat{=}
+        \ObservableOp = \pauli[l,\,\sigma]{y} \pauli[m,\,\mu]{0}   &: \quad \localObservable{N}{t} =
         \frac{\psiN[\vphantom{N}\smash{\tilde{N}}]}{\psiN}        \cdot         e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]} \cdot i \cdot (1-2 \cdot n_{l,\,\sigma}) 
         \\
-        \pauli[l,\,\sigma]{z} \pauli[m,\,\mu]{0}  &\hat{=}
+        \ObservableOp = \pauli[l,\,\sigma]{z} \pauli[m,\,\mu]{0}   &: \quad \localObservable{N}{t} =
         \frac{\psiN[\vphantom{N}\smash{\tilde{N}}]}{\psiN}        \cdot         e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]} \cdot (2 \cdot n_{l,\,\sigma} - 1) 
         \\
-        \pauli[l,\,\sigma]{x} \pauli[m,\,\mu]{x}  &\hat{=}
+        \ObservableOp = \pauli[l,\,\sigma]{x} \pauli[m,\,\mu]{x}   &: \quad \localObservable{N}{t} =
         \frac{\psiN[\vphantom{N}\smash{\tildetilde{N}}]}{\psiN}        \cdot         e^{\HeffOft[\vphantom{N}\smash{\tildetilde{N}}]-\HeffOft[N]}
         \\
-        \pauli[l,\,\sigma]{y} \pauli[m,\,\mu]{y}  &\hat{=}
+        \ObservableOp = \pauli[l,\,\sigma]{y} \pauli[m,\,\mu]{y}   &: \quad \localObservable{N}{t} =
         \frac{\psiN[\vphantom{N}\smash{\tildetilde{N}}]}{\psiN}        \cdot         e^{\HeffOft[\vphantom{N}\smash{\tildetilde{N}}]-\HeffOft[N]} \cdot (2 \cdot n_{l,\,\sigma} - 1) \cdot (1- 2 \cdot n_{m,\,\mu})
         \\
-        \pauli[l,\,\sigma]{x} \pauli[m,\,\mu]{y}  &\hat{=}
+        \ObservableOp = \pauli[l,\,\sigma]{x} \pauli[m,\,\mu]{y}   &: \quad \localObservable{N}{t} =
         \frac{\psiN[\vphantom{N}\smash{\tildetilde{N}}]}{\psiN}        \cdot         e^{\HeffOft[\vphantom{N}\smash{\tildetilde{N}}]-\HeffOft[N]} \cdot i \cdot (1-2 \cdot n_{m,\,\mu}) 
         \\
-        \pauli[l,\,\sigma]{y} \pauli[m,\,\mu]{x}  &\hat{=}
+        \ObservableOp = \pauli[l,\,\sigma]{y} \pauli[m,\,\mu]{x}   &: \quad \localObservable{N}{t} =
         \frac{\psiN[\vphantom{N}\smash{\tildetilde{N}}]}{\psiN}        \cdot         e^{\HeffOft[\vphantom{N}\smash{\tildetilde{N}}]-\HeffOft[N]} \cdot i \cdot (1-2 \cdot n_{l,\,\sigma}) 
     \end{split}
 \end{equation}
