@@ -190,7 +190,7 @@ The variance can be evaluated by splitting the expectation values for the parts 
 It is important to notice, that only $\HzeroHamiltonian[\schroedingerPicture]\Vhamiltonian[\schroedingerPicture] + \Vhamiltonian[\schroedingerPicture]\HzeroHamiltonian[\schroedingerPicture]$ is a hermitian operator, $\HzeroHamiltonian[\schroedingerPicture]\Vhamiltonian[\schroedingerPicture]$ alone isn't.
 The derivation for half of the terms can be taken from \autoref{eq:energy-local-observable}, only $\timeExpectationVal{\HzeroHamiltonian[\schroedingerPicture]\Vhamiltonian[\schroedingerPicture] + \Vhamiltonian[\schroedingerPicture]\HzeroHamiltonian[\schroedingerPicture]}$, $\timeExpectationVal{{\HzeroHamiltonian[\schroedingerPicture]}^2}$ and $\timeExpectationVal{{\Vhamiltonian[\schroedingerPicture]}^2}$ require closer inspection.
 
-For the case of $\timeExpectationVal{\HzeroHamiltonian[\schroedingerPicture]\Vhamiltonian[\schroedingerPicture] + \Vhamiltonian[\schroedingerPicture]\HzeroHamiltonian[\schroedingerPicture]}$ and $\timeExpectationVal{{\HzeroHamiltonian[\schroedingerPicture]}^2}$, \autoref{eq:simple-variance-terms} shows the expressions for \localObservable{N}{t}. Comparing with \autoref{eq:energy-local-observable}, the sums can be fully separated, as the \ketN[N] are eigenstates of \HzeroHamiltonian[\schroedingerPicture] any the \HzeroHamiltonian[\schroedingerPicture] can always be moved outside without interfering with the states that are next to \Vhamiltonian[\schroedingerPicture].
+For the case of $\timeExpectationVal{\HzeroHamiltonian[\schroedingerPicture]\Vhamiltonian[\schroedingerPicture] + \Vhamiltonian[\schroedingerPicture]\HzeroHamiltonian[\schroedingerPicture]}$ and $\timeExpectationVal{{\HzeroHamiltonian[\schroedingerPicture]}^2}$, \autoref{eq:simple-variance-terms} shows the expressions for \localObservable{N}{t}. Comparing with \autoref{eq:energy-local-observable}, the sums can be fully separated, as the \ketN[N] are eigenstates of \HzeroHamiltonian[\schroedingerPicture] and the \HzeroHamiltonian[\schroedingerPicture]-sum can always be moved outside without interfering with the states that are next to \Vhamiltonian[\schroedingerPicture].
 
 
 \begin{equation}
@@ -285,3 +285,80 @@ This reduction is implemented in the codebase and verified in
 
 \filepath{\cite{selfCode}}{/computation-scripts/compareenergyvariance.py}.
 
+For a second way to acquire the desired values it is necessary derive a different expression for \localObservable{N}{t}, than the one previously presented in \autoref{eq:expectation-value}.
+Starting with a operator that is a second power of any other operator and can be written $\ObservableOp = {\ObservableOp{}'}^2$, one can derive the alternate formulation in \autoref{eq:expectation-value-square-operator}.
+
+\begin{equation}
+    \label{eq:expectation-value-square-operator}
+    \begin{split}
+        &\frac{\bracketHelper{\psiOfT[\schroedingerPicture]}{{\ObservableOp{}'}{\ObservableOp{}'}}{\psiOfT[\schroedingerPicture]}}{\braketHelper{\psiOfT[\schroedingerPicture]}{\psiOfT[\schroedingerPicture]}}
+        %
+        \stackrel{\phantom{\ref{eq:time-evolution-target}}}{=} 
+        \frac{
+            \lsum[N] \bracketHelper{\psiOfT[\schroedingerPicture]}{{\ObservableOp{}'}}{N} \bracketHelper{N}{{\ObservableOp{}'}}{\psiOfT[\schroedingerPicture]}
+        }{
+            \lsum[K] \braketHelper{\psiOfT[\schroedingerPicture]}{K} \braketHelper{K}{\psiOfT[\schroedingerPicture]}
+        }\\
+        %
+        & \stackrel{\ref{eq:time-evolved-state-and-dagger}}{=} 
+        \lsum[N]
+        \frac{
+            \bracketHelper{\psiOfT[\schroedingerPicture]}{{\ObservableOp{}'}}{N} \bracketHelper{N}{{\ObservableOp{}'}}{\psiOfT[\schroedingerPicture]}
+        }{
+            \lsum[K] e^{\HeffOftStar[K]} \psiNStar[K] e^{\HeffOft[K]} \psiN[K] 
+        }
+        \cdot
+        \frac{\braketHelper{\psiOfT[\schroedingerPicture]}{N}}{\braketHelper{\psiOfT[\schroedingerPicture]}{N}}
+        \cdot 
+        \frac{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}
+        \\
+        & \stackrel{\phantom{\ref{eq:time-evolved-state-and-dagger}}}{=} 
+        \lsum[N]
+        \frac{
+            \braketHelper{\psiOfT[\schroedingerPicture]}{N} \braketHelper{N}{\psiOfT[\schroedingerPicture]}
+        }{
+            \lsum[K] \absSquare{e^{\HeffOft[K]}} \absSquare{\psiN[K]} 
+        } \cdot 
+        \frac{\bracketHelper{\psiOfT[\schroedingerPicture]}{{\ObservableOp{}'}}{N}}{\braketHelper{\psiOfT[\schroedingerPicture]}{N}}
+        \cdot 
+        \frac{\bracketHelper{N}{{\ObservableOp{}'}}{\psiOfT[\schroedingerPicture]}}{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}
+        \\
+        & \stackrel{\ref{eq:time-evolved-state-and-dagger}}{=} 
+        \lsum[N]
+        \frac{
+            e^{\HeffOftStar} \psiNStar e^{\HeffOft} \psiN{}
+        }{
+            \lsum[K] \absSquare{e^{\HeffOft[K]}} \absSquare{\psiN[K]} 
+        }  \cdot 
+        \absSquare{\frac{\bracketHelper{N}{{\ObservableOp{}'}}{\psiOfT[\schroedingerPicture]}}{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}}
+        \\& \stackrel{\phantom{\ref{eq:time-evolved-state-and-dagger}}}{=} 
+        \lsum[N]
+        \underbrace{\frac{
+            \absSquare{e^{\HeffOft}} \absSquare{\psiN} 
+        }{
+            \lsum[K] \absSquare{e^{\HeffOft[K]}} \absSquare{\psiN[K]} 
+        }}_{\probabilityOf{N}{t}} \cdot 
+        \absSquare{\frac{\bracketHelper{N}{{\ObservableOp{}'}}{\psiOfT[\schroedingerPicture]}}{\braketHelper{N}{\psiOfT[\schroedingerPicture]}}}\\
+        &\stackrel{\ref{eq:expectation-value}}{=} \lsum[N]
+        \probabilityOf{N}{t}
+        \underbrace{\absSquare{\lsum[K] \bracketHelper{N}{{\ObservableOp{}'}}{K} e^{\HeffOft[K]-\HeffOft[N]}
+        \frac{
+            \psiN[K]
+        }{
+            \psiN[N]
+        }}}_{\localObservable{N}{t}}
+    \end{split}
+\end{equation}
+
+Comparing with the previous expression, the result is now much cheaper to compute - as \autoref{eq:energy-local-observable} pins the value of the sum in the absolute square to $E_V(N,\,t)$.
+Combining the two methods of employing locality and strategic expansion of the time evolved wave-function makes it possible to efficiently evaluate most observables.
+Also the result from \autoref{eq:simple-variance-terms} for $\ObservableOp = {\HzeroHamiltonian[\schroedingerPicture]}^2$ holds, as $E_0(N,\,t)$ is real-valued.
+
+\begin{equation}
+    \label{eq:v-squared-variance-last-term}
+        \ObservableOp ={\Vhamiltonian[\schroedingerPicture]}^2: \quad \localObservable{N}{t} \stackrel{\ref{eq:expectation-value-square-operator},\,\ref{eq:energy-local-observable}}{=}
+        \absSquare{E_\text{V}(N,\,t)}
+\end{equation}
+
+So to now get the full expectation value for the energy fluctuations, it is in fact only necessary to measure $E_0(N,\,t)$ and $E_V(N,\,t)$ for each sampled state - making it exactly as expensive to compute as the energy itself.
+Then however it requires aggregating $E_0(N,\,t)$, $E_V(N,\,t)$, $\left(E_0(N,\,t)\right)^2$, $\absSquare{E_V(N,\,t)}$ and $E_0(N,\,t) \cdot E_\text{V}(N,\,t) + \left[E_0(N,\,t) \cdot E_\text{V}(N,\,t) \right]^\ast$ separately (scaled with the probability) for all sampled states, to be able to combine all terms according to \autoref{eq:variance-split} in the end.
