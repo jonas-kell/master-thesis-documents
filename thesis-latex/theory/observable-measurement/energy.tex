@@ -204,3 +204,84 @@ For the case of $\timeExpectationVal{\HzeroHamiltonian[\schroedingerPicture]\Vha
         \ObservableOp =\Vhamiltonian[\schroedingerPicture]\HzeroHamiltonian[\schroedingerPicture]   &: \quad \localObservable{N}{t} = \left[E_0(N,\,t) \cdot E_\text{V}(N,\,t) \right]^\ast
     \end{split}
 \end{equation}
+
+Sadly, calculating \localObservable{N}{t} for $\ObservableOp = {\Vhamiltonian[\schroedingerPicture]}^2$ in the exact same way has a way higher runtime complexity that all previous observables.
+Plugging it into \autoref{eq:expectation-value} like previous operators, one can not use the strategy of pulling out one sum early, as \ketN[N] is not an eigenvector of \Vhamiltonian[\schroedingerPicture].
+And the full expression requires \bigo{\left[\text{\#}(\text{sites})\right]^2} operations to evaluate. 
+
+There are multiple ways to get around this though. First there is the possibility of introducing advantageous terms as presented in \autoref{eq:v-squared-hard-computation}, yielding the desired expression.
+
+\begin{equation}
+    \label{eq:v-squared-hard-computation}
+    \begin{split}
+        \localObservable{N}{t} &\stackrel{\ref{eq:expectation-value}}{=}
+        \lsum[K] \bracketHelper{N}{{\Vhamiltonian[\schroedingerPicture]}^2}{K} e^{\HeffOft[K]-\HeffOft[N]}
+        \frac{
+            \psiN[K]
+        }{
+            \psiN[N]
+        }  - \left(E_V(N,\,t)\right)^2 + \left(E_V(N,\,t)\right)^2\\
+        &\stackrel{\ref{eq:main-hamiltonian-perturbation},\,\ref{eq:energy-local-observable}}{=}
+        J^2 \fullneighborsum[,\,\sigma]{l}{m}\fullneighborsum[,\,\mu]{a}{b}
+        \left(
+            \lsum[K]
+            e^{\HeffOft[K]-\HeffOft[N]}
+            \frac{
+                \psiN[K]
+            }{
+                \psiN[N]
+            }
+            \bracketHelper{N}{\withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinhcop[\schroedingerPicture]{m}{\sigma}{}\withspinhcop[\schroedingerPicture]{a}{\mu}{\dagger}\withspinhcop[\schroedingerPicture]{b}{\mu}{}}{K}
+        \right.
+        \\&\quad-
+        \left.
+            \lsum[M]
+            \lsum[L]
+            \frac{e^{\HeffOft[M]-\HeffOft[N]}}{e^{\HeffOft[N]-\HeffOft[L]}}
+            \frac{
+                \psiN[M]\psiN[L]
+            }{
+                \psiN[N]
+            }
+            \bracketHelper{N}{\withspinhcop[\schroedingerPicture]{l}{\sigma}{\dagger}\withspinhcop[\schroedingerPicture]{m}{\sigma}{}}{L}
+            \bracketHelper{N}{\withspinhcop[\schroedingerPicture]{a}{\mu}{\dagger}\withspinhcop[\schroedingerPicture]{b}{\mu}{}}{M}
+        \right) 
+        \\&\quad + \left(E_V(N,\,t)\right)^2
+        \\&\stackrel{\phantom{\ref{eq:expectation-value}}}{=}
+        J^2 \fullneighborsum[,\,\sigma]{l}{m}\fullneighborsum[,\,\mu]{a}{b}
+        \left(
+            e^{\HeffOft[\vphantom{N}\smash{\tildetilde{N}}(l,m,\sigma,a,b,\mu)]-\HeffOft[N]}
+            \frac{
+                \psiN[\vphantom{N}\smash{\tildetilde{N}}(l,m,\sigma,a,b,\mu)]
+            }{
+                \psiN[N]
+            }
+            I_\text{occ}\left(N,l,m,\sigma,a,b,\mu\right)
+        \right.
+        \\&\stackrel{\phantom{\ref{eq:expectation-value}}}{-}
+        \left.
+            \frac{e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}(a,b,\mu)]-\HeffOft[N]}}{e^{\HeffOft[N]-\HeffOft[\vphantom{N}\smash{\tilde{N}}(l,m,\sigma)]}}
+            \frac{
+                \psiN[\vphantom{N}\smash{\tilde{N}}(a,b,\mu)]\psiN[\vphantom{N}\smash{\tilde{N}}(l,m,\sigma)]
+            }{
+                \psiN[N]
+            }
+            \left(n_{l,\,\sigma} \neq n_{m,\,\sigma}\right)
+            \left(n_{a,\,\mu} \neq n_{b,\,\mu}\right)
+        \right) 
+        \\&\stackrel{\phantom{\ref{eq:expectation-value}}}{+} \left(E_V(N,\,t)\right)^2
+    \end{split}
+\end{equation}
+
+$I_\text{occ}\left(N,l,m,\sigma,a,b,\mu\right)$ is in this relation a four-way interaction term depending on the occupations of the state \ketN and the indices $l$, $m$, $a$ and $b$, as well as the spin directions $\sigma$ and $\mu$. It must take the cases into account, where $\sigma = \mu$ and $l=a$ or $l=b$ or $m=a$ or $m=b$ and treat them accordingly.
+Through the introduction of the extra terms, \autoref{eq:v-squared-hard-computation} first seems overly complicated and yet still \bigo{\left[\text{\#}(\text{sites})\right]^2}, because of the two sums over $l$ and $a$. 
+However because of the limited interaction range of \HeffOft[\ast] - based on the order of expansion that is taken into account - under specific conditions (which will be touched in \fullref{sec:theory-optimizations-geometry}), the bracket will in fact cancel for terms with sites $l$ and $a$ far enough apart.
+For larger systems basically all sites are \glqq far enough\grqq{} apart, meaning the expression can be reduced to a single sum \bigo{\text{\#}(\text{sites})} that for each site needs to only cover the \emph{sphere of possible interactions}.
+All terms between the states $\ketN[\vphantom{N}\smash{\tilde{N}}(\ast)] \leftrightarrow \ketN$  have been previously stated to be possible to be evaluated efficiently if connected by a two-occupation-swap.
+And also the four-occupation-interactions between $\ketN[\vphantom{N}\smash{\tildetilde{N}}(\ast)] \leftrightarrow \ketN$ can each be reduced to two two-occupation-swaps.
+All this together shows that it is possible to reduce second order operators to a computational effort of \bigo{\text{\#}(\text{sites})} times the size of the interaction sphere. 
+
+This reduction is implemented in the codebase and verified in 
+
+\filepath{\cite{selfCode}}{/computation-scripts/compareenergyvariance.py}.
+
