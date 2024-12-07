@@ -17,7 +17,7 @@ As it is again not feasible to obtain via tracing out, the matrix can be calcula
 \begin{equation}
     \label{eq:reduced-density-matrix-via-paulis}
     \rho_A (t) = \rho_{l,\,\sigma,\,m,\,\mu} (t) = \frac{1}{4} \sum\limits_{\alpha,\beta\in\left\{0,\text{x},\text{y},\text{z}\right\}}
-    {\left\langle \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} \right\rangle}_{\psiOfT} \left(\pauli[]{$\alpha$}\otimes\pauli[]{$\beta$}\right)
+    \timeExpectationVal{ \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} } \left(\pauli[]{$\alpha$}\otimes\pauli[]{$\beta$}\right)
 \end{equation}
 
 \autoref{eq:reduced-density-matrix-via-paulis} uses the property, that the 16 matrices $\pauli{$\alpha$}\otimes\pauli{$\beta$}$ are a complete basis of the complex $4\times 4$ matrices.
@@ -27,16 +27,16 @@ The factor $\frac{1}{4}$ follows from a normalization argument in \autoref{eq:re
 \begin{equation}
     \label{eq:reduced-density-matrix-normalization}
     \begin{split}
-        {\left\langle \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} \right\rangle}_{\psiOfT} &= \partialTrace{}{\rho_{l,\,\sigma,\,m,\,\mu} (t) \left(\pauli[l,\,\sigma]{$\alpha$}\otimes\pauli[m,\,\mu]{$\beta$}\right)}  \\
-        &\stackrel{\ref{eq:reduced-density-matrix-via-paulis}}{=}\sum\limits_{\alpha',\beta'\in\left\{0,\text{x},\text{y},\text{z}\right\}} \frac{{\left\langle \pauli[l,\,\sigma]{$\alpha'$}\pauli[m,\,\mu]{$\beta'$} \right\rangle}_{\psiOfT}}{4}
+        \timeExpectationVal{ \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} } &= \partialTrace{}{\rho_{l,\,\sigma,\,m,\,\mu} (t) \left(\pauli[l,\,\sigma]{$\alpha$}\otimes\pauli[m,\,\mu]{$\beta$}\right)}  \\
+        &\stackrel{\ref{eq:reduced-density-matrix-via-paulis}}{=}\sum\limits_{\alpha',\beta'\in\left\{0,\text{x},\text{y},\text{z}\right\}} \frac{{\timeExpectationVal{ \pauli[l,\,\sigma]{$\alpha'$}\pauli[m,\,\mu]{$\beta'$} }}}{4}
         \partialTrace{}{\left(\pauli{$\alpha'$}\otimes\pauli{$\beta'$}\right)\left(\pauli{$\alpha$}\otimes\pauli{$\beta$}\right)}\\
-        &\stackrel{\phantom{\ref{eq:reduced-density-matrix-via-paulis}}}{=}\sum\limits_{\alpha',\beta'\in\left\{0,\text{x},\text{y},\text{z}\right\}} \frac{{\left\langle \pauli[l,\,\sigma]{$\alpha'$}\pauli[m,\,\mu]{$\beta'$} \right\rangle}_{\psiOfT}}{4}
+        &\stackrel{\phantom{\ref{eq:reduced-density-matrix-via-paulis}}}{=}\sum\limits_{\alpha',\beta'\in\left\{0,\text{x},\text{y},\text{z}\right\}} \frac{\timeExpectationVal{ \pauli[l,\,\sigma]{$\alpha'$}\pauli[m,\,\mu]{$\beta'$} }}{4}
         \delta_{\alpha',\,\alpha}\delta_{\beta',\,\beta}\partialTrace{}{\one[4\times 4]}\\
-        &\stackrel{\phantom{\ref{eq:reduced-density-matrix-via-paulis}}}{=}\frac{4}{4} \cdot {\left\langle \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} \right\rangle}_{\psiOfT}
+        &\stackrel{\phantom{\ref{eq:reduced-density-matrix-via-paulis}}}{=}\frac{4}{4} \cdot \timeExpectationVal{ \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} }
     \end{split}
 \end{equation}
 
-\autoref{eq:reduced-density-matrix-via-paulis} now has the advantage, that the ${\left\langle \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} \right\rangle}_{\psiOfT}$ can be evaluated by sampling from a state \psiOfT, that has been acquired by any desired means or sampling methods.
+\autoref{eq:reduced-density-matrix-via-paulis} now has the advantage, that the $\timeExpectationVal{ \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} }$ can be evaluated by sampling from a state \psiOfT, that has been acquired by any desired means or sampling methods.
 
 The operators $\left(\pauli[]{$\alpha$}\otimes\pauli[]{$\beta$}\right)$ were manually translated into the required complex base-matrices in 
 \filepath{\cite{selfCode}}{/calculation-helpers/concurrence/spin-to-z-basis-transformation.py}, which is the same as the \emph{Kronecker product} \cite{kroneckerProduct} of the known matrix-representations (\autoref{eq:pauli-matrices}), precisely because of the consistent basis-convention.
