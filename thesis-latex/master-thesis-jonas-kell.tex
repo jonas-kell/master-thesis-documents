@@ -118,15 +118,32 @@ How the parts have been adapted, as well as the original author being the thesis
         \input{./theory/observable-measurement/energy.tex}
         \FloatBarrier
 
-        \subsection{Monte Carlo Sampling}
-        \label{sec:theory-monte-carlo}
-        \input{./theory/mc-sampling/mc-sampling.tex}
-        \FloatBarrier
+    \section{Variational Classical Networks}
+    \label{sec:theory-variational-classical-networks}
+    \input{theory/variational-classical-networks/introduction.tex}
+    \FloatBarrier
         
+        \subsection{General Theory of VCN}
+        \label{sec:theory-variational-classical-networks-basics}
+        \input{theory/variational-classical-networks/general-vcn.tex}
+        \FloatBarrier
+
+
+        \subsection{Application to this Task}
+        \label{sec:theory-variational-classical-networks-application}
+        \input{theory/variational-classical-networks/application-vcn.tex}
+        \FloatBarrier
+
+
     \section{Time-Complexity Optimizations}
     \label{sec:theory-optimizations}
     \input{./theory/optimizations/introduction.tex}
     \FloatBarrier
+
+        \subsection{Monte Carlo Sampling}
+        \label{sec:theory-optimizations-monte-carlo}
+        \input{./theory/optimizations/mc-sampling.tex}
+        \FloatBarrier
 
         \subsection{Analytical Simplifications for Special Cases}
         \label{sec:theory-optimizations-analytical}
@@ -137,18 +154,6 @@ How the parts have been adapted, as well as the original author being the thesis
         \label{sec:theory-optimizations-geometry}
         \input{./theory/optimizations/geometry.tex}
         \FloatBarrier
-
-    \section{Variational Classical Networks}
-        \cite{neuralNetworkQuantumStates} % neural quantum states general
-        
-        \subsection{General Theory of VCN}
-        \cite{originalDerivationTimeDependendVariationalPrinciple} % tdvp historic source
-        \cite{TDVPcomplexPrefactors} % how to treat complex pre-factors, complex differentiation avoided through real differentiation
-        \cite{complexDifferentiation} % in this case the complex derivative is fine
-        \cite{probabilitySamplingRequirementVCN} % VCN general derivation, eta dot derivation and that it needs to sample from the probability distribution of the current state(t)
-        \cite{VCNsolutionForRBM} % VCN solution completely derived for a RBM
-
-        \subsection{Application to this Task}
         
 
 \chapter{Implementation and Calculation Details}
@@ -166,6 +171,7 @@ How the parts have been adapted, as well as the original author being the thesis
     \section{Numerical Alternatives}
 
     \section{Simplification Verifications}
+    %TODO theoretically this is stated in the introduction of time-complexity optimizations
 
 \chapter{Numerical Experiments}
 \label{sec:numerical-experiments}

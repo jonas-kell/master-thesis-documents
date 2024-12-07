@@ -1,6 +1,6 @@
 Generally, handling the computation of the difference of the effective Hamiltonian for two states $\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]$ is the most expensive computation per Monte-Carlo-step.
 It is required in \autoref{eq:form-heff-difference} for the calculation of the spin-polarized kinetics.
-As stated in \fullref{sec:theory-monte-carlo} it is also needed to compute the transition probability between two sampled states in \autoref{eq:transition-probability-final}.
+As stated in \fullref{sec:theory-optimizations-monte-carlo} it is also needed to compute the transition probability between two sampled states in \autoref{eq:transition-probability-final}.
 The calculation of $\HeffOft[N]$ on its own requires an effort of \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})}.
 However, for the states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected with only small changes, most of the elements in the sum cancel and the complexity may be here even reduced to \bigo{$\text{\#}(\text{nearest neighbors})$}.
 This is quite attractive, because it de-couples the per-step computational costs from the number of lattice sites - a vital step for simulating large systems efficiency - however this requires extra analytical calculations.
