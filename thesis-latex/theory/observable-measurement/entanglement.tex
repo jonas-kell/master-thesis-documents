@@ -1,1 +1,106 @@
-% TODO
+The $\rho_{l,\,\sigma,\,m,\,\mu} (t)$ from \autoref{eq:reduced-density-matrix-via-paulis} has been specifically chosen to give the full quantum information of a subsystem of two arbitrary site-indices and spin-directions.
+Most importantly, as the research is performed on quantum systems, it is a goal to extract quantum properties and the prime candidate for this is extracting the \emph{entanglement}.
+
+Already research in \cite{isingDynamicsWithClassicalNetworks} used the same way of obtaining the reduced density matrix as presented in \autoref{eq:reduced-density-matrix-via-paulis} with the goal of measuring the entanglement.
+There the number of sampled states, that is required to obtain the measurements of the observables, was called out as a limiting factor.
+Monte-Carlo sampling was suggested as a fix for this limitation, which will actually be introduced in \fullref{sec:theory-monte-carlo}.
+
+In this work, the \emph{concurrence} was chosen as the \emph{entanglement monotone} to provide insight into the entanglement between different sites.
+The concurrence has been introduced in \cite{concurrenceMainPaper} as a measure to obtain the entanglement of two spins from the reduced density matrix that contains these two spins.
+A concurrence measurement does not give the value for the \emph{entanglement of formation} directly, but it needs to be rescaled as shown in \autoref{fig:entanglement}.
+As one can see there, the rescaling does not introduce major additional features and for that reason the concurrence will be studied without rescaling to the entanglement.
+The point of minimal entanglement (maximum separability) and maximal entanglement map to the same values and the intermediate values communicate the same qualitative information.
+
+\begin{SCfigure}[2.0][htbp]
+    \centering
+    \includegraphics[width=0.35\textwidth]{plotgeneration/binary-entropy-function/binary-entropy-function.pdf}
+    \caption{
+        Plot of the function that connects the entanglement $\text{E}_{\psiOfT}$ of a subsystem with the concurrence of a subsystem $C(\psiOfT)$ in the relevant region $0\leq x \leq 1$.
+        According to \cite{concurrenceMainPaper}: $\text{E}_{\psiOfT} = \text{E}(C(\psiOfT))$, with the function $\text{E}(x) = H(\frac{1}{2} + \frac{1}{2} \sqrt{1-x^2})$ and the \emph{binary entropy function} $H(x) = -\left[x \cdot \log_2(x) + (1-x) \cdot \log_2(1-x)\right]$.
+        Comparing with the identity $y=x$, it shows that the values at the borders of the region $x=0$ and $x=1$ are the same for both functions. 
+        The examined function $\text{E}(x)$ increases monotonically for the relevant input range and lies reasonably close to the identity. 
+    }
+    \label{fig:entanglement}
+\end{SCfigure}
+
+\filepath{\cite{selfCode}}{/calculation-helpers/concurrence/} holds multiple scripts used to validate the calculations in the following section give the same result, no matter which of the alternative implementation-/calculation-strategies are used.
+
+\cite{concurrenceMainPaper} introduces the \emph{magic basis} that is shown in \autoref{eq:magic-basis} as opposed to the counting basis that was introduced in the beginning of \fullref{sec:theory-observables-density-matrix}. The magic basis consists of \emph{Bell states} with particular phases.
+
+\begin{equation}
+    \label{eq:magic-basis}
+    \begin{split}
+        \ketN[m_1] &= \frac{1}{\sqrt{2}} \left(\ketN[11] + \ketN[00]\right) \\
+        \ketN[m_2] &= \frac{1}{\sqrt{2}} i \left(\ketN[11] - \ketN[00]\right) \\
+        \ketN[m_3] &= \frac{1}{\sqrt{2}} i \left(\ketN[10] + \ketN[01]\right) \\
+        \ketN[m_4] &= \frac{1}{\sqrt{2}} \left(\ketN[10] - \ketN[01]\right) \\
+    \end{split}
+\end{equation}
+
+The Bell state is a construct tightly linked to entanglement, consequently it is by design straight forward, to write down the concurrence of a pure state expressed in the magic basis.
+For $\ketN[\psiOfT] = \sum\limits_{i=1}^4 \alpha_i \ketN[m_i]$ the concurrence $C(\psiOfT)$ is $C(\psiOfT) = \left|\sum\limits_{i=1}^4 \alpha_i^2 \right|$.
+This is equivalent to saying for a pure state expressed in the counting basis $\ketN[\psiOfT] = \alpha \ketN[00] +  \beta \ketN[01] +  \gamma \ketN[10] +  \delta\ketN[11]$, the concurrence is calculated $C(\psiOfT) = 2 \left|\alpha \delta - \beta \gamma\right|$.
+This gives the same value as for all calculations that extract the concurrence from the density matrix that is calculated from these pure state coefficients.
+But, while all states obtained via time evolution $\ketN[{\psiOfT[\schroedingerPicture]}]$ - as described in previous chapters - are pure states, through the reduction to a \glqq two-spin-system\grqq{} of particles $l,\,\sigma$ and $m,\,\mu$ to $\rho_{l,\,\sigma,\,m,\,\mu} (t)$ the remaining system is likely to be a mixed state \cite{mixedStateFromPureState}.
+
+The calculation necessarily needed to be generalized to take the density matrix as an input.
+\cite{concurrenceRewording} gives two alternate ways of calculating the concurrence from the density matrix.
+Both require the \emph{spin-flip} operation $\tilde{\rho}$.
+The original paper \cite{concurrenceMainPaper} describes this operation for density matrix $\rho$ expressed in the counting basis to be: transforming it into to magic basis \autoref{eq:magic-basis}, taking the complex conjugate, then transforming it back.
+As per \cite{concurrenceRewording} this is equivalent to the operation described in \autoref{eq:spin-flip}, where $\rho$ and \pauli[]{y} (\autoref{eq:pauli-matrices}) are expressed in the standard counting basis.
+
+\begin{equation}
+    \label{eq:spin-flip}
+    \begin{split}
+        \tilde{\rho} = \left(\pauli[]{y} \otimes \pauli[]{y}\right) \rho^\ast  \left(\pauli[]{y} \otimes \pauli[]{y}\right)
+    \end{split}
+\end{equation}
+
+\filepath{\cite{selfCode}}{/calculation-helpers/concurrence/basis-transformation.py} verifies this equivalence and shows the ${\tilde{\ast}}$-operation modifies a hermitian matrix like in \autoref{eq:demonstration-spin-flip}.
+
+\begin{equation}
+    \label{eq:demonstration-spin-flip}
+    \begin{split}
+        \rho = \left(\begin{matrix}
+            a& b & c &d \\
+            \overline{b}& e & f &g \\
+            \overline{c}& \overline{f} & h &k \\
+            \overline{d}& \overline{g} & \overline{k} &l \\
+        \end{matrix}\right)  \quad\Rightarrow\quad\tilde{\rho} = 
+        \left(\begin{matrix}
+            l& -k & -g &d \\
+            -\overline{k}& h & f &-c \\
+            -\overline{g}& \overline{f} & e &-b \\
+            \overline{d}& -\overline{c} & -\overline{b} &a \\
+        \end{matrix}\right) 
+    \end{split}
+\end{equation}
+
+With that knowledge \autoref{eq:concurrence-calculation} states how to calculate the concurrence $C(\rho)$ from the reduced density matrix $\rho$.
+
+\begin{equation}
+    \label{eq:concurrence-calculation}
+    \begin{gathered}
+        R = \sqrt{\sqrt{\rho}\tilde{\rho}\sqrt{\rho}}\\
+        \lambda_1 \geq \lambda_2 \geq \lambda_3 \geq \lambda_4, \quad \left\{\lambda_i\right\} = \text{Eigenvalues}(R)\\
+        C(\rho) = \max (0, \lambda_1 - \lambda_2 - \lambda_3 - \lambda_4)
+    \end{gathered}
+\end{equation}
+
+In this formula, the square root $\sqrt{M}$ of a square matrix $M$ is a square matrix of the same dimensionality, that fulfills the property $\sqrt{M}\cdot \sqrt{M} = M$.
+A candidate can be obtained numerically, by calculating the eigenvalues of the matrix (which for a hermitian matrix are all positive real numbers), taking their square root and re-assembling the matrix with the eigenvectors like in \autoref{eq:matrix-square-root} ($\lambda_i$ different values than in \autoref{eq:concurrence-calculation}).
+
+\begin{equation}
+    \label{eq:matrix-square-root}
+    \begin{gathered}
+        M  = Q \Lambda Q^\text{T}\\
+        \Lambda = \text{diag}(\lambda_1,\, \lambda_2,\, \lambda_3,\, \lambda_4)\\
+        \sqrt{\Lambda} = \text{diag}(\sqrt{\lambda_1},\, \sqrt{\lambda_2},\,\sqrt{\lambda_3},\,\sqrt{\lambda_4})\\
+        \sqrt{M}  = Q \sqrt{\Lambda} Q^\text{T}
+    \end{gathered}
+\end{equation}
+
+While this operation is quite complicated, it is required only once per calculation and only for a matrix of fixed size $4\times 4$.
+To avoid it, \cite{concurrenceRewording} alternatively provides that the $\lambda_i$ from \autoref{eq:concurrence-calculation} are the square roots of the non-hermitian matrix $\rho \tilde{\rho}$.
+For exact calculations both ways of calculating yield the same results, which is implemented and checked. 
+If there are any inconsistencies in the order of basis vectors however, the results diverge. Which in fact is a good check that the bases are consistent across the whole implementation.
