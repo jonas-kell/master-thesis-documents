@@ -25,4 +25,19 @@ RUN pip3 install numpy --break-system-packages
 #     && rm /tmp/Libertinus.zip && rm -rf /tmp/libertinus
 # fc-list | grep Libertinus
 
+# Create and compile a file to generate some cache files as long as we have root
+RUN mkdir -p /tmp/latex-build && \
+    echo "\
+\\documentclass[headings=optiontohead,12pt,DIV=13,twoside=false,open=right,BCOR=00mm,toc=bibliographynumbered]{scrreport} \n\
+\\usepackage{amsfonts,amssymb,amstext,amsmath,amsthm,bbm} \n\
+\\usepackage{xspace} \n\
+\\\\begin{document} \n\
+\$\$\\\\ensuremath{\\mathbbm{1}_{3}}\\xspace\$\$ \n\
+\$\\\\ensuremath{\\mathbbm{1}_{3}}\\xspace\$ \n\
+\\\\end{document} \n\
+" > /tmp/latex-build/tmp.tex
+RUN cd /tmp/latex-build && \
+    latexmk --shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf tmp.tex
+
+
 WORKDIR /workspace
