@@ -43,4 +43,4 @@ plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " y=x", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " y=E(x)", \
      x notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerblue, \
-     h(0.5+0.5*sqrt(1-x**2)) notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerred,
+     h(0.5+0.5*sqrt(1-x**2)) notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerred
