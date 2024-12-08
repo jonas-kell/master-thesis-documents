@@ -58,6 +58,6 @@ do for [i = 1:words(parameters)] {
           sprintf("comparevcnanalytical-exact-param%dre.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerblue, \
           sprintf("comparevcnanalytical-exact-param%dim.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerred, \
           sprintf("comparevcn0006-exact-param%dre.csv", i-1)                 using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markermint, \
-          sprintf("comparevcn0006-exact-param%dim.csv", i-1)                 using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerorange, \
+          sprintf("comparevcn0006-exact-param%dim.csv", i-1)                 using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerorange
           
 }

@@ -21,6 +21,7 @@
         "project-work-presentation/beamercolorthemeuniamntf.sty": true,
         "project-work-presentation/slide-background-images": true,
         "**/_minted*": true,
+        "**/*.minted": true,
         "thesis-latex/plotgeneration/**/*.json": true,
         "thesis-latex/plotgeneration/**/*.csv": true
     },

@@ -36,35 +36,10 @@ ln -sf ./../latex-beamer-template/beamercolorthemeuniamntf.sty project-work-pres
 ln -sf ./../latex-beamer-template/slide-background-images/ project-work-presentation/
  -->
 
-<!--
-# Compiling
+## Compiling
 
 To compile the documents, run
 
 ```shell
-cd thesis-latex/
-# TODO
+PUID=`id -u` PGID=`id -g` docker compose up
 ```
-
-You need a working LaTeX-installation. (Best **texlive-full**, because lots of packages are used)
-
-The libertinus font family need to be available on the system. ([GitHub](https://github.com/alerque/libertinus))
-
-You need [Python](https://www.python.org/) (best is Python 3, use lower two commands) and [Minted](https://ctan.org/pkg/minted?lang=de)
-
-```shell
-python3 --version
-pip3 install Pygments
-```
-
-# Gnuplot
-
-The graphs in the experiments section are compiled with [gnuplot](http://www.gnuplot.info/).
-
-Compilation:
-
-```shell
-gnuplot <filename>.gp
-```
-
- -->

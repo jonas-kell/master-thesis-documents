@@ -96,5 +96,5 @@ plot \
      "comparevcn006-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markermint, \
      "comparevcn002-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markeryellow, \
      "comparevcn0006-exact-variance.csv" using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerpink, \
-     "comparevcn0002-exact-variance.csv" using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
+     "comparevcn0002-exact-variance.csv" using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange
 # end plot 2,1
