@@ -26,18 +26,32 @@ RUN pip3 install numpy --break-system-packages
 # fc-list | grep Libertinus
 
 # Create and compile a file to generate some cache files as long as we have root
-RUN mkdir -p /tmp/latex-build && \
-    echo "\
-\\documentclass[headings=optiontohead,12pt,DIV=13,twoside=false,open=right,BCOR=00mm,toc=bibliographynumbered]{scrreport} \n\
-\\usepackage{amsfonts,amssymb,amstext,amsmath,amsthm,bbm} \n\
-\\usepackage{xspace} \n\
-\\\\begin{document} \n\
-\$\$\\\\ensuremath{\\mathbbm{1}_{3}}\\xspace\$\$ \n\
-\$\\\\ensuremath{\\mathbbm{1}_{3}}\\xspace\$ \n\
-\\\\end{document} \n\
-" > /tmp/latex-build/tmp.tex
-RUN cd /tmp/latex-build && \
-    latexmk --shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf tmp.tex
+# RUN mkdir -p /tmp/latex-build && \
+#     echo "\
+# \\documentclass[headings=optiontohead,12pt,DIV=13,twoside=false,open=right,BCOR=00mm,toc=bibliographynumbered]{scrreport} \n\
+# \\usepackage{amsfonts,amssymb,amstext,amsmath,amsthm,bbm} \n\
+# \\usepackage{xspace} \n\
+# \\\\begin{document} \n\
+# \$\$\\\\ensuremath{\\mathbbm{1}_{3}}\\xspace\$\$ \n\
+# \$\\\\ensuremath{\\mathbbm{1}_{3}}\\xspace\$ \n\
+# \\\\end{document} \n\
+# " > /tmp/latex-build/tmp.tex
+# RUN cd /tmp/latex-build && \
+#     latexmk --shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf tmp.tex
 
+RUN apt-get update && apt-get install -y \
+    sudo \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Default environment variables
+# will get overwritten, if started with docker compose
+ARG USERNAME=user
+ARG USER_UID=1000 
+ARG USER_GID=1000
+
+# Add a user group and user with provided UID/GID
+RUN groupadd --gid ${USER_GID} ${USERNAME} && \
+    useradd --uid ${USER_UID} --gid ${USER_GID} --create-home ${USERNAME} && \
+    echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 WORKDIR /workspace

@@ -2,7 +2,11 @@ version: "3.8"
 
 services:
     latex:
-        build: .
+        build:
+            context: .
+            args:
+                USER_UID: "${PUID}"
+                USER_GID: "${PGID}"
         volumes:
             - .:/workspace
         working_dir: /workspace
