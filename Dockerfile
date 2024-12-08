@@ -1,5 +1,5 @@
-# FROM texlive/texlive:latest-full
-FROM texlive/texlive@sha256:e38cb99bbe86518451786e410a989626012a7b0c4d3726ae9f0510e17d67fc39
+# FROM texlive/texlive@sha256:83e0ef29b7470c6fe3f28f14c558220673a47a9cea23668d7fa97b994ee5b799
+FROM texlive/texlive:TL2022-historic
 
 RUN apt-get update && apt-get install -y \
     python3-pip \
