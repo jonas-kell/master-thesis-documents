@@ -74,7 +74,7 @@ plot \
      "comparevcn006-exact-energyimag.csv"     using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markermint, \
      "comparevcn002-exact-energyimag.csv"     using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markeryellow, \
      "comparevcn0006-exact-energyimag.csv"    using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markerpink, \
-     "comparevcn0002-exact-energyimag.csv"    using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markerorange, \
+     "comparevcn0002-exact-energyimag.csv"    using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markerorange
 # end plot 1,1
 
 set key left bottom                                                       # moves legend
