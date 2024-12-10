@@ -51,13 +51,13 @@ do for [i = 1:words(parameters)] {
      }
      set ylabel sprintf("Variational Param. %d", i)
      plot \
-          NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " Re(ana.)", \
-          NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " Im(ana.)", \
-          NaN with points pt 5 pointsize 0.6 lc rgb markermint   title " Re(var.)", \
-          NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " Im(var.)", \
-          sprintf("comparevcnanalytical-exact-param%dre.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerblue, \
-          sprintf("comparevcnanalytical-exact-param%dim.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerred, \
-          sprintf("comparevcn0006-exact-param%dre.csv", i-1)                 using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markermint, \
-          sprintf("comparevcn0006-exact-param%dim.csv", i-1)                 using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerorange
+          NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " 0.1", \
+          NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " 0.01", \
+          NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " 0.001", \
+          NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " 0.0001", \
+          sprintf("sigma01-exact-param%dre.csv", i-1)        using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerred, \
+          sprintf("sigma001-exact-param%dim.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markergreen, \
+          sprintf("sigma0001-exact-param%dre.csv", i-1)      using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerblue, \
+          sprintf("sigma00001-exact-param%dim.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerorange
           
 }
