@@ -56,8 +56,13 @@ do for [i = 1:words(parameters)] {
           NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " 0.001", \
           NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " 0.0001", \
           sprintf("sigma01-exact-param%dre.csv", i-1)        using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerred, \
-          sprintf("sigma001-exact-param%dim.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markergreen, \
+          sprintf("sigma001-exact-param%dre.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markergreen, \
           sprintf("sigma0001-exact-param%dre.csv", i-1)      using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerblue, \
-          sprintf("sigma00001-exact-param%dim.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerorange
+          sprintf("sigma00001-exact-param%dre.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerorange, \
+          \
+          sprintf("sigma01-exact-param%dim.csv", i-1)        using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markerred, \
+          sprintf("sigma001-exact-param%dim.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markergreen, \
+          sprintf("sigma0001-exact-param%dim.csv", i-1)      using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markerblue, \
+          sprintf("sigma00001-exact-param%dim.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markerorange
           
 }

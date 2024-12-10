@@ -56,8 +56,8 @@ do for [i = 1:words(parameters)] {
           NaN with points pt 5 pointsize 0.6 lc rgb markermint   title " Re(var.)", \
           NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " Im(var.)", \
           sprintf("comparevcnanalytical-exact-param%dre.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerblue, \
-          sprintf("comparevcnanalytical-exact-param%dim.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerred, \
-          sprintf("comparevcn0006-exact-param%dre.csv", i-1)                 using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markermint, \
-          sprintf("comparevcn0006-exact-param%dim.csv", i-1)                 using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerorange
+          sprintf("comparevcnanalytical-exact-param%dim.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markerred, \
+          sprintf("comparevcn0006-exact-param%dre.csv", i-1)             using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markermint, \
+          sprintf("comparevcn0006-exact-param%dim.csv", i-1)             using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markerorange
           
 }
