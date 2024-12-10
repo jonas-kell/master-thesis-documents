@@ -1,7 +1,7 @@
 set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 25cm, 25cm       # sets output format, font and plotsize
 set samples 900                                                                         # sets count for the amount of sampled points
 
-set output "vcn-params.pdf"          # name of the output pdf
+set output "vcn-parameters.pdf"          # name of the output pdf
 
 # colors 
 markerred="#AA0000"
