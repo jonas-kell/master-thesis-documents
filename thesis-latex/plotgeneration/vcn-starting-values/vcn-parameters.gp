@@ -29,8 +29,8 @@ set multiplot layout 3,2 rowsfirst
 
 # axes and label
 set xrange [] 
-set xtics 1
-set mxtics 2
+set xtics 0.1
+set mxtics 1
 set mytics 5
 
 parameters = "param0 param1 param2 param3 param4 param5"
@@ -38,7 +38,7 @@ parameters = "param0 param1 param2 param3 param4 param5"
 do for [i = 1:words(parameters)] {
      vcnparam = word(parameters, i)
      if (vcnparam eq "param0") {
-          set label "x-Axis: time [1/U]" at graph 0.20,0.92
+          set label "x-Axis: time [1/U]" at graph 0.50,0.10
 
           set key Left                                                            # key text justify left
           set key at graph 0.40,0.31                                              # moves legend

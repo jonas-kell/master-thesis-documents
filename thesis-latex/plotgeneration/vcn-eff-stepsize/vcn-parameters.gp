@@ -29,8 +29,8 @@ set multiplot layout 3,2 rowsfirst
 
 # axes and label
 set xrange [] 
-set xtics 1
-set mxtics 2
+set xtics 0.5
+set mxtics 5
 set mytics 5
 
 parameters = "param0 param1 param2 param3 param4 param5"
