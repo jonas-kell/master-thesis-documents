@@ -1,9 +1,24 @@
-%TODO
+For this application the way of approximating the wave-function is by use of a \emph{classical network}. 
+The network parameters now should be obtained via the \emph{time-dependent variational principle} \cite{originalDerivationTimeDependendVariationalPrinciple}.
+For this reason the method as a whole structure is dubbed a \emph{variational classical network} (VCN).
 
-        
+In \cite{variationalClassicalNetworksPaper} this strategy is used on comparable applications on similar quantum problems.
+The research in \cite{probabilitySamplingRequirementVCN} even applies the method to two-dimensional geometries.
+Both reach the same expressions for the advancement of the parameters to later times.
+This section reiterates the equations, unifying the parts where different conventions might be used.
 
-\cite{originalDerivationTimeDependendVariationalPrinciple} % tdvp historic source
+\HNOft from \autoref{eq:cumulant-expansion} should be approximated with a parametrized expression \HvcnOft.
+\autoref{eq:hamiltonian-vcn} provides the used parametrization, which - compared with \autoref{eq:time-evolution-target} - means $\HeffOft = -i E_0(N) t + \HvcnOft$.
+
+\begin{equation}
+    \label{eq:hamiltonian-vcn}
+    \HNOft \leftrightarrow \HvcnOft = \lsum C_l(t) \Phi_l(N)
+\end{equation}
+
+
 \cite{TDVPcomplexPrefactors} % how to treat complex pre-factors, complex differentiation avoided through real differentiation
 \cite{complexDifferentiation} % in this case the complex derivative is fine
-\cite{probabilitySamplingRequirementVCN} % VCN general derivation, eta dot derivation and that it needs to sample from the probability distribution of the current state(t)
-\cite{variationalClassicalNetworksPaper} % Also source that does the same derivation on different system 
+\cite{probabilitySamplingRequirementVCN} % VCN general derivation, eta dot derivation and that it needs to sample from the probability distribution of the current state(t), 2d examples
+\cite{variationalClassicalNetworksPaper} % Also source that does the same derivation on different system, 1d examples
+
+% TODO short reference and maybe even explanation/derivation why the energy MUST be conserved under TDVP
