@@ -12,9 +12,73 @@ This section reiterates the equations, unifying the parts where different conven
 
 \begin{equation}
     \label{eq:hamiltonian-vcn}
-    \HNOft \leftrightarrow \HvcnOft = \lsum C_l(t) \cdot \Phi_l(N)
+    \HNOft = \lsum[i] C_i(t) \cdot \Phi_i(N) \leftrightarrow \HvcnOft = \lsum[i] \eta_i(t) \cdot \Phi_i(N)
 \end{equation}
 
+$C_\ast(t)$ are here analytically calculated functions, while the $\eta_\ast(t)$ are complex parameters to replace them.
+For this structure, the comparison with the cumulant-expansion yields expressions for $\Phi_l(N)$ and $C_l(t)$ in a controlled manner.
+By identifying the terms in \autoref{eq:hn-integrated-first-order}, a possible choice for the first terms could be chosen like in \autoref{eq:psi-and-c-choices} (absolute lattice-site enumeration like in \autoref{fig:geometry-of-square-system}). 
+
+% TODO large formula, make sure it stays at the correct location
+
+\begin{equation}
+    \label{eq:psi-and-c-choices}
+    \begin{split}
+        C_1(t) = \VhamiltonianAnalyticalPartIntegrated{A}{0}{1}{t}
+        \quad &\quad
+        \Phi_1(N) = J \lsum[l] \lsum[\biggerNeighborX{l}{m}] 
+        \lsum[K] \frac{\psiN[K]}{\psiN}
+            \bracketHelper{N}{
+                \VhamiltonianOperatorPart{A}{l}{m} 
+            }{K}\\
+        C_2(t) = \VhamiltonianAnalyticalPartIntegrated{B}{0}{1}{t}
+        \quad &\quad
+        \Phi_2(N) = J \lsum[l] \lsum[\biggerNeighborX{l}{m}] 
+        \lsum[K] \frac{\psiN[K]}{\psiN}
+            \bracketHelper{N}{
+                \VhamiltonianOperatorPart{B}{l}{m} 
+            }{K}\\
+        C_3(t) = \VhamiltonianAnalyticalPartIntegrated{C}{0}{1}{t}
+        \quad &\quad
+        \Phi_3(N) = J \lsum[l] \lsum[\biggerNeighborX{l}{m}] 
+        \lsum[K] \frac{\psiN[K]}{\psiN}
+            \bracketHelper{N}{
+                \VhamiltonianOperatorPart{C}{l}{m} 
+            }{K}\\
+        C_4(t) = \VhamiltonianAnalyticalPartIntegrated{A}{1}{0}{t}
+        \quad &\quad
+        \Phi_4(N) = J \lsum[l] \lsum[\smallerNeighborX{l}{m}] 
+        \lsum[K] \frac{\psiN[K]}{\psiN}
+            \bracketHelper{N}{
+                \VhamiltonianOperatorPart{A}{l}{m} 
+            }{K}\\
+        C_5(t) = \VhamiltonianAnalyticalPartIntegrated{B}{1}{0}{t}
+        \quad &\quad
+        \Phi_5(N) = J \lsum[l] \lsum[\smallerNeighborX{l}{m}] 
+        \lsum[K] \frac{\psiN[K]}{\psiN}
+            \bracketHelper{N}{
+                \VhamiltonianOperatorPart{B}{l}{m} 
+            }{K}\\
+        C_6(t) = \VhamiltonianAnalyticalPartIntegrated{C}{1}{0}{t}
+        \quad &\quad
+        \Phi_6(N) = J \lsum[l] \lsum[\smallerNeighborX{l}{m}] 
+        \lsum[K] \frac{\psiN[K]}{\psiN}
+            \bracketHelper{N}{
+                \VhamiltonianOperatorPart{C}{l}{m} 
+            }{K}\\
+        C_7(t) = \VhamiltonianAnalyticalPartIntegrated{A}{0}{M}{t}
+        \quad &\quad
+        \Phi_7(N) = J \lsum[l] \lsum[\biggerNeighborY{l}{m}] 
+        \lsum[K] \frac{\psiN[K]}{\psiN}
+            \bracketHelper{N}{
+                \VhamiltonianOperatorPart{A}{l}{m} 
+            }{K}\\
+        \cdots\quad \quad \quad\quad \quad &\quad\quad \quad\quad\quad \quad \cdots
+    \end{split}
+\end{equation}
+
+The dissection separates the structure into 12 different factors. The terms $C_1(t)$ to $C_6(t)$ describe the neighbor interaction in x-direction, the terms $C_7(t)$ to $C_{12}(t)$ are identical with the interactions in y-direction (not printed, as they are identical with the x swapped for y and the 1 swapped for an $M$).
+For the chain-geometry only the terms 1 through 6 are relevant, as there are no neighbors in y-direction.
 
 \cite{TDVPcomplexPrefactors} % how to treat complex pre-factors, complex differentiation avoided through real differentiation
 \cite{complexDifferentiation} % in this case the complex derivative is fine
