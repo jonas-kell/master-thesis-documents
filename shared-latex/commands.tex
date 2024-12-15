@@ -65,7 +65,7 @@
 \newcommand{\HNOftOrder}[2][N]{\ensuremath{\hamiltonian_{#1}^{#2}(t)}\xspace}
 \newcommand{\Heff}[3]{\ensuremath{{\hamiltonian_\text{eff}}^{#3}({#1}#2)}\xspace}
 \newcommand{\HeffOft}[1][N]{\Heff{#1}{,\,t}{}}
-\newcommand{\HvcnOft}[1][N]{\ensuremath{{\hamiltonian_\text{VCN}}({#1},\,t)}\xspace}
+\newcommand{\HvcnOft}[2][N]{\ensuremath{{\hamiltonian_\text{VCN}}({#1},\,{#2},\,t)}\xspace}
 \newcommand{\HeffOftStar}[1][N]{\Heff{#1}{,\,t}{\ast}}
 \newcommand{\VhamiltonianPartA}[2]{\ensuremath{\hat{\text{V}}_\text{Part A}\left(#1,\,#2\right)}\xspace}
 \newcommand{\VhamiltonianPartB}[2]{\ensuremath{\hat{\text{V}}_\text{Part B}\left(#1,\,#2\right)}\xspace}
@@ -90,6 +90,7 @@
 \newcommand{\psiNStar}[1][N]{\ensuremath{\varPsi^\ast_{#1}}\xspace}
 \newcommand{\brapsi}[2][]{\ensuremath{\bra{\picturePsi[#1]{#2}}}\xspace}
 \newcommand{\ketpsi}[2][]{\ensuremath{\ket{\picturePsi[#1]{#2}}}\xspace}
+\newcommand{\ketpsiEta}[2]{\ensuremath{\ket{\picturePsi[]{_{#1}(#2)}}}\xspace}
 \newcommand{\brapsiof}[2][]{\brapsi[#1]{(#2)}}
 \newcommand{\ketpsiof}[2][]{\ketpsi[#1]{(#2)}}
 \newcommand{\psiOfT}[1][]{\ensuremath{\picturePsi[#1]{}(t)}\xspace}
@@ -101,6 +102,7 @@
 
 \newcommand{\absSquare}[1]{\ensuremath{{\left\vert{#1}\right\vert}^2}\xspace}
 \newcommand{\timeExpectationVal}[1]{\ensuremath{{\left\langle {#1}\right\rangle}_{(t)}}\xspace}
+\newcommand{\etaExpectationVal}[1]{\ensuremath{{\left\langle {#1}\right\rangle}_{(\vec{\eta}(t))}}\xspace}
 \newcommand{\probabilityOf}[2]{\ensuremath{\text{P}(#1,\,#2)}\xspace}
 
 \newcommand{\equivalentOperator}{\ensuremath{\hat{=}}\xspace}

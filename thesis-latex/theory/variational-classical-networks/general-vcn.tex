@@ -1,88 +1,52 @@
 For this application the way of approximating the wave-function is by use of a \emph{classical network}. 
 The network parameters now should be obtained via the \emph{time-dependent variational principle} \cite{originalDerivationTimeDependendVariationalPrinciple}.
-For this reason the method as a whole structure is dubbed a \emph{variational classical network} (VCN).
+For this reason the method as a whole is dubbed a \emph{variational classical network} (VCN).
 
 In \cite{variationalClassicalNetworksPaper} this strategy is used on comparable applications on similar quantum problems.
 The research in \cite{probabilitySamplingRequirementVCN} even applies the method to two-dimensional geometries.
 Both reach the same expressions for the advancement of the parameters to later times.
 This section reiterates the equations, unifying the parts where different conventions might be used.
 
-\HNOft from \autoref{eq:cumulant-expansion} should be approximated with a parametrized expression \HvcnOft.
-\autoref{eq:hamiltonian-vcn} provides the used parametrization, which - compared with \autoref{eq:time-evolution-target} - means $\HeffOft = -i E_0(N) t + \HvcnOft$.
+\HNOft from \autoref{eq:cumulant-expansion} should be approximated with a parametrized expression \HvcnOft{\vec{\eta}}.
+This means - compared with \autoref{eq:time-evolution-target} - the effective hamiltonian now is expressed as $\HeffOft = -i E_0(N) t + \HvcnOft{\vec{\eta}(t)}$.
+The hamiltonian depends on the choice of the complex parameter vector $\vec{\eta}(t)$.
+
+Historically the TDVP was derived for real-valued parameters \cite{originalDerivationTimeDependendVariationalPrinciple}.
+To extend the principle to complex parameters, the networks structure could be adapted through the introduction of two real-valued parameters per complex parameter \cite{TDVPcomplexPrefactors}.
+For \emph{holomorphic} functions the following also follows from an action-principle \cite{probabilitySamplingRequirementVCN} - or in short: for fully complex differentiable \cite{complexDifferentiation} parametrizations no special treatment is required.
+
+Generally then the following method is applied: To begin with, $\vec{\eta}(t)$ is initialized to a known value for $t=0$ to try to achieve $\HvcnOft{\vec{\eta}(t=0)} \approx 0$.
+The initialized parameters should additionally have some noise added to them, to prevent unwanted dead-points like an unstable equilibrium.
+One then calculates the variational nudge $\dot{\vec{\eta}}$ to the parameters $\vec{\eta}$, so that the overlap of the states in \autoref{eq:best-overlap} is maximized.
 
 \begin{equation}
-    \label{eq:hamiltonian-vcn}
-    \HNOft = \lsum[i] C_i(t) \cdot \Phi_i(N) \leftrightarrow \HvcnOft = \lsum[i] \eta_i(t) \cdot \Phi_i(N)
+    \label{eq:best-overlap}
+    \begin{gathered}
+        \ketpsiEta{\vec{\eta} + \delta \cdot \dot{\vec{\eta}}}{t} \leftrightarrow e^{-i \hamiltonian \delta} \ketpsiEta{\vec{\eta}}{t}
+        \\
+        \ketpsiEta{\vec{\eta}}{t} = \lsum[N] e^{-i E_0(N) t + \HvcnOft{\vec{\eta}(t)}} \psiN \ketN{}
+    \end{gathered}
 \end{equation}
 
-$C_\ast(t)$ are here analytically calculated functions, while the $\eta_\ast(t)$ are complex parameters to replace them.
-For this structure, the comparison with the cumulant-expansion yields expressions for $\Phi_l(N)$ and $C_l(t)$ in a controlled manner.
-By identifying the terms in \autoref{eq:hn-integrated-first-order}, a possible choice for the first terms could be chosen like in \autoref{eq:psi-and-c-choices} (absolute lattice-site enumeration like in \autoref{fig:geometry-of-square-system}). 
+This method tries to find the update to the parameters, that most accurately reflects what would happen if the system was time-evolved for a small time step $\delta$ with the full hamiltonian.
+With a set of starting parameters for $t=0$ and an update-strategy for small time-steps, generating the parameters for later times is possible with repeated stepping.
+The mentioned overlap is calculated with a measurement that uses the \emph{Fubini-Study metric} (\cite{variationalClassicalNetworksPaper} and \cite{probabilitySamplingRequirementVCN}, where \cite{probabilitySamplingRequirementVCN} contains a detailed derivation in the supplementary material).
 
-% TODO large formula, make sure it stays at the correct location
+This yields the \emph{TDVP-equation} \autoref{eq:eta-dot-calculation}, using the \emph{variational derivative} (\autoref{eq:variational-derivatives-definition}) and the \emph{local energy} (\autoref{eq:local-energy-definition}).
+The \etaExpectationVal{\ast} denotes the expectation values with respect to the normalized probability distribution over all the states \ketpsiEta{\vec{\eta}}{t} \cite{probabilitySamplingRequirementVCN}.
+Meaning the observable-sampling-expression from \autoref{eq:expectation-value} may be used as-is, if $\HeffOft$ is set to the parametrized version $-i E_0(N) t + \HvcnOft{\vec{\eta}(t)}$.
 
 \begin{equation}
-    \label{eq:psi-and-c-choices}
-    \begin{split}
-        C_1(t) = \VhamiltonianAnalyticalPartIntegrated{A}{0}{1}{t}
-        \quad &\quad
-        \Phi_1(N) = J \lsum[l] \lsum[\biggerNeighborX{l}{m}] 
-        \lsum[K] \frac{\psiN[K]}{\psiN}
-            \bracketHelper{N}{
-                \VhamiltonianOperatorPart{A}{l}{m} 
-            }{K}\\
-        C_2(t) = \VhamiltonianAnalyticalPartIntegrated{B}{0}{1}{t}
-        \quad &\quad
-        \Phi_2(N) = J \lsum[l] \lsum[\biggerNeighborX{l}{m}] 
-        \lsum[K] \frac{\psiN[K]}{\psiN}
-            \bracketHelper{N}{
-                \VhamiltonianOperatorPart{B}{l}{m} 
-            }{K}\\
-        C_3(t) = \VhamiltonianAnalyticalPartIntegrated{C}{0}{1}{t}
-        \quad &\quad
-        \Phi_3(N) = J \lsum[l] \lsum[\biggerNeighborX{l}{m}] 
-        \lsum[K] \frac{\psiN[K]}{\psiN}
-            \bracketHelper{N}{
-                \VhamiltonianOperatorPart{C}{l}{m} 
-            }{K}\\
-        C_4(t) = \VhamiltonianAnalyticalPartIntegrated{A}{1}{0}{t}
-        \quad &\quad
-        \Phi_4(N) = J \lsum[l] \lsum[\smallerNeighborX{l}{m}] 
-        \lsum[K] \frac{\psiN[K]}{\psiN}
-            \bracketHelper{N}{
-                \VhamiltonianOperatorPart{A}{l}{m} 
-            }{K}\\
-        C_5(t) = \VhamiltonianAnalyticalPartIntegrated{B}{1}{0}{t}
-        \quad &\quad
-        \Phi_5(N) = J \lsum[l] \lsum[\smallerNeighborX{l}{m}] 
-        \lsum[K] \frac{\psiN[K]}{\psiN}
-            \bracketHelper{N}{
-                \VhamiltonianOperatorPart{B}{l}{m} 
-            }{K}\\
-        C_6(t) = \VhamiltonianAnalyticalPartIntegrated{C}{1}{0}{t}
-        \quad &\quad
-        \Phi_6(N) = J \lsum[l] \lsum[\smallerNeighborX{l}{m}] 
-        \lsum[K] \frac{\psiN[K]}{\psiN}
-            \bracketHelper{N}{
-                \VhamiltonianOperatorPart{C}{l}{m} 
-            }{K}\\
-        C_7(t) = \VhamiltonianAnalyticalPartIntegrated{A}{0}{M}{t}
-        \quad &\quad
-        \Phi_7(N) = J \lsum[l] \lsum[\biggerNeighborY{l}{m}] 
-        \lsum[K] \frac{\psiN[K]}{\psiN}
-            \bracketHelper{N}{
-                \VhamiltonianOperatorPart{A}{l}{m} 
-            }{K}\\
-        \cdots\quad \quad \quad\quad \quad &\quad\quad \quad\quad\quad \quad \cdots
-    \end{split}
+    \label{eq:eta-dot-calculation}
 \end{equation}
 
-The dissection separates the structure into 12 different factors. The terms $C_1(t)$ to $C_6(t)$ describe the neighbor interaction in x-direction, the terms $C_7(t)$ to $C_{12}(t)$ are identical with the interactions in y-direction (not printed, as they are identical with the x swapped for y and the 1 swapped for an $M$).
-For the chain-geometry only the terms 1 through 6 are relevant, as there are no neighbors in y-direction.
+\begin{equation}
+    \label{eq:variational-derivatives-definition}
+    \etaExpectationVal{}
+\end{equation}
 
-\cite{TDVPcomplexPrefactors} % how to treat complex pre-factors, complex differentiation avoided through real differentiation
-\cite{complexDifferentiation} % in this case the complex derivative is fine
-\cite{probabilitySamplingRequirementVCN} % VCN general derivation, eta dot derivation and that it needs to sample from the probability distribution of the current state(t), 2d examples
-\cite{variationalClassicalNetworksPaper} % Also source that does the same derivation on different system, 1d examples
+\begin{equation}
+    \label{eq:local-energy-definition}
+\end{equation}
 
 % TODO short reference and maybe even explanation/derivation why the energy MUST be conserved under TDVP
