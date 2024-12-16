@@ -8,23 +8,25 @@ Both reach the same expressions for the advancement of the parameters to later t
 This section reiterates the equations, unifying the parts where different conventions might be used.
 
 \HNOft from \autoref{eq:cumulant-expansion} should be approximated with a parametrized expression \HvcnOft{\vec{\eta}}.
-This means - compared with \autoref{eq:time-evolution-target} - the effective hamiltonian now is expressed as $\HeffOft = -i E_0(N) t + \HvcnOft{\vec{\eta}(t)}$.
+This means - compared with \autoref{eq:time-evolution-target} - the effective hamiltonian now is expressed as $\HeffOft[N,\,\vec{\eta}] = -i E_0(N) t + \HvcnOft{\vec{\eta}}$.
 The hamiltonian depends on the choice of the complex parameter vector $\vec{\eta}(t)$.
 
 Historically the TDVP was derived for real-valued parameters \cite{originalDerivationTimeDependendVariationalPrinciple}.
 To extend the principle to complex parameters, the networks structure could be adapted through the introduction of two real-valued parameters per complex parameter \cite{TDVPcomplexPrefactors}.
 For \emph{holomorphic} functions the following also follows from an action-principle \cite{probabilitySamplingRequirementVCN} - or in short: for fully complex differentiable \cite{complexDifferentiation} parametrizations no special treatment is required.
 
-Generally then the following method is applied: To begin with, $\vec{\eta}(t)$ is initialized to a known value for $t=0$ to try to achieve $\HvcnOft{\vec{\eta}(t=0)} \approx 0$.
+Generally then the following method is applied: To begin with, $\vec{\eta}(t)$ is initialized to a known value for $t=0$ to try to achieve $\HvcnOft{\vec{\eta}(t)} \vert_{t=0} \approx 0$.
 The initialized parameters should additionally have some noise added to them, to prevent unwanted dead-points like an unstable equilibrium.
 One then calculates the variational nudge $\dot{\vec{\eta}}$ to the parameters $\vec{\eta}$, so that the overlap of the states in \autoref{eq:best-overlap} is maximized.
 
 \begin{equation}
     \label{eq:best-overlap}
     \begin{gathered}
-        \ketpsiEta{\vec{\eta} + \delta \cdot \dot{\vec{\eta}}}{t} \leftrightarrow e^{-i \hamiltonian \delta} \ketpsiEta{\vec{\eta}}{t}
+        \ketpsiEta{\vec{\eta} + \delta \cdot \dot{\vec{\eta}}}{t + \delta} \leftrightarrow e^{-i \hamiltonian \delta} \ketpsiEta{\vec{\eta}}{t}
         \\
-        \ketpsiEta{\vec{\eta}}{t} = \lsum[N] e^{-i E_0(N) t + \HvcnOft{\vec{\eta}(t)}} \psiN \ketN{}
+        \ketpsiEta{\vec{\eta}}{t} = \lsum[N] e^{-i E_0(N) t + \HvcnOft{\vec{\eta}}} \psiN \ketN{}
+        \\
+        \stackrel{\ref{eq:base-expansion-state}}{\Rightarrow} \psiEta{N,\,\vec{\eta}}{t} = e^{-i E_0(N) t + \HvcnOft{\vec{\eta}}} \psiN
     \end{gathered}
 \end{equation}
 
@@ -32,22 +34,71 @@ This method tries to find the update to the parameters, that most accurately ref
 With a set of starting parameters for $t=0$ and an update-strategy for small time-steps, generating the parameters for later times is possible with repeated stepping.
 The mentioned overlap is calculated with a measurement that uses the \emph{Fubini-Study metric} (\cite{variationalClassicalNetworksPaper} and \cite{probabilitySamplingRequirementVCN}, where \cite{probabilitySamplingRequirementVCN} contains a detailed derivation in the supplementary material).
 
-This yields the \emph{TDVP-equation} \autoref{eq:eta-dot-calculation}, using the \emph{variational derivative} (\autoref{eq:variational-derivatives-definition}) and the \emph{local energy} (\autoref{eq:local-energy-definition}).
+This yields the \emph{TDVP-equation} (\autoref{eq:eta-dot-calculation}), using the \emph{variational derivative} (\autoref{eq:variational-derivatives-definition}) and the \emph{local energy} (\autoref{eq:local-energy-definition}), wich both are required for calculating the \emph{covariance matrix} (\autoref{eq:covariance-matrix}) and the \emph{TDVP-force} (\autoref{eq:tdvp-force}).
 The \etaExpectationVal{\ast} denotes the expectation values with respect to the normalized probability distribution over all the states \ketpsiEta{\vec{\eta}}{t} \cite{probabilitySamplingRequirementVCN}.
-Meaning the observable-sampling-expression from \autoref{eq:expectation-value} may be used as-is, if $\HeffOft$ is set to the parametrized version $-i E_0(N) t + \HvcnOft{\vec{\eta}(t)}$.
+Meaning the observable-sampling-expression from \autoref{eq:expectation-value} may be used as-is, if $\HeffOft$ is set to the parametrized version $\HeffOft[N,\,\vec{\eta}]$.
 
 \begin{equation}
     \label{eq:eta-dot-calculation}
-    \lsum[k'] \matvec{S}_{k,\, k'} \dot{\vec{\eta}}_{k'} = -i \vec{F}_k
+    \begin{gathered}
+        \lsum[k'] \matvec{S}_{k,\, k'} \dot{\vec{\eta}}_{k'} = -i \vec{F}_k\\
+        \dot{\vec{\eta}} = -i \matvec{S^{-1}} \vec{F}
+    \end{gathered}
 \end{equation}
+
+Where $\ast^{-1}$ is the pseudo inverse of a square matrix (that might not be invertible normally, as it might not have full rank or very small eigenvalues that make the inversion numerically instable).
 
 \begin{equation}
     \label{eq:variational-derivatives-definition}
-    \etaExpectationVal{}
+    \begin{gathered}
+        O_{k}(N) = \frac{\partial \ln \psiEta{N,\,\vec{\eta}}{t}}{\partial \vec{\eta}_k}\\
+        \stackrel{\ref{eq:best-overlap}}{=} \frac{\partial \ln }{\partial \vec{\eta}_k} e^{-i E_0(N) t + \HvcnOft{\vec{\eta}} + \ln \psiN} 
+        \stackrel{\phantom{\ref{eq:best-overlap}}}{=} 
+        \frac{\partial \HvcnOft{\vec{\eta}} }{\partial \vec{\eta}_k} 
+    \end{gathered}
 \end{equation}
+
+The $\psiN$ can be raised into the exponential and then all terms that are not dependent on variational parameters can easily be differentiated to 0.
 
 \begin{equation}
     \label{eq:local-energy-definition}
+    \begin{gathered}
+        E_\text{loc}(N) \stackrel{\phantom{\ref{eq:energy-local-observable}}}{=} \frac{
+            \bracketHelper{N}{\hamiltonian}{\psiEta{\vec{\eta}}{t}}
+        }{
+            \braketHelper{N}{\psiEta{\vec{\eta}}{t}}
+        } 
+        \\
+        \stackrel{\ref{eq:energy-local-observable}}{=}
+        E_0(N,\,t)-
+        J \cdot \neighborsumWSpin{l}{m}{\sigma}
+        \left(n_{l,\,\sigma} \neq n_{m,\,\sigma}\right)
+            e^{\HeffOft[\vphantom{N}\smash{\tilde{N}},\,\vec{\eta}(t)]-\HeffOft[N,\,\vec{\eta}(t)]}
+        \frac{
+            \psiN[\vphantom{N}\smash{\tilde{N}}]
+        }{
+            \psiN[N]
+        }
+    \end{gathered}
 \end{equation}
+
+The local energy $E_\text{loc}(N)$ here is the same as the local observable \localObservable{N}{t} for $\ObservableOp = \pictureHamiltonian[\schroedingerPicture]$ that was calculated in \autoref{sec:theory-observables-energy}, but with a parametrized effective hamiltonian.
+
+\begin{equation}
+    \label{eq:covariance-matrix}
+    \matvec{S}_{k,\, k'} = \etaExpectationVal{O_{k}^\ast O_{k'}} - \etaExpectationVal{O_{k}^\ast} \cdot \etaExpectationVal{O_{k'} \vphantom{O_{k}^\ast}}
+\end{equation}
+
+\begin{equation}
+    \label{eq:tdvp-force}
+    \vec{F}_k = \etaExpectationVal{E_\text{loc} O_{k}^\ast} - \etaExpectationVal{E_\text{loc}  \vphantom{O_{k}^\ast}} \cdot \etaExpectationVal{O_{k}^\ast}
+\end{equation}
+
+
+For the update-strategy the first-order \emph{Euler's method} is chosen, meaning $\vec{\eta}(t + \delta) = \vec{\eta}(t) + \delta \cdot \dot{\vec{\eta}}(t)$.
+This could be improved, by using the second-order \emph{Heun's method}. 
+Higher order approximators are most likely never worth it, as the expectation values for the local energy and variational derivative are sampled with Monte Carlo sampling for larger systems (see \autoref{sec:theory-optimizations-monte-carlo}).
+The observables will be noisy because of this, making it unnecessary to use a more exact stepping-procedure, as there is no use in stepping more precisely when the stepping direction is not exact.
+The added computational expense of higher order approximators would be put to better use, by using smaller step-sizes or a higher number of Monte Carlo samples.
 
 % TODO short reference and maybe even explanation/derivation why the energy MUST be conserved under TDVP

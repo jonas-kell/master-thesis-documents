@@ -43,6 +43,8 @@ toc=bibliographynumbered            % bibliography gets a number and is listed i
 \cfoot*{\pagemark}
 % End of the "Kolumnentitel" redefinition
 
+%  Continuously number equations (basically all equations are in chapter 2, that makes it unnecessary and if we have over 100 equations anyway, it is cleaner to just number them through globally)
+\renewcommand{\theequation}{\arabic{equation}} % Use global numbering
 
 % ! Main Document Body
 \chapter{Introduction}
