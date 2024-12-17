@@ -1,5 +1,5 @@
 For this application the way of approximating the wave-function is by use of a \emph{classical network}. 
-The network parameters now should be obtained via the \emph{time-dependent variational principle} \cite{originalDerivationTimeDependendVariationalPrinciple}.
+The network parameters now should be obtained via the \emph{time-dependent variational principle} (TDVP) \cite{originalDerivationTimeDependendVariationalPrinciple}.
 For this reason the method as a whole is dubbed a \emph{variational classical network} (VCN).
 
 In \cite{variationalClassicalNetworksPaper} this strategy is used on comparable applications on similar quantum problems.
@@ -22,7 +22,7 @@ One then calculates the variational nudge $\dot{\vec{\eta}}$ to the parameters $
 \begin{equation}
     \label{eq:best-overlap}
     \begin{gathered}
-        \ketpsiEta{\vec{\eta} + \delta \cdot \dot{\vec{\eta}}}{t + \delta} \leftrightarrow e^{-i \hamiltonian \delta} \ketpsiEta{\vec{\eta}}{t}
+        \ketpsiEta{\vec{\eta} + \delta \cdot \dot{\vec{\eta}}}{t + \delta} \quad\leftrightarrow\quad e^{-i \hamiltonian \delta} \ketpsiEta{\vec{\eta}}{t}
         \\
         \ketpsiEta{\vec{\eta}}{t} = \lsum[N] e^{-i E_0(N) t + \HvcnOft{\vec{\eta}}} \psiN \ketN{}
         \\
@@ -35,14 +35,14 @@ With a set of starting parameters for $t=0$ and an update-strategy for small tim
 The mentioned overlap is calculated with a measurement that uses the \emph{Fubini-Study metric} (\cite{variationalClassicalNetworksPaper} and \cite{probabilitySamplingRequirementVCN}, where \cite{probabilitySamplingRequirementVCN} contains a detailed derivation in the supplementary material).
 
 This yields the \emph{TDVP-equation} (\autoref{eq:eta-dot-calculation}), using the \emph{variational derivative} (\autoref{eq:variational-derivatives-definition}) and the \emph{local energy} (\autoref{eq:local-energy-definition}), wich both are required for calculating the \emph{covariance matrix} (\autoref{eq:covariance-matrix}) and the \emph{TDVP-force} (\autoref{eq:tdvp-force}).
-The \etaExpectationVal{\ast} denotes the expectation values with respect to the normalized probability distribution over all the states \ketpsiEta{\vec{\eta}}{t} \cite{probabilitySamplingRequirementVCN}.
+The \etaExpectationVal{\ast} denotes the expectation values with respect to the normalized probability distribution over all the states \ketpsiEta{N,\,\vec{\eta}}{t} \cite{probabilitySamplingRequirementVCN}.
 Meaning the observable-sampling-expression from \autoref{eq:expectation-value} may be used as-is, if $\HeffOft$ is set to the parametrized version $\HeffOft[N,\,\vec{\eta}]$.
 
 \begin{equation}
     \label{eq:eta-dot-calculation}
     \begin{gathered}
         \lsum[k'] \matvec{S}_{k,\, k'} \dot{\vec{\eta}}_{k'} = -i \vec{F}_k\\
-        \dot{\vec{\eta}} = -i \matvec{S^{-1}} \vec{F}
+        \dot{\vec{\eta}} = -i {\matvec{S}}^{-1} \vec{F}
     \end{gathered}
 \end{equation}
 

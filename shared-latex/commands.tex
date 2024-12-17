@@ -113,12 +113,13 @@
 \newcommand{\generaljvecop}[4]{\ensuremath{\vec{j}_{#2,\,#3}^{\,\,#1}#4}\xspace}
 \newcommand{\currentvec}[3][]{\generaljvecop{#1}{#2}{#3}{}}
 \newcommand{\currentvecOft}[3][]{\generaljvecop{#1}{#2}{#3}{(t)}}
-\newcommand{\biggerNeighbor}[2]{\ensuremath{\left\langle#1 \stackrel{+}{<} #2\right\rangle}\xspace}
-\newcommand{\smallerNeighbor}[2]{\ensuremath{\left\langle#1 \stackrel{+}{>} #2\right\rangle}\xspace}
-\newcommand{\biggerNeighborX}[2]{\ensuremath{\left\langle#1 \stackrel{+(\mathrm{x})}{<} #2\right\rangle}\xspace}
-\newcommand{\smallerNeighborX}[2]{\ensuremath{\left\langle#1 \stackrel{+(\mathrm{x})}{>} #2\right\rangle}\xspace}
-\newcommand{\biggerNeighborY}[2]{\ensuremath{\left\langle#1 \stackrel{+(\mathrm{y})}{<} #2\right\rangle}\xspace}
-\newcommand{\smallerNeighborY}[2]{\ensuremath{\left\langle#1 \stackrel{+(\mathrm{y})}{>} #2\right\rangle}\xspace}
+
+\newcommand{\biggerNeighbor}[2]{\ensuremath{   {\vphantom{{\stackrel{+}{<}}} \left\langle#1 \smash{\stackrel{+}{<}}                         #2\right\rangle} }\xspace}
+\newcommand{\smallerNeighbor}[2]{\ensuremath{  {\vphantom{{\stackrel{+}{>}}} \left\langle#1 \smash{\stackrel{+}{>}}                         #2\right\rangle} }\xspace}
+\newcommand{\biggerNeighborX}[2]{\ensuremath{  {\vphantom{{\stackrel{+(\mathrm{x})}{<}}} \left\langle#1 \smash{\stackrel{+(\mathrm{x})}{<}} #2\right\rangle} }\xspace}
+\newcommand{\smallerNeighborX}[2]{\ensuremath{ {\vphantom{{\stackrel{+(\mathrm{x})}{>}}} \left\langle#1 \smash{\stackrel{+(\mathrm{x})}{>}} #2\right\rangle} }\xspace}
+\newcommand{\biggerNeighborY}[2]{\ensuremath{  {\vphantom{{\stackrel{+(\mathrm{y})}{<}}} \left\langle#1 \smash{\stackrel{+(\mathrm{y})}{<}} #2\right\rangle} }\xspace}
+\newcommand{\smallerNeighborY}[2]{\ensuremath{ {\vphantom{{\stackrel{+(\mathrm{y})}{>}}} \left\langle#1 \smash{\stackrel{+(\mathrm{y})}{>}} #2\right\rangle} }\xspace}
 
 \newcommand{\partialTrace}[2]{\ensuremath{\text{Tr}_{#1}\left(#2\right)}\xspace}
 
