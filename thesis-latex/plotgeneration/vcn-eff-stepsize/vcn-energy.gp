@@ -42,13 +42,16 @@ set xtics 1
 set mxtics 5
 set xlabel "time [1/U]"
 
-set yrange []
-set ytics 0.05
+set yrange[0.13:]
+set ytics 0.01
 set mytics 5
 
+set y2range [1e-20:1e-3]
 set logscale y2 10
 set y2tics log
 set my2tics 5
+
+unset key
 
 set ylabel "Energy per site [U]"
 first_y = NaN
@@ -77,7 +80,10 @@ plot \
      "comparevcn0002-exact-energyimag.csv"    using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markerorange
 # end plot 1,1
 
-set key left bottom                                                       # moves legend
+unset yrange
+unset y2tics
+
+set key left top                                                       # moves legend
 set ylabel "Var(E per site) [U²]"
 set ytics 0.05
 first_y = NaN

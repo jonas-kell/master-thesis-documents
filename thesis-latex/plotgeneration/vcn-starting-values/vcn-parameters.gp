@@ -33,6 +33,8 @@ set xtics 0.1
 set mxtics 1
 set mytics 5
 
+set yrange [-1:1]
+
 parameters = "param0 param1 param2 param3 param4 param5"
 
 do for [i = 1:words(parameters)] {
