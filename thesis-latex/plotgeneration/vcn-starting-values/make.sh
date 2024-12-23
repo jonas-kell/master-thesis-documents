@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 
 
 stepsizes=("01" "001" "0001" "00001")
-observables=( "energy" "variance" "param0re" "param0im"  "param1re" "param1im"  "param2re" "param2im"  "param3re" "param3im"  "param4re" "param4im"  "param5re" "param5im" )
+observables=( "energy" "variance" "param0re" "param1re" "param2re" "param3re" "param4re" "param5re" "param0im" "param1im" "param2im"  "param3im"  "param4im" "param5im" )
 
 python3 ./../convert-json-zip-to-csv.py --clear --zip_file_name "clear" --observable_index 0 --out_file_suffix "clear"
 
