@@ -20,6 +20,7 @@ markeryellow="#EEBE00"
 markerpink="#db10e9"
 markermint="#1fc6a1"
 markerorange="#FF8E00"
+markergray="#333333"
 
 linered="#FF9999"
 linegreen="#77FF77"
@@ -28,6 +29,7 @@ lineyellow="#F6D140"
 linepink="#db10e9"
 linemint="#59f7d4"
 lineorange="#fca438"
+linegray="#444444"
 
 
 # plot
@@ -71,6 +73,7 @@ plot \
      "comparevcn002-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markeryellow, \
      "comparevcn0006-exact-energy.csv"    using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerpink, \
      "comparevcn0002-exact-energy.csv"    using ($1 * U):($2/U) notitle      axis x1y1 pointtype 17 pointsize 0.8 linecolor rgb markerorange, \
+     "compareo0-exact-energy.csv"         using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markergray, \
      \
      "compareo1-exact-energyimag.csv"         using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markergreen, \
      "compareo2-exact-energyimag.csv"         using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markerred, \
