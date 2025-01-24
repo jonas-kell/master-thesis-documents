@@ -81,36 +81,43 @@ for json_file_name in extracted_files:
 
             print(loaded_data["hamiltonian"])
 
-            observable = loaded_data["observables"][observable_index]
-            print(observable)
+            observable = None
+            try:
+                observable = loaded_data["observables"][observable_index]
+                print(observable)
+            except Exception:
+                print("observable extraction")
 
-            data_array = loaded_data["measurements"]
+            if observable is not None:  # do not die if one file is missing observables
+                data_array = loaded_data["measurements"]
 
-            for use_imag_vals in [True, False] if has_imag_measurements else [False]:
-                label_to_write = str(observable["label"]) + (
-                    " imagenary part" if use_imag_vals else ""
-                )
+                for use_imag_vals in (
+                    [True, False] if has_imag_measurements else [False]
+                ):
+                    label_to_write = str(observable["label"]) + (
+                        " imagenary part" if use_imag_vals else ""
+                    )
 
-                times_to_extract = []
-                values_to_extract = []
+                    times_to_extract = []
+                    values_to_extract = []
 
-                for measurement_point in data_array:
-                    time = measurement_point["time"]
-                    if use_imag_vals:
-                        val = measurement_point["data_imag"][observable_index]
-                    else:
-                        val = measurement_point["data"][observable_index]
+                    for measurement_point in data_array:
+                        time = measurement_point["time"]
+                        if use_imag_vals:
+                            val = measurement_point["data_imag"][observable_index]
+                        else:
+                            val = measurement_point["data"][observable_index]
 
-                    times_to_extract.append(time)
-                    values_to_extract.append(val)
+                        times_to_extract.append(time)
+                        values_to_extract.append(val)
 
-                out_file_name = f"{descriptor}-{finer_descriptor}-{args['out_file_suffix']}{'imag' if use_imag_vals else ''}.csv"
-                with open(out_file_name, mode="w", newline="") as file:
-                    writer = csv.writer(file, lineterminator="\n")
-                    writer.writerow([label_to_write])  # Descriptor
-                    writer.writerow(["Time", "Value"])  # Header
-                    for time, value in zip(times_to_extract, values_to_extract):
-                        writer.writerow([time, value])
+                    out_file_name = f"{descriptor}-{finer_descriptor}-{args['out_file_suffix']}{'imag' if use_imag_vals else ''}.csv"
+                    with open(out_file_name, mode="w", newline="") as file:
+                        writer = csv.writer(file, lineterminator="\n")
+                        writer.writerow([label_to_write])  # Descriptor
+                        writer.writerow(["Time", "Value"])  # Header
+                        for time, value in zip(times_to_extract, values_to_extract):
+                            writer.writerow([time, value])
         else:
             # treat a monte-carlo multi-sample
 
