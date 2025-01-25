@@ -1,5 +1,0 @@
-These measurements were taken with a previous version of the code
-The latest version produces different results
-
-SHA of the commit:
-698ef4a1a776bc21eed31f7db7789a9f73eaf3e8
