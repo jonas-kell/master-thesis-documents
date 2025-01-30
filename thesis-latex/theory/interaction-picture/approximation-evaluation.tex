@@ -294,7 +294,7 @@ In the second to last step, the $i$ is moved into the integral.
 
 While it seems that $\lsum[K] \fullneighborsum{l}{m}$ is even a larger summation than the previously problematic ones, because the operators $\VhamiltonianOperatorPart{A}{l}{m}$, $\VhamiltonianOperatorPart{B}{l}{m}$ and $\VhamiltonianOperatorPart{C}{l}{m}$ have interaction range limited to nearest neighbors, actually the summation is really sparse and most entries are $0$.
 This summation can be efficiently evaluated in \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})}.
-How this could be done, can be looked up in the implementation \filepath{\cite{selfCode}}{/computation-scripts/hamiltonian.py} in the specialization class \emph{HardcoreBosonicHamiltonian}.
+How this could be done, can be looked up in the implementation \filepath{\cite{selfCode}}{/computation-scripts/hamiltonian.py} in the specialization class \emph{FirstOrderCanonicalHamiltonian}.
 
 \subsubsection*{Calculate the second order of \HNOft}
 
