@@ -43,7 +43,7 @@ do for [i = 1:words(parameters)] {
           set label "x-Axis: time [1/U]" at graph 0.50,0.10
 
           set key Left                                                            # key text justify left
-          set key at graph 0.40,0.31                                              # moves legend
+          set key at graph 0.40,0.41                                              # moves legend
           set style line 999 dashtype 1 linewidth 1 linecolor rgb "#0000AA"       # legend linestyle
           set key box linestyle 999                                               # apply box style
           set key spacing 1                                                       # vertical spacing of entries
@@ -53,18 +53,21 @@ do for [i = 1:words(parameters)] {
      }
      set ylabel sprintf("Variational Param. %d", i)
      plot \
-          NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " 0.1", \
-          NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " 0.01", \
-          NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " 0.001", \
-          NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " 0.0001", \
-          sprintf("sigma01-exact-param%dre.csv", i-1)        using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerred, \
-          sprintf("sigma001-exact-param%dre.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markergreen, \
-          sprintf("sigma0001-exact-param%dre.csv", i-1)      using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerblue, \
-          sprintf("sigma00001-exact-param%dre.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerorange, \
+          NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " a", \
+          NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " a", \
+          NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " a", \
+          NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " a", \
+          NaN with points pt 5 pointsize 0.6 lc rgb markerpink   title " a", \
+          sprintf("11-exact-param%dre.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerred, \
+          sprintf("22-exact-param%dre.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markergreen, \
+          sprintf("33-exact-param%dre.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerblue, \
+          sprintf("44-exact-param%dre.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerorange, \
+          sprintf("55-exact-param%dre.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerpink, \
           \
-          sprintf("sigma01-exact-param%dim.csv", i-1)        using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markerred, \
-          sprintf("sigma001-exact-param%dim.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markergreen, \
-          sprintf("sigma0001-exact-param%dim.csv", i-1)      using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markerblue, \
-          sprintf("sigma00001-exact-param%dim.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markerorange
+          sprintf("11-exact-param%dim.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markerred, \
+          sprintf("22-exact-param%dim.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markergreen, \
+          sprintf("33-exact-param%dim.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markerblue, \
+          sprintf("44-exact-param%dim.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markerorange, \
+          sprintf("55-exact-param%dim.csv", i-1)     using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markerpink
           
 }

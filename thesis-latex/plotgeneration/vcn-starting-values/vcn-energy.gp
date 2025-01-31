@@ -53,18 +53,16 @@ set mytics 5
 set ylabel "Energy per site [U]"
 # plot 1,1
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " 0.1", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " 0.01", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " 0.001", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " 0.0001", \
-     "sigma01-exact-energy.csv"        using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerred, \
-     "sigma001-exact-energy.csv"       using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markergreen, \
-     "sigma0001-exact-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerblue, \
-     "sigma00001-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 17 pointsize 1.1 linecolor rgb markerorange  #, \
-     # "sigma01-exact-energyimag.csv"        using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markerred, \
-     # "sigma001-exact-energyimag.csv"       using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markergreen, \
-     # "sigma0001-exact-energyimag.csv"      using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markerblue, \
-     # "sigma00001-exact-energyimag.csv"     using ($1 * U):(abs($2/U)) notitle      axis x1y2 pointtype 12 pointsize 0.6 linecolor rgb markerorange
+     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " a", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " a", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " a", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " a", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerpink   title " a", \
+     "11-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerred, \
+     "22-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markergreen, \
+     "33-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerblue, \
+     "44-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 17 pointsize 1.1 linecolor rgb markerorange  , \
+     "55-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 17 pointsize 1.1 linecolor rgb markerpink  #, \
 # end plot 1,1
 
 set key left bottom                                                       # moves legend
@@ -72,12 +70,14 @@ set ylabel "Var(E per site) [U²]"
 set ytics 0.05
 # plot 2,1
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " 0.1", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " 0.01", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " 0.001", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " 0.0001", \
-     "sigma01-exact-variance.csv"      using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerred, \
-     "sigma001-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markergreen, \
-     "sigma0001-exact-variance.csv"    using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerblue, \
-     "sigma00001-exact-variance.csv"   using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 17 pointsize 1.1 linecolor rgb markerorange
+     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " a", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " a", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " a", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " a", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerpink   title " a", \
+     "11-exact-variance.csv"      using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerred, \
+     "22-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markergreen, \
+     "33-exact-variance.csv"    using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerblue, \
+     "44-exact-variance.csv"   using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 17 pointsize 1.1 linecolor rgb markerorange, \
+     "55-exact-variance.csv"   using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 17 pointsize 1.1 linecolor rgb markerpink
 # end plot 2,1
