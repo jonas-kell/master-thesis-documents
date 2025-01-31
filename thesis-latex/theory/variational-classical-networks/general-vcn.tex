@@ -16,7 +16,7 @@ To extend the principle to complex parameters, the networks structure could be a
 For \emph{holomorphic} functions the following also follows from an action-principle \cite{probabilitySamplingRequirementVCN} - or in short: for fully complex differentiable \cite{complexDifferentiation} parametrizations no special treatment is required.
 
 Generally then the following method is applied: To begin with, $\vec{\eta}(t)$ is initialized to a known value for $t=0$ to try to achieve $\HvcnOft{\vec{\eta}(t)} \vert_{t=0} \approx 0$.
-The initialized parameters should additionally have some noise added to them, to prevent unwanted dead-points like an unstable equilibrium.
+The initialized parameters should additionally have some small noise added to them, to prevent unwanted dead-points like an unstable equilibrium.
 One then calculates the variational nudge $\dot{\vec{\eta}}$ to the parameters $\vec{\eta}$, so that the overlap of the states in \autoref{eq:best-overlap} is maximized.
 
 \begin{equation}
@@ -58,7 +58,7 @@ Where $\ast^{-1}$ is the pseudo inverse of a square matrix (that might not be in
     \end{gathered}
 \end{equation}
 
-The $\psiN$ can be raised into the exponential and then all terms that are not dependent on variational parameters can easily be differentiated to 0.
+The $\psiN$ can be expressed as an exponential (which cancels with the $\ln$) and then all terms that are not dependent on variational parameters can easily be differentiated to 0.
 
 \begin{equation}
     \label{eq:local-energy-definition}

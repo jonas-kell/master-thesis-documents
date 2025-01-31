@@ -46,7 +46,7 @@ But, while all states obtained via time evolution $\ketN[{\psiOfT[\schroedingerP
 The calculation necessarily needed to be generalized to take the density matrix as an input.
 \cite{concurrenceRewording} gives two alternate ways of calculating the concurrence from the density matrix.
 Both require the \emph{spin-flip} operation $\tilde{\rho}$.
-The original paper \cite{concurrenceMainPaper} describes this operation for density matrix $\rho$ expressed in the counting basis to be: transforming it into to magic basis \autoref{eq:magic-basis}, taking the complex conjugate, then transforming it back.
+The original paper \cite{concurrenceMainPaper} describes this operation for density matrix $\rho$ expressed in the counting basis to be: transforming it into to magic basis of \autoref{eq:magic-basis}, taking the complex conjugate, then transforming it back.
 As per \cite{concurrenceRewording} this is equivalent to the operation described in \autoref{eq:spin-flip}, where $\rho$ and \pauli[]{y} (\autoref{eq:pauli-matrices}) are expressed in the standard counting basis.
 
 \begin{equation}
@@ -56,22 +56,22 @@ As per \cite{concurrenceRewording} this is equivalent to the operation described
     \end{split}
 \end{equation}
 
-\filepath{\cite{selfCode}}{/calculation-helpers/concurrence/basis-transformation.py} verifies this equivalence and shows the ${\tilde{\ast}}$-operation modifies a hermitian matrix like in \autoref{eq:demonstration-spin-flip}.
+\filepath{\cite{selfCode}}{/calculation-helpers/concurrence/basis-transformation.py} verifies this equivalence and shows the ${\tilde{\ast}}$-operation modifies a hermitian matrix like shown in \autoref{eq:demonstration-spin-flip}.
 
 \begin{equation}
     \label{eq:demonstration-spin-flip}
     \begin{split}
         \rho = \left(\begin{matrix}
             a& b & c &d \\
-            \overline{b}& e & f &g \\
-            \overline{c}& \overline{f} & h &k \\
-            \overline{d}& \overline{g} & \overline{k} &l \\
+            b^\ast& e & f &g \\
+            c^\ast& f^\ast & h &k \\
+            d^\ast& g^\ast & k^\ast &l \\
         \end{matrix}\right)  \quad\Rightarrow\quad\tilde{\rho} = 
         \left(\begin{matrix}
             l& -k & -g &d \\
-            -\overline{k}& h & f &-c \\
-            -\overline{g}& \overline{f} & e &-b \\
-            \overline{d}& -\overline{c} & -\overline{b} &a \\
+            -k^\ast& h & f &-c \\
+            -g^\ast& f^\ast & e &-b \\
+            d^\ast& -c^\ast & -b^\ast &a \\
         \end{matrix}\right) 
     \end{split}
 \end{equation}
@@ -81,7 +81,7 @@ With that knowledge \autoref{eq:concurrence-calculation} states how to calculate
 \begin{equation}
     \label{eq:concurrence-calculation}
     \begin{gathered}
-        R = \sqrt{\sqrt{\rho}\tilde{\rho}\sqrt{\rho}}\\
+        R = \sqrt{\sqrt{\rho} \cdot \tilde{\rho} \cdot \sqrt{\rho}}\\
         \lambda_1 \geq \lambda_2 \geq \lambda_3 \geq \lambda_4, \quad \left\{\lambda_i\right\} = \text{Eigenvalues}(R)\\
         C(\rho) = \max (0, \lambda_1 - \lambda_2 - \lambda_3 - \lambda_4)
     \end{gathered}

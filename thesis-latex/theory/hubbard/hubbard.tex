@@ -52,16 +52,16 @@ For such a system, the energy difference that is acquired from hopping from site
 \end{equation}
 
 During measurements in the \nameref{sec:numerical-experiments} section, a 1-dimensional version of this is used that will be labeled \emph{chain}. 
-It will be obtained by cutting the first row of the respective square geometry and is consistent with basically all mathematical derivations performed for the \emph{square} case, because of the nearest-neighbor notation that is independent of the underlying geometry. Only in the derivation of \fullref{sec:theory-observables-current} are differences based on the dimensionality, that however do not affect the end result.
+It will be obtained by cutting the first row of the respective square geometry and is consistent with basically all mathematical derivations performed for the \emph{square} case, because of the nearest-neighbor notation that is independent of the underlying geometry. Only in the derivation of \fullref{sec:theory-observables-current} appear differences based on the dimensionality, that however do not affect the end result.
 The reason for the truncation is to reduce thy system size for the verification of convergence towards exact comparisons.
 While such a modification necessarily affects the physical properties, it is fine for verification of convergence.
 Also interesting physical - system-size independent - effects only manifest in experiments with lattice site numbers far beyond any possible exact diagonalization anyway.
 
-The Hubbard Model \cite{hubbardModelOriginalDerivation} is a spin-depending quantum-mechanical model. 
+The Hubbard Model \cite{hubbardModelOriginalDerivation} is a spin-dependent quantum-mechanical model. 
 Because of this, the Hamiltonian includes terms for both the spin directions $\up$ and $\down$ (most of the time denoted by a summation over $\sigma$).
 
-In principle, the operators $\withspinhcop[]{l}{\sigma}{(\dagger)}$ can be any type of quantum-mechanical ladder operator, like e.g. \emph{bosonic} or \emph{fermionic} ones.
-In this application, the decision was made to use \emph{hard-core bosons} \cite[]{hardCoreBosonsBasics}.
+In principle, the operators $\withspinhcop[]{l}{\sigma}{(\dagger)}$ can be any type of quantum-mechanical ladder operator, like the aforementioned bosonic or fermionic ones.
+In this application, the decision was made to use \emph{hard-core bosons} \cite[]{hardCoreBosonsBasics}, for they happen to obey multiple useful properties.
 
 Typically for bosons, the Hubbard Model is transformed into the \emph{Bose-Hubbard Model} \cite{boseHubbardModelOriginalDerivation}.
 However hard-core bosons have the added property, that the can only have the occupation numbers of $0$ and $1$ per-spin-and-site in the investigated energy range.
@@ -69,7 +69,7 @@ This means they behave basically like fermions, only that their wave-function sy
 Because of the restriction, one term of the Bose-Hubbard Model drops out and the studied model in equations \ref{eq:main-hamiltonian}, \ref{eq:main-hamiltonian-h0} and \ref{eq:main-hamiltonian-perturbation} is produced.
 Also the typical Bose-Hubbard Model is not spin-dependent, while this property is kept here.
 Hard-core bosons on their own have relevant properties that makes them worth studying. 
-Experimental research on hard-core bosons can give insight into e.g. \emph{ultra-cold gasses} and \emph{Bose-Einstein condensation} \cite{hardCoreBosonsBasics}, in this case it is important for the following derivations, that the operators commute, the number operator is idempotent (\ref{eq:hc-counting-op-idempotent})and can be mapped to spin-basis notation (\ref{eq:jordan-wigner-spin-hcb}).
+Experimental research on hard-core bosons can give insight into e.g. \emph{ultra-cold gasses} and \emph{Bose-Einstein condensation} \cite{hardCoreBosonsBasics}, in this case it is important for the following derivations, that the operators on different sites commute, the number operator is idempotent (\ref{eq:hc-counting-op-idempotent}) and can be mapped to spin-basis notation (\ref{eq:jordan-wigner-spin-hcb}).
 
 When adjusting the commutation-relations in \autoref{eq:hard-core-commutators} for spin-dependency, one obtains \autoref{eq:commutation-relations}.
 
@@ -79,12 +79,12 @@ When adjusting the commutation-relations in \autoref{eq:hard-core-commutators} f
         \left[\withspinhcop[]{l}{\sigma}{},\,\withspinhcop[]{l'}{\sigma'}{}\right] &= 
         \left[\withspinhcop[]{l}{\sigma}{\dagger},\,\withspinhcop[]{l'}{\sigma'}{\dagger}\right] = 0\\
         \left[\withspinhcop[]{l}{\sigma}{},\,\withspinhcop[]{l'}{\sigma'}{\dagger}\right] &= 
-        \left(1 - 2 \cdot \withspinhcop[]{l}{\sigma}{\dagger}\withspinhcop[]{l}{\sigma}{} \right)\delta_{l,\,l'}\cdot\delta_{\sigma,\sigma'}
+        \left(1 - 2 \cdot \withspinhcop[]{l}{\sigma}{\dagger}\withspinhcop[]{l}{\sigma}{} \right) \cdot \delta_{l,\,l'}\cdot\delta_{\sigma,\sigma'}
     \end{split}
 \end{equation}
 
 For ease of notation, the two spin degrees of freedom may be described by the alternate naming scheme provided in \autoref{eq:alt-naming-scheme}.
-The related code implementation \cite{selfCode} uses the letters c and d, as that used to be the first designation wile the thesis was developed.
+The related code implementation, comments and some calculations in linked material \cite{selfCode} use the letters c and d, as that used to be the first designation wile the thesis was developed.
 
 \begin{equation}
     \label{eq:alt-naming-scheme}
@@ -94,7 +94,7 @@ The related code implementation \cite{selfCode} uses the letters c and d, as tha
 \end{equation}
 
 For simplification purposes, the two spin directions are assumed to have the same coupling constants ($U$, $J$ and \epsl).
-This means, all later results must be symmetrical in terms of the spin directions $\up$ and $\down$.
+This means, all later results \emph{must} be symmetrical in terms of the spin directions $\up$ and $\down$.
 
 
 Translated into the alternative notation, \autoref{eq:main-hamiltonian-h0} reads like \autoref{eq:main-hamiltonian-h0-alt-notation} and \autoref{eq:main-hamiltonian-perturbation} reads like \autoref{eq:main-hamiltonian-perturbation-alt-notation}.

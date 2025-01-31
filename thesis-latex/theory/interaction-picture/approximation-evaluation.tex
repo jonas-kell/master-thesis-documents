@@ -20,7 +20,7 @@ With this, one can derive a useful expression for their \emph{equation of motion
 \end{equation}
 
 \autoref{eq:schroedinger-op-to-interaction-op} also defines the operator \interactionTimeEvolution{\ast}, which simply is $e^{i \HzeroHamiltonian[\schroedingerPicture]{} t} \left\{\ast \right\} e^{-i \HzeroHamiltonian[\schroedingerPicture]{} t}$.
-This section uses $(t)$ for indicating that operators in the Interaction Picture have a time dependence. 
+This section uses $(t)$ for indicating that operators in the Interaction Picture have a time-dependence. 
 This is superficial and only for better readability, as in fact $\hopOfT[\interactionPicture]{m}{\dagger} = \hop[\interactionPicture]{m}{\dagger} = \interactionTimeEvolution{\hop[\schroedingerPicture]{m}{\dagger}}$.
 
 If now $\left[\HzeroHamiltonian[\schroedingerPicture],\, \Aop[\schroedingerPicture]\right]$ now is a function of $\Aop[\schroedingerPicture]$, one gets a \emph{differential equation} that can be solved to obtain $\AopOfT[\interactionPicture]$.
@@ -147,8 +147,8 @@ It is possible to express these operator-strings as single hoppings, decorated w
     \end{split}
 \end{equation}
 
-The expressions for the dressed operators in \autoref{eq:interaction-picture-v-ham-parts} can be rearranged, to reflect more their physical effects.
-\autoref{eq:interaction-picture-v-ham-parts-simplified} can be obtained and verified by comparing the measurements in a truth table (the \nop[\schroedingerPicture]{}{} measure either a $0$ or $1$ on a state, without modifying it). % TODO fix extra comma
+The expressions for the dressed operators in \autoref{eq:interaction-picture-v-ham-parts} can be rearranged, to better reflect their physical effects.
+\autoref{eq:interaction-picture-v-ham-parts-simplified} can be obtained and verified by comparing the measurements in a truth table (the \nop[\schroedingerPicture]{\ast}{\ast} measure either a $0$ or $1$ on a state, without modifying it).
 
 \begin{equation}
     \label{eq:interaction-picture-v-ham-parts-simplified}
@@ -294,13 +294,13 @@ In the second to last step, the $i$ is moved into the integral.
 
 While it seems that $\lsum[K] \fullneighborsum{l}{m}$ is even a larger summation than the previously problematic ones, because the operators $\VhamiltonianOperatorPart{A}{l}{m}$, $\VhamiltonianOperatorPart{B}{l}{m}$ and $\VhamiltonianOperatorPart{C}{l}{m}$ have interaction range limited to nearest neighbors, actually the summation is really sparse and most entries are $0$.
 This summation can be efficiently evaluated in \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})}.
-How this could be done, can be looked up in the implementation \filepath{\cite{selfCode}}{/computation-scripts/hamiltonian.py} in the specialization class \emph{FirstOrderCanonicalHamiltonian}.
+How this could be done, can be looked up in the implementation \filepath{\cite{selfCode}}{/computation-scripts/hamiltonian.py} in the specialization class \emph{FirstOrderCanonicalHamiltonian}. % TODO are all class references like this?
 
 \subsubsection*{Calculate the second order of \HNOft}
 
 For the calculation of the second order, the time-ordering-operator is relevant again. 
 It however is not necessary for the right side of the integral, as the two integrals can be fully localized to one factor each.
-For the left side, it is necessary to integrate different cases separately.
+For the left side it is necessary to integrate different cases separately.
 
 \vspace{-0.2cm} % TODO check this page-breaks properly in the end
 

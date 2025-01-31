@@ -44,11 +44,11 @@ There, $\partial_\text{x} f(k) = f(k+1) - f(k)$, with any site $k$ and $k+1$ bei
     \end{split}
 \end{equation}
 
-The commutator can swiftly be evaluated, a reference calculation can also be found in 
+The commutator can be swiftly evaluated, a reference calculation can also be found in 
 
 \filepath{\cite{selfMathManipulatorCalculations}}{/current}. The calculation is somewhat specific to the dimension and geometry, in terms of what neighbor indices are summed over.
 For arguing about indices and directions, without worrying about geometric details, \biggerNeighbor{l}{m} will describe all possible values of $m$ that fulfill both the properties that the site $m$ is a nearest neighbor of the site $l$ and the site of $m$ lies either in positive $\text{x}$-direction, or $\text{y}$-direction of the other site, but not in negative direction.
-This bisects the sites along the primary diagonal of the coordinate system and makes the calculation work for all lattices with symmetry around the $\text{x}$- and $\text{y}$-axis.
+This bisects the sites along the diagonal of the coordinate system and makes the calculation work for all lattices with symmetry around the $\text{x}$- and $\text{y}$-axis.
 
 \begin{equation}
     \label{eq:calculation-current-commutator}
@@ -174,7 +174,7 @@ Overall, the evaluation of this observable requires knowing the value of an obje
     e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]}
 \end{equation}
 
-The \fullref{sec:theory-optimizations-analytical} will go into how to compute this efficiently for states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected via the hopping between nearest-neighbor lattice sites.
+The \fullref{sec:theory-optimizations-analytical} will go into how to compute this efficiently for states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected via the hopping between (nearest-neighbor) lattice sites.
 
 It is finally important to notice, that the objects from \autoref{eq:form-heff-difference} are not real-valued, but complex.
 Only the complete observable with the full sum over all basis-states \ketN over \localObservable{N}{t} has a fully vanishing imaginary part. 
@@ -185,8 +185,8 @@ If it doesn't fully vanish, this indicates an error in the sampling strategy or 
 One could entertain the question, whether is is guaranteed for the imaginary part to vanish with a large enough sample size.
 On first thought, if the hamiltonian is only approximated, might there be a possibility for asymmetrical terms to introduce a non-vanishing imaginary part?
 
-Conveniently, rewriting \autoref{eq:expectation-value} in the manner of \autoref{eq:imaginary-part-vanishes}, yields two expressions for the value of the observation that are complex conjugations of each other.
-This again means, that no matter how \glqq bad\grqq{} the \psiOfT[\schroedingerPicture] approximates the real wave-function, for full sampling the result must have an imaginary part of 0.
+Conveniently, rewriting \autoref{eq:expectation-value} in the manner of \autoref{eq:imaginary-part-vanishes}, yields two equal-valued expressions for the value of the observation that are complex conjugations $\ast$ of each other.
+This however guarantees, that no matter how \glqq bad\grqq{} the \psiOfT[\schroedingerPicture] approximates the real wave-function, for full sampling the result must have an imaginary part of 0.
 
 \begin{equation}
     \label{eq:imaginary-part-vanishes}
