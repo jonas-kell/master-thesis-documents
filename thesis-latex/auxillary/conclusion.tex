@@ -1,1 +1,32 @@
-stuff conclusion
+While working on this research subject over the course of my practical training, my project work and finally the master thesis, the material turned out to be more challenging than expected.
+Initially with steady progress and clear goals, work was advancing as planned.
+Because of the seemingly very complicated commutation relations I spent a lot of time on the development of the Math-Manipulator to streamline similar work.
+I had the feeling that several people at the chair would benefit from a tool to validate and improve the calculations that are traditionally done on paper, without resorting to the full adoption of a computer-algebra-system.
+Looking back at the calculations that are in the end needed for this thesis, this tool seems to have been under-utilized.
+
+However during the development I was able to significantly improve my understanding for the different types of operators, their properties and differences.
+This not only directly lead to the calculations now being as straight forward as they are, but also - as my understanding increased - numerous recalculations were required.
+In that context, having this consistent tool saved many hours.
+So I can confidently say, that the time for the side-project was well invested and not wasted.
+
+Consequently when it came down to practical realization of the mathematical derivations, I spent a lot of time writing extra alternative calculations and programmed checks to verify the correctness of the analytical calculations and numerical implementations.
+This lead to finding many bugs and quirks - many of which with only small effects on the result. 
+Still this strategy (as opposed to taking the first \glqq working\grqq{} code) made me highly confident to state that the final implementation is bug-free and correctly reflects the described methods accurately to a high degree.
+This would be especially important, as a logical next step would be to produce an even more efficient implementation in a higher-level, compiled language like C(++)/Rust to improve base level performance.
+
+While this thesis and the corresponding code aspires to provide adequate comparisons between the methods and validate their viability, because of the amount of low level operations in Python it lacks the efficiency required for taking on experiments on very large systems.
+This shows that the described computational complexity class can be reached and the method can be used to handle the underlying problem - yet there still are a lot of micro-optimizations left to tackle.
+Also several generalizations that were needed in previous revisions/comparisons could be taken out, if one only needs the final iteration of the method.
+
+Getting all processes to work as intended turned out to be more challenging than first anticipated.
+For one, a problem in two-dimensions and non-periodic boundary conditions has a lot more edge-cases than the same method on a 1-dimensional, linear chain with periodic boundary conditions.
+When tracking which interactions cancel, the overlapping \glqq spheres of influence\grqq{} produce a significantly higher number of interaction terms in this problem compared to descriptions of previous applications to simpler geometric lattices.
+
+This, combined with two unexpectedly complex road-blocks caused my available time to erode.
+Nearing the end of the allocated time-frame, the work was still containing less \glqq Physics\grqq{} (Concrete new insights, obtained by experimentally observing the effects of parameter variations) than we were hoping.
+In the words of my supervisor Markus Heyl, in the cases where we can not imagine what is stopping the experiment from behaving as expected: \glqq That's science!\grqq{}.
+Now at the end I can proudly state, that this motivated me to finally solve all remaining road-blocks before the deadline.
+
+Which also is the reason I am happy to be able to provide a fully tested and detailed implementation and verification of the hypothesized solution.
+To provide the biggest contribution to science, I believe in providing clean final code for making numerical methods reproducible and expandable.
+And I hope that the code can be build upon in future research, that may focus on honing the experiment's parameters and not being held up with debugging while replicating theoretical methods.
