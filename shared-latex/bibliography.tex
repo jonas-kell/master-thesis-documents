@@ -1,3 +1,10 @@
 \newpage
 \nocite{*}
-\printbibliography[title={Bibliography}]
+
+{
+    \setlength{\emergencystretch}{5em} % should stop urls from going over the right side of the textwidth
+    \sloppy                             % looser line-breaking rules
+    \setcounter{biburllcpenalty}{9000}  % Try not to break urls at lower letters / in words (preferably more at /:-+= or other signs)
+
+    \printbibliography[title={Bibliography}]
+}
