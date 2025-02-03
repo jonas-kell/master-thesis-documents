@@ -1,4 +1,66 @@
-% TODO 
+The method described so far seems to be the minimal viable parametrization at first.
+Of course it should be possible to introduce more terms that are inspired from higher order perturbation theory.
+Currently for the 2-dimensional grid the last section suggested 12 parameters. 
+Considering that half of them can be expressed as complex conjugates of some other, this leaves only 6 distinct parameters.
+While this doesn't provide many degrees of freedom to encode information, it should be sufficient for some basic calculations and a verification of the method.
+At least for validating the hypothesis it should be better than the first-order model without variational parameters.
 
-\cite{TDVPfromActionPrinciple}
-\cite{energyConservationFromActionPrinciple}
+In previous sections, the TDVP-equation was derived from maximizing the overlap of a variational state that has its parameters numerically integrated to a future time and the same state being time-evolved with the Hamiltonian for a small time-step.
+However as \cite{TDVPfromActionPrinciple} shows, the TDVP-formalism can also be derived from an \emph{action principle}.
+And as \emph{Noether's theorem} states: if a method keeps the \emph{Lagrangian invariant} (like the mentioned principle that derives parameter-variations which are symmetries of the action), the system's energy must be \emph{exactly} conserved over time \cite{energyConservationFromActionPrinciple} (independent of how \glqq bad\grqq{} the parametrization is).
+
+In order to adhere to the structure of the thesis, at this point some numerical results are revealed in advance. 
+As experiments in \fullref{sec:experiments-vcn-fails} show, this simple parametrization does not result in the energy being conserved at all.
+Upon closer inspection, the resulting changes to the variational parameters seem to be more or less independent from the initial values.
+After implementation reasons for this behavior were ruled out to the best possible degree, it seemed unclear what was the cause for this.
+
+So the algorithm \emph{must} conserve the system's energy - for small enough time-steps - most importantly already at the very first variational time-step.
+This leads to the solution, because the only thing that is left to influence the effective Hamiltonian (at $t=0$, where all introduced variational parameters are approximately zero) is the base-energy with its explicit time-dependency.
+
+Presenting this realization in this case out-of-order (presenting and doing experiments on a clearly still unviable model before presenting the correct one) is supposed to reflect the work-process that was necessary to arrive at this final version.
+In first theoretical discussions about the application of TDVP, the algorithm's explicit dependency on time in the base-energy case had been touched and even been presented in the correct form to solve this shortcoming.
+Yet, only after going through two alternate base-energy parametrizations unsuccessfully and arriving at the final working solution independently of this hint, the relevance of the statement became clear.
+In hindsight it is straight forward to see, why the explicit time-dependency contribution of the base-energy to the effective Hamiltonian is detrimental, when looking at equations \ref{eq:eta-dot-calculation} and \ref{eq:variational-derivatives-definition}.
+
+Starting at a point $t$ in time, it comes natural to numerically integrate a quantity $\vec{\eta}$ if one has access to the time-derivative $\dot{\vec{\eta}}$.
+However in the method up to this point through the partial derivative with respect to the variational parameters: $\frac{\partial \HeffOft[N,\,\vec{\eta}]}{\partial \vec{\eta}_k} = \frac{\partial \left(-i E_0(N) t + \Hvcn{\vec{\eta}}\right)}{\partial \vec{\eta}_k} = \frac{\partial \Hvcn{\vec{\eta}} }{\partial \vec{\eta}_k}$, the explicit time dependency is dropped.
+However classically the time-derivative is obtained as per the chain rule:
+$\frac{\mathrm{d} f(t,\,x(t))}{\mathrm{d} t} = \frac{\partial f}{\partial t} + \frac{\partial f}{\partial x} \cdot \frac{\mathrm{d} x}{\mathrm{d} t}$, which rightfully does not drop the explicit dependency.
+So to avoid having to derive the algorithm again, but with explicit time-dependency in mind, the most direct strategy would be to eliminate all explicit time-dependencies.
+This would result in a completely variational effective Hamiltonian $\Heffvcn{N}{\vec{\eta}}$, where all that is time-dependent is encoded in the current state of $\vec{\eta}$.
+
+Following the linear strategy of \autoref{eq:hamiltonian-vcn}, the resulting structure is presented in \autoref{eq:h-eff-vcn}.
+
+\begin{equation}
+    \label{eq:h-eff-vcn}
+    \begin{split}
+        \Heffvcn{N}{\vec{\eta}} &= \sum\limits_{n=1}^{\text{\#}(\text{var.})} \eta^\text{var.}_{n} \cdot \Phi^\text{var.}_{n}(N)
+        + \sum\limits_{l=0}^{L} \eta^\text{b.e.}_{l} \cdot \Phi^\text{b.e.}_{l}(N)
+         = \lsum[l] \eta_l \cdot \Phi_l(N)\\
+         \vec{\eta} &= \left(
+            \eta^\text{var.}_{1},\,\eta^\text{var.}_{2},\, \dots,\, \eta^\text{var.}_{\text{\#}(\text{var.})},\,
+            \eta^\text{b.e.}_{0},\,\eta^\text{b.e.}_{1},\, \dots,\, \eta^\text{b.e.}_{L}
+           \right)^\text{T}
+    \end{split}
+\end{equation}
+
+The $\eta^\text{var.}_{n}$ and $\Phi^\text{var.}_{n}(N)$ are the same as in \autoref{sec:theory-variational-classical-networks-application} and still depend on the chosen parametrization of $\HNOft$.
+When comparing with \autoref{eq:base-energy}, \autoref{eq:base-energy-variational-parameters} presents itself as an ideal choice for $\eta^\text{b.e.}_{l}$ and $\Phi^\text{b.e.}_{l}(N)$, as it upholds $\sum\limits_{l=0}^{L} \eta^\text{b.e.}_{l} \cdot \Phi^\text{b.e.}_{l}(N) = -i \cdot E_0(N) \cdot t$ for a lattice with $L$ sites.
+
+\begin{equation}
+    \label{eq:base-energy-variational-parameters}
+    \begin{split}
+        E_0(N) &\stackrel{\ref{eq:base-energy}}{=} U \cdot \lsum[m] n_{m,\,\up}n_{m,\,\down} + \lsum[l,\,\sigma] \epsl n_{l,\,\sigma}\\
+        \eta^\text{b.e.}_{l} &\stackrel{\phantom{\ref{eq:base-energy}}}{=} \begin{cases}
+            l=0: \quad -i\cdot U \cdot t             \\
+            l>0: \quad -i\cdot \epsl[l] \cdot t
+        \end{cases}\\
+        \Phi^\text{b.e.}_{l}(N) &\stackrel{\phantom{\ref{eq:base-energy}}}{=} \begin{cases}
+            l=0: \quad \lsum[m] n_{m,\,\up}n_{m,\,\down}             \\
+            l>0: \quad \lsum[\sigma] n_{l,\,\sigma}
+        \end{cases}
+    \end{split}
+\end{equation}
+
+Other partitions of the parameters are also possible, e.g. having multiple parameters for the encoding of the double-occupation term.
+With this modification, the equations in \autoref{sec:theory-variational-classical-networks-basics} can be used as derived and the explicit time-dependency is eliminated.
