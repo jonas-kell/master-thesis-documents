@@ -1,7 +1,7 @@
 % \subsubsection*{Spin-Polarized Kinetics}
 
 For measuring the spin-polarized flow of particles, a slightly more complex observable must be employed. 
-The current operator is dependent on the hamiltonian and must be derived from the \emph{continuity equation} (\autoref{eq:continuity-equation}) in the \emph{Heisenberg Picture} (\autoref{eq:heisenberg-picture}) \cite{discreteDivergenceAndOtherCurrentDerivation}.
+The current operator is dependent on the Hamiltonian and must be derived from the \emph{continuity equation} (\autoref{eq:continuity-equation}) in the \emph{Heisenberg Picture} (\autoref{eq:heisenberg-picture}) \cite{discreteDivergenceAndOtherCurrentDerivation}.
 
 \begin{equation}
     \label{eq:heisenberg-picture}
@@ -183,7 +183,7 @@ It is important to monitor the magnitude of this value and monitor it going to $
 If it doesn't fully vanish, this indicates an error in the sampling strategy or the implementation or the number of sampled states is not great enough.
 
 One could entertain the question, whether is is guaranteed for the imaginary part to vanish with a large enough sample size.
-On first thought, if the hamiltonian is only approximated, might there be a possibility for asymmetrical terms to introduce a non-vanishing imaginary part?
+On first thought, if the Hamiltonian is only approximated, might there be a possibility for asymmetrical terms to introduce a non-vanishing imaginary part?
 
 Conveniently, rewriting \autoref{eq:expectation-value} in the manner of \autoref{eq:imaginary-part-vanishes}, yields two equal-valued expressions for the value of the observation that are complex conjugations $\ast$ of each other.
 This however guarantees, that no matter how \glqq bad\grqq{} the \psiOfT[\schroedingerPicture] approximates the real wave-function, for full sampling the result must have an imaginary part of 0.

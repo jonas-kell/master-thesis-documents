@@ -8,8 +8,8 @@ Both reach the same expressions for the advancement of the parameters to later t
 This section reiterates the equations, unifying the parts where different conventions might be used.
 
 \HNOft from \autoref{eq:cumulant-expansion} should be approximated with a parametrized expression \Hvcn{\vec{\eta}(t)}.
-This means - compared with \autoref{eq:time-evolution-target} - the effective hamiltonian now is expressed as $\HeffOft[N,\,\vec{\eta}] = -i E_0(N) t + \Hvcn{\vec{\eta}(t)}$.
-The hamiltonian depends on the choice of the complex parameter vector $\vec{\eta}(t)$.
+This means - compared with \autoref{eq:time-evolution-target} - the effective Hamiltonian now is expressed as $\HeffOft[N,\,\vec{\eta}] = -i E_0(N) t + \Hvcn{\vec{\eta}(t)}$.
+The Hamiltonian depends on the choice of the complex parameter vector $\vec{\eta}(t)$.
 
 Historically the TDVP was derived for real-valued parameters \cite{originalDerivationTimeDependendVariationalPrinciple}.
 To extend the principle to complex parameters, the networks structure could be adapted through the introduction of two real-valued parameters per complex parameter \cite{TDVPcomplexPrefactors}.
@@ -30,7 +30,7 @@ One then calculates the variational nudge $\dot{\vec{\eta}}$ to the parameters $
     \end{gathered}
 \end{equation}
 
-This method tries to find the update to the parameters, that most accurately reflects what would happen if the system was time-evolved for a small time-step $\delta$ with the full hamiltonian.
+This method tries to find the update to the parameters, that most accurately reflects what would happen if the system was time-evolved for a small time-step $\delta$ with the full Hamiltonian.
 With a set of starting parameters for $t=0$ and an update-strategy for small time-steps, generating the parameters for later times is possible with repeated stepping.
 The mentioned overlap is calculated with a measurement that uses the \emph{Fubini-Study metric} (\cite{variationalClassicalNetworksPaper} and \cite{probabilitySamplingRequirementVCN}, where \cite{probabilitySamplingRequirementVCN} contains a detailed derivation in the supplementary material).
 
@@ -84,7 +84,7 @@ The $\psiN$ can be expressed as an exponential (which cancels with the $\ln$) an
     \end{gathered}
 \end{equation}
 
-The local energy $E_\text{loc}(N)$ here is the same as the local observable \localObservable{N}{t} for $\ObservableOp = \pictureHamiltonian[\schroedingerPicture]$ that was calculated in \autoref{sec:theory-observables-energy}, but with a parametrized effective hamiltonian.
+The local energy $E_\text{loc}(N)$ here is the same as the local observable \localObservable{N}{t} for $\ObservableOp = \pictureHamiltonian[\schroedingerPicture]$ that was calculated in \autoref{sec:theory-observables-energy}, but with a parametrized effective Hamiltonian.
 
 \begin{equation}
     \label{eq:covariance-matrix}

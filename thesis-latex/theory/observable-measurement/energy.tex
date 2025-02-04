@@ -1,4 +1,4 @@
-The energy \energyOft (\autoref{eq:energy-main}) is a key measure of many quantum-mechanical experiments, with the operator corresponding to this observable being the hamiltonian that governs the time-evolution.
+The energy \energyOft (\autoref{eq:energy-main}) is a key measure of many quantum-mechanical experiments, with the operator corresponding to this observable being the Hamiltonian that governs the time-evolution.
 The variance \varianceOft of this quantity (\autoref{eq:variance-main}) describes the energy-fluctuations in the system.
 
 \begin{equation}
@@ -13,8 +13,8 @@ The variance \varianceOft of this quantity (\autoref{eq:variance-main}) describe
 \end{equation}
 
 Without any additional constrictions %(like e.g. conservation of particle number) 
-the energy - as well as all other cumulants of the hamiltonian operator - must be conserved under normal time evolution, as \autoref{eq:energy-conserved} shows. 
-This comes from the fact, that an exact hamiltonian commutes with itself in all instances and allows to show that the energy $\energyOft = \energyOft[t=0]$.
+the energy - as well as all other cumulants of the Hamiltonian operator - must be conserved under normal time evolution, as \autoref{eq:energy-conserved} shows. 
+This comes from the fact, that an exact Hamiltonian commutes with itself in all instances and allows to show that the energy $\energyOft = \energyOft[t=0]$.
 With equivalent reasoning, also the higher order cumulants must necessarily be constant for all times.
 The energy as first cumulant % https://en.wikipedia.org/wiki/Cumulant (yes, energy is the first, not the zeroth) 
 being 0 or constant comes down to the choice of energy reference.
@@ -34,7 +34,7 @@ being 0 or constant comes down to the choice of energy reference.
 \end{equation}
 
 The higher order cumulants vanish, depending on the initial state. 
-\autoref{eq:variance-constant} shows, the variance calculation expanded in the eigenbasis of the hamiltonian.
+\autoref{eq:variance-constant} shows, the variance calculation expanded in the eigenbasis of the Hamiltonian.
 For initial states that are comprised of only one element of that basis $\ketN[{\picturePsi[\schroedingerPicture]{}}] \propto \ketN[E_i],\,\,\pictureHamiltonian[\schroedingerPicture]\ketN[E_i] = E_i\cdot\ketN[E_i]$, the higher order cumulants vanish. 
 Looking at the last statement in \autoref{eq:variance-constant}, in the case that all $c(E_i) = 0$ except for one specific $i$, the difference must vanish.
 Otherwise the variance is non-zero, but still constant in time, because of the argument in \autoref{eq:energy-conserved}.
@@ -73,7 +73,7 @@ Otherwise the variance is non-zero, but still constant in time, because of the a
 \end{equation}
 
 While it might not seem to give much insight to calculate the time evolved measurements of these values if they are constant, in reality this serves the purpose of \emph{checking} the accuracy of potential approximations.
-If the time evolution is performed with an approximated, effective hamiltonian, then the exact one will no longer commute with it and the energy and variance will vary over time.
+If the time evolution is performed with an approximated, effective Hamiltonian, then the exact one will no longer commute with it and the energy and variance will vary over time.
 
 Measuring \localObservable{N}{t} for $\ObservableOp = \pictureHamiltonian[\schroedingerPicture]$ is straight forward, as \autoref{eq:energy-local-observable} shows.
 
@@ -166,7 +166,7 @@ Measuring \localObservable{N}{t} for $\ObservableOp = \pictureHamiltonian[\schro
 \ketN[\vphantom{N}\smash{\tilde{N}}] is here the state that is obtained, when starting on state \ketN and performing a swapping of the occupations of sites $l,\,\sigma$ and $m,\,\sigma$.
 On comparison with \autoref{eq:base-energy} one can see, that the definition for $E_0(N,\,t)$ is consistent for the expansion and the observable calculation.
 Newly defined is the energy $E_\text{V}(N,\,t)$, originating from \Vhamiltonian[].
-As hinted for the other observables earlier, the difference of hamiltonians with local modifications $\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]$ can be evaluated in constant time.
+As hinted for the other observables earlier, the difference of Hamiltonians with local modifications $\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]$ can be evaluated in constant time.
 However the energy is the first observable that requires \bigo{\text{\#}(\text{sites})} on its own to evaluate. This can not be reduced, however as will become apparent in the calculation of the variance, this should be an upper bound for observable-calculations.
 
 The variance can be evaluated by splitting the expectation values for the parts \HzeroHamiltonian[\schroedingerPicture] and \Vhamiltonian[\schroedingerPicture], using the \emph{covariance} as presented in \autoref{eq:variance-split}.
