@@ -9,15 +9,15 @@ Considering a physical material has at least in the order of $10^{23}$ (from \em
     \text{\#}(\text{states}) = 2^{\text{\#}(\text{sites}) \cdot 2}
 \end{equation}
 
-Multiple strategies have already been suggested to circumvent this limitation.
+Different strategies exist, to circumvent this limitation.
 Here, the focus will be put onto randomized algorithms that use \emph{Monte-Carlo sampling} in order generate a limited number of states, representative of the real probability-distribution, in order to not having to sum over the complete \emph{Hilbert-Space}.
 The strategy of solving problems of this kind with the strategy of \emph{variational Monte-Carlo} is e.g. suggested in \cite{metropolisAlgorithmAndVariationalMonteCarlo}.
 This means starting with a random state and applying modifications to it (= variation).
-When the accepting/rejecting of these modifications is coupled to the probability the state has, based on its energy in the systems energy-distribution, the resulting states will have an energy/probability distribution, that resembles the one as if they were sampled from the full Hilbert-Space.
+When the accepting/rejecting of these modifications is coupled to the probability the state has, based on its energy in the system's energy-distribution, the resulting states will have an energy/probability distribution, that resembles the one they had if they were sampled from the full Hilbert-Space.
 The derivation for the whole process is shown in \cite{monteCarloObservableSampling}.
 
 However computing the normalized probability for the states is still required, in order to compare against a (e.g. thermal) reference-distribution.
-As one sees in the probability in \autoref{eq:probability-isolated} that was defined in \autoref{eq:expectation-value}, still a full sum over all states is required to get the normalization factor.
+As one sees in the probability in \autoref{eq:probability-isolated}, that was defined in \autoref{eq:expectation-value}, still a full sum over all states is required to get the normalization factor.
 \begin{equation}
     \label{eq:probability-isolated}
     \probabilityOf{N}{t} = \frac{
@@ -27,7 +27,7 @@ As one sees in the probability in \autoref{eq:probability-isolated} that was def
     }
 \end{equation}
 However by employing the \emph{Metropolis-Hastings Algorithm} instead of only the \emph{Metropolis-Algorithm} to decide on the acceptance/rejection of proposed states, one can drop the requirement of normalizing the probability.
-In \autoref{eq:transition-probability-final} the \emph{acceptance-ratio} $\alpha$ is derived that is necessary for the Metropolis-Hastings Algorithm to work (as per \cite{metropolisHastingsAlgorithmGeneral}) and decide on the transition from state \ketN[N] to \ketN[{\vphantom{N}\smash{\tilde{N}}}].
+In \autoref{eq:transition-probability-final} the \emph{acceptance-ratio} $\alpha$ - that is necessary for the Metropolis-Hastings Algorithm to work - is derived (as per \cite{metropolisHastingsAlgorithmGeneral}) and decide on the transition from state \ketN[N] to \ketN[{\vphantom{N}\smash{\tilde{N}}}].
 The algorithm proposes to generate a new state \ketN[{\vphantom{N}\smash{\tilde{N}}}] and calculate the corresponding $\alpha$. Then it requires generating a random number $u$ between $0$ and $1$, pulled from a uniform distribution.
 If $u \leq \alpha$, \ketN[{\vphantom{N}\smash{\tilde{N}}}] is accepted and will be used as the new current state in the next step of the sampling. 
 If $u>\alpha$, the proposed state is rejected and \ketN[N] will be used again as the next state.

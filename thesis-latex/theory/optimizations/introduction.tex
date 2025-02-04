@@ -1,5 +1,3 @@
-While at this point all computations are numerically correct, some of the expressions are still unnecessarily expensive to evaluate.
-By analytically simplifying terms that can be known beforehand to cancel, the computation can be sped up drastically.
-So far, when runtime-complexities have been stated, it was assumed that the optimizations in this section would be implemented.
-In the code, always the optimized and the un-optimized version are implemented to check for correctness of simplification and implementation.
-E.g. the correctness of the hamiltonian difference is checked to be correct in \filepath{\cite{selfCode}}{/computation-scripts/comparehamiltonians.py}.
+While at this point all computations are analytically correct, some of the expressions are still unnecessarily expensive to evaluate.
+By further simplifying terms that can be known beforehand to cancel, the computation can be sped up drastically.
+So far, when final runtime-complexities have been stated, it was assumed that the optimizations in this section would be implemented.
