@@ -14,7 +14,7 @@ As experiments in \fullref{sec:experiments-vcn-fails} show, this simple parametr
 Upon closer inspection, the resulting changes to the variational parameters seem to be more or less independent from the initial values.
 After implementation reasons for this behavior were ruled out to the best possible degree, it seemed unclear what was the cause for this.
 
-So the algorithm \emph{must} conserve the system's energy - for small enough time-steps - most importantly already at the very first variational time-step.
+Yet the algorithm \emph{must} conserve the system's energy - for small enough time-steps - most importantly already at the very first variational time-step.
 This leads to the solution, because the only thing that is left to influence the effective Hamiltonian (at $t=0$, where all introduced variational parameters are approximately zero) is the base-energy with its explicit time-dependency.
 
 Presenting this realization in this case out-of-order (presenting and doing experiments on a clearly still unviable model before presenting the correct one) is supposed to reflect the work-process that was necessary to arrive at this final version.
@@ -23,7 +23,7 @@ Yet, only after going through two alternate base-energy parametrizations unsucce
 In hindsight it is straight forward to see, why the explicit time-dependency contribution of the base-energy to the effective Hamiltonian is detrimental, when looking at equations \ref{eq:eta-dot-calculation} and \ref{eq:variational-derivatives-definition}.
 
 Starting at a point $t$ in time, it comes natural to numerically integrate a quantity $\vec{\eta}$ if one has access to the time-derivative $\dot{\vec{\eta}}$.
-However in the method up to this point through the partial derivative with respect to the variational parameters: $\frac{\partial \HeffOft[N,\,\vec{\eta}]}{\partial \vec{\eta}_k} = \frac{\partial \left(-i E_0(N) t + \Hvcn{\vec{\eta}}\right)}{\partial \vec{\eta}_k} = \frac{\partial \Hvcn{\vec{\eta}} }{\partial \vec{\eta}_k}$, the explicit time dependency is dropped.
+In the method up to this point through the partial derivative with respect to the variational parameters: $\frac{\partial \HeffOft[N,\,\vec{\eta}]}{\partial \vec{\eta}_k} = \frac{\partial \left(-i E_0(N) t + \Hvcn{\vec{\eta}}\right)}{\partial \vec{\eta}_k} = \frac{\partial \Hvcn{\vec{\eta}} }{\partial \vec{\eta}_k}$, the explicit time dependency is dropped.
 However classically the time-derivative is obtained as per the chain rule:
 $\frac{\mathrm{d} f(t,\,x(t))}{\mathrm{d} t} = \frac{\partial f}{\partial t} + \frac{\partial f}{\partial x} \cdot \frac{\mathrm{d} x}{\mathrm{d} t}$, which rightfully does not drop the explicit dependency.
 So to avoid having to derive the algorithm again, but with explicit time-dependency in mind, the most direct strategy would be to eliminate all explicit time-dependencies.

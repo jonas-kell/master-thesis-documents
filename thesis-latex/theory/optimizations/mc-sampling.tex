@@ -26,8 +26,8 @@ As one sees in the probability in \autoref{eq:probability-isolated}, that was de
         \lsum[K] \absSquare{e^{\HeffOft[K]}} \absSquare{\psiN[K]} 
     }
 \end{equation}
-However by employing the \emph{Metropolis-Hastings Algorithm} instead of only the \emph{Metropolis-Algorithm} to decide on the acceptance/rejection of proposed states, one can drop the requirement of normalizing the probability.
-In \autoref{eq:transition-probability-final} the \emph{acceptance-ratio} $\alpha$ - that is necessary for the Metropolis-Hastings Algorithm to work - is derived (as per \cite{metropolisHastingsAlgorithmGeneral}) and decide on the transition from state \ketN[N] to \ketN[{\vphantom{N}\smash{\tilde{N}}}].
+However by employing the \emph{Metropolis-Hastings-Algorithm} instead of only the \emph{Metropolis-Algorithm} to decide on the acceptance/rejection of proposed states, one can drop the requirement of normalizing the probability.
+In \autoref{eq:transition-probability-final} the \emph{acceptance-ratio} $\alpha$ - that is necessary for the Metropolis-Hastings-Algorithm to work - is derived (as per \cite{metropolisHastingsAlgorithmGeneral}) and decide on the transition from state \ketN[N] to \ketN[{\vphantom{N}\smash{\tilde{N}}}].
 The algorithm proposes to generate a new state \ketN[{\vphantom{N}\smash{\tilde{N}}}] and calculate the corresponding $\alpha$. Then it requires generating a random number $u$ between $0$ and $1$, pulled from a uniform distribution.
 If $u \leq \alpha$, \ketN[{\vphantom{N}\smash{\tilde{N}}}] is accepted and will be used as the new current state in the next step of the sampling. 
 If $u>\alpha$, the proposed state is rejected and \ketN[N] will be used again as the next state.
@@ -73,7 +73,7 @@ Finally, the method of sampling a selection of distributed states results in \au
     \label{eq:final-sampling-equation}
     \frac{\bracketHelper{\psiOfT[\schroedingerPicture]}{\ObservableOp}{\psiOfT[\schroedingerPicture]}}{\braketHelper{\psiOfT[\schroedingerPicture]}{\psiOfT[\schroedingerPicture]}} \stackrel{\ref{eq:expectation-value}}{=} 
     \lsum[N]
-    \probabilityOf{N}{t}
-    \localObservable{N}{t} \cdot
+    \probabilityOf{N}{t} \cdot
+    \localObservable{N}{t}
     \stackrel{\text{\cite{monteCarloObservableSampling}}}{\approx} \frac{1}{\left|\left\{N\right\}_\text{MC}\right|} \lsum[\left\{N\right\}_\text{MC}]\localObservable{N}{t}
 \end{equation}

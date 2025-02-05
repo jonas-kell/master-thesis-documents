@@ -1,25 +1,26 @@
-Generally, handling the computation of the difference of the effective Hamiltonian for two states $\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]$ is the most expensive computation per Monte-Carlo-step.
-It is also required in \autoref{eq:form-heff-difference} for the calculation of the spin-polarized kinetics.
-As stated in \fullref{sec:theory-optimizations-monte-carlo} it is also needed to compute the transition probability between two sampled states in \autoref{eq:transition-probability-final}.
+Generally, handling the computation of the difference of the effective Hamiltonian for two states $\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]$ is the most expensive computation that is required up to this point.
+For one it is e.g. required in \autoref{eq:form-heff-difference} for the calculation of the spin-polarized kinetics.
+Furthermore - as stated in \fullref{sec:theory-optimizations-monte-carlo} - it is also needed to compute the transition probability between two sampled states in \autoref{eq:transition-probability-final}.
 The calculation of $\HeffOft[N]$ on its own requires an effort of \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})}.
 However, for states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected with only small changes, most of the elements in the sum cancel and the complexity may here even be reduced to \bigo{$\text{\#}(\text{nearest neighbors})$}.
 This is quite attractive, because it de-couples the per-step computational costs from the number of lattice sites - a vital step for simulating large systems efficiency - however this requires extra analytical calculations.
+
 In this section analytical simplifications are presented to get the objects $E_0(N)-E_0(\vphantom{N}\smash{\tilde{N}})$ and $\HNOft - \HNOft[\vphantom{N}\smash{\tilde{N}}]$ (Caution, do not miss the extra \emph{minus} required, to calculate the required $\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]$ from this!).
 
 Evidently, this also needs to hold for the variational versions of the effective Hamiltonian, that were introduced in \autoref{sec:theory-variational-classical-networks-time-dependency}.
 As the $\Phi_\ast(N)$ are inspired by the form of the base-energy-terms in $E_0(N)$ or parts of $\HNOft$, all the same arguments apply: 
-$\Heffvcn{N}{\vec{\eta}} - \Heffvcn{\vphantom{N}\smash{\tilde{N}}}{\vec{\eta}} = \lsum[l] \eta_l \cdot \left[\Phi_l(N) - \Phi_l(\vphantom{N}\smash{\tilde{N}})\right]$.
-Yet in the all these must be done carefully to produce correct results.
+$\Heffvcn{\vphantom{N}\smash{\tilde{N}}}{\vec{\eta}} - \Heffvcn{N}{\vec{\eta}} = \lsum[l] \eta_l \cdot \left[\Phi_l(\vphantom{N}\smash{\tilde{N}}) - \Phi_l(N)\right]$.
+Yet all of the re-writes must be done precisely to produce the correct results.
 
 \subsubsection*{Initial State}
 
 The initial state of the system before the start of the time-evolution is encoded in $\psiN$, defined by \autoref{eq:base-expansion-state}. Different configurations can be considered here.
-The best choice for this would however be the one that save the most computational effort and provides the biggest symmetry for the terms to promote the possibility of terms canceling.
+The best choice for this would logically be the one that save the most computational effort and provides the biggest symmetry for the terms to promote the possibility of terms canceling.
 
 A choice that fulfills these requirements trivially, would be the perfectly uniform distribution of probability for all the base-states.
 For most of the sources that describe similar methods (like e.g. \cite{isingDynamicsWithClassicalNetworks} or \cite{variationalClassicalNetworksPaper}, where the latter describes how the approach also works for other initial states) this initial state has been chosen for its advantages.
 
-The calculation of this probability is straight-forward and listed in \autoref{eq:psi-n-homogenous}, while the state would be written down like \autoref{eq:psi-zero}.
+The calculation of the uniform probability is straight-forward and listed in \autoref{eq:psi-n-homogenous}, while the state would be written down like \autoref{eq:psi-zero}.
 
 \begin{equation}
     \label{eq:psi-n-homogenous}
@@ -31,16 +32,18 @@ The calculation of this probability is straight-forward and listed in \autoref{e
     \ketpsiof[\schroedingerPicture]{t=0} = \bigotimes\limits_{l=1}^{\text{\#}(\text{states})} \frac{1}{2} \left( 1 + \withspinhcop[\schroedingerPicture]{l}{\up}{\dagger} + \withspinhcop[\schroedingerPicture]{l}{\down}{\dagger} + \withspinhcop[\schroedingerPicture]{l}{\up}{\dagger}  \withspinhcop[\schroedingerPicture]{l}{\down}{\dagger} \right) \ketN[0]
 \end{equation}
 
-Central advantage of the uniform distribution of base-state-probabilities is, that all $\psiN$ are equal, which makes it possible to optimize sums, as $\psiN{}/\psiN[\vphantom{N}\smash{\tilde{N}}]{} = 1$.
+Central advantage of the uniform distribution of base-state-probabilities is, that all $\psiN$ are equal, which makes it possible to cancel most terms from the sums, as $\psiN{}/\psiN[\vphantom{N}\smash{\tilde{N}}]{} = 1$.
 The following two optimizations require this assumption.
 
 As the states under consideration are \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}], the occupation-numbers $n_{l,\,\sigma}$ will describe the occupation of \ketN[N] and $\tilde{n}_{l,\,\sigma}$ the occupation of \ketN[{\vphantom{N}\smash{\tilde{N}}}].
-Both the following modifications restrict the values $\tilde{n}_{l,\,\sigma}$ to make them dependent on $n_{l,\,\sigma}$.
+Both of the following modifications restrict the values $\tilde{n}_{l,\,\sigma}$ to make them dependent on $n_{l,\,\sigma}$.
 
-
-\subsubsection*{Flipping-only modification}
+\subsubsection*{Single Flip Modification}
 
 In this simplification, the maximum difference that can happen, is that a \emph{flipping} event occurs on site $i$ and spin $\sigma_i$. 
+In the language of hard-core bosons this means one occupation turning form a 0 into a 1 or the inverse of that.
+This operation doesn't conserve the number of particles, so depending on the application this might not be a desired modification for a Monte-Carlo-step.
+Still, the calculation of the reduced density-matrix as described in \autoref{sec:theory-observables-density-matrix} requires calculation of the effective Hamiltonian difference between two states connected by such a modification.
 
 The flipping results in the values for $\tilde{n}_{l,\,\sigma}$ are given in \autoref{eq:new-n-flipping}.
 
@@ -68,71 +71,81 @@ This simplifies the energy difference $E_0(N)-E_0(\vphantom{N}\smash{\tilde{N}})
     \end{split}
 \end{equation}
 
-Like for the hopping problem, the calculation of $\HNOft - \HNOft[\vphantom{N}\smash{\tilde{N}}]$ is more involved in the number of terms.
+The optimized calculation of $\HNOft - \HNOft[\vphantom{N}\smash{\tilde{N}}]$ or the derived $\Phi_l(N) - \Phi_l(\vphantom{N}\smash{\tilde{N}})$ is more involved to get correct.
+Still the process is mathematically straight forward. 
+For hints and further resources on how this was implemented, see \fullref{sec:implementation-details-script-generation}.
+How the correctness of the optimizations is assured, is briefly touched in \fullref{sec:implementation-details-simplification-verifications}.
+Finally, a generalized (if maybe not optimally efficient) method is outlined in \fullref{sec:theory-optimizations-geometry}.
 
-More details on how this was calculated can be found in \fullref{sec:implementation-analytical-calculations} and further resources, that that section redirects towards.
+\subsubsection*{Hopping, Swapping or Double-Flip Modification}
 
-\subsubsection*{Hopping-only modification}
+A possible Monte-Carlo-modification that conserves particle number is the change that occurs when a particle from a specific site and spin (occupation 1, then 0) is transferred to a different site and spin combination that currently is un-occupied (occupation 0, then 1).
+This so-called \emph{hopping} event occurs in this example from site $i$ and spin $\sigma_i$ to the site $j$ and spin $\sigma_j$. 
 
-%TODO swapping == double flipping if controlled....
+The hopping is a subset of the \emph{swapping} modification, that occurs in the case of two occupation-number being exchanged.
+The difference being, that while swapping two identical occupations is possible, for the hopping having exactly one particle on the relevant two sites is a pre-requirement.
 
-In this simplification, the maximum difference that can happen, is that a \emph{hopping} event occurs from site $i$ and spin $\sigma_i$ to the site $j$ and spin $\sigma_j$. 
-This can only happen if $n_{i,\,\sigma_i} \neq n_{j,\,\sigma_j}$, because if they are the same, the swapping doesn't change the state. 
-This check can be performed beforehand, to save on computational resources (if they are equal, $\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N] = 0$).
-Because the inverse (hopping backwards) is also an equivalently valid change of state, this really looks at the \emph{swapping} of the two occupations.
+Depending on the use-case this is a relevant difference, yet in case of calculation of the differences of effective Hamiltonians it is irrelevant: 
+On comparison with e.g. \autoref{eq:form-heff-difference}, one can see that the term containing $\Delta = \HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]$ is multiplied with 0 in the cases where hopping is not possible.
 
-The hopping results in the values for $\tilde{n}_{l,\,\sigma}$ are given in \autoref{eq:new-n-hopping}.
+Furthermore, the only way one could possibly get a contribution by the difference of effective Hamiltonians is in the case where $n_{i,\,\sigma_i} \neq n_{j,\,\sigma_j}$.
+Because if they are the same, swapping doesn't change the state and a check can be performed beforehand, to save on computational resources (if $\ketN[\vphantom{N}\smash{\tilde{N}}] = \ketN[N]$, trivially  $\Delta = \HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N] = 0$).
 
-\begin{equation}
-    \label{eq:new-n-hopping}
-    \tilde{n}_{l,\,\sigma} = \begin{cases}
-        n_{i,\,\sigma_i}&\text{ : } l = j \land \sigma = \sigma_j   \\
-        n_{j,\,\sigma_j}&\text{ : } l = i \land \sigma = \sigma_i   \\
-        n_{l,\,\sigma} &\text{ : else}
-    \end{cases}
-\end{equation}
+Thirdly, one could also think about an event, where simultaneously two occupation-numbers on two different site- / spin-indices are flipped, or \emph{double-flipping}.
+In the case where hopping is possible, this is yet again the exact same operation (the 0 changes to a 1 and the 1 on the second site to a 0).
+Differences are shown in \autoref{table:hopping-is-swapping}.
 
-This simplifies the energy difference $E_0(N)-E_0(\vphantom{N}\smash{\tilde{N}})$ like equation \autoref{eq:simplified-base-energy-hopping} presents.
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{l|cc|cc|c} 
+        \toprule
+        Type     &  $n_{i,\,\sigma_i}$ & $n_{j,\,\sigma_j}$ &
+                    $\tilde{n}_{i,\,\sigma_i}$ & $\tilde{n}_{j,\,\sigma_j}$ & $\Delta$  \\  
+        \midrule 
+        hopping  & 0 & 0    & \texttimes & \texttimes & \texttimes \\
+                 & 0 & 1    &     1      &      0     & $\Delta_1$ \\
+                 & 1 & 0    &     0      &      1     & $\Delta_2$ \\
+                 & 1 & 1    & \texttimes & \texttimes & \texttimes \\
+        \midrule   
+        swapping & 0 & 0    &     0      &      0     &     0      \\
+                 & 0 & 1    &     1      &      0     & $\Delta_1$ \\
+                 & 1 & 0    &     0      &      1     & $\Delta_2$ \\
+                 & 1 & 1    &     1      &      1     &     0      \\
+        \midrule   
+        double-  & 0 & 0    &     1      &      1     & $\Delta_3$ \\
+        flipping & 0 & 1    &     1      &      0     & $\Delta_1$ \\
+                 & 1 & 0    &     0      &      1     & $\Delta_2$ \\
+                 & 1 & 1    &     0      &      0     & $\Delta_4$ \\
+        \bottomrule
+    \end{tabular}
+    \vspace{0.5cm}
+    \caption{
+        Basic tabular depiction of what the three different modification-operations do to the occupation-numbers of a state. 
+        For a difference of effective Hamiltonians $ \Delta $ a placeholder value is listed.
+        Where the exact value is known to be zero this is noted, otherwise a variable is listed.
+        The same variable indicates the same value, or simply put in these cases the methods are exchangeable.
+    }
+    \label{table:hopping-is-swapping}
+\end{table}
+
+For the case of swapping, \autoref{eq:simplified-base-energy-hopping} shows the base-energy difference $E_0(N)-E_0(\vphantom{N}\smash{\tilde{N}})$ - the double flipping implementation would be constructed analogously to \autoref{eq:simplified-base-energy-flipping}.
 
 \begin{equation}
     \label{eq:simplified-base-energy-hopping}
     \begin{split}
         E_0(N)-E_0(\vphantom{N}\smash{\tilde{N}}) 
-        &\stackrel{\phantom{\ref{eq:new-n-hopping}}}{=} U\lsum n_{l,\,\down}n_{l,\,\up}-U\lsum \tilde{n}_{l,\,\down}\tilde{n}_{l,\,\up} 
+        & = U\lsum n_{l,\,\down}n_{l,\,\up}-U\lsum \tilde{n}_{l,\,\down}\tilde{n}_{l,\,\up} 
         + \lsum[l,\,\sigma] \epsl n_{l,\,\sigma} - \lsum[l,\,\sigma] \epsl \tilde{n}_{l,\,\sigma}\\
-        &\stackrel{\ref{eq:new-n-hopping}}{=} \left(\epsl[i]-\epsl[j]\right)\left(n_{i,\,\sigma_i} - n_{j,\,\sigma_j}\right) +
+        & =  \left(\epsl[i]-\epsl[j]\right)\left(n_{i,\,\sigma_i} - n_{j,\,\sigma_j}\right) +
         U\cdot \begin{cases}
             \left(n_{i,\,\up}-n_{j,\,\up}\right) \left(n_{i,\,\down}-n_{j,\,\down}\right) &\text{ : } \sigma_i = \sigma_j   \\
             \left(n_{i,\,\up}-n_{j,\,\down}\right) \left(n_{i,\,\down}-n_{j,\,\up}\right) &\text{ : } \sigma_i \neq \sigma_j
         \end{cases}\\
-        &\stackrel{\phantom{\ref{eq:new-n-hopping}}}{=} \left(\epsl[i]-\epsl[j]\right)\left(n_{i,\,\sigma_i} - n_{j,\,\sigma_j}\right) +
+        & = \left(\epsl[i]-\epsl[j]\right)\left(n_{i,\,\sigma_i} - n_{j,\,\sigma_j}\right) +
         U \left(n_{i,\,\sigma_i}-n_{j,\,\sigma_j}\right) \left(n_{i,\,\overline{\sigma_i}}-n_{j,\,\overline{\sigma_j}}\right)
     \end{split}
 \end{equation}
 
-The simplification of $\HNOft - \HNOft[\vphantom{N}\smash{\tilde{N}}]$ can not be calculated as quickly as the difference of base-energies.
-Primarily this is because of the number of terms in this calculation. Each of the three \VhamiltonianPartA{N}{t}, \VhamiltonianPartB{N}{t} and \VhamiltonianPartC{N}{t} is a sum of 8 summands, as one can see in \autoref{eq:interaction-picture-v-ham-parts}.
-Each of those must be treated for for cases: $(\sigma_i = \up \land \sigma_j = \up)$, $(\sigma_i = \up \land \sigma_j = \down)$, $(\sigma_i = \down \land \sigma_j = \up)$ and $(\sigma_i = \down \land \sigma_j = \down)$.
-This makes 32 differently-shaped terms, or combined with the pre-factors 96 terms to fully write down.
-
-Different notation could be used, to lessen the number of calculations, but this seemed unnecessarily complex.
-
-A simpler solution was in fact, to let a python script generate all the final simplified analytical terms and output them as usable functions into a python script to include in the rest of the code.
-The generating script can be found here: 
-
-\filepath{\cite{selfCode}}{/calculation-helpers/simplificationtermhelper.py}
-
-and the output with the analytically fully optimized calculations in a unified format here:
-\filepath{\cite{selfCode}}{/computation-scripts/analyticalcalcfunctions.py}.
-
-As this needs to be run quite often, it is useful to reduce the number of calculations as much as possible and avoid running unnecessary calculations on every iteration (e.g. $n_{l,\,\up} + 1 - (1 + n_{l,\,\up})$ which is definitely 0, no matter the value of $n_{l,\,\up}$).
-For this reason, the terms were pre-optimized as much as possible, by trying to pre-evaluate to definite zeros or constants terms. 
-This was performed automatically with the python package \emph{SymPy} \cite{sympyPackage}.
-
-More details on how this was calculated can be found in \fullref{sec:implementation-analytical-calculations} and further resources, that that section redirects towards.
-
-\vspace{1cm}
-All presented simplifications to the Hamiltonian and corresponding MC-modification strategies in this section are implemented as options that are selectable in the control-script   
-
-\filepath{\cite{selfCode}}{/computation-scripts/script.py}.
- 
+To get the simplest possible implementation for more complicated terms, is is advised to implement double-flipping first.
+It is the simplest of the three and (with the correct pre-factors that restrict the starting occupation-numbers) can be used to implement the other two easily.
+This verified \filepath{\cite{selfCode}}{/computation-scripts/compareobservables.py}.

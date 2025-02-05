@@ -1,2 +1,45 @@
 % TODO
 
+A missing part of the report is, how and what results were obtained that describe the 
+
+\bigo{\text{\#}(\text{nearest neighbors})} calculation of $\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]$ needed in \fullref{sec:theory-special-cases}.
+
+Like previously hinted, they consist of many repetitive terms.
+Therefore listing them here would just unnecessarily bloat the report and serve no further purpose.
+It is better to look at the generating script 
+\filepath{\cite{selfCode}}{/calculation-helpers/simplificationtermhelper.py}
+and the generated output script if one desires a specific term from it:
+
+\filepath{\cite{selfCode}}{/computation-scripts/analyticalcalcfunctions.py}.
+
+The algorithm that the script operates on, is explained in the accompanying Project Work Presentation  \cite{selfDocument}.
+The validity of the analytical simplifications was tested by direct comparison to the non-simplified terms.
+The checking script can be verified here:\\
+\filepath{\cite{selfCode}}{/computation-scripts/comparehamiltonians.py}.
+
+
+The simplification of $\HNOft - \HNOft[\vphantom{N}\smash{\tilde{N}}]$ can not be calculated as quickly as the difference of base-energies.
+Primarily this is because of the number of terms in this calculation. Each of the three \VhamiltonianPartA{N}{t}, \VhamiltonianPartB{N}{t} and \VhamiltonianPartC{N}{t} is a sum of 8 summands, as one can see in \autoref{eq:interaction-picture-v-ham-parts}.
+Each of those must be treated for for cases: $(\sigma_i = \up \land \sigma_j = \up)$, $(\sigma_i = \up \land \sigma_j = \down)$, $(\sigma_i = \down \land \sigma_j = \up)$ and $(\sigma_i = \down \land \sigma_j = \down)$.
+This makes 32 differently-shaped terms, or combined with the pre-factors 96 terms to fully write down.
+
+Different notation could be used, to lessen the number of calculations, but this seemed unnecessarily complex.
+
+A simpler solution was in fact, to let a python script generate all the final simplified analytical terms and output them as usable functions into a python script to include in the rest of the code.
+The generating script can be found here: 
+
+\filepath{\cite{selfCode}}{/calculation-helpers/simplificationtermhelper.py}
+
+and the output with the analytically fully optimized calculations in a unified format here:
+\filepath{\cite{selfCode}}{/computation-scripts/analyticalcalcfunctions.py}.
+
+As this needs to be run quite often, it is useful to reduce the number of calculations as much as possible and avoid running unnecessary calculations on every iteration (e.g. $n_{l,\,\up} + 1 - (1 + n_{l,\,\up})$ which is definitely 0, no matter the value of $n_{l,\,\up}$).
+For this reason, the terms were pre-optimized as much as possible, by trying to pre-evaluate to definite zeros or constants terms. 
+This was performed automatically with the python package \emph{SymPy} \cite{sympyPackage}.
+
+More details on how this was calculated can be found in \fullref{sec:implementation-analytical-calculations} and further resources, that that section redirects towards.
+
+\vspace{1cm}
+All presented simplifications to the Hamiltonian and corresponding MC-modification strategies in this section are implemented as options that are selectable in the control-script   
+
+\filepath{\cite{selfCode}}{/computation-scripts/script.py}.
