@@ -50,8 +50,8 @@ The flipping results in the values for $\tilde{n}_{l,\,\sigma}$ are given in \au
 \begin{equation}
     \label{eq:new-n-flipping}
     \tilde{n}_{l,\,\sigma} = \begin{cases}
-        (1 - n_{i,\,\sigma_i})&\text{ : } l = i \land \sigma = \sigma_i   \\
-        n_{l,\,\sigma} &\text{ : else}
+        l = i \land \sigma = \sigma_i\text{ : }  &  (1 - n_{i,\,\sigma_i})  \\
+        \text{else: }   &    n_{l,\,\sigma} 
     \end{cases}
 \end{equation}
 
@@ -65,8 +65,8 @@ This simplifies the energy difference $E_0(N)-E_0(\vphantom{N}\smash{\tilde{N}})
         + \lsum[l,\,\sigma] \epsl n_{l,\,\sigma} - \lsum[l,\,\sigma] \epsl \tilde{n}_{l,\,\sigma}\\
         &\stackrel{\ref{eq:new-n-flipping}}{=} \epsl[i] \left(2 n_{i,\,\sigma_i} - 1\right) +
         U\cdot \begin{cases}
-            n_{i,\,\down} (2 n_{i,\,\up} - 1) &\text{ : } \sigma_i = \up   \\
-            n_{i,\,\up} (2 n_{i,\,\down} - 1) &\text{ : } \sigma_i = \down 
+            \sigma_i = \,\up\text{: }   & n_{i,\,\down} (2 n_{i,\,\up} - 1)\\
+            \sigma_i = \,\down\text{: } & n_{i,\,\up} (2 n_{i,\,\down} - 1)  
         \end{cases}
     \end{split}
 \end{equation}
@@ -138,8 +138,8 @@ For the case of swapping, \autoref{eq:simplified-base-energy-hopping} shows the 
         + \lsum[l,\,\sigma] \epsl n_{l,\,\sigma} - \lsum[l,\,\sigma] \epsl \tilde{n}_{l,\,\sigma}\\
         & =  \left(\epsl[i]-\epsl[j]\right)\left(n_{i,\,\sigma_i} - n_{j,\,\sigma_j}\right) +
         U\cdot \begin{cases}
-            \left(n_{i,\,\up}-n_{j,\,\up}\right) \left(n_{i,\,\down}-n_{j,\,\down}\right) &\text{ : } \sigma_i = \sigma_j   \\
-            \left(n_{i,\,\up}-n_{j,\,\down}\right) \left(n_{i,\,\down}-n_{j,\,\up}\right) &\text{ : } \sigma_i \neq \sigma_j
+            \sigma_i = \sigma_j\text{ : } & \left(n_{i,\,\up}-n_{j,\,\up}\right) \left(n_{i,\,\down}-n_{j,\,\down}\right)\\
+            \sigma_i \neq \sigma_j\text{ : } & \left(n_{i,\,\up}-n_{j,\,\down}\right) \left(n_{i,\,\down}-n_{j,\,\up}\right)
         \end{cases}\\
         & = \left(\epsl[i]-\epsl[j]\right)\left(n_{i,\,\sigma_i} - n_{j,\,\sigma_j}\right) +
         U \left(n_{i,\,\sigma_i}-n_{j,\,\sigma_j}\right) \left(n_{i,\,\overline{\sigma_i}}-n_{j,\,\overline{\sigma_j}}\right)
