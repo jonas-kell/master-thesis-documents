@@ -62,4 +62,37 @@ Some combinations contribute to no terms, some contribute multiple times and som
 Identifying and analytically optimizing the first order therefore is \emph{just} possible, albeit complicated.
 For the variational parametrization, it would be possible and maybe even more efficient to just have 16 parameters, mapping one to one onto the occupation-number-combination of the respective bond. 
 In second order however this all breaks down.
-Taking a second look at \autoref{fig:growing-interaction-range}, each term in \autoref{eq:hn-integrated-second-order-final} now corresponds to an \emph{adjacent pair of connections}, of which are ?? different possible ones (assuming no edge-cases).
+Taking a second look at \autoref{fig:growing-interaction-range}, each term in \autoref{eq:hn-integrated-second-order-final} now corresponds to \emph{two pairs of connections}, of which are 34 different ones with the edges adjacent (assuming no edge-cases, because at the border all is different again) and even more disconnected ones that might or might not be cases from the first order.
+% 6 L -> * 4 for turning
+% 5 I -> * 2 for turning
+For identifying these, one must take rotational and mirror symmetries into account and the check for the border is vastly more complicated.
+Because each of these double-bounds is formed by 3 sites with each two spin-degrees, there are in total $2^{3\cdot 2} = 64$ base-cases that need to be mapped.
+The numbers of base-cases 16 and 64 here are only as low, as they take symmetries into account. 
+For brute-forcing all combinations without the manual identification of symmetries, one would get $2^{5\cdot 2} = 1.024$ cases for the first order and $2^{13\cdot 2} = 67.108.864$ - it would most definitely not be a viable strategy converting each of these into its own parameter.
+Also - even if it were possible - this would diminishes the physical bias we hope to get from defining the $\Phi_\ast(N)$ according to the cumulant expansion.
+
+Even more problematic is the case of double-flips, because the interaction-spheres of these two modifications might be independent, overlapping slightly or even so much that both modifications are inside one bond.
+While not impossible for the second order, it is highly complicated to analytically compute the most efficient formula for the difference of effective Hamiltonians.
+And the process is not easily generalizable to higher orders because of order-specific symmetries.
+
+
+\subsubsection*{Pre-Computed Interaction Spheres}
+
+In this case, this was solved by defining pre-computed sets of indices that would need to be taken into account.
+
+Given a formula that needs to sum over all indices once (like \autoref{eq:hn-integrated-first-order}), or once over all indices for each index (like \autoref{eq:hn-integrated-second-order-final} or \autoref{eq:v-squared-hard-computation}), it is clear that they require a runtime-complexity of \bigo{\text{\#}(\text{sites})} or even \bigo{(\text{\#}(\text{sites}))^2} to evaluate.
+Yet also all of them so far have appeared as differences of two sums - one for the un-modified state and one for a state that had undergone a localized modification - of which most elements cancel.
+
+One can assume it is possible to compute the neighbors of a site in constant time - still it takes computational time.
+This and the problem from before can be solved, by taking time at the start of the program to generate a cache of all tuples of indices, which would appear in the sum that is being optimized, but only restricted to a pre-set range around the index of the modification - a \emph{sphere of influence}.
+Because even if the generation takes \bigo{(\text{\#}(\text{sites}))^2} to generate this cache for a two-site-modification - after generation the lookup becomes practically \bigo{1} (and is faster than computing the neighbor indices, even if all of that has asymptotically constant complexity).
+
+This means effectively always a constant number of indices needs to be taken into account for all calculations (which can be then evaluated in constant time).
+While it may be possible to analytically derive a more optimal solution with more canceling terms, this method easily scales.
+Only the radius of the pre-computed cache needs to be chosen to be large enough to be compatible with the used order of the expansion.
+These geometry-dependent caches are generated in \filepath{\cite{selfCode}}{/computation-scripts/systemgeometry.py} and the caches are used at various places.
+
+The difference that this makes, depends on the system size. 
+As the number if influenced indices is constant, the strategy gets relatively more effective, the more sites the system has (so that a comparably large portion of them is left out).
+For a chain, optimizations will be noticed comparably earlier than for the square lattice - this is because in two dimensions the sphere of influence grows as an area and not linearly at the two edges.
+But in the limit this strategy allows to keep the targeted complexity class, while scaling to the order of the expansion.
