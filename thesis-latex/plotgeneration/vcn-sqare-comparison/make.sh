@@ -4,7 +4,7 @@
 cd "$(dirname "$0")"
 
 
-run_names=("comparisons" "variational-1" "variational-50" "variational-100" "variational-200")
+run_names=("comparisons" "variational-1" "variational-5" "variational-10" "variational-20")
 observables=( "energy" "variance" )
 
 python3 ./../convert-json-zip-to-csv.py --clear --zip_file_name "clear" --observable_index 0 --out_file_suffix "clear"
