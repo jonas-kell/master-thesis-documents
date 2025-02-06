@@ -1,1 +1,12 @@
-% TODO
+While the optimizations described in the previous section greatly increase computational efficiency, they need to be applied for each order and each $\Phi_\ast(N)$ separately.
+The problem is, that for two dimensions the number of interactions to consider grows quickly, while visualizing the symmetries of what terms are equivalent gets progressively harder.
+When looking at a chain, each higher order expands the interaction range by a one-site-step. 
+So taking one more order into account, two sites are added to the possibilities for each interaction - this linearity is still somewhat manageable.
+In two dimensions, the number of affected sites in relation to the interaction range grows quadratically, as visualized in \autoref{fig:growing-interaction-range}.
+
+\begin{figure}[htbp]
+    \centering
+    \input{./theory/optimizations/figure.tex}
+    \caption{caption}
+    \label{fig:growing-interaction-range}
+\end{figure}

@@ -1,0 +1,107 @@
+\begin{tikzpicture}[scale=0.38]
+    \definecolor{relevantcol}{HTML}{00AA00} % green
+
+    \def\m{5} % Change this value to adjust the grid size (m x m)
+    \def\side{3} % Change this value to adjust the square side length
+    \def\labelsize{\side/6} % Adjust label size
+    
+    \def\sp{1} % Change this value to adjust horizontal skip between the grids
+    \def\order{2}
+
+    \foreach \orderindex in {0,...,\numexpr\order\relax} {
+
+        % Draw connections
+        \foreach \x in {0,...,\numexpr\m-1\relax} {
+            \foreach \y in {0,...,\numexpr\m-1\relax} {
+                \pgfmathsetmacro{\orderindexincr}{\orderindex + 1}
+
+                % Get shift amount
+                \pgfmathsetmacro{\shft}{(\m + \sp - 1)*\orderindex*\side}
+                
+                % Get current node position
+                \pgfmathsetmacro{\cx}{\x*\side + \side/2 + \shft}
+                \pgfmathsetmacro{\cy}{\y*\side + \side/2 + \side/4}
+
+                % Compute CURRENT Manhattan distance from center
+                \pgfmathtruncatemacro{\dista}{abs(\x - (\m-1)/2) + abs(\y - (\m-1)/2)}
+
+
+                % Connect to right neighbor
+                \ifnum\x<\numexpr\m-1\relax
+
+                    \pgfmathsetmacro{\usex}{\x+1}
+                    \pgfmathsetmacro{\usey}{\y}
+
+                    \pgfmathtruncatemacro{\distb}{abs(\usex - (\m-1)/2) + abs(\usey - (\m-1)/2)}
+
+                    \pgfmathsetmacro{\nx}{\usex*\side + \side/2 + \shft}
+                    \pgfmathsetmacro{\ny}{\usey*\side + \side/2 + \side/4}
+
+                    % Color if both are smaller Manhattan distance
+                    \ifnum\dista<\orderindexincr
+                        \ifnum\distb<\orderindexincr
+                            \edef\useconcol{gray}
+                        \else
+                            \edef\useconcol{black}
+                        \fi
+                    \else
+                        \edef\useconcol{black}
+                    \fi
+
+                    \draw[line width=2\pgflinewidth, color=\useconcol] (\cx,\cy) -- (\nx,\ny);
+                \fi
+                
+
+                % Connect to top neighbor
+                \ifnum\y<\numexpr\m-1\relax
+
+                    \pgfmathsetmacro{\usex}{\x}
+                    \pgfmathsetmacro{\usey}{\y+1}
+
+                    \pgfmathtruncatemacro{\distb}{abs(\usex - (\m-1)/2) + abs(\usey - (\m-1)/2)}
+
+                    \pgfmathsetmacro{\nx}{\usex*\side + \side/2 + \shft}
+                    \pgfmathsetmacro{\ny}{\usey*\side + \side/2 + \side/4}
+
+                    % Color if both are smaller Manhattan distance
+                    \ifnum\dista<\orderindexincr
+                        \ifnum\distb<\orderindexincr
+                            \edef\useconcol{gray}
+                        \else
+                            \edef\useconcol{black}
+                        \fi
+                    \else
+                        \edef\useconcol{black}
+                    \fi
+
+                    \draw[line width=2\pgflinewidth, color=\useconcol] (\cx,\cy) -- (\nx,\ny);
+                \fi
+            }
+        }
+
+        % Draw dots and labels with custom text using a loop
+        \foreach \x in {0,...,\numexpr\m-1\relax} {
+            \foreach \y in {0,...,\numexpr\m-1\relax} {
+                % Get shift amount
+                \pgfmathsetmacro{\shft}{(\m + \sp - 1)*\orderindex*\side}
+                \pgfmathtruncatemacro{\index}{(\m-\y-1) * \m + \x}
+
+                % Get current node position
+                \pgfmathsetmacro{\cx}{\x*\side + \side/2 + \shft}
+                \pgfmathsetmacro{\cy}{\y*\side + \side/2 + \side/4}
+
+                % Compute Manhattan distance from center
+                \pgfmathtruncatemacro{\dist}{abs(\x - (\m-1)/2) + abs(\y - (\m-1)/2)}
+                
+                % Change color if distance equals \orderindex
+                \pgfmathsetmacro{\orderindexincr}{\orderindex + 1}
+                \ifnum\dist<\orderindexincr
+                    \fill[color=relevantcol] (\cx,\cy) circle (0.4);
+                \else
+                    \fill[color=dblue] (\cx,\cy) circle (0.4);
+                \fi
+            }
+        }
+    }
+
+\end{tikzpicture}
