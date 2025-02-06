@@ -1,5 +1,8 @@
 \begin{tikzpicture}[scale=0.38]
-    \definecolor{relevantcol}{HTML}{00AA00} % green
+    \definecolor{relevantsitecol}{HTML}{00AA00} % green
+
+    \definecolor{concolhor}{HTML}{AA0000} % red
+    \definecolor{concolver}{HTML}{FF8E00} % orange
 
     \def\m{5} % Change this value to adjust the grid size (m x m)
     \def\side{3} % Change this value to adjust the square side length
@@ -40,7 +43,11 @@
                     % Color if both are smaller Manhattan distance
                     \ifnum\dista<\orderindexincr
                         \ifnum\distb<\orderindexincr
-                            \edef\useconcol{gray}
+                            \ifnum\orderindex=1
+                                \edef\useconcol{concolhor}
+                            \else
+                                \edef\useconcol{gray}
+                            \fi
                         \else
                             \edef\useconcol{black}
                         \fi
@@ -66,7 +73,11 @@
                     % Color if both are smaller Manhattan distance
                     \ifnum\dista<\orderindexincr
                         \ifnum\distb<\orderindexincr
-                            \edef\useconcol{gray}
+                            \ifnum\orderindex=1
+                                \edef\useconcol{concolver}
+                            \else
+                                \edef\useconcol{gray}
+                            \fi
                         \else
                             \edef\useconcol{black}
                         \fi
@@ -96,7 +107,7 @@
                 % Change color if distance equals \orderindex
                 \pgfmathsetmacro{\orderindexincr}{\orderindex + 1}
                 \ifnum\dist<\orderindexincr
-                    \fill[color=relevantcol] (\cx,\cy) circle (0.4);
+                    \fill[color=relevantsitecol] (\cx,\cy) circle (0.4);
                 \else
                     \fill[color=dblue] (\cx,\cy) circle (0.4);
                 \fi
