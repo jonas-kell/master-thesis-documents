@@ -64,11 +64,12 @@ plot \
      "compareo1-exact-energy.csv"         using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markergreen, \
      "compareo2-exact-energy.csv"         using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markerred, \
      "comparevcn1-exact-energy.csv"       using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markermint, \
-     "comparevcn50-exact-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markeryellow, \
-     "comparevcn100-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markerpink, \
-     "comparevcn200-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markerorange
+     "comparevcn2-exact-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markeryellow, \
+     "comparevcn5-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markerpink, \
+     "comparevcn20-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markerorange
 # end plot 1,1
 
+# ! THERE IS 200 and 800 also (seem to over-compensate)
 
 set key right bottom                                                       # moves legend
 set ylabel "Var(E per site) [U²]"
@@ -87,7 +88,7 @@ plot \
      "compareo1-exact-variance.csv"         using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markergreen, \
      "compareo2-exact-variance.csv"         using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markerred, \
      "comparevcn1-exact-variance.csv"       using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markermint, \
-     "comparevcn50-exact-variance.csv"      using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markeryellow, \
-     "comparevcn100-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markerpink, \
-     "comparevcn200-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markerorange
+     "comparevcn2-exact-variance.csv"      using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markeryellow, \
+     "comparevcn5-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markerpink, \
+     "comparevcn10-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markerorange
 # end plot 2,1
