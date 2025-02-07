@@ -60,13 +60,13 @@ plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markeryellow    title " vcn b", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerpink      title " vcn c", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerorange    title " vcn d", \
-     "compareo1-exact-energy.csv"         using ($1 * U):(first_y = (first_y != first_y ? ($2/U) : first_y)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
-     "compareo1-exact-energy.csv"         using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markergreen, \
-     "compareo2-exact-energy.csv"         using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerred, \
-     "comparevcn1-exact-energy.csv"       using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markermint, \
-     "comparevcn50-exact-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markeryellow, \
-     "comparevcn100-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerpink, \
-     "comparevcn200-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 17 pointsize 0.8 linecolor rgb markerorange
+     "compareo1-exact-energy.csv"         using ($1 * U):(first_y = (first_y != first_y ? ($2/U) : first_y)) notitle      axis x1y1 with lines linecolor rgb markerblue, \
+     "compareo1-exact-energy.csv"         using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markergreen, \
+     "compareo2-exact-energy.csv"         using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markerred, \
+     "comparevcn1-exact-energy.csv"       using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markermint, \
+     "comparevcn50-exact-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markeryellow, \
+     "comparevcn100-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markerpink, \
+     "comparevcn200-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 with lines linecolor rgb markerorange
 # end plot 1,1
 
 
@@ -83,11 +83,11 @@ plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markeryellow    title " vcn b", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerpink      title " vcn c", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerorange    title " vcn d", \
-     "compareo1-exact-variance.csv"         using ($1 * U):(first_y = (first_y != first_y ? ($2/U/U) : first_y)) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
-     "compareo1-exact-variance.csv"         using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markergreen, \
-     "compareo2-exact-variance.csv"         using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerred, \
-     "comparevcn1-exact-variance.csv"       using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markermint, \
-     "comparevcn50-exact-variance.csv"      using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markeryellow, \
-     "comparevcn100-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerpink, \
-     "comparevcn200-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 17 pointsize 0.8 linecolor rgb markerorange
+     "compareo1-exact-variance.csv"         using ($1 * U):(first_y = (first_y != first_y ? ($2/U/U) : first_y)) notitle      axis x1y1 with lines linecolor rgb markerblue, \
+     "compareo1-exact-variance.csv"         using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markergreen, \
+     "compareo2-exact-variance.csv"         using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markerred, \
+     "comparevcn1-exact-variance.csv"       using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markermint, \
+     "comparevcn50-exact-variance.csv"      using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markeryellow, \
+     "comparevcn100-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markerpink, \
+     "comparevcn200-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 with lines linecolor rgb markerorange
 # end plot 2,1
