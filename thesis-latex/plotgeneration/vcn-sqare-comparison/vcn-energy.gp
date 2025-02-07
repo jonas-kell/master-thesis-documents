@@ -66,7 +66,9 @@ plot \
      "comparevcn1-exact-energy.csv"       using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markermint, \
      "comparevcn5-exact-energy.csv"       using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markeryellow, \
      "comparevcn10-exact-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markerpink, \
-     "comparevcn20-exact-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 0.8 linecolor rgb markerorange
+     "comparevcn20-exact-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
+     "comparevcn100-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 0.8 linecolor rgb markergray, \
+     "comparevcn200-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 0.8 linecolor rgb markergray
 # end plot 1,1
 
 
@@ -89,5 +91,7 @@ plot \
      "comparevcn1-exact-variance.csv"       using ($1 * U):($2/U/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markermint, \
      "comparevcn5-exact-variance.csv"       using ($1 * U):($2/U/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markeryellow, \
      "comparevcn10-exact-variance.csv"      using ($1 * U):($2/U/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markerpink, \
-     "comparevcn20-exact-variance.csv"      using ($1 * U):($2/U/U) notitle      axis x1y1 with linespoints pointtype 17 pointsize 0.8 linecolor rgb markerorange
+     "comparevcn20-exact-variance.csv"      using ($1 * U):($2/U/U) notitle      axis x1y1 with linespoints pointtype 17 pointsize 0.8 linecolor rgb markerorange, \
+     "comparevcn100-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 with linespoints pointtype 17 pointsize 0.8 linecolor rgb markergray, \
+     "comparevcn200-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 with linespoints pointtype 17 pointsize 0.8 linecolor rgb markergray
 # end plot 2,1
