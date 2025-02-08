@@ -3,7 +3,7 @@ set samples 600                                                                 
 
 set output "runtime.pdf"          # name of the output pdf
 
-set multiplot layout 2,1 rowsfirst
+set multiplot layout 3,1 rowsfirst
 
 # legend
 set key Left                                                            # key text justify left
@@ -38,19 +38,16 @@ J = 0.1
 
 # axes and label
 set xrange [:] 
-set xtics 0.1
-set mxtics 1
-set xlabel "time [1/U]"
+set xtics 25
+set mxtics 5
+set xlabel "number of sites"
 
 set yrange []
-set ytics 0.05
-set mytics 5
+# set ytics 5
+# set mytics 5
+set logscale y 10
+set ylabel "Time [arbitrary]"
 
-# set logscale y2 10
-# set y2tics log
-# set my2tics 5
-
-set ylabel "Energy per site [U]"
 # plot 1,1
 plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " a", \
@@ -58,26 +55,14 @@ plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " a", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " a", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerpink   title " a", \
-     "11-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerred, \
-     "22-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markergreen, \
-     "33-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerblue, \
-     "44-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 17 pointsize 1.1 linecolor rgb markerorange  , \
-     "55-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 17 pointsize 1.1 linecolor rgb markerpink  #, \
+     NaN with points pt 5 pointsize 0.6 lc rgb markermint   title " a", \
+     "chain_measurements_o1.csv"      using ($1):($2)       notitle   axis x1y1 with lines linecolor rgb markerred, \
+     "chain_measurements_vcno1.csv"   using ($1):($2)       notitle   axis x1y1 with lines linecolor rgb markerblue, \
+     "chain_measurements_o2.csv"      using ($1):($2)       notitle   axis x1y1 with lines linecolor rgb markergreen, \
+     "square_measurements_o1.csv"     using ($1*$1):($2)    notitle   axis x1y1 with lines linecolor rgb markerorange  , \
+     "square_measurements_vcno1.csv"  using ($1*$1):($2)    notitle   axis x1y1 with lines linecolor rgb markermint  , \
+     "square_measurements_o2.csv"     using ($1*$1):($2)    notitle   axis x1y1 with lines linecolor rgb markerpink  #, \
 # end plot 1,1
 
-set key left bottom                                                       # moves legend
-set ylabel "Var(E per site) [U²]"
-set ytics 0.05
 # plot 2,1
-plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " a", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " a", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " a", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " a", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerpink   title " a", \
-     "11-exact-variance.csv"      using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerred, \
-     "22-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markergreen, \
-     "33-exact-variance.csv"    using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerblue, \
-     "44-exact-variance.csv"   using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 17 pointsize 1.1 linecolor rgb markerorange, \
-     "55-exact-variance.csv"   using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 17 pointsize 1.1 linecolor rgb markerpink
 # end plot 2,1
