@@ -23,7 +23,8 @@
         "**/_minted*": true,
         "**/*.minted": true,
         "thesis-latex/plotgeneration/**/*.json": true,
-        "thesis-latex/plotgeneration/**/*.csv": true
+        "thesis-latex/plotgeneration/**/*.csv": true,
+        "thesis-latex/plotgeneration/runtime-complexity/*.csv": false // deosn't work... https://github.com/microsoft/vscode/issues/869
     },
     "latex-workshop.latex.tools": [
         {
