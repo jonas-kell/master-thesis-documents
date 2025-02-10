@@ -8,7 +8,7 @@ In this thesis, a simple linear dependency on the parameters is chosen:
     \HNOft = \lsum[i] C_i(t) \cdot \Phi_i(N) \quad\leftrightarrow\quad \Hvcn{\vec{\eta}} = \lsum[i] \eta_i \cdot \Phi_i(N)
 \end{equation}
 
-$C_\ast(t)$ are here analytically calculated functions, while the $\eta_\ast$ are complex parameters to replace them at time $t$.
+Here, $C_\ast(t)$ are analytically calculated functions, while the $\eta_\ast$ are complex parameters to replace them at time $t$.
 The choice of the $\Phi_i(N)$ dictates the range of interaction that could technically be covered.
 For the structure in \autoref{eq:hamiltonian-vcn}, the comparison with the cumulant expansion yields expressions for $\Phi_l(N)$ and $C_l(t)$ in a controlled manner.
 By identifying the terms in \autoref{eq:hn-integrated-first-order}, a possible choice for the first terms could be chosen like in \autoref{eq:psi-and-c-choices} (absolute lattice-site enumeration like in \autoref{fig:geometry-of-square-system}). 
@@ -72,7 +72,8 @@ By identifying the terms in \autoref{eq:hn-integrated-first-order}, a possible c
 \end{equation}
 
 The dissection separates the structure into 12 different factors. The terms $C_1(t)$ to $C_6(t)$ describe the neighbor interaction in x-direction, the terms $C_7(t)$ to $C_{12}(t)$ are identical with the interactions in y-direction (not printed, as they are identical with the x swapped for y and the 1 swapped for an $M$).
-The neighbor convention was already introduced earlier, to reiterate \biggerNeighborX{l}{m} means \glqq all sites $m$ that have an x-coordinate that is strictly larger than the one of site $l$ and are nearest-neighbors of $l$\grqq{}.
+The neighbor convention was already introduced earlier. 
+To reiterate, \biggerNeighborX{l}{m} means \glqq all sites $m$ that have an x-coordinate that is strictly larger than the one of site $l$ and are nearest-neighbors of $l$\grqq{}.
 For the chain-geometry only the terms 1 through 6 are relevant, as there are no neighbors in y-direction.
 
 Combining all this, one arrives at \autoref{eq:variational-derivatives-our-case} for the first terms of the variational derivatives.
@@ -81,4 +82,4 @@ Combining all this, one arrives at \autoref{eq:variational-derivatives-our-case}
     O_{k}(N) \stackrel{\ref{eq:variational-derivatives-definition},\,\ref{eq:hamiltonian-vcn}}{=}
     \Phi_i(N)
 \end{equation}
-Because of this and the fact that the calculation of $\HeffOft[\vphantom{N}\smash{\tilde{N}},\,\vec{\eta}]-\HeffOft[N,\,\vec{\eta}]$ mostly boils down to calculating differences of $\Phi_\ast(\vphantom{N}\smash{\tilde{N}})-\Phi_\ast(N)$, these $\Phi_\ast(N)$ and differences thereof should be able to be evaluated most efficiently.
+For that reason and the fact that the calculation of $\HeffOft[\vphantom{N}\smash{\tilde{N}},\,\vec{\eta}]-\HeffOft[N,\,\vec{\eta}]$ mostly boils down to calculating differences of $\Phi_\ast(\vphantom{N}\smash{\tilde{N}})-\Phi_\ast(N)$, the $\Phi_\ast(N)$ and differences thereof need to be evaluated most efficiently.

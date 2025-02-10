@@ -1,17 +1,17 @@
 Typically, the \emph{density matrix} $\rho = \ketpsiof[]{t}\brapsiof[]{t}$ encodes the full quantum information of the state. 
 Because the number of entries in the matrix is the number of base-states squared - which is exponential in the number of sites, exactly what the approximation is supposed to avoid - it is not feasible to access this quantity.
 
-While it is not possible to access the complete matrix, there exists one closely related entity, that has multiple uses that are going to be utilized in the subsequent section.
+While it is not possible to access the complete matrix, there exists one closely related entity, with multiple uses that are going to be utilized in the subsequent section.
 The \emph{reduced density matrix} $\rho_A$ is obtained upon \emph{tracing out} (\autoref{eq:tracing-out}, \cite{partialTraceEntanglementOfSubsystemsBlochVector}) the part $B$ from a system that is completely partitioned into two parts $A$ and $B$.
 The basis of $A$ is $\left\{\ketN[\Phi_k]\right\}_{k=0}^{2^{2}-1 = 3 = N} = \left\{\ketN[11],\,\ketN[10],\,\ketN[01],\,\ketN[00]\right\}$ and the basis of $B$ $\left\{\ketN[\Chi_k]\right\}_{k=0}^{2^{2 \cdot \#\left(\text{sites}\right) - 2}-1 = M}$.
-Notice, the order of basis states starting with $\ketN[1\dots1]$ then $\ketN[1\dots10]$ and ending with $\ketN[0\dots0]$. As stated in \autoref{eq:spin-hcb-state-mapping}, this is the convention that is necessary to keep consistent sings, as $\ketN[0\dots0] \rightarrow \ketN[1\dots1]$ would introduce exactly one $-1$ into all measurements with \pauli{y}.
+Notice the order of basis states starting with $\ketN[1\dots1]$ then $\ketN[1\dots10]$ and ending with $\ketN[0\dots0]$. As stated in \autoref{eq:spin-hcb-state-mapping}, this is the necessary convention to keep consistent signs, as $\ketN[0\dots0] \rightarrow \ketN[1\dots1]$ would introduce exactly one $-1$ into all measurements with \pauli{y}.
 
 \begin{equation}
     \label{eq:tracing-out}
     \rho_A = \partialTrace{B}{\rho_{AB}} = \sum\limits_{k=0}^{M} \left(\one[A]\otimes\braN[\Chi_k] \right)\rho_{AB}\left(\one[A]\otimes\ketN[\Chi_k]\right)
 \end{equation}
 
-If - for this application - one reduces the part $A$ to contain only two particles $l, \sigma$ and $m, \mu$, then $\rho_A$ will be a complex $4\times 4$ matrix.
+If - for this application - the part $A$ is reduced to contain only two particles $l, \sigma$ and $m, \mu$, then $\rho_A$ will be a complex $4\times 4$ matrix.
 As it is again not feasible to obtain via tracing out, the matrix can be calculated by rewriting it in the basis of Pauli matrices (\ref{sec:particles}) \cite{isingDynamicsWithClassicalNetworks}:
 
 \begin{equation}
@@ -20,7 +20,7 @@ As it is again not feasible to obtain via tracing out, the matrix can be calcula
     \timeExpectationVal{ \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} } \left(\pauli[]{$\alpha$}\otimes\pauli[]{$\beta$}\right)
 \end{equation}
 
-\autoref{eq:reduced-density-matrix-via-paulis} uses the property, that the 16 matrices $\pauli{$\alpha$}\otimes\pauli{$\beta$}$ are a complete basis of the complex $4\times 4$ matrices.
+\autoref{eq:reduced-density-matrix-via-paulis} uses the property that the 16 matrices $\pauli{$\alpha$}\otimes\pauli{$\beta$}$ are a complete basis of the complex $4\times 4$ matrices.
 The observable $\pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$}$ can be translated into hard-core bosonic operators, thanks to the previously derived \autoref{eq:jordan-wigner-spin-hcb} and with that can easily be measured like all other observables.
 The factor $\frac{1}{4}$ follows from a normalization argument in \autoref{eq:reduced-density-matrix-normalization}, that uses properties of density matrices \cite{partialTraceEntanglementOfSubsystemsBlochVector} and algebraic properties of the Pauli matrices \cite{pauliPropertiesAndBlochVector}.
 
@@ -36,7 +36,7 @@ The factor $\frac{1}{4}$ follows from a normalization argument in \autoref{eq:re
     \end{split}
 \end{equation}
 
-\autoref{eq:reduced-density-matrix-via-paulis} now has the advantage, that the $\timeExpectationVal{ \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} }$ can be evaluated by sampling from a state \psiOfT, that has been acquired by any desired means or sampling methods.
+\autoref{eq:reduced-density-matrix-via-paulis} now has the advantage that the $\timeExpectationVal{ \pauli[l,\,\sigma]{$\alpha$}\pauli[m,\,\mu]{$\beta$} }$ can be evaluated by sampling from a state \psiOfT, that has been acquired by any desired means or sampling methods.
 
 The operators $\left(\pauli[]{$\alpha$}\otimes\pauli[]{$\beta$}\right)$ were manually translated into the required complex base-matrices in 
 \filepath{\cite{selfCode}}{/calculation-helpers/concurrence/spin-to-z-basis-transformation.py}, which is the same as the \emph{Kronecker product} \cite{kroneckerProduct} of the known matrix-representations (\autoref{eq:pauli-matrices}), precisely because of the consistent basis-convention.
@@ -70,7 +70,7 @@ As hinted, one can now employ \autoref{eq:jordan-wigner-spin-hcb} to translate t
 \end{equation}
 
 Based on the sampled state \ketN[N], in \autoref{eq:reduced-density-matrix-final-operators} the state \ketN[\vphantom{N}\smash{\tilde{N}}] is the same state as \ketN[N], but with the occupation of site $l$ and spin direction $\sigma$ \emph{flipped}, meaning an occupation of 0 in \ketN[N] is 1 in \ketN[\vphantom{N}\smash{\tilde{N}}] and vice versa.
-Furthermore, \ketN[\vphantom{N}\smash{\tildetilde{N}}] indicates a flipping of both the occupation of $l,\, \sigma$ and $m,\, \mu$.
+Furthermore, \ketN[\vphantom{N}\smash{\tildetilde{N}}] indicates a flipping of both the occupations of $l,\, \sigma$ and $m,\, \mu$.
 
 The difference of effective Hamiltonian with either one or two flipped occupations can be evaluated efficiently and is the last necessary optimization that will be presented in \fullref{sec:theory-optimizations}.
 

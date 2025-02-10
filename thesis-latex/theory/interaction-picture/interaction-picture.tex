@@ -3,13 +3,13 @@ For some special cases it is possible to solve it analytically.
 E.g. for 1-dimensional systems, the Hubbard Model can be solved analytically even with the addition of an electrical field \cite{exactSolutionExampleHubbardEvenElectricalField}.
 
 For arbitrary geometry in two or even more dimensions, this is no longer possible.
-In that case, approximations are required to lower the computational complexity to get it to a reasonable level to obtain the required measurements.
+In that case, approximations are required to lower the computational complexity to a reasonable level to obtain the required measurements.
 Here, the calculation is performed in the \emph{Interaction Picture} (relevant equations from \cite{schwablBook}), along the lines of the calculation performed in \cite{variationalClassicalNetworksPaper}.
 
-The equations that were provided so far, show operators from the \emph{Schrödinger Picture}. 
+The equations provided so far show operators from the \emph{Schrödinger Picture}. 
 For this section, the operators and states will be labeled whether they are Schrödinger- or Interaction Picture. All un-labeled elements are assumed to be Schrödinger Picture.
 
-A general state in the Schrödinger Picture can be expanded in a basis like shown in \autoref{eq:base-expansion-state}. It is time-evolved using the full Hamiltonian in the Schrödinger Picture (\autoref{eq:time-evolution-schroedinger}, all units so that $\hbar = 1$).
+A general state in the Schrödinger Picture can be expanded in a basis as shown in \autoref{eq:base-expansion-state}. It is time-evolved using the full Hamiltonian in the Schrödinger Picture (\autoref{eq:time-evolution-schroedinger}, all units so that $\hbar = 1$).
 
 \begin{equation}
     \label{eq:base-expansion-state}
@@ -34,7 +34,7 @@ In the Interaction Picture, operators have a time evolution, that depends only o
     \end{split}
 \end{equation}
 
-The time-evolution of a general state in the Interaction Picture on the other hand is obtained like \autoref{eq:time-evolution-interaction}.
+The time-evolution of a general state in the Interaction Picture on the other hand is obtained as shown in \autoref{eq:time-evolution-interaction}.
 
 \begin{equation}
     \label{eq:time-evolution-interaction}
@@ -58,7 +58,7 @@ Differentiating \autoref{eq:time-evolution-interaction} and substituting the spe
     \end{split}
 \end{equation}
 
-The equation of motion in \autoref{eq:equation-of-motion-interaction-picture}, is solved by the ansatz in \autoref{eq:solve-equation-of-motion} with the  \emph{time-ordering-operator} \timeOrderingOperator and the \emph{time-evolution-operator} \timeEvolutionOperator[\interactionPicture].
+The equation of motion in \autoref{eq:equation-of-motion-interaction-picture} is solved by the ansatz in \autoref{eq:solve-equation-of-motion} with the  \emph{time-ordering-operator} \timeOrderingOperator and the \emph{time-evolution-operator} \timeEvolutionOperator[\interactionPicture].
 
 \begin{equation}
     \label{eq:solve-equation-of-motion}
@@ -101,7 +101,7 @@ The first and second order cumulants for the cumulant-expansion are provided in 
     \end{split}
 \end{equation}
 
-Plugging this into the rearranged result from \autoref{eq:time-evolution-target} following the derivation in \cite{variationalClassicalNetworksPaper} and \cite{isingDynamicsWithClassicalNetworks}, one obtains an expansion for \HNOft in \autoref{eq:cumulant-expansion}.
+Plugging this into the rearranged result from \autoref{eq:time-evolution-target} following the derivation in \cite{variationalClassicalNetworksPaper} and \cite{isingDynamicsWithClassicalNetworks}, an expansion for \HNOft in \autoref{eq:cumulant-expansion} is obtained.
 
 \begin{equation}
     \label{eq:cumulant-expansion}
@@ -126,4 +126,4 @@ Plugging this into the rearranged result from \autoref{eq:time-evolution-target}
     \end{split}
 \end{equation}
 
-As $\VhamiltonianOf[\interactionPicture]{t'} \propto J$, if $J$ is a small perturbation (in comparison to $U$ and $\varepsilon$) this quickly converges even when taking only few terms into account.
+As $\VhamiltonianOf[\interactionPicture]{t'} \propto J$, if $J$ is a small perturbation (in comparison to $U$ and $\varepsilon$) this quickly converges, even when taking only few terms into account.

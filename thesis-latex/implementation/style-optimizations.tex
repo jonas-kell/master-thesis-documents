@@ -4,11 +4,11 @@ Python as a scripting language is not compiled in a classical sense and does not
 Because of that, code is executed in the way it is written and no micro-optimizations are applied beforehand.
 
 The process of optimizing code for speed, before having a working version, is called \emph{premature optimization} and is most of the time ill-advised.
-However when code is generated anyway, it doesn't hurt to pick up a \SI{10}{\percent} speedup through picking the most advantageous coding paradigms for fast execution.
+However when code is generated anyway, it lends itself to pick up a \SI{10}{\percent} speedup through picking the most advantageous coding paradigms for fast execution.
 
 As the occupation numbers of hard-core bosons are limited to $0$ and $1$, all analytical operator-strings (like the ones in \autoref{eq:interaction-picture-v-ham-parts}) can be re-written as expressions of boolean logic.
 One test was performed, whether these logical expressions could be rephrased to be evaluated more quickly in a closed form. 
-For the purpose of optimizing the boolean clause, the logic minimizer \emph{Espresso} \cite{espresso} was employed.
+For the purpose of optimizing the boolean clause the logic minimizer \emph{Espresso} \cite{espresso} was employed.
 An excerpt of the resulting code is shown in \ref{code:logically-optimized}.
 
 \begin{table}[htbp]
@@ -25,23 +25,24 @@ An excerpt of the resulting code is shown in \ref{code:logically-optimized}.
         Results of a qualitative measurement of the speed of different programming styles.
         The units of time-measurement are arbitrary and not applicable to a context other than their direct comparison.
         For each of the provided options, an excerpt of the implementation is listed in \fullref{sec:appendix}.
+        A runtime-difference above \SI{10}{\percent} can be observed between the runs.
     }
     \label{table:style-optimizations-runtime}
 \end{table}
 
-Another experimental change, was to remove switches and code in a branchless style.
-Such an optimization is oftentimes applied by modern compilers, to take advantage of the \emph{pipelining} powers of modern CPUs and relieve the branch-predicting algorithms.
+Another experimental change was to remove switches and code in a branchless style.
+Such an optimization is oftentimes applied by modern compilers to take advantage of the \emph{pipelining} powers of modern CPUs and relieve the branch-predicting algorithms.
 The resulting version of the test-function can be found in \ref{code:if-free-optimized}.
 
 Both of theses versions are benchmarked against the straight-forward implementation which can be found at the end of the thesis: \ref{code:if-optimized}.
-Results of the runtimes in a direct comparison are listed in \autoref{table:style-optimizations-runtime}.
+Timing results in a direct comparison are listed in \autoref{table:style-optimizations-runtime}.
 Interestingly, both of the \glqq optimizations\grqq{} do in fact increase the runtime of the trial-function, while having the same output for identical inputs.
-For one, this rules out, that Python makes changes to the code on its own (at least in the used configuration), as branch-rewrites and operator replacement are one of the primary ways (even just in time) compilers increase code throughput.
+For one, this rules out that Python makes changes to the code on its own (at least in the used configuration), as branch-rewrites and operator replacement are one of the primary ways (even just in time) compilers increase code throughput.
 
 The strengths of Python - dynamical typing and automatic type-casting on runtime - might be the reason for this unexpected behavior.
 To allow for these features, the language performs assertions and type-checks for any statement in the background.
-This leads to substantially more and further branching code being executed, than is expected.
-Therefore while replacing a seemingly processing-delay introducing if-operation with several logical operations should increase the performance for a low-level language, in the case of Python the fastest strategy seems to be executing as few \emph{lines} of code as possible.
+This leads to substantially more and further branching code being executed than is expected.
+Therefore, while replacing a seemingly processing-delay introducing if-operation with several logical operations should increase the performance for a low-level language, in the case of Python the in practice fastest strategy seems to be executing as few \emph{lines} of code as possible.
 
-For this reason, the generated scripts contain very deep branching - even though it seems inefficient in terms of best-practices, it has been tested to be faster in this application.
-As the dynamical typing and runtime-error-checking of Python are no longer required (as the prototype code runs stable), the next logical step would be harnessing the runtime-speedup that could be gained by rewriting in a low-level compiled language.
+For this reason, the generated scripts contain very deep branching - even though it seems inefficient in terms of best-practices - it has been tested to be faster in this application.
+As the dynamical typing and runtime-error-checking of Python are in the end no longer required (as the prototype code runs stable), the next logical step would be harnessing the runtime-speedup that could be gained by rewriting in a low-level compiled language.

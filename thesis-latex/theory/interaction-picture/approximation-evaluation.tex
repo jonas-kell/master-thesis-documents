@@ -23,7 +23,7 @@ With this, one can derive a useful expression for their \emph{equation of motion
 This section uses $(t)$ for indicating that operators in the Interaction Picture have a time-dependence. 
 This is superficial and only for better readability, as in fact $\hopOfT[\interactionPicture]{m}{\dagger} = \hop[\interactionPicture]{m}{\dagger} = \interactionTimeEvolution{\hop[\schroedingerPicture]{m}{\dagger}}$.
 
-If now $\left[\HzeroHamiltonian[\schroedingerPicture],\, \Aop[\schroedingerPicture]\right]$ now is a function of $\Aop[\schroedingerPicture]$, one gets a \emph{differential equation} that can be solved to obtain $\AopOfT[\interactionPicture]$.
+If $\left[\HzeroHamiltonian[\schroedingerPicture],\, \Aop[\schroedingerPicture]\right]$ now is a function of $\Aop[\schroedingerPicture]$, one gets a \emph{differential equation} that can be solved to obtain $\AopOfT[\interactionPicture]$.
 
 For the repetitive calculation of the objects of type $\left[\HzeroHamiltonian[\schroedingerPicture],\, \Aop[\schroedingerPicture]\right]$ for various \Aop[\schroedingerPicture], the tool \emph{Math-Manipulator} was specifically developed. 
 Like the transformations in \ref{sec:particles}, calculations in the following section have been validated or calculated from scratch in this tool.
@@ -110,7 +110,7 @@ Injecting these derivations into \autoref{eq:main-hamiltonian-perturbation-full-
     \end{split}
 \end{equation}
 
-It is possible to express these operator-strings as single hoppings, decorated with number operators. One receives \autoref{eq:interaction-picture-v-ham-parts}, that is symmetrical in \up and \down (with $\overline{\up} = \,\down$ and  $\overline{\down} = \,\up$).
+It is possible to express these operator-strings as single hoppings, decorated with number operators. One receives \autoref{eq:interaction-picture-v-ham-parts}, which is symmetrical in \up and \down (with $\overline{\up} = \,\down$ and  $\overline{\down} = \,\up$).
 
 \begin{equation}
     \label{eq:interaction-picture-v-ham-parts}
@@ -147,7 +147,7 @@ It is possible to express these operator-strings as single hoppings, decorated w
     \end{split}
 \end{equation}
 
-The expressions for the dressed operators in \autoref{eq:interaction-picture-v-ham-parts} can be rearranged, to better reflect their physical effects.
+The expressions for the dressed operators in \autoref{eq:interaction-picture-v-ham-parts} can be rearranged to better reflect their physical effects.
 \autoref{eq:interaction-picture-v-ham-parts-simplified} can be obtained and verified by comparing the measurements in a truth table (the \nop[\schroedingerPicture]{\ast}{\ast} measure either a $0$ or $1$ on a state, without modifying it).
 
 \begin{equation}
@@ -184,9 +184,9 @@ The \equivalentOperator here means \glqq $1$ if the measurements of the operator
 
 \subsubsection*{Base Energy}
 
-In \autoref{eq:time-evolution-target}, the effective Hamiltonian $\HeffOft = -i E_0(N) t + \HNOft$ was defined.
+In \autoref{eq:time-evolution-target} the effective Hamiltonian $\HeffOft = -i E_0(N) t + \HNOft$ was defined.
 This construct will be necessary in the following sections. 
-$E_0(N)$ is luckily calculated quite swiftly, as one can see in \autoref{eq:base-energy} (with $n_{l,\,\sigma}$ - the occupation-number in $\ketN$, not the operator).
+$E_0(N)$ is calculated quite swiftly, as can be see in \autoref{eq:base-energy} (with $n_{l,\,\sigma}$ - the occupation-number in $\ketN$, not the operator).
 
 \begin{equation}
     \label{eq:base-energy}
@@ -202,7 +202,7 @@ $E_0(N)$ is luckily calculated quite swiftly, as one can see in \autoref{eq:base
 \subsubsection*{Calculate the first order of \HNOft}
 
 The last missing element for $\HeffOft = -i E_0(N) t + \HNOft$ now is \HNOft.
-At least for the first order, the integration in \autoref{eq:cumulant-expansion} is easily doable, with now knowing the form of \VhamiltonianOf[\interactionPicture]{t}.
+At least for the first order the integration in \autoref{eq:cumulant-expansion} is doable, with now knowing the form of \VhamiltonianOf[\interactionPicture]{t}.
 
 The result of the integration can be seen in \autoref{eq:hn-integrated-first-order}.
 
@@ -292,14 +292,14 @@ The result of the integration can be seen in \autoref{eq:hn-integrated-first-ord
 
 In the second to last step, the $i$ is moved into the integral.
 
-While it seems that $\lsum[K] \fullneighborsum{l}{m}$ is even a larger summation than the previously problematic ones, because the operators $\VhamiltonianOperatorPart{A}{l}{m}$, $\VhamiltonianOperatorPart{B}{l}{m}$ and $\VhamiltonianOperatorPart{C}{l}{m}$ have interaction range limited to nearest neighbors, actually the summation is really sparse and most entries are $0$.
+While it seems like $\lsum[K] \fullneighborsum{l}{m}$ is even a larger summation than the previously problematic ones, because the operators $\VhamiltonianOperatorPart{A}{l}{m}$, $\VhamiltonianOperatorPart{B}{l}{m}$ and $\VhamiltonianOperatorPart{C}{l}{m}$ have interaction range limited to nearest neighbors, actually the summation is really sparse and most entries are $0$.
 This summation can be efficiently evaluated in \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})}.
 How this could be done, can be looked up in the implementation \filepath{\cite{selfCode}}{/computation-scripts/hamiltonian.py} in the specialization class \texttt{FirstOrderCanonicalHamiltonian}.
 
 \subsubsection*{Calculate the second order of \HNOft}
 
-For the calculation of the second order, the time-ordering-operator is relevant again. 
-It however is not necessary for the right side of the integral, as the two integrals can be fully localized to one factor each.
+For the calculation of the second order, the time-ordering-operator becomes relevant again. 
+However, it is not necessary for the right side of the integral as the two integrals can be fully localized to one factor each.
 For the left side it is necessary to integrate different cases separately.
 
 \vspace{-0.2cm} % TODO check this page-breaks properly in the end
@@ -381,8 +381,8 @@ For the left side it is necessary to integrate different cases separately.
     \end{split}
 \end{equation}
 
-Notice in the second to last step, the \VhamiltonianOperatorPart[t_\ast]{$\ast$}{\ast}{\ast} is indicated with a $t_\ast$ to keep its time-ordering association, even after writing out the \VhamiltonianOf[\interactionPicture]{t_\ast}.
-In the last step an additional -1 appears, because of a $-1 = i \cdot i$ that was introduced, to allow for integration of \VhamiltonianAnalyticalPart{$\ast$}{\ast}{\ast}{t_\ast} like in \autoref{eq:hn-integrated-first-order}.
+One might notice in the second to last step the \VhamiltonianOperatorPart[t_\ast]{$\ast$}{\ast}{\ast} is indicated with a $t_\ast$ to keep its time-ordering association, even after writing out the \VhamiltonianOf[\interactionPicture]{t_\ast}.
+In the last step an additional -1 appears, because of a $-1 = i \cdot i$ that was introduced to allow for integration of \VhamiltonianAnalyticalPart{$\ast$}{\ast}{\ast}{t_\ast} like in \autoref{eq:hn-integrated-first-order}.
 
 \begin{equation}
     \label{eq:u-eps-substitution}
@@ -393,7 +393,7 @@ In the last step an additional -1 appears, because of a $-1 = i \cdot i$ that wa
     \end{split}
 \end{equation}
 
-Inverting the steps performed in \cite{dissectTimeOrderingIntegrals}, one can easily see how to split integrals with the time-ordering-operator for evaluation in \autoref{eq:split-integral-time-ordering}.
+Inverting the steps performed in \cite{dissectTimeOrderingIntegrals}, the integrals can be split with the time-ordering-operator for evaluation in \autoref{eq:split-integral-time-ordering}.
 
 \begin{equation}
     \label{eq:split-integral-time-ordering}
@@ -406,7 +406,7 @@ Inverting the steps performed in \cite{dissectTimeOrderingIntegrals}, one can ea
     \end{split}
 \end{equation}
 
-What is left, is to evaluate the integral that needs to respect the time-ordering.
+What remains is the evaluation of the integral that needs to respect the time-ordering.
 
 \begin{equation}
     \label{eq:time-ordered-integral}
@@ -753,10 +753,10 @@ As for the first order perturbation, this seems to have made this computationall
 But again, because of the limited interaction range (for second order the range is a sphere of at most two nearest-neighbor-hops), this can be efficiently evaluated in 
 \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})^2} by using the sparse nature of the operators.
 
-The Operator $\VhamiltonianOperatorPart[]{$X$}{l}{m}\VhamiltonianOperatorPart[]{$Y$}{j}{k}$ is actually already much too complicated, to write down any of its mixed terms in a ordered, closed form.
-To get around this, in the implementation, the first half is applied to the left, the state modified accordingly and then the second half is applied - as this is much more efficient than calculating the closed form.
+The Operator $\VhamiltonianOperatorPart[]{$X$}{l}{m}\VhamiltonianOperatorPart[]{$Y$}{j}{k}$ is actually already far too complicated to write down any of its mixed terms in an ordered, closed form.
+To get around this, in the implementation the first half is applied to the left, the state modified accordingly and then the second half is applied - as this is much more efficient than calculating the closed form.
 
-See \filepath{\cite{selfCode}}{/calculation-helpers/generatesecondorder.py}.
+See \filepath{\cite{selfCode}}{/calculation-helpers/generatesecondorder.py} on how this could be done.
 
-Finally - upon close inspection - one can spot, that \autoref{eq:hn-integrated-second-order-final} is $0$ for all cases, where $l \neq j \land l \neq k \land m \neq j \land n \neq k$, if specific properties hold for \psiN[\ast].
+Close inspection discloses \autoref{eq:hn-integrated-second-order-final} being $0$ for all cases, where $l \neq j \land l \neq k \land m \neq j \land n \neq k$, if specific properties hold for \psiN[\ast].
 In a subsequent section this optimization will be used.

@@ -21,15 +21,15 @@ The number operators $\nop{l}{\sigma} = \withspinhcop{l}{\sigma}{\dagger}\withsp
 
 $U$, $J$ and \epsl[] are constants that describe the interaction strength. 
 They all have the unit of energy. 
-The scalar Product that is defined as \epsl[] can be evaluated, based on the system geometry. 
-In this case, the system described by a regular square pattern that can be seen in \autoref{fig:geometry-of-square-system}. 
-For such a system, the energy difference that is acquired from hopping from site $l$ to $m$ ($\Delta E_{l \rightarrow m}$) (provided, $l$ and $m$ are nearest neighbors) is described by \autoref{eq:energy-difference-hopping}. By assuming a default value for \epsl[0] one gets the relation from \autoref{eq:epsl} for \epsl{} (using the telescoping sum over nearest-neighbors-hopping along the path from $\vec{r_0}$ to $\vec{r_l}$). 
+The scalar product that is defined as \epsl[] can be evaluated, based on the system geometry. 
+In this case, the system is described by a regular square pattern that can be seen in \autoref{fig:geometry-of-square-system}. 
+For such a system, the energy difference that is acquired from hopping from site $l$ to $m$ ($\Delta E_{l \rightarrow m}$) (provided, $l$ and $m$ are nearest neighbors) is described by \autoref{eq:energy-difference-hopping}. By assuming a default value for \epsl[0], one gets the relation from \autoref{eq:epsl} for \epsl{} (using the telescoping sum over nearest-neighbors-hopping along the path from $\vec{r_0}$ to $\vec{r_l}$). 
 
 \begin{figure}[htbp]
     \centering
             \input{./theory/hubbard/geometry.tex}
     \vspace{0.8cm}
-    \caption{Graphical representation of how the examined square system is laid out. The sites are labeled with the index $l$ they later can be identified by. Each of the sites has 4 nearest neighbors, except the ones on the borders, that have 3 or only 2 nearest neighbors (as the system is not periodic). A system of side-length $M$ with size $N$ is depicted, which means that it has $M^2 = N$ sites.
+    \caption{Graphical representation of how the examined square system is laid out. The sites are labeled with the index $l$, they later can be identified by. Each of the sites has 4 nearest neighbors, except the ones on the borders, that have 3 or only 2 nearest neighbors (as the system is not periodic). A system of side-length $M$ with size $N$ is depicted, which means that it has $M^2 = N$ sites.
     In green, the Electrical field vector $\vec{E}$ is depicted, it is parametrized by the field strength $E$ and the angle $\varphi$.}
     \label{fig:geometry-of-square-system}
 \end{figure}
@@ -51,8 +51,8 @@ For such a system, the energy difference that is acquired from hopping from site
     \end{split}
 \end{equation}
 
-During measurements in the \nameref{sec:experiments-numerical} section, a 1-dimensional version of this is used that will be labeled \emph{chain}. 
-It will be obtained by cutting the first row of the respective square geometry and is consistent with basically all mathematical derivations performed for the \emph{square} case, because of the nearest-neighbor notation that is independent of the underlying geometry. Only in the derivation of \fullref{sec:theory-observables-current} appear differences based on the dimensionality, that however do not affect the end result.
+During measurements in the \nameref{sec:experiments-numerical} section, a 1-dimensional version of this is used, that will be labeled \emph{chain}. 
+It will be obtained by cutting the first row of the respective square geometry and is consistent with basically all mathematical derivations performed for the \emph{square} case, because of the nearest-neighbor notation that is independent of the underlying geometry. Only in the derivation of \fullref{sec:theory-observables-current} differences based on the dimensionality appear, however they do not affect the end result.
 The reason for the truncation is to reduce thy system size for the verification of convergence towards exact comparisons.
 While such a modification necessarily affects the physical properties, it is fine for verification of convergence.
 Also interesting physical - system-size independent - effects only manifest in experiments with lattice site numbers far beyond any possible exact diagonalization anyway.
@@ -64,14 +64,15 @@ In principle, the operators $\withspinhcop[]{l}{\sigma}{(\dagger)}$ can be any t
 In this application, the decision was made to use \emph{hard-core bosons} \cite[]{hardCoreBosonsBasics}, for they happen to obey multiple useful properties.
 
 Typically for bosons, the Hubbard Model is transformed into the \emph{Bose-Hubbard Model} \cite{boseHubbardModelOriginalDerivation}.
-However hard-core bosons have the added property, that the can only have the occupation numbers of $0$ and $1$ per-spin-and-site in the investigated energy range.
-This means they behave basically like fermions, only that their wave-function symmetrizes instead of anti-symmetrizes \cite{schwablBook}.
+However, hard-core bosons have the added property that they can only have the occupation numbers of $0$ and $1$ per-spin-and-site in the investigated energy range.
+This means they behave like fermions, only that their wave-function symmetrizes instead of anti-symmetrizes \cite{schwablBook}.
 Because of the restriction, one term of the Bose-Hubbard Model drops out and the studied model in equations \ref{eq:main-hamiltonian}, \ref{eq:main-hamiltonian-h0} and \ref{eq:main-hamiltonian-perturbation} is produced.
-Also the typical Bose-Hubbard Model is not spin-dependent, while this property is kept here.
-Hard-core bosons on their own have relevant properties that makes them worth studying. 
-Experimental research on hard-core bosons can give insight into e.g. \emph{ultra-cold gasses} and \emph{Bose-Einstein condensation} \cite{hardCoreBosonsBasics}, in this case it is important for the following derivations, that the operators on different sites commute, the number operator is idempotent (\ref{eq:hc-counting-op-idempotent}) and can be mapped to spin-basis notation (\ref{eq:jordan-wigner-spin-hcb}).
+Also, the typical Bose-Hubbard Model is not spin-dependent, while this property is kept here.
+Hard-core bosons on their own have relevant properties that make them worth studying. 
+Experimental research on hard-core bosons can give insight into e.g. \emph{ultra-cold gasses} and \emph{Bose-Einstein condensation} \cite{hardCoreBosonsBasics}. 
+In this case it is important for the following derivations, that the operators on different sites commute, the number operator is idempotent (\ref{eq:hc-counting-op-idempotent}) and can be mapped to spin-basis notation (\ref{eq:jordan-wigner-spin-hcb}).
 
-When adjusting the commutation-relations in \autoref{eq:hard-core-commutators} for spin-dependency, one obtains \autoref{eq:commutation-relations}.
+When adjusting the commutation-relations in \autoref{eq:hard-core-commutators} for spin-dependency, \autoref{eq:commutation-relations} is obtained.
 
 \begin{equation}
     \label{eq:commutation-relations}

@@ -1,15 +1,14 @@
-It is a central goal of this thesis, to proof that the described methods are viable to solve the time-evolution on the specified Hamiltonian and geometry.
-While it is necessary to apply enough optimizations, to allow for reasonable complicated experiment-sizes to be run in the scope of a master thesis, it is also necessary to guarantee that no errors are introduced through such modifications.
-As the runtime-optimized versions nearly always have a higher complexity than the canonical implementations, it might be easy to introduce small errors which may not be obvious in the beginning.
+It is a central goal of this thesis to proof that the described methods are viable to solve the time-evolution on the specified Hamiltonian and geometry.
+While it is necessary to apply enough optimizations to allow for reasonable complicated experiment-sizes to be run in the scope of a master thesis, it is also necessary to guarantee that no errors are introduced through such modifications.
+As the runtime-optimized versions nearly always have a higher code-complexity than the canonical implementations, it might be easy to introduce small errors which may not be obvious in the beginning.
 
 To try to mitigate similar issues and give a reasonable guarantee of correctness for all code, always the optimized and the un-optimized versions of the same functions are implemented independently of each other.
-Through getting the same values out of their comparison, the likelihood of the correct implementation of the proposed simplifications is extremely high.
-But not only that, but if independent implementations produce the same result, this can be taken as an overall validation of the whole application.
+When on comparison both paths give the same value, the likelihood of implementation of the proposed simplifications being correct is extremely high.
+Not only that, but if independent implementations produce the same result this can be taken as an overall validation of the whole application.
 
 Most major building pieces have therefore been treated in this way and checked for bugs.
 E.g. the correctness of the Hamiltonian difference is checked to be correct in 
 
 \filepath{\cite{selfCode}}{/computation-scripts/comparehamiltonians.py}.
-At that location, with analogous naming convention, more self-validation scripts are included in the final repository.
-
+At the same location, with analogous naming convention, more self-validation scripts are included in the final repository.
 Some of these include measurements of the runtime, to validate the statements made about computational complexity (results shown in the following section).

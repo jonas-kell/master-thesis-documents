@@ -1,5 +1,5 @@
 While the optimizations described in the previous section greatly increase computational efficiency, they need to be applied for each $\HNOft$-order and each $\Phi_\ast(N)$ separately.
-The problem is, that for two dimensions the number of interactions to consider grows quickly, while visualizing the symmetries of what terms are equivalent gets progressively harder.
+The problem is that for two dimensions the number of interactions to consider grows quickly, while visualizing the symmetries of what terms are equivalent gets progressively harder.
 When looking at a chain, each higher order expands the interaction range by a one-site-step. 
 So taking one more order into account, two sites are added to the possibilities for each interaction - this linearity is still somewhat manageable.
 In two dimensions, the number of affected sites in relation to the interaction range grows quadratically, as visualized in \autoref{fig:growing-interaction-range}.
@@ -10,6 +10,7 @@ In two dimensions, the number of affected sites in relation to the interaction r
     \caption{
         A depiction of the relevant sites and interactions that might be affected when a modification-event (e.g. a single flip on the center site) occurs.
         From left to right, the graphic shows the case for \emph{base-energy only}, \emph{first order perturbation theory} and \emph{second order perturbation theory}.
+        In case of a modification to the center-site the occupation of all green sites possibly influences the outcome of the calculation (in the corresponding order). For the first and second order the terms can be identified with their corresponding colored edges.
     }
     \label{fig:growing-interaction-range}
 \end{figure}
@@ -21,9 +22,10 @@ The terms that only contain non-modified occupation-numbers are guaranteed to ca
 
 For the zeroth-order (base-energy) this is swiftly calculated and can be written down in simple terms like in e.g. equations \ref{eq:new-n-flipping} or \ref{eq:simplified-base-energy-hopping}.
 In the case of the first order, it is simple enough to identify the terms.
-Looking back at \autoref{eq:hn-integrated-first-order}, it becomes clear, that all terms are described by \emph{edges} of two adjacent sites.
+Looking back at \autoref{eq:hn-integrated-first-order}, it becomes clear that all terms are described by \emph{edges} of two adjacent sites.
 These relevant edges are colored red and orange in \autoref{fig:growing-interaction-range}. 
-The symmetry is clear enough to spot that all horizontal and vertical edges respectively have the same analytical value, as $\VhamiltonianAnalyticalPartIntegrated{$\ast$}{l}{m}{t}$ is translationally invariant and are complex conjugates of each other when inverting the indices - which is the reason for arriving at $2\cdot 3 \cdot 2 = 12$ terms in \autoref{eq:psi-and-c-choices}, of which 6 are identified in \autoref{table:first-order-identification} (times two for horizontal/vertical versions).
+The symmetry is clear enough to spot that all horizontal and vertical edges respectively have the same analytical value.
+This is because the $\VhamiltonianAnalyticalPartIntegrated{$\ast$}{l}{m}{t}$ are translationally invariant and are complex conjugates of each other when inverting the indices - which is the reason for arriving at $2\cdot 3 \cdot 2 = 12$ terms in \autoref{eq:psi-and-c-choices}, of which 6 are identified in \autoref{table:first-order-identification} (times two for horizontal/vertical versions).
 
 \begin{table}[htbp]
     \centering
@@ -49,7 +51,7 @@ The symmetry is clear enough to spot that all horizontal and vertical edges resp
     \vspace{0.5cm}
     \caption{
         A list of all occupation-configurations for the first order terms.
-        The indices of the two involved sites are $l$ and $m$, each hold a site for spin up and down particles \up and \down.
+        The indices of the two involved sites are $l$ and $m$. Each hold a site for spin up and down particles \up and \down.
         Not all 16 configurations have a representative term that results from the perturbation theory.
         The ones that do reference the letters A, B and C from the $\VhamiltonianAnalyticalPartIntegrated{$\ast$}{l}{m}{t}$ in \autoref{eq:hn-integrated-first-order}.
         A second line takes the other combination $l \leftrightarrow m$ into account.
@@ -61,15 +63,15 @@ Looking at all 16 occupation-number-combinations, the complexity is already extr
 Some combinations contribute to no terms, some contribute multiple times and some terms have more states contributing to them, some less.
 Identifying and analytically optimizing the first order therefore is \emph{just} possible, albeit complicated.
 For the variational parametrization, it would be possible and maybe even more efficient to just have 16 parameters, mapping one to one onto the occupation-number-combination of the respective bond. 
-In second order however this all breaks down.
+In second order, however, this all breaks down.
 Taking a second look at \autoref{fig:growing-interaction-range}, each term in \autoref{eq:hn-integrated-second-order-final} now corresponds to \emph{two pairs of connections}, of which are 34 different ones with the edges adjacent (assuming no edge-cases, because at the border all is different again) and even more disconnected ones that might or might not be cases from the first order.
 % 6 L -> * 4 for turning
 % 5 I -> * 2 for turning
 For identifying these, one must take rotational and mirror symmetries into account and the check for the border is vastly more complicated.
 Because each of these double-bounds is formed by 3 sites with each two spin-degrees, there are in total $2^{3\cdot 2} = 64$ base-cases that need to be mapped.
-The numbers of base-cases 16 and 64 here are only as low, as they take symmetries into account. 
-For brute-forcing all combinations without the manual identification of symmetries, one would get $2^{5\cdot 2} = 1.024$ cases for the first order and $2^{13\cdot 2} = 67.108.864$ - it would most definitely not be a viable strategy converting each of these into its own parameter.
-Also - even if it were possible - this would diminishes the physical bias we hope to get from defining the $\Phi_\ast(N)$ according to the cumulant expansion.
+The numbers of base-cases 16 and 64 here are only comparably low, as they take symmetries into account. 
+For brute-forcing all combinations without the manual identification of symmetries, one would get $2^{5\cdot 2} = 1.024$ cases for the first order and $2^{13\cdot 2} = 67.108.864$ - it would most definitely not be a viable strategy to convert each of these into their own parameter.
+Even if it was possible, this would diminish the physical bias we hope to get from defining the $\Phi_\ast(N)$ according to the cumulant expansion.
 
 Even more problematic is the case of double-flips, because the interaction-spheres of these two modifications might be independent, overlapping slightly or even so much that both modifications are inside one bond.
 While not impossible for the second order, it is highly complicated to analytically compute the most efficient formula for the difference of effective Hamiltonians.
@@ -78,21 +80,21 @@ And the process is not easily generalizable to higher orders because of order-sp
 
 \subsubsection*{Pre-Computed Interaction Spheres}
 
-In this case, this was solved by defining pre-computed sets of indices that would need to be taken into account.
+In this case, this was solved by defining pre-computed sets of indices that must be taken into account.
 
 Given a formula that needs to sum over all indices once (like \autoref{eq:hn-integrated-first-order}), or once over all indices for each index (like \autoref{eq:hn-integrated-second-order-final} or \autoref{eq:v-squared-hard-computation}), it is clear that they require a runtime-complexity of \bigo{\text{\#}(\text{sites})} or even \bigo{(\text{\#}(\text{sites}))^2} to evaluate.
-Yet also all of them so far have appeared as differences of two sums - one for the un-modified state and one for a state that had undergone a localized modification - of which most elements cancel.
+Yet all of them have so far also appeared as differences of two sums - one for the un-modified state and one for a state that had undergone a localized modification - of which most elements cancel.
 
 One can assume it is possible to compute the neighbors of a site in constant time - still it takes computational time.
-This and the problem from before can be solved, by taking time at the start of the program to generate a cache of all tuples of indices, which would appear in the sum that is being optimized, but only restricted to a pre-set range around the index of the modification - a \emph{sphere of influence}.
+This and the problem from before can be solved by taking time at the start of the program to generate a cache of all tuples of indices, which would appear in the sum that is being optimized, but only restricted to a pre-set range around the index of the modification - a \emph{sphere of influence}.
 Because even if the generation takes \bigo{(\text{\#}(\text{sites}))^2} to generate this cache for a two-site-modification - after generation the lookup becomes practically \bigo{1} (and is faster than computing the neighbor indices, even if all of that has asymptotically constant complexity).
 
-This means effectively always a constant number of indices needs to be taken into account for all calculations (which can be then evaluated in constant time).
+This means effectively always a constant number of indices needs to be taken into account for all calculations (which then can be evaluated in constant time).
 While it may be possible to analytically derive a more optimal solution with more canceling terms, this method easily scales.
 Only the radius of the pre-computed cache needs to be chosen to be large enough to be compatible with the used order of the expansion.
 These geometry-dependent caches are generated in \filepath{\cite{selfCode}}{/computation-scripts/systemgeometry.py} and the caches are used at various places.
 
-The difference that this makes, depends on the system size. 
-As the number if influenced indices is constant, the strategy gets relatively more effective, the more sites the system has (so that a comparably large portion of them is left out).
+The difference that this makes depends on the system size. 
+As the number of influenced indices is constant, the strategy gets relatively more effective the more sites the system has (so that a comparably large portion of them is left out).
 For a chain, optimizations will be noticed comparably earlier than for the square lattice - this is because in two dimensions the sphere of influence grows as an area and not linearly at the two edges.
 But in the limit this strategy allows to keep the targeted complexity class, while scaling to the order of the expansion.

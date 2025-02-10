@@ -13,9 +13,9 @@ The current operator is dependent on the Hamiltonian and must be derived from th
     \end{split}
 \end{equation}
 
-It is important to notice, that the time-evolution in the Heisenberg Picture \heisenbergTimeEvolution{\ast} is a different one, than the previous \interactionTimeEvolution{\ast}.
-For the discrete gradient \discreteGradient it is important to remember, that the system lives on a discrete, 2-dimensional lattice.
-There, $\partial_\text{x} f(k) = f(k+1) - f(k)$, with any site $k$ and $k+1$ being the \glqq{}next\grqq{} site in positive $\text{x}$-direction.
+It is important to notice, that the time-evolution in the Heisenberg Picture \heisenbergTimeEvolution{\ast} is a different one than the previous \interactionTimeEvolution{\ast}.
+For the discrete gradient \discreteGradient it is important to remember that the system lives on a discrete, 2-dimensional lattice.
+There, $\partial_\text{x} f(k) = f(k+1) - f(k)$ with any site $k$ and $k+1$ being the \glqq{}next\grqq{} site in positive $\text{x}$-direction.
 
 \begin{equation}
     \label{eq:continuity-equation}
@@ -142,7 +142,7 @@ This bisects the sites along the diagonal of the coordinate system and makes the
 
 \input{theory/observable-measurement/current-square-pic.tex}
 
-\autoref{eq:spin-polarized-kinetics-operator-definition} describes the resulting observable, that measures such kinetics, depending on the direction \spinPolarizedKineticsOperatorDir{l}{m}{\sigma}.
+\autoref{eq:spin-polarized-kinetics-operator-definition} describes the resulting observable measuring such kinetics depending on the direction \spinPolarizedKineticsOperatorDir{l}{m}{\sigma}.
 
 \begin{equation}
     \label{eq:spin-polarized-kinetics-operator-definition}
@@ -152,8 +152,8 @@ This bisects the sites along the diagonal of the coordinate system and makes the
 \end{equation}
 
 In this case, the used basis-states are not eigenstates of the operators. 
-$\bracketHelper{N}{\withspinhcop{m}{\sigma}{\dagger}\withspinhcop{l}{\sigma}{}}{K}$ becomes $\delta_{N,\,\vphantom{N}\smash{\tilde{N}}}\cdot n_{m,\,\sigma} \cdot (1-n_{l,\,\sigma} )$, where \ketN[{\vphantom{N}\smash{\tilde{N}}}] is the state obtained when the particle number on site $m,\, \sigma$ and the one of site $l,\, \sigma$ are swapped (this \emph{hopping} only has an effect, when there is a particle on the original site and no particle yet on the target site, or vice versa).
-Evaluating the whole operator with the signs correctly and in a efficient manner can best be looked up in the implementation 
+$\bracketHelper{N}{\withspinhcop{m}{\sigma}{\dagger}\withspinhcop{l}{\sigma}{}}{K}$ becomes $\delta_{N,\,\vphantom{N}\smash{\tilde{N}}}\cdot n_{m,\,\sigma} \cdot (1-n_{l,\,\sigma} )$, where \ketN[{\vphantom{N}\smash{\tilde{N}}}] is the state obtained when the particle number of site $m,\, \sigma$ and the one of site $l,\, \sigma$ are swapped (this \emph{hopping} only has an effect, when there is a particle on the original site and no particle yet on the target site, or vice versa).
+Evaluating the whole operator with the signs correctly and in an efficient manner can best be looked up in the implementation 
 
 \filepath{\cite{selfCode}}{/computation-scripts/observables.py}.
 
@@ -174,19 +174,19 @@ Overall, the evaluation of this observable requires knowing the value of an obje
     e^{\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]}
 \end{equation}
 
-The \fullref{sec:theory-optimizations-analytical} will go into how to compute this efficiently for states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected via the hopping between (nearest-neighbor) lattice sites.
+The \fullref{sec:theory-optimizations-analytical} will examine how to compute this efficiently for states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected via the hopping between (nearest-neighbor) lattice sites.
 
-It is finally important to notice, that the objects from \autoref{eq:form-heff-difference} are not real-valued, but complex.
+Finally, it is important to notice that the objects from \autoref{eq:form-heff-difference} are not real-valued, but complex.
 Only the complete observable with the full sum over all basis-states \ketN over \localObservable{N}{t} has a fully vanishing imaginary part. 
 Especially when the observable is approximated with an incomplete set of basis-states, computationally an imaginary component remains. 
 It is important to monitor the magnitude of this value and monitor it going to $0$.
-If it doesn't fully vanish, this indicates an error in the sampling strategy or the implementation or the number of sampled states is not great enough.
+If it does not fully vanish, this indicates an error in the sampling strategy or the implementation or the number of sampled states is not great enough.
 
-One could entertain the question, whether is is guaranteed for the imaginary part to vanish with a large enough sample size.
+One could entertain the question whether is is guaranteed for the imaginary part to vanish with a large enough sample size.
 On first thought, if the Hamiltonian is only approximated, might there be a possibility for asymmetrical terms to introduce a non-vanishing imaginary part?
 
 Conveniently, rewriting \autoref{eq:expectation-value} in the manner of \autoref{eq:imaginary-part-vanishes}, yields two equal-valued expressions for the value of the observation that are complex conjugations $\ast$ of each other.
-This however guarantees, that no matter how \glqq bad\grqq{} the \psiOfT[\schroedingerPicture] approximates the real wave-function, for full sampling the result must have an imaginary part of 0.
+However, this guarantees that no matter how \glqq bad\grqq{} the \psiOfT[\schroedingerPicture] approximates the real wave-function, for full sampling the result must have an imaginary part of 0.
 
 \begin{equation}
     \label{eq:imaginary-part-vanishes}

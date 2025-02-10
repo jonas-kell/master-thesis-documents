@@ -1,5 +1,5 @@
 Mathematically, the problem of finding the solution to such a quantum-mechanical many-body model is solved by the calculations provided up to this point. 
-However when looking at \autoref{eq:expectation-value}, one can easily see why in practice this is not viable with larger systems. 
+However, \autoref{eq:expectation-value} reveals this not viable with larger systems in practice. 
 The calculation requires summing over all base-states. 
 Their number is given in \autoref{eq:system-size} (factor 2 in the exponent for the spin-degree) to be of exponential size in regards to the number of lattice-sites.
 Considering a physical material has at least in the order of $10^{23}$ (from \emph{Avogadros-Constant}) degrees of freedom, an \bigo{2^{\text{\#}(\text{sites})}} computational-complexity is not good enough to simulate interestingly-sized systems. 
@@ -9,15 +9,16 @@ Considering a physical material has at least in the order of $10^{23}$ (from \em
     \text{\#}(\text{states}) = 2^{\text{\#}(\text{sites}) \cdot 2}
 \end{equation}
 
-Different strategies exist, to circumvent this limitation.
-Here, the focus will be put onto randomized algorithms that use \emph{Monte-Carlo sampling} in order generate a limited number of states, representative of the real probability-distribution, in order to not having to sum over the complete \emph{Hilbert-Space}.
+Different strategies exist to circumvent this limitation.
+Here, the focus will be put onto randomized algorithms that use \emph{Monte-Carlo sampling} in order to generate a limited number of states, representative of the real probability-distribution.
+This method avoids having to sum over the complete \emph{Hilbert-Space}.
 The strategy of solving problems of this kind with the strategy of \emph{variational Monte-Carlo} is e.g. suggested in \cite{metropolisAlgorithmAndVariationalMonteCarlo}.
 This means starting with a random state and applying modifications to it (= variation).
-When the accepting/rejecting of these modifications is coupled to the probability the state has, based on its energy in the system's energy-distribution, the resulting states will have an energy/probability distribution, that resembles the one they had if they were sampled from the full Hilbert-Space.
+When the accepting/rejecting of these modifications is coupled to the probability the state has, based on its energy in the system's energy-distribution, the resulting states will have an energy/probability distribution that resembles the one they had if they were sampled from the full Hilbert-Space.
 The derivation for the whole process is shown in \cite{monteCarloObservableSampling}.
 
-However computing the normalized probability for the states is still required, in order to compare against a (e.g. thermal) reference-distribution.
-As one sees in the probability in \autoref{eq:probability-isolated}, that was defined in \autoref{eq:expectation-value}, still a full sum over all states is required to get the normalization factor.
+However, computing the normalized probability for the states is still required to compare against a (e.g. thermal) reference-distribution.
+As can be seen in the probability in \autoref{eq:probability-isolated}, that was defined in \autoref{eq:expectation-value}, still a full sum over all states is required to get the normalization factor.
 \begin{equation}
     \label{eq:probability-isolated}
     \probabilityOf{N}{t} = \frac{
@@ -26,8 +27,8 @@ As one sees in the probability in \autoref{eq:probability-isolated}, that was de
         \lsum[K] \absSquare{e^{\HeffOft[K]}} \absSquare{\psiN[K]} 
     }
 \end{equation}
-However by employing the \emph{Metropolis-Hastings-Algorithm} instead of only the \emph{Metropolis-Algorithm} to decide on the acceptance/rejection of proposed states, one can drop the requirement of normalizing the probability.
-In \autoref{eq:transition-probability-final} the \emph{acceptance-ratio} $\alpha$ - that is necessary for the Metropolis-Hastings-Algorithm to work - is derived (as per \cite{metropolisHastingsAlgorithmGeneral}) and decide on the transition from state \ketN[N] to \ketN[{\vphantom{N}\smash{\tilde{N}}}].
+However, by employing the \emph{Metropolis-Hastings-Algorithm} instead of only the \emph{Metropolis-Algorithm} to decide on the acceptance/rejection of proposed states, the requirement of normalizing the probability can be dropped.
+In \autoref{eq:transition-probability-final} the \emph{acceptance-ratio} $\alpha$ - that is necessary for the Metropolis-Hastings-Algorithm to work - is derived (as per \cite{metropolisHastingsAlgorithmGeneral}) to decide on the transition from state \ketN[N] to \ketN[{\vphantom{N}\smash{\tilde{N}}}].
 The algorithm proposes to generate a new state \ketN[{\vphantom{N}\smash{\tilde{N}}}] and calculate the corresponding $\alpha$. Then it requires generating a random number $u$ between $0$ and $1$, pulled from a uniform distribution.
 If $u \leq \alpha$, \ketN[{\vphantom{N}\smash{\tilde{N}}}] is accepted and will be used as the new current state in the next step of the sampling. 
 If $u>\alpha$, the proposed state is rejected and \ketN[N] will be used again as the next state.
@@ -64,8 +65,8 @@ The function $f(N,t)$, provided in \autoref{eq:proportional-function}, fulfills 
     \end{split}
 \end{equation}
 
-Multiple factors must be considered, which kind of variation is applied to the states in this schema. 
-However probably the most important criteria is how quickly one can evaluate \autoref{eq:transition-probability-final}, as this will be done tens to hundreds of times between each sampled state.
+Multiple factors must be considered which kind of variation is applied to the states in this schema. 
+However, probably the most important criteria is how quickly \autoref{eq:transition-probability-final} can be evaluated, as this will be done tens to hundreds of times between each sampled state.
 
 Finally, the method of sampling a selection of distributed states results in \autoref{eq:final-sampling-equation} as a rewrite to \autoref{eq:expectation-value} \cite{monteCarloObservableSampling}.
 
