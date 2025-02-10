@@ -12,9 +12,9 @@ So I can confidently say, that the time for the side-project was well invested a
 Consequently when it came down to practical realization of the mathematical derivations, I spent a lot of time writing extra alternative calculations and programmed checks to verify the correctness of the analytical calculations and numerical implementations.
 This lead to finding many bugs and quirks - many of which with only small effects on the result. 
 Still this strategy (as opposed to taking the first \glqq working\grqq{} code) made me highly confident to state that the final implementation is bug-free and correctly reflects the described methods accurately to a high degree.
-This would be especially important, as a logical next step would be to produce an even more efficient implementation in a higher-level, compiled language like C(++)/Rust to improve base level performance.
+This would be especially important, as a logical next step would be to produce an even more efficient implementation in a lower-level, compiled language like C(++)/Rust to improve base level performance.
 
-While this thesis and the corresponding code aspires to provide adequate comparisons between the methods and validate their viability, because of the amount of low level operations in Python it lacks the efficiency required for taking on experiments on very large systems.
+While this thesis and the corresponding code aspires to provide adequate comparisons between the methods and validate their viability, because of the amount of inefficient small operations in Python it lacks the efficiency required for taking on experiments on very large systems.
 This shows that the described computational complexity class can be reached and the method can be used to handle the underlying problem - yet there still are a lot of micro-optimizations left to tackle.
 Also several generalizations that were needed in previous revisions/comparisons could be taken out, if one only needs the final iteration of the method.
 
