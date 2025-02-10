@@ -38,10 +38,10 @@ Results of the runtimes in a direct comparison are listed in \autoref{table:styl
 Interestingly, both of the \glqq optimizations\grqq{} do in fact increase the runtime of the trial-function, while having the same output for identical inputs.
 For one, this rules out, that Python makes changes to the code on its own (at least in the used configuration), as branch-rewrites and operator replacement are one of the primary ways (even just in time) compilers increase code throughput.
 
-The strengths of Python - dynamical typing and automatic casting on runtime - might be the reason for this unexpected behavior.
+The strengths of Python - dynamical typing and automatic type-casting on runtime - might be the reason for this unexpected behavior.
 To allow for these features, the language performs assertions and type-checks for any statement in the background.
 This leads to substantially more and further branching code being executed, than is expected.
-Therefore while replacing a seemingly processing-delay introducing if-operation with several logical operations should increase the performance for a low-level language, in the case of Python the fastest strategy seems to be executing as few lines of code as possible.
+Therefore while replacing a seemingly processing-delay introducing if-operation with several logical operations should increase the performance for a low-level language, in the case of Python the fastest strategy seems to be executing as few \emph{lines} of code as possible.
 
 For this reason, the generated scripts contain very deep branching - even though it seems inefficient in terms of best-practices, it has been tested to be faster in this application.
 As the dynamical typing and runtime-error-checking of Python are no longer required (as the prototype code runs stable), the next logical step would be harnessing the runtime-speedup that could be gained by rewriting in a low-level compiled language.
