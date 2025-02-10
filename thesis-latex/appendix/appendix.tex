@@ -3,8 +3,19 @@
 
 % minted to properly import and style code. ! Needs python libraries
 
+\section{Code-optimization: Default}
+    \label{code:if-optimized}
+    \filepath{\cite{selfCode}}{/calculation-helpers/timing-efficiency/analyticallogicalfunctions.py}
+    \inputminted[firstline=61, lastline=92]{python}{./../physics-code/calculation-helpers/timing-efficiency/analyticallogicalfunctions.py}
+
 \newpage
-\section{some code} \label{appendix:some-code}
-    \filepath{\cite{selfCode}}{/computation-scripts/script.py}
-    \inputminted[firstline=5, lastline=30]{python}{./../physics-code/computation-scripts/script.py}
-    
+\section{Code-optimization: If-free}
+    \label{code:if-free-optimized}
+    \filepath{\cite{selfCode}}{/calculation-helpers/timing-efficiency/analyticallogicalfunctions.py}
+    \inputminted[firstline=5, lastline=20]{python}{./../physics-code/calculation-helpers/timing-efficiency/analyticallogicalfunctions.py}
+
+\newpage
+\section{Code-optimization: Espresso}
+    \label{code:logically-optimized}
+    \filepath{\cite{selfCode}}{/calculation-helpers/timing-efficiency/logicalcalcfunctions.py}
+    \inputminted[firstline=6, lastline=27]{python}{./../physics-code/calculation-helpers/timing-efficiency/logicalcalcfunctions.py}
