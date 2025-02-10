@@ -76,16 +76,17 @@ With this and the idempotence-relation \autoref{eq:hc-counting-op-idempotent} on
     \end{split}
 \end{equation}
 
-From analogous calculations follows:
+From analogous calculations follows \autoref{eq:analogous-calculations}:
 
-\begin{equation*}
+\begin{equation}
+    \label{eq:analogous-calculations}
     \begin{split}
         \hopOfT[\interactionPicture]{m}{\dagger}  &= e^{i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{i  \cdot U  \cdot  t}-1\right) \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right)  \hop[\schroedingerPicture]{m}{\dagger}\\
         \hopOfT[\interactionPicture]{m}{}  &= e^{-i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{-i  \cdot U  \cdot  t}-1\right) \dop[\schroedingerPicture]{m}{\dagger}\dop[\schroedingerPicture]{m}{}\right)  \hop[\schroedingerPicture]{m}{}\\
         \dopOfT[\interactionPicture]{m}{\dagger}  &= e^{i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{i  \cdot U  \cdot  t}-1\right) \hop[\schroedingerPicture]{m}{\dagger}\hop[\schroedingerPicture]{m}{}\right)  \dop[\schroedingerPicture]{m}{\dagger}\\
         \dopOfT[\interactionPicture]{m}{}  &= e^{-i \cdot \epsl[m]\cdot  t}\left(1 + \left(e^{-i  \cdot U  \cdot  t}-1\right) \hop[\schroedingerPicture]{m}{\dagger}\hop[\schroedingerPicture]{m}{}\right)  \dop[\schroedingerPicture]{m}{}\\
     \end{split}
-\end{equation*}
+\end{equation}
 
 Injecting these derivations into \autoref{eq:main-hamiltonian-perturbation-full-sum}, finally \VhamiltonianOfT[\interactionPicture] can be derived in \autoref{eq:interaction-picture-v-ham-full}.
 
