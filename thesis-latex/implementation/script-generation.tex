@@ -1,15 +1,15 @@
 For the main implementation of the theoretically derived algorithm the scripting language Python was chosen.
 It is a standard pick for work in the scientific field and has a vast library of powerful packages to meet the needs of research applications.
 While the language is known to have worse performance for direct implementations than modern statically compiled languages, it provides automatic runtime-checks for errors like division by zero and automatic type-casting.
-That, together with good builtin support for plotting and other visualization packages makes the language a good pick for designing and debugging a first-draft implementation.
+That, together with good built-in support for plotting and other visualization packages makes the language a good choice for designing and debugging a first-draft implementation.
 
 Not all scripts were written by hand though.
 Previously stated in \fullref{sec:theory-optimizations-analytical}, the difference $\HNOft - \HNOft[\vphantom{N}\smash{\tilde{N}}]$ can be optimized from a simple canonical implementation to a case specific re-write, that however has constant time-complexity instead of it being linearly dependent on the number of lattice sites.
 
 As described in the accompanying report \filepath{\cite{selfDocument}}{/practical-training-latex}, some calculations need to manage a quickly growing number of terms.
-The comparatively high base-complexity is caused by the 2-dimensional geometry and two spin-degrees on each site - both of which make for a relatively high number of interactions that need to be taken into account.
-Exemplary, each of the three \VhamiltonianOperatorPart{A}{l}{m}, \VhamiltonianOperatorPart{B}{l}{m} and \VhamiltonianOperatorPart{C}{l}{m} is composed of a sum of 4 summands, as one can see in \autoref{eq:interaction-picture-v-ham-parts}.
-Each of those must be treated for for cases: $(\sigma_i = \,\up \land \,\sigma_j = \,\up)$, $(\sigma_i = \,\up \land \,\sigma_j = \,\down)$, $(\sigma_i = \,\down \land \,\sigma_j = \,\up)$ and $(\sigma_i = \,\down \land \,\sigma_j = \,\down)$ (treats the interacting spin-combinations that occur in \fullref{sec:theory-optimization-hopping}).
+The comparatively high base-complexity is caused by the two-dimensional geometry and two spin-degrees on each site - both of which make for a relatively high number of interactions that need to be taken into account.
+Exemplary, each of the three \VhamiltonianOperatorPart{A}{l}{m}, \VhamiltonianOperatorPart{B}{l}{m} and \VhamiltonianOperatorPart{C}{l}{m} is composed of a sum of four summands, as one can see in \autoref{eq:interaction-picture-v-ham-parts}.
+Each of those must be treated for four cases: $(\sigma_i = \,\up \land \,\sigma_j = \,\up)$, $(\sigma_i = \,\up \land \,\sigma_j = \,\down)$, $(\sigma_i = \,\down \land \,\sigma_j = \,\up)$ and $(\sigma_i = \,\down \land \,\sigma_j = \,\down)$ (treats the interacting spin-combinations that occur in \fullref{sec:theory-optimization-hopping}).
 This makes 16 differently-shaped terms, or combined with the pre-factors 48 terms to fully write down with possible differences for x- and y-direction not yet taken into account.
 
 Instead of manually identifying more symmetries to arrive at a short and still general formulation the code for the functions that need to take all the cases into account was generated programmatically:
