@@ -1,18 +1,30 @@
-At multiple times in te theoretical derivation idealized time-complexities have been stated.
+At multiple times in the theoretical derivation idealized time-complexities have been stated.
 In practice, different hardware-related factors might come into play.
 The code to verify the correctness of the simplifications is timed to allow for basic verification of the announced runtime complexities.
 
 \begin{figure}[htbp]
     \centering
-    \hspace{-1cm}
+    \vspace{-0.7cm}
     \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/runtime-complexity/runtime.pdf}}
     \caption{
             Plot of a comparison of runtimes for calculating the difference of effective Hamiltonians for an arbitrary amount of randomly generated states for the three different described local modifications. 
-            The solid lines show the approximate time-dependency of the optimized version of the calculation function on the number of sites in the system.
-            The dashed lines show the same for the un-optimized version.
+            Solid lines represent the approximate time-dependency of the optimized version of the calculation function on the number of sites in the system.
+            The dashed lines show the relation for the un-optimized version.
             The graph includes measurements for first (O1) and second order (O2) perturbation theory and for a first order variational classical network (VNC).
         }
     \label{fig:runtime-complexity}
 \end{figure}
 
-As shown in \autoref{fig:runtime-complexity}, the 
+As shown in \autoref{fig:runtime-complexity}, the solid lines (that represent the runtime of the optimized versions) are approximately constant.
+This verifies the functions having a runtime of \bigo{1}. 
+For the un-optimized versions (dashed lines) as expected a polynomial dependency can be observed.
+In the beginning the curves run steeper, while the influence of the border-cases is important. 
+For larger systems the behavior tends to a linear course, which on a logarithmic plot verifies the polynomial time-dependency.
+
+The plot further shows, that for this implementation the double flipping is the most expensive modification, closely followed by swapping.
+This is expected, as they are equivalent except for some cases being trivially zero in the case of hopping.
+Single flips logically are the cheapest modification.
+
+As the second order implementation is the most complicated and least optimized it is distinctly the slowest.
+And because of the variational classical network implementation being more general than the first order perturbation theory, it too has slightly higher runtime.
+Lastly, the square geometry always requires more calculation-time than the chain one, as for the same number of sites a two-dimensional system has more neighbor interactions than a one-dimensional one.

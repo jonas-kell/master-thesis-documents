@@ -1,4 +1,4 @@
-set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 15cm, 22cm       # sets output format, font and plotsize
+set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 15cm, 21cm       # sets output format, font and plotsize
 set samples 600                                                                         # sets count for the amount of sampled points
 
 set output "runtime.pdf"          # name of the output pdf
@@ -57,25 +57,25 @@ set label 1 "Single Flip" at graph 0.37,0.94
 
 # plot 1,1
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " chain - O1", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " chain - VCN", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " chain - O2", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " square - O1", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerpink   title " square - VCN", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markermint   title " square - O2", \
-     "chain_measurements_o1.csv"      using ($1):($2)       notitle   axis x1y1 with lines dt 2 linecolor rgb markerred, \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " chain - O1", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " chain - O2", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " chain - VCN", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markermint   title " square - O1", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerpink   title " square - O2", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markercyan   title " square - VCN", \
+     "chain_measurements_o1.csv"      using ($1):($2)       notitle   axis x1y1 with lines dt 2 linecolor rgb markergreen, \
+     "chain_measurements_o2.csv"      using ($1):($2)       notitle   axis x1y1 with lines dt 2 linecolor rgb markerred, \
      "chain_measurements_vcno1.csv"   using ($1):($2)       notitle   axis x1y1 with lines dt 2 linecolor rgb markerblue, \
-     "chain_measurements_o2.csv"      using ($1):($2)       notitle   axis x1y1 with lines dt 2 linecolor rgb markergreen, \
-     "square_measurements_o1.csv"     using ($1*$1):($2)    notitle   axis x1y1 with lines dt 2 linecolor rgb markerorange, \
-     "square_measurements_vcno1.csv"  using ($1*$1):($2)    notitle   axis x1y1 with lines dt 2 linecolor rgb markermint, \
+     "square_measurements_o1.csv"     using ($1*$1):($2)    notitle   axis x1y1 with lines dt 2 linecolor rgb markermint, \
      "square_measurements_o2.csv"     using ($1*$1):($2)    notitle   axis x1y1 with lines dt 2 linecolor rgb markerpink, \
+     "square_measurements_vcno1.csv"  using ($1*$1):($2)    notitle   axis x1y1 with lines dt 2 linecolor rgb markercyan, \
      \
-     "chain_measurements_o1.csv"      using ($1):($3)       notitle   axis x1y1 with lines dt 1 linecolor rgb markerred, \
+     "chain_measurements_o1.csv"      using ($1):($3)       notitle   axis x1y1 with lines dt 1 linecolor rgb markergreen, \
+     "chain_measurements_o2.csv"      using ($1):($3)       notitle   axis x1y1 with lines dt 1 linecolor rgb markerred, \
      "chain_measurements_vcno1.csv"   using ($1):($3)       notitle   axis x1y1 with lines dt 1 linecolor rgb markerblue, \
-     "chain_measurements_o2.csv"      using ($1):($3)       notitle   axis x1y1 with lines dt 1 linecolor rgb markergreen, \
-     "square_measurements_o1.csv"     using ($1*$1):($3)    notitle   axis x1y1 with lines dt 1 linecolor rgb markerorange, \
-     "square_measurements_vcno1.csv"  using ($1*$1):($3)    notitle   axis x1y1 with lines dt 1 linecolor rgb markermint, \
-     "square_measurements_o2.csv"     using ($1*$1):($3)    notitle   axis x1y1 with lines dt 1 linecolor rgb markerpink
+     "square_measurements_o1.csv"     using ($1*$1):($3)    notitle   axis x1y1 with lines dt 1 linecolor rgb markermint, \
+     "square_measurements_o2.csv"     using ($1*$1):($3)    notitle   axis x1y1 with lines dt 1 linecolor rgb markerpink, \
+     "square_measurements_vcno1.csv"  using ($1*$1):($3)    notitle   axis x1y1 with lines dt 1 linecolor rgb markercyan
 # end plot 1,1
 
 set key top left
@@ -83,25 +83,25 @@ set label 1 "Double Flip" at graph 0.37,0.94
 
 # plot 2,1
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " chain - O1", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " chain - VCN", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " chain - O2", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " square - O1", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerpink   title " square - VCN", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markermint   title " square - O2", \
-     "chain_measurements_o1.csv"      using ($1):($4)       notitle   axis x1y1 with lines dt 2 linecolor rgb markerred, \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " chain - O1", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " chain - O2", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " chain - VCN", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markermint   title " square - O1", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerpink   title " square - O2", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markercyan   title " square - VCN", \
+     "chain_measurements_o1.csv"      using ($1):($4)       notitle   axis x1y1 with lines dt 2 linecolor rgb markergreen, \
+     "chain_measurements_o2.csv"      using ($1):($4)       notitle   axis x1y1 with lines dt 2 linecolor rgb markerred, \
      "chain_measurements_vcno1.csv"   using ($1):($4)       notitle   axis x1y1 with lines dt 2 linecolor rgb markerblue, \
-     "chain_measurements_o2.csv"      using ($1):($4)       notitle   axis x1y1 with lines dt 2 linecolor rgb markergreen, \
-     "square_measurements_o1.csv"     using ($1*$1):($4)    notitle   axis x1y1 with lines dt 2 linecolor rgb markerorange, \
-     "square_measurements_vcno1.csv"  using ($1*$1):($4)    notitle   axis x1y1 with lines dt 2 linecolor rgb markermint, \
+     "square_measurements_o1.csv"     using ($1*$1):($4)    notitle   axis x1y1 with lines dt 2 linecolor rgb markermint, \
      "square_measurements_o2.csv"     using ($1*$1):($4)    notitle   axis x1y1 with lines dt 2 linecolor rgb markerpink, \
+     "square_measurements_vcno1.csv"  using ($1*$1):($4)    notitle   axis x1y1 with lines dt 2 linecolor rgb markercyan, \
      \
-     "chain_measurements_o1.csv"      using ($1):($5)       notitle   axis x1y1 with lines dt 1 linecolor rgb markerred, \
+     "chain_measurements_o1.csv"      using ($1):($5)       notitle   axis x1y1 with lines dt 1 linecolor rgb markergreen, \
+     "chain_measurements_o2.csv"      using ($1):($5)       notitle   axis x1y1 with lines dt 1 linecolor rgb markerred, \
      "chain_measurements_vcno1.csv"   using ($1):($5)       notitle   axis x1y1 with lines dt 1 linecolor rgb markerblue, \
-     "chain_measurements_o2.csv"      using ($1):($5)       notitle   axis x1y1 with lines dt 1 linecolor rgb markergreen, \
-     "square_measurements_o1.csv"     using ($1*$1):($5)    notitle   axis x1y1 with lines dt 1 linecolor rgb markerorange, \
-     "square_measurements_vcno1.csv"  using ($1*$1):($5)    notitle   axis x1y1 with lines dt 1 linecolor rgb markermint, \
-     "square_measurements_o2.csv"     using ($1*$1):($5)    notitle   axis x1y1 with lines dt 1 linecolor rgb markerpink
+     "square_measurements_o1.csv"     using ($1*$1):($5)    notitle   axis x1y1 with lines dt 1 linecolor rgb markermint, \
+     "square_measurements_o2.csv"     using ($1*$1):($5)    notitle   axis x1y1 with lines dt 1 linecolor rgb markerpink, \
+     "square_measurements_vcno1.csv"  using ($1*$1):($5)    notitle   axis x1y1 with lines dt 1 linecolor rgb markercyan
 # end plot 2,1
 
 set xlabel "number of sites"
@@ -110,23 +110,23 @@ set label 1 "Swapping/Hopping" at graph 0.37,0.94
 
 # plot 3,1
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " chain - O1", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " chain - VCN", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " chain - O2", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " square - O1", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerpink   title " square - VCN", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markermint   title " square - O2", \
-     "chain_measurements_o1.csv"      using ($1):($6)       notitle   axis x1y1 with lines dt 2 linecolor rgb markerred, \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " chain - O1", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " chain - O2", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " chain - VCN", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markermint   title " square - O1", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerpink   title " square - O2", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markercyan   title " square - VCN", \
+     "chain_measurements_o1.csv"      using ($1):($6)       notitle   axis x1y1 with lines dt 2 linecolor rgb markergreen, \
+     "chain_measurements_o2.csv"      using ($1):($6)       notitle   axis x1y1 with lines dt 2 linecolor rgb markerred, \
      "chain_measurements_vcno1.csv"   using ($1):($6)       notitle   axis x1y1 with lines dt 2 linecolor rgb markerblue, \
-     "chain_measurements_o2.csv"      using ($1):($6)       notitle   axis x1y1 with lines dt 2 linecolor rgb markergreen, \
-     "square_measurements_o1.csv"     using ($1*$1):($6)    notitle   axis x1y1 with lines dt 2 linecolor rgb markerorange, \
-     "square_measurements_vcno1.csv"  using ($1*$1):($6)    notitle   axis x1y1 with lines dt 2 linecolor rgb markermint, \
+     "square_measurements_o1.csv"     using ($1*$1):($6)    notitle   axis x1y1 with lines dt 2 linecolor rgb markermint, \
      "square_measurements_o2.csv"     using ($1*$1):($6)    notitle   axis x1y1 with lines dt 2 linecolor rgb markerpink, \
+     "square_measurements_vcno1.csv"  using ($1*$1):($6)    notitle   axis x1y1 with lines dt 2 linecolor rgb markercyan, \
      \
-     "chain_measurements_o1.csv"      using ($1):($7)       notitle   axis x1y1 with lines dt 1 linecolor rgb markerred, \
+     "chain_measurements_o1.csv"      using ($1):($7)       notitle   axis x1y1 with lines dt 1 linecolor rgb markergreen, \
+     "chain_measurements_o2.csv"      using ($1):($7)       notitle   axis x1y1 with lines dt 1 linecolor rgb markerred, \
      "chain_measurements_vcno1.csv"   using ($1):($7)       notitle   axis x1y1 with lines dt 1 linecolor rgb markerblue, \
-     "chain_measurements_o2.csv"      using ($1):($7)       notitle   axis x1y1 with lines dt 1 linecolor rgb markergreen, \
-     "square_measurements_o1.csv"     using ($1*$1):($7)    notitle   axis x1y1 with lines dt 1 linecolor rgb markerorange, \
-     "square_measurements_vcno1.csv"  using ($1*$1):($7)    notitle   axis x1y1 with lines dt 1 linecolor rgb markermint, \
-     "square_measurements_o2.csv"     using ($1*$1):($7)    notitle   axis x1y1 with lines dt 1 linecolor rgb markerpink
+     "square_measurements_o1.csv"     using ($1*$1):($7)    notitle   axis x1y1 with lines dt 1 linecolor rgb markermint, \
+     "square_measurements_o2.csv"     using ($1*$1):($7)    notitle   axis x1y1 with lines dt 1 linecolor rgb markerpink, \
+     "square_measurements_vcno1.csv"  using ($1*$1):($7)    notitle   axis x1y1 with lines dt 1 linecolor rgb markercyan
 # end plot 3,1
