@@ -1,7 +1,17 @@
-The last section of this thesis is supposed to present the numerical results that have been generated per the described methods.
+The last section of this thesis will present the numerical results that have been generated per the previously described methods.
 All experiments and their exact configurations are stored in 
 \filepath{\cite{selfCode}}{/calculation-helpers/aggregator.py}.
-Because of that, it is possible to reproduce  
+Because of that, it is possible to fully reproduce the measurements, identically to how everything is presented here.
+This includes the elements that depend on randomness, as all random generators are consistently seeded and the seeds are included in the logs.
 
+The code is implemented to be executed only on CPU, so running it requires no setup like configuring graphics cards - just having an up to date version of Python and some basic packages.
+However, while small-scale tests will run fine on nearly every machine, more involved calculations require a lot of processing power.
+Most of the computational work can be sped up by utilizing more CPU cores in parallel and the scripts support multithreading for all expensive operations.
+In the case of this work, all calculations have been run using high performance computing (HPC) resources on the Linux Compute Cluster Augsburg (LiCCA).
+Access to LiCCA for the scope of this thesis work has been graciously granted by the University of Augsburg.
 
-As the %TODO
+To run experiments of this codebase on HPC, documentation and control-scripts are included in \filepath{\cite{selfCode}}{/hpc-augsburg/}.
+In order to share the results produced by HPC-measurements, data files in a uniform zip format are produced.
+
+In the spirit of making research as transparent and reproducible as possible, the repository \filepath{\cite{selfDocument}}{/thesis-latex/plotgeneration/} includes all scripts to generate every plot directly from the source data.
+On compilation of the \LaTeX{} source the graphs get rendered, too.
