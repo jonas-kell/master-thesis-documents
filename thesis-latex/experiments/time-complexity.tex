@@ -1,1 +1,18 @@
-%TODO
+At multiple times in te theoretical derivation idealized time-complexities have been stated.
+In practice, different hardware-related factors might come into play.
+The code to verify the correctness of the simplifications is timed to allow for basic verification of the announced runtime complexities.
+
+\begin{figure}[htbp]
+    \centering
+    \hspace{-1cm}
+    \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/runtime-complexity/runtime.pdf}}
+    \caption{
+            Plot of a comparison of runtimes for calculating the difference of effective Hamiltonians for an arbitrary amount of randomly generated states for the three different described local modifications. 
+            The solid lines show the approximate time-dependency of the optimized version of the calculation function on the number of sites in the system.
+            The dashed lines show the same for the un-optimized version.
+            The graph includes measurements for first (O1) and second order (O2) perturbation theory and for a first order variational classical network (VNC).
+        }
+    \label{fig:runtime-complexity}
+\end{figure}
+
+As shown in \autoref{fig:runtime-complexity}, the 
