@@ -21,3 +21,5 @@ for observableindex in "${!observables[@]}"; do
 done
 
 gnuplot system-size-energy.gp
+gnuplot system-size-concurrence.gp
+gnuplot system-size-current.gp

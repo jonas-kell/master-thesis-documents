@@ -16,7 +16,7 @@ cd "$(dirname "$0")"
 
 echo "Generating Gnuplot scripts"
 
-plotfolders=( "binary-entropy-function" "concurrence-from-spin" "energy-variance" "j-sweep" "monte-carlo-variance-test" "runtime-complexity" "vcn-eff-stepsize" "vcn-energy-conservation" "vcn-square-comparison" "vcn-square-small" "vcn-starting-values" )
+plotfolders=( "binary-entropy-function" "concurrence-from-spin" "energy-variance" "j-sweep" "monte-carlo-variance-test" "runtime-complexity" "system-size-dependency" "vcn-eff-stepsize" "vcn-energy-conservation" "vcn-square-comparison" "vcn-square-small" "vcn-starting-values" )
 
 for plotfolder in "${plotfolders[@]}"; do
     "./thesis-latex/plotgeneration/$plotfolder/make.sh"
