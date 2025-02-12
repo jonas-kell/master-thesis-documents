@@ -51,6 +51,7 @@ set logscale y 10
 set ylabel "Time [arbitrary]"
 
 # n,flip can,flip opt,double flip can,double flip opt,swap can,swap opt
+set key opaque
 unset key
 
 set label 1 "Single Flip" at graph 0.37,0.94
