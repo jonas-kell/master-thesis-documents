@@ -1,7 +1,7 @@
 set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 15cm, 12cm       # sets output format, font and plotsize
 set samples 600                                                                         # sets count for the amount of sampled points
 
-set output "vcn-energy.pdf"          # name of the output pdf
+set output "energy-variance.pdf"          # name of the output pdf
 
 set multiplot layout 2,1 rowsfirst
 

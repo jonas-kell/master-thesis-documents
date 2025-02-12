@@ -1,4 +1,59 @@
-%TODO
+As previously hinted in the theoretical derivation, this section does not present successful measurements.
+For a comparably long time, an unknown error was preventing the suggested variational classical networks algorithm from working.
+The problem lay, as previously revealed, in the explicit time-dependency of the base-energy that hade not been properly dealt with.
+Before coming back to successful verifications of the described methods, this segment is meant to briefly outline the discovery process that led to finding the reason of the misbehavior.
 
-% vcn-eff-stepsize
-% vcn-starting-values
+In \autoref{fig:vcn-fail-energy-variance} an energy and variance measurement is presented. 
+The plot and experiment do thereby not differ from the ones from previous sections, except for the inclusion of VCN measurements in comparison to the established perturbative effective Hamiltonians.
+In the appendix at \ref{appendix:vcn-fail-parameters}, the VCN-parameters and their analytical comparisons (as described in \fullref{sec:theory-variational-classical-networks-application}) are plotted.
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-0.2cm}
+    \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/vcn-eff-stepsize/energy-variance.pdf}}
+    \caption{
+            Plot of energy and variance of a system with chain geometry and $n=6$ lattice sites.
+            The energy plot additionally contains the imaginary part of the observed quantities, which is depicted by the circle-symbol.
+            For the imaginary parts, the right y-axis is used.
+            Four different VCN-series are plotted. These differ by the effective step size, describing the magnitude of the time-step for numerical integration.
+            Exact sampling was used, to restrict possible problems to the effective Hamiltonian without having to deal with Monte-Carlo noise.
+        }
+    \label{fig:vcn-fail-energy-variance}
+\end{figure}
+
+At the start of the debugging-process, a relatively large remaining imaginary part kept appearing for the measurements of all observables, as long as an effective Hamiltonian parametrized by VCN was used.
+However, this problem could be isolated to a sub-class in the implementation, that was incorrectly missing an overwrite for one of the methods of its parent class.
+The imaginary part that was remaining after this had been fixed, is sufficiently small to be attributed to numerical noise, as studying \autoref{fig:vcn-fail-energy-variance} reveals.
+
+Yet, the resulting architecture is still not able to keep the energy nor variance constant - which is an inherent property of the theoretical model.
+One could hypothesize, that the problem lies in a numerical integration-step that is too large.
+For this reason, the experiment varies the effective step-size that is used for integration.
+While this results in changes to the resulting values of the observables, it does not result in differences of the ability of the parametrization to conserve the energy.
+A convergence can be spotted, yet definitely no convergence to a constant energy.
+
+As a second hypothesis, the problem was suspected to be related to the initialization. 
+Therefore the experiment in \autoref{fig:vcn-fail-starting-energy-variance} also tries to compute the energy and variance, but with purposefully large and different initial values for the variational parameters.
+In this case, the corresponding variational parameters are more interesting and can be found in the appendix at \ref{appendix:vcn-fail-starting-parameters}.
+
+The misbehavior of the model was already appearing on the very first time-step.
+Therefore it could be assumed, that maybe an unlucky choice of initial values was causing the divergence of the VCN-parameters (compare appendix, \ref{appendix:vcn-fail-starting-parameters}).
+However, it can be quickly spotted that neither the energy, nor the variance, nor the variational parameters seem to have a different course.
+All the trends seem to have just been offset by the initial value.
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-0.2cm}
+    \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/vcn-starting-values/energy-variance.pdf}}
+    \caption{
+            Plot of energy and variance of a system with chain geometry and $n=8$ lattice sites.
+            Each run was performed with a different seed and the spread of the initial parameter values was purposefully set very high.
+            Exact sampling has been used.
+        }
+    \label{fig:vcn-fail-starting-energy-variance}
+\end{figure}
+
+Consequently, this could only be explained in one way: the development of the parameters in this parametrization is independent of the parameters themself.
+This however eliminates the \HNOft[N]-part from being responsible and only the explicitly time-dependent base-energy part remains as a possible candidate.
+A repeated inspection of \autoref{fig:vcn-fail-energy-variance} supports this hypothesis, as the basic shape of the energy seems to strongly correlate with the shape of the series of zeroth order energy measurements.
+
+As already revealed in the theoretical derivation section, eliminating the explicit time-dependency from the base-energy had been the necessary step to allow the model to perform its duty properly.
