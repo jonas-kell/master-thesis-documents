@@ -1,3 +1,26 @@
-%TODO
+So far, only exact sampling has been used. 
+However, as illustrated in \fullref{sec:theory-monte-carlo}, for systems with too many base states it is necessary to switch to a sampling method that only looks at a subset of these states.
+An attempt to verify the convergence of the Monte-Carlo sampling strategy was made in \autoref{fig:mc-convergence-occupation}.
+One additional measurement for a different observable is included in the appendix at \ref{appendix:mc-convergence-spin-current}.
 
-% monte-carlo-variance-test
+\begin{figure}[htbp]
+    \centering
+    \vspace{-0.2cm}
+    \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/monte-carlo-variance-test/occupation.pdf}}
+    \caption{
+            Standard deviation of occupation measurements, obtained from calculations on the same system and parameterization as in the previous section, but with Monte-Carlo sampling instead of exact sampling.
+            Ten runs of the same experiment, with different seeds, have been calculated. 
+            This resulted in ten slightly different datasets between which the standard deviation could be calculated.
+            The five series differ in the number of samples which have been taken into account for each single observable calculation.
+        }
+    \label{fig:mc-convergence-occupation}
+\end{figure}
+
+Upon inspection of the trend of the standard deviation in relation to the number of states sampled by Monte-Carlo, a clear correspondence can be spotted.
+For both measured observables, a higher number of Monte-Carlo samples directly corresponds to a lower standard deviation.
+This behavior was expected, as theoretically for an infinite number of samples it should be possible to perfectly replicate the original probability distribution.
+Taking this experiment as a reference, future Monte-Carlo sampling will be performed with 30000 samples as a default setting.
+While this may be much more than would have been needed to sample this small test-system exactly, it is an incredible reduction for systems with $n \approx 100$ sites.
+
+Finally, upon closely inspecting \autoref{fig:mc-convergence-occupation} again, one can spot that the overall spread of the single occupation is considerably higher than for the double occupation.
+This was already noted at the end of the previous section, where the statement was presented how the measurement of single occupation (corresponding to Pauli-z measurements) seem to be harder to reproduce than the other Pauli observables.
