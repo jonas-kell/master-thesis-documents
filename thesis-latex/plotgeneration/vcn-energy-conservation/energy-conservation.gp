@@ -44,7 +44,6 @@ J = 0.1
 set xrange [:9] 
 set xtics 1
 set mxtics 5
-# set xlabel "time [1/U]"
 
 set ytics 0.01
 set mytics 5
@@ -112,6 +111,7 @@ plot \
 # end plot 3,1
 
 set yrange [0.443:]
+set xlabel "time [1/U]"
 
 # plot 4,1
 set label 1 "Chain Geometry" at graph 0.21,0.92

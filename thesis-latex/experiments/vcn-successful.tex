@@ -1,5 +1,61 @@
-%TODO
+By using the correct parametrization, introduced in \fullref{sec:theory-variational-classical-networks-time-dependency}, the VCN approximation starts to fulfill its theorized properties.
+Firstly, the validation measurements in \autoref{fig:vcn-energy-conservation-works} show that the energy can be conserved by the VCN method.
+Comparing the scale of the y-axis with the plots from previous sections, it becomes evident that these results are significantly closer to conserving energy and variance than the results from first order cumulative methods (for reasons of readability not included in these plots).
+Furthermore, the experiment shows that a convergence towards the elusive constant function seems to be present and can be systematically reached by reducing the step size far enough.
 
-% vcn-energy-conservation
-% vcn-square-comparison
-% vcn-square-small
+It is however unlikely, that perfect convergence can be achieved by just raising this one parameter.
+For one, it should be stressed that each of the consecutive series in \autoref{fig:vcn-energy-conservation-works} is twice as expensive to evaluate as the one before it.
+Halving the size of the intermediate integration steps requires doubling the number of sampled states and consequently also at least doubles the calculation time.
+Secondly, the trend to which the presented curves converge does not seem to be perfectly constant.
+This can probably be attributed to the accumulation of numerical errors for a large enough amount of steps.
+
+For these reasons it is definitely still expedient to try integrating higher order terms into the variational ansatz or using higher order numerical integrators.
+However, considering the scope of a master thesis, the first order VCN parametrization that was suggested should be sufficient.
+
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-0.5cm}
+    \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/vcn-energy-conservation/energy-conservation.pdf}}
+    \caption{
+            Plot of energy and variance of a system with either chain geometry and $n=4$ lattice sites or with square geometry of side length $n=2$, also resulting in 4 lattice sites.
+            The eight different runs differ by the effective step size that is used for numerical integration.
+            For e.g. the red curve no intermediate integration step is used, the step size is equivalent to the distance of plotted points.
+            Consequently, for the orange curve the size of one integration step is only one eighth of the step in the red curve.
+            Exact sampling was used.
+        }
+    \label{fig:vcn-energy-conservation-works}
+\end{figure}
+
+A full comparison between the analytically derived approximations and a VCN parametrization with sensible hyperparameters is finally shown in \autoref{fig:vcn-energy-conservation-small-system}.
+The dependency of the results for this measurement on the effective step size is included in the appendix at \ref{appendix:vcn-success-small}.
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-0.5cm}
+    \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/vcn-square-small/energy-variance.pdf}}
+    \caption{
+            Plot of energy and variance of a system with square geometry of side length $n=2$, resulting in 4 lattice sites.
+            The first and second order effective Hamiltonians from cumulant expansion are compared to a VCN effective Hamiltonian with an effective step size of one 20th the size of the depicted steps.
+            Exact sampling was used.
+        }
+    \label{fig:vcn-energy-conservation-small-system}
+\end{figure}
+
+With \autoref{fig:vcn-energy-conservation-small-system}, the first full application of the VCN method on a square system is compared to the analytically derived expansion.
+Satisfactorily, it can be stated that the VCN ansatz clearly beats even the second order effective Hamiltonian with analytically derived coefficients.
+On inspection of the convergence-dependency on the effective step size (see appendix, \ref{appendix:vcn-success-small}) the run that was labeled with 20 intermediate steps is chosen as a good compromise of computational cost and benefits to precision.
+The measurement series clearly shows that making the effective step size as small as possible does not come with endlessly increasing precision.
+To reiterate, this must probably be attributed to numerical errors accumulating.
+
+Similar to the experiment in \autoref{fig:vcn-energy-conservation-small-system}, the appendix additionally contains the exact same experiment just for a square system of side length $n=3$, resulting in 9 lattice sites (see appendix, \ref{appendix:vcn-success-big}).
+For a system of nine sites, the exact sampling strategy is already too expensive to finish the calculations for the smallest effective step sizes in a reasonable duration.
+The calculation is aborted after too much time has elapsed.
+Yet again, the results obtained by using 20 intermediate steps seem to be a good compromise in terms of cost and use.
+
+Although the hyperparameters between the experiments are practically identical, the corse of the measurements in \ref{appendix:vcn-success-big} has a qualitatively different trend.
+This could be attributed to the overwhelming influence of edge effects for such small systems. 
+It could, however, also be the result of an \emph{even-odd-effect}, between the experiment with side length $n=2$ and $n=3$.
+To rule out this last possibility, for the last remaining experiment a series of systems with only even side lengths has been examined.
+
+The final section will present a final experiment that combines all previously accumulated experience.

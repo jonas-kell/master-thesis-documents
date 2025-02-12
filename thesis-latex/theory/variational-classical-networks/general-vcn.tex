@@ -101,6 +101,6 @@ For the update-strategy the first-order \emph{Euler's method} is chosen, meaning
 This could be improved by using the second-order \emph{Heun's method}. 
 Higher order approximators are most likely never worth it, as the expectation values for the local energy and variational derivative are sampled with Monte Carlo sampling for larger systems (see \autoref{sec:theory-optimizations-monte-carlo}).
 The observables will be noisy because of this, making it unnecessary to use a more exact stepping-procedure, as there is no use in stepping more precisely when the stepping direction is not exact.
-The added computational expense of higher order approximators would be put to better use by using smaller step-sizes or a higher number of Monte Carlo samples.
+The added computational expense of higher order approximators would be put to better use by using smaller step sizes or a higher number of Monte Carlo samples.
 
 % short reference and maybe even explanation/derivation why the energy MUST be conserved under TDVP -> this was in fact put into "explicit-time-dependency"

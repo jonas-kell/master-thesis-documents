@@ -69,7 +69,7 @@
 
 \newpage
 \begin{minipage}{\textwidth}
-    \section{VCN Problem: Parameters Stepsize}
+    \section{VCN Problem: Parameters for Step Size}
         \label{appendix:vcn-fail-parameters}
         Referenced by \autoref{fig:vcn-fail-energy-variance}.\\
         \vbox{
@@ -81,7 +81,7 @@
 
 \newpage
 \begin{minipage}{\textwidth}
-    \section{VCN Problem: Parameters Starting Values}
+    \section{VCN Problem: Parameters for Starting Values}
         \label{appendix:vcn-fail-starting-parameters}
         Referenced by \autoref{fig:vcn-fail-starting-energy-variance}. Note the imaginary part (represented by the dotted line) of parameters 1,\,2,\,4 and 5 diverging nearly instantly.\\
         \vbox{
@@ -89,4 +89,36 @@
                 \includegraphics[width=1.0\textwidth]{plotgeneration/vcn-starting-values/vcn-parameters.pdf}
             }
         }
+\end{minipage}
+
+\newpage
+\begin{minipage}{\textwidth}
+    \section{VCN Application: Eff. Step Size for Square System}
+        \label{appendix:vcn-success-small}
+        Referenced by \autoref{fig:vcn-energy-conservation-small-system}.\\
+        \vbox{
+            \makebox[\textwidth][c]{
+                \includegraphics[width=1.0\textwidth]{plotgeneration/vcn-square-small/energy-variance-step-dependent.pdf}
+            }
+        }
+\end{minipage}
+
+\newpage
+\begin{minipage}{\textwidth}
+    \section{VCN Application: Larger Square System}
+        \label{appendix:vcn-success-big}
+        Referenced at the end of \autoref{sec:experiments-vcn-successful}. The parameters are identical to the experiment in \autoref{fig:vcn-energy-conservation-small-system}, just with a larger system.\\
+        \vbox{
+            \makebox[\textwidth][c]{
+                \includegraphics[width=1.0\textwidth]{plotgeneration/vcn-square-comparison/energy-variance.pdf}
+            }
+        }
+\end{minipage}
+\newpage
+\begin{minipage}{\textwidth}
+    \vbox{
+        \makebox[\textwidth][c]{
+            \includegraphics[width=1.0\textwidth]{plotgeneration/vcn-square-comparison/energy-variance-step-dependent.pdf}
+        }
+    }
 \end{minipage}
