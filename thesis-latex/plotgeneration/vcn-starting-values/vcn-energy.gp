@@ -62,7 +62,7 @@ plot \
      "55-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 17 pointsize 1.1 linecolor rgb markerpink  #, \
 # end plot 1,1
 
-set ylabel "Var(E) per site [U²]"
+set ylabel "Var(E) per site [U^2]"
 set yrange [16.15:16.5]
 set ytics 0.1
 set mytics 5

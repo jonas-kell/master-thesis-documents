@@ -48,7 +48,7 @@ set xtics 1
 set mxtics 5
 set xlabel "time [1/U]"
 
-set ylabel "Var(E) per site [U²]"
+set ylabel "Var(E) per site [U^2]"
 set yrange [:4.22]
 set ytics log
 set ytics 0.05

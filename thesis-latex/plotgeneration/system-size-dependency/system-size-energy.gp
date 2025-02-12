@@ -67,7 +67,7 @@ plot \
 # end plot 1,1
 
 set key right top                                                       # moves legend
-set ylabel "Var(E) per site [U²]"
+set ylabel "Var(E) per site [U^2]"
 set ytics 0.5
 
 # plot 2,1

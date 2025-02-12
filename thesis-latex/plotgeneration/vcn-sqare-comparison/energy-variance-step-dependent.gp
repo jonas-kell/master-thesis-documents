@@ -69,7 +69,7 @@ plot \
 
 set key right top
 set key opaque
-set ylabel "Var(E) per site [U²]"
+set ylabel "Var(E) per site [U^2]"
 set ytics 0.05
 set mytics 5
 set yrange [0.65:0.83]

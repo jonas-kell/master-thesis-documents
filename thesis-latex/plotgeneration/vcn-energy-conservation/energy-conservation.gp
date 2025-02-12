@@ -95,7 +95,7 @@ plot \
 
 unset yrange
 
-set ylabel "Var(E) per site [U²]"
+set ylabel "Var(E) per site [U^2]"
 set yrange [0.216:]
 
 # plot 3,1

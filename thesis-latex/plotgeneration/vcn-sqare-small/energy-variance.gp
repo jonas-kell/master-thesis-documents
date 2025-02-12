@@ -68,7 +68,7 @@ plot \
 # ! THERE IS 200 and 800 also (seem to over-compensate)
 
 unset key
-set ylabel "Var(E) per site [U²]"
+set ylabel "Var(E) per site [U^2]"
 set ytics 0.05
 set mytics 5
 

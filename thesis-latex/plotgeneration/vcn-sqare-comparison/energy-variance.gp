@@ -67,7 +67,7 @@ plot \
 
 unset key
 
-set ylabel "Var(E) per site [U²]"
+set ylabel "Var(E) per site [U^2]"
 set ytics 0.1
 set mytics 5
 

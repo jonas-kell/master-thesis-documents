@@ -83,7 +83,7 @@ unset yrange
 unset y2tics
 
 set key left top                                                       # moves legend
-set ylabel "Var(E) per site [U²]"
+set ylabel "Var(E) per site [U^2]"
 set ytics 0.05
 set yrange [:9.5]
 
