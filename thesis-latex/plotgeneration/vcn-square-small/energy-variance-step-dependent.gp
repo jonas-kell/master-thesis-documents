@@ -68,7 +68,7 @@ plot \
 
 # ! THERE IS 200 and 800 also (seem to over-compensate)
 
-set key right center
+set key right top
 set key opaque
 set ylabel "Var(E) per site [U^2]"
 set ytics 0.01
