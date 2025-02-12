@@ -25,7 +25,7 @@ For the first verification, therefore the \autoref{fig:j-sweep-single-occ-center
 \end{figure}
 
 To balance the amount of space that is taken up by the numerous plots in the subsequent sections, supplementary plots without a direct reference are added in the end of the thesis.
-In this case, three more plots (showing different observables but otherwise from the same experimental dataset) are included in \ref{appendix:more-jsweep-plots}.
+In this case, three more plots (showing different observables but otherwise from the same experimental dataset) are included in the appendix at \ref{appendix:more-jsweep-plots}.
 
 The measurements show the expected tendencies: The relative error is the smallest for times close to $t=0$. For larger times, the relative error continuously grows.
 In the start, the perturbative measurement and the exact measurement are identical.
@@ -73,7 +73,10 @@ From this point on, measurements will be labeled as having \glqq exact sampling\
 The chosen sampling strategy is independent of the used effective hamiltonian. 
 
 In this case, for the blue curves the effective Hamiltonian has been calculated by exact diagonalization and the sampling has been exact - making the full measurement having no approximations.
-The three degrees of perturbative measurements, while having exact sampling, rely on an effective Hamiltonian that is obtained from the truncated cumulant expansion - making the methods approximatins and not exact.
+Because of the two spin-degrees per site and the exponential nature of the number of base states, a system of size $n=4$ is already close to the limit that can be reasonably diagonalized exactly - at least with the presented setup.
+By applying more optimizations to the exact diagonalization, a few more sites can be achieved, yet in this case the focus will be put on optimizing the perturbative approach.
+
+The three degrees of perturbative measurements, while having exact sampling, rely on an effective Hamiltonian that is obtained from the truncated cumulant expansion - making the methods approximations and not exact.
 Effects of additionally replacing the sampling strategy with non-exact ones will be investigated in following sections.
 
 First of all, it is easily seen that the zeroth order perturbative effective Hamiltonian does not conserve the energy or variance at all.
@@ -92,5 +95,46 @@ For the presented measurement this is generally fulfilled.
 So both approximations seem to be correctly derived and implemented and should be capable of calculating helpful results.
 If it was worth deriving the second order effective Hamiltonian will be examined in a third experiment for this section.
 
+Lastly, a more involved observable will be calculated.
+As \fullref{sec:theory-observables-density-matrix} describes, the reduced density matrix of a small subsystem can be extracted only from the measurement of local observables.
+This process was performed for a system with chain geometry and $n=4$ (to allow having access to the exact diagonalization for the purpose of comparison).
+In \autoref{fig:concurrence-first-experiment} and \autoref{fig:purity-first-experiment}, the concurrence and purity of such a density matrix of two adjacent spin-up particles are displayed.
+The values of the individual observables for the Pauli operator basis for the same subsystem can be found in the appendix at \ref{appendix:pauli-measurements}.
 
-% concurrence-from-spin
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-0.3cm}
+    \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/concurrence-from-spin/concurrence-comparison.pdf}}
+    \caption{
+            Concurrence measurements extracted from the reduced density matrix of a subsystem of two adjacent spin-up particles in a system with chain geometry and $n=4$ sites.
+            The results from exact diagonalization have been calculated by two independent means. 
+            Once by replacing the effective Hamiltonian with one gained from exact diagonalization, once by calculating the full time-evolution of the complete density matrix and tracing out the required subsystem (here labeled as \glqq External\grqq).
+            This is used for verification. 
+            As the perturbative algorithm does not use the full density matrix anywhere, this needed to be implemented independently.
+            The measurement uses exact sampling.
+        }
+    \label{fig:concurrence-first-experiment}
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-0.3cm}
+    \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/concurrence-from-spin/purity-comparison.pdf}}
+    \caption{
+            Purity measurement, belonging to the experiment in \autoref{fig:concurrence-first-experiment}.
+        }
+    \label{fig:purity-first-experiment}
+\end{figure}
+
+To start off the analysis, it should be noted how the external measurements and the ones that reconstruct the density matrix from observables (albeit the values being obtained by exact diagonalization and exact sampling) match exactly.
+This verifies the described method of obtaining a reduced density matrix without access to the full density matrix.
+
+The concurrence measurements now clearly show the superiority of the second order cumulant expansion.
+Position and shape of the second peak are clearly replicated much more precise by the second order calculations, than by the first order ones.
+It can also be noted, that while the purity measurement for the zeroth order is not totally off, the zeroth order calculation completely fails to replicate the features which are necessary to calculate the concurrence.
+Not even the first peak (which even first order replicates perfectly) can be reproduced while the interaction $J$ is ignored.
+
+Looking at the observables from which this density matrix was obtained (appendix \ref{appendix:pauli-measurements}), it can be clearly seen that the observables corresponding to Pauli-z are seem to be the most difficult to replicate.
+A Pauli-z measurement is equivalent to a re-scaled measurement of a single occupation.

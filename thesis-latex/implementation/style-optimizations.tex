@@ -9,7 +9,7 @@ However when code is generated anyway, it lends itself to pick up a \SI{10}{\per
 As the occupation numbers of hard-core bosons are limited to $0$ and $1$, all analytical operator-strings (like the ones in \autoref{eq:interaction-picture-v-ham-parts}) can be re-written as expressions of boolean logic.
 One test was performed, whether these logical expressions could be rephrased to be evaluated more quickly in a closed form. 
 For the purpose of optimizing the boolean clause the logic minimizer \emph{Espresso} \cite{espresso} was employed.
-An excerpt of the resulting code is shown in \ref{code:logically-optimized}.
+An excerpt of the resulting code is shown in the appendix at \ref{code:logically-optimized}.
 
 \begin{table}[htbp]
     \centering
@@ -32,7 +32,7 @@ An excerpt of the resulting code is shown in \ref{code:logically-optimized}.
 
 Another experimental change was to remove switches and code in a branchless style.
 Such an optimization is oftentimes applied by modern compilers to take advantage of the \emph{pipelining} powers of modern CPUs and relieve the branch-predicting algorithms.
-The resulting version of the test-function can be found in \ref{code:if-free-optimized}.
+The resulting version of the test-function can be found in the appendix at \ref{code:if-free-optimized}.
 
 Both of theses versions are benchmarked against the straight-forward implementation which can be found at the end of the thesis: \ref{code:if-optimized}.
 Timing results in a direct comparison are listed in \autoref{table:style-optimizations-runtime}.

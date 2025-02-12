@@ -1,4 +1,4 @@
-set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 25cm, 33cm       # sets output format, font and plotsize
+set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 25cm, 34cm       # sets output format, font and plotsize
 set samples 900                                                                         # sets count for the amount of sampled points
 
 set output "pauli-measurements.pdf"          # name of the output pdf
