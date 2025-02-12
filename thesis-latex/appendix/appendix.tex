@@ -5,19 +5,43 @@
 
 % TODO does the appendix bloat the toc??
 
-\section{Code-optimization: Default}
+\section{Code-Optimization: Default}
     \label{code:if-optimized}
     \filepath{\cite{selfCode}}{/calculation-helpers/timing-efficiency/analyticallogicalfunctions.py}
     \inputminted[firstline=61, lastline=92]{python}{./../physics-code/calculation-helpers/timing-efficiency/analyticallogicalfunctions.py}
 
 \newpage
-\section{Code-optimization: If-free}
+\section{Code-Optimization: If-free}
     \label{code:if-free-optimized}
     \filepath{\cite{selfCode}}{/calculation-helpers/timing-efficiency/analyticallogicalfunctions.py}
     \inputminted[firstline=5, lastline=20]{python}{./../physics-code/calculation-helpers/timing-efficiency/analyticallogicalfunctions.py}
 
 \newpage
-\section{Code-optimization: Espresso}
+\section{Code-Optimization: Espresso}
     \label{code:logically-optimized}
     \filepath{\cite{selfCode}}{/calculation-helpers/timing-efficiency/logicalcalcfunctions.py}
     \inputminted[firstline=6, lastline=27]{python}{./../physics-code/calculation-helpers/timing-efficiency/logicalcalcfunctions.py}
+
+\begin{minipage}{\textwidth}
+    \section{Small Interaction-Term Limit: Extra Plots}
+        \label{appendix:more-jsweep-plots}
+        Referenced by \autoref{fig:j-sweep-single-occ-center}.\\
+        \vbox{
+            \makebox[\textwidth][c]{
+                \includegraphics[width=0.85\textwidth]{plotgeneration/j-sweep/current-border.pdf}
+            }
+            \vspace{-0.8cm}
+
+            \makebox[\textwidth][c]{
+                \includegraphics[width=0.85\textwidth]{plotgeneration/j-sweep/current-center.pdf}
+            }
+            \vspace{-0.8cm}
+
+            \makebox[\textwidth][c]{
+                \includegraphics[width=0.85\textwidth]{plotgeneration/j-sweep/double-occ-border.pdf}
+            }
+        }
+\end{minipage}
+
+\newpage
+\section{Test}

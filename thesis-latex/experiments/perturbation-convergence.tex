@@ -1,26 +1,46 @@
+Giving absolute statements about the quality of a numerical method is naturally very difficult.
+All approximations by definition omit some aspects in comparison to the exact result.
+This however is the exact purpose of a model - simplifying by leaving out parts, but still capturing the relevant characteristics.
+In conclusion, there are two ways of gauging the quality of a model: comparing to other models and checking if the approximation holds in the limit to a more general case.
+Both of these checks will be employed to some degree in this or following sections.
 
-\cite{variationalClassicalNetworksPaper}
-% TODO -> time order to where this should converge in VCN for dynamics paper
-% Let us remark that the cumulant expansion (11) goes
-% beyond conventional time-dependent perturbation the-
-% ory, since the corrections considered here effectively ac-
-% count for a resummation of several terms that appear in a
-% standard perturbative expansion31 . However, pCNs face
-% their own limitations, too. In particular, they are inher-
-% ently restricted to weak quantum fluctuations (small γ)
-% to ensure that we can safely truncate the expansion (11).
-% Besides, the description of the evolution of observables
-% will eventually break down, since resonant processes may
-% be present, giving rise to secular terms that limit a correct
-% description to timescales of order O(1/γ)31 . Nonetheless,
-% one can still benefit from the framework introduced here,
-% while mitigating the drawbacks mentioned before. This
-% is achieved by constructing adequate variational wave
-% functions with a network architecture that is inherited
-% from a corresponding pCN, as argued in the following.
+To begin with, it should be repeated that a perturbative expansion is designed to capture the influence of a \glqq small\grqq{} perturbation to an underlying system.
+The cumulant expansion, that was presented in \fullref{sec:theory-physics}, is based on the interaction energy $J$ being small compared to the energy scale of the base energy ($U$ and $\epsl[\ast]$).
+In the limit of $J$ going to zero, the errors resulting from the expansion are expected to also become smaller.
+It should be the goal, to show that the expansion is \emph{controlled} - meaning for a fixed $J$, a large enough expansion-order can be chosen, or equivalently, each order of the expansion is good enough to make statements for $J$ up to a specific magnitude in relation to $U$. 
 
-\cite{starkManyBodyLocalization} % what we want to observe for electrical field on a discrete lattice: fluctuations instead of transport
+For the first verification, therefore the \autoref{fig:j-sweep-single-occ-center} shows a family of measurements that were performed for different magnitudes of the parameter $J$.
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-0.7cm}
+    \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/j-sweep/single-occ-center.pdf}}
+    \caption{
+            Family of measurements of the observable that describes the occupation of a single site and spin direction near the center of a system with \emph{chain} geometry and $n=6$ sites.
+            The magnitude of the parameter $J$ is varied in relation to the parameter $U$, while the remaining simulation-settings are kept constant.
+            On the y-axis, the relative error (in relation to the measurement taken from exact diagonalization) is shown logarithmically scaled.
+        }
+    \label{fig:j-sweep-single-occ-center}
+\end{figure}
+
+To balance the amount of space that is taken up by the numerous plots in the subsequent sections, supplementary plots without a direct reference are added in the end of the thesis.
+In this case, three more plots (showing different observables but otherwise from the same experimental dataset) are included in \ref{appendix:more-jsweep-plots}.
+
+The measurements show the expected tendencies: The relative error is the smallest for times close to $t=0$. For larger times, the relative error continuously grows.
+In the start, the perturbative measurement and the exact measurement are identical.
+Then, for later times, the relative error constantly grows.
+This is expected, as the perfect alignment from $t=0$ is constantly worsening due to errors, resulting from the truncated expansion, that accumulate in the perturbative calculation.
+The reference \cite{variationalClassicalNetworksPaper} suggests that the approximation on the basis of the cumulant expansion provides a correct description for timescales on the order of \bigo{J^{-1}}.
+No quantitative analysis of that statement has been carried out, yet the suggested dependency seems to be in-line with the trend seen in the data.
+
+Furthermore, the correct behavior for a limit of a small perturbative parameter $J$ can be also attested.
+The data shows a clear downwards-shift to smaller relative errors for the whole measurement series, the closer $J/\,U$ comes to zero.
+At the limit $J=0$, the error should also vanish, as the is no perturbation left in the system.
+
+Viewed from the opposite side, it must be stressed that the expansion only is viable to predict the behavior of systems with weak quantum fluctuations. 
+Were the interactions too large, the expansion could not be safely truncated after few terms \cite{variationalClassicalNetworksPaper}.
+
+
 
 % energy variance
-% j-sweep 
 % concurrence-from-spin
