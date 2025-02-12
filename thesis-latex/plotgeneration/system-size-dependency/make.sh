@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 
 
 geometrysizes=("size2" "size4" "size6" "size8" "size10")
-observables=( "energy" "variance" "spincurrentvert" "spincurrenthoriz" "concurrencevert" "concurrencehoriz" )
+observables=( "energy" "variance" "spincurrentvert" "spincurrenthoriz" "concurrencevert" "concurrencehoriz" "purityvert" "purityhoriz" )
 
 python3 ./../convert-json-zip-to-csv.py --clear --zip_file_name "clear" --observable_index 0 --out_file_suffix "clear"
 
@@ -23,3 +23,4 @@ done
 gnuplot system-size-energy.gp
 gnuplot system-size-concurrence.gp
 gnuplot system-size-current.gp
+gnuplot system-size-purity.gp

@@ -39,9 +39,9 @@ set datafile separator ','
 U = 1.0
 
 # axes and label
-set xrange [] 
-set xtics 1
-set mxtics 5
+set xrange [:25] 
+set xtics 2
+set mxtics 4
 set xlabel "time [1/U]"
 
 set ylabel "Concurrence (horizontal)"
