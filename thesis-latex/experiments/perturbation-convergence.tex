@@ -19,6 +19,7 @@ For the first verification, therefore the \autoref{fig:j-sweep-single-occ-center
             Family of measurements of the observable that describes the occupation of a single site and spin direction near the center of a system with \emph{chain} geometry and $n=6$ sites.
             The magnitude of the parameter $J$ is varied in relation to the parameter $U$, while the remaining simulation-settings are kept constant.
             On the y-axis, the relative error (in relation to the measurement taken from exact diagonalization) is shown logarithmically scaled.
+            The measurement was taken with exact sampling.
         }
     \label{fig:j-sweep-single-occ-center}
 \end{figure}
@@ -40,7 +41,56 @@ At the limit $J=0$, the error should also vanish, as the is no perturbation left
 Viewed from the opposite side, it must be stressed that the expansion only is viable to predict the behavior of systems with weak quantum fluctuations. 
 Were the interactions too large, the expansion could not be safely truncated after few terms \cite{variationalClassicalNetworksPaper}.
 
+\begin{figure}[htbp]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/energy-variance/energy.pdf}}
+    \caption{
+            Plot of the course of the energy over time, for the case of a system with chain geometry and $n=4$ sites.
+            The exact energy has been calculated with exact diagonalization for all times (real measurements).
+            Both plots show the same data, but the zeroth order approximation has been omitted from the lower graph in order to better visualize the differences between first- and second order.
+            The sampling strategy for the perturbative approximations has been exact sampling.
+        }
+    \label{fig:energy-variance-energy}
+\end{figure}
+    
+As stated by \autoref{eq:energy-conserved}, the energy and variance stay constant for exact measurements of the system.
+It is therefore a measurement of the quality of a perturbative method, how good these two observables are being conserved over time.
+\autoref{fig:energy-variance-energy} shows the course of the energy measurement, while \autoref{fig:energy-variance-variance} shows the corresponding values for the variance.
+
+\begin{figure}[htbp]
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/energy-variance/variance.pdf}}
+    \caption{
+            Plot of the variance measurements corresponding to the energy from \autoref{fig:energy-variance-energy}.
+            Again, both plots show the same data, only the second graph omits the zeroth order and presents the differences between first- and second order in a zoomed-in fashion.
+            The measurements in the lower consists still only of individual data points, but the plot here is done with lines to allow to differentiate the curves in the beginning section.
+        }
+    \label{fig:energy-variance-variance}
+\end{figure}
+
+The conservation of energy and variance is perfectly validated by the measurements from exact diagonalization (here in blue).
+From this point on, measurements will be labeled as having \glqq exact sampling\grqq, if for the calculations all possible base-states were examined and their normalized probabilities were calculated.
+The chosen sampling strategy is independent of the used effective hamiltonian. 
+
+In this case, for the blue curves the effective Hamiltonian has been calculated by exact diagonalization and the sampling has been exact - making the full measurement having no approximations.
+The three degrees of perturbative measurements, while having exact sampling, rely on an effective Hamiltonian that is obtained from the truncated cumulant expansion - making the methods approximatins and not exact.
+Effects of additionally replacing the sampling strategy with non-exact ones will be investigated in following sections.
+
+First of all, it is easily seen that the zeroth order perturbative effective Hamiltonian does not conserve the energy or variance at all.
+While for the variance the center of the oscillation stays around the exact value and for the energy it at least comes back to it in the end of the measurement, the observables clearly instantly deviate from the energy at $t=0$ starting at the first time-step.
+This was to be expected, as the energy-measurement takes the interactions (mediated by the interaction strength $J$) into account, but the effective Hamiltonian is truncated to not have any knowledge of $J$.
+Yet, the zeroth order curves can be taken as a reference of scale: while all approximations can have fluctuations, no approximation should have larger fluctuations than this trivial case.
+
+Inspecting the effects of the proposed approximation, represented by the green and red curves, the consistency is significantly better than for zeroth order.
+Both methods keep the observables far more constant than the zeroth order experiment and all oscillations are now around the values they are supposed to have in the exact case.
+For the variance, the second order calculations seem to be clearly closer to the expected solution.
+In the case of the energy, for the times smaller 1 (in the presented units) a bigger gap can be seen between the second order calculation and the exact result than between the first order and the exact value.
+
+It is always necessary to look at the overall energy scale and check if this might be expected or the result of a mistake.
+A general rule of thumb for this approximation would be to state that an approximation from cumulant expansion to order $x$ should have an error in the order of \bigo{\frac{J^2}{U^2}}. 
+For the presented measurement this is generally fulfilled. 
+So both approximations seem to be correctly derived and implemented and should be capable of calculating helpful results.
+If it was worth deriving the second order effective Hamiltonian will be examined in a third experiment for this section.
 
 
-% energy variance
 % concurrence-from-spin
