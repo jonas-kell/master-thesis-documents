@@ -1,8 +1,56 @@
-%TODO
+As a final experiment one attempt will be made to leave the realm of system sizes that can be exactly diagonalized.
+The past sections have verified the implemented code can likely produce useful experimental results for large systems.
 
-\cite{starkManyBodyLocalization} % what we want to observe for electrical field on a discrete lattice: fluctuations instead of transport
+For the sampling strategy Monte Carlo sampling with \num{30000} samples per operation is used.
+Considering a $10\times{}10$ square system of the presented Hubbard model has around \num{1.6e29} base states, this seems exceptionally reasonable.
+% used 30.000, while exact 10x10 square would have needed 1606938044258990275541962092341162602522202993782792835301376 = 1.6*10^29
 
+\begin{figure}[htbp]
+    \centering
+    \vspace{-0.3cm}
+    \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/system-size-dependency/system-size-energy.pdf}}
+    \caption{
+            Trend of the energy and variance for five systems with square geometry and increasing side length.
+            The measurements have been taken with an effective Hamiltonian parametrized by VCN and Monte Carlo sampling.
+        }
+    \label{fig:final-measurement-energy}
+\end{figure}
 
-% system-size-dependency
+To show the behavior of the method over a large range of system sizes, a series of square systems with side lengths 2-4-6-8-10 was chosen.
+The electrical field was purposefully orientated away from \SI{45}{\degree}, to coerce different behavior for vertical and horizontal interactions.
 
-% used 30.000, while exact 10x10 square would have needed 1606938044258990275541962092341162602522202993782792835301376
+As for the other experiments, the energy is used to gauge the quality of the approximation. 
+The plots for the course of energy and variance are depicted in \autoref{fig:final-measurement-energy}.
+Again, for the large systems the computation might be aborted early as the runtime grows at least linearly with the number of sites and the number of sites grows quadratically with the parameter $n$.
+It can be seen, that the model is perfectly capable of keeping the energies constant - the variance is kept stable for the smaller systems, but it starts to dip for the larger ones.
+This could be easily explained by the relatively tiny amount of variational parameters that are present in the employed parametrization.
+The larger systems might very well require more degrees of freedom in \Hvcn{\vec{\eta}} to be properly encodable.
+
+For an observable different than the energy, \autoref{fig:final-measurement-current} depicts the course of the spin current.
+The plot shows the differences between a vertically and a horizontally oriented current flow.
+
+\begin{figure}[htbp]
+    \centering
+    \vspace{-0.3cm}
+    \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/system-size-dependency/system-size-current.pdf}}
+    \caption{
+            Trend of the spin current between two adjacent sites with spin-up in the center of the respective system.
+            The experiment and hyperparameters are the same as in \autoref{fig:final-measurement-energy}.
+            The different course for horizontal and vertical exchange results from the asymmetric direction of the electrical field.
+        }
+    \label{fig:final-measurement-current}
+\end{figure}
+
+Both currents show relatively little dependency on the size of the system - the differences of the smallest system can most likely be explained with the comparably large influence of edge effects.
+
+Even though the system is governed by a step potential gradient as a result of the electrical field, the current shows oscillating behavior centered around zero and no transport.
+While this might seem unintuitive when imagining a continuous system, for a discrete lattice - as is the case here - this is exactly what is expected.
+This combination of properties causes particles to experience \emph{Wannier-Stark localization} \cite{starkManyBodyLocalization}, % what we want to observe for electrical field on a discrete lattice: fluctuations instead of transport
+resulting in locally oscillatory behavior of the particles and the absence of transport.
+Because of a lack of time, this has not been examined more extensively or quantitatively.
+
+Supplementary to this set of experiments, a measurement of the purity and the concurrence is included in the appendix at \ref{appendix:vcn-system-size-dependency}.
+The subsystems that define the reduced density matrices are the same as for the current in \autoref{fig:final-measurement-current}.
+While the purity behaves in similarly consistent fashion to the current, only the smallest system seems to produce measurable spikes in the concurrence.
+While this might have multiple reasons, one likely factor is the previously stated challenge to get good readings for single site occupations (Pauli-z measurements).
+Further research needs to go into this direction, to be able to make a statement about the viability of extracting the concurrence for use in quantitative measurements via this method.

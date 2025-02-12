@@ -46,7 +46,7 @@ set xlabel "time [1/U]"
 
 set ylabel "Concurrence (horizontal)"
 set yrange []
-set ytics 0.01
+set ytics 0.05
 set mytics 5
 
 # plot 1,1
@@ -63,6 +63,7 @@ plot \
      "comparevcn_size10-mc-concurrencehoriz.csv"     using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markercyan
 # end plot 1,1
 
+set ytics 0.01
 set ylabel "Concurrence (vertical)"
 
 # plot 1,1
