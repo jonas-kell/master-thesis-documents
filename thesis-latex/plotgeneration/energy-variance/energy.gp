@@ -1,4 +1,4 @@
-set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 16cm, 12cm       # sets output format, font and plotsize
+set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 15cm, 12cm       # sets output format, font and plotsize
 set samples 600                                                                         # sets count for the amount of sampled points
 
 set output "energy.pdf"          # name of the output pdf
@@ -47,13 +47,13 @@ set mxtics 5
 set xlabel "time [1/U]"
 
 set ylabel "Energy per site [U]"
-set yrange []
+set yrange [:0.36]
 set ytics log
 set ytics 0.05
 set mytics 5
+set key at graph 0.79,0.96
 
 # plot 1,1
-# set label 1 "TODO" at graph 0.27,0.96
 plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " Exact", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerorange   title " O0-pert.", \
@@ -66,9 +66,13 @@ plot \
 # end plot 1,1
 
 set ytics 0.01
+set key default # reset key
+set key box linestyle 999
+set key spacing 1
+set key top left
+unset yrange
 
 # plot 2,1
-# set label 1 "TODO" at graph 0.27,0.96
 plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " Exact", \
      NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " O1-pert.", \

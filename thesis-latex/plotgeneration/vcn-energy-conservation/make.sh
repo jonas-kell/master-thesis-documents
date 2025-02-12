@@ -23,4 +23,4 @@ for observableindex in "${!observables[@]}"; do
     done
 done
 
-gnuplot vcn-energy.gp
+gnuplot energy-conservation.gp

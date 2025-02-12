@@ -1,4 +1,4 @@
-set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 25cm, 25cm       # sets output format, font and plotsize
+set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 25cm, 33cm       # sets output format, font and plotsize
 set samples 900                                                                         # sets count for the amount of sampled points
 
 set output "vcn-parameters.pdf"          # name of the output pdf
@@ -33,29 +33,32 @@ set multiplot layout 3,2 rowsfirst
 
 # axes and label
 set xrange [] 
-set xtics 0.1
-set mxtics 1
-set mytics 5
+set xtics 0.2
+set mxtics 4
+set mytics 4
 
-set yrange [-1:1]
+set yrange [-0.65:0.65]
+set xrange [:1.4]
 
 parameters = "param0 param1 param2 param3 param4 param5"
 
 do for [i = 1:words(parameters)] {
      vcnparam = word(parameters, i)
      if (vcnparam eq "param0") {
-          set label "x-Axis: time [1/U]" at graph 0.50,0.10
+          set label "x-Axis: time [1/U]" at graph 0.37,0.10
 
           set key Left                                                            # key text justify left
           set key at graph 0.40,0.41                                              # moves legend
           set style line 999 dashtype 1 linewidth 1 linecolor rgb "#000008"       # legend linestyle
           set key box linestyle 999                                               # apply box style
           set key spacing 1                                                       # vertical spacing of entries
+
+          unset key
      } else {
           unset key
           unset label
      }
-     set ylabel sprintf("Variational Param. %d", i)
+     set ylabel sprintf("Variational Parameter %d", i)
      plot \
           NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " a", \
           NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " a", \

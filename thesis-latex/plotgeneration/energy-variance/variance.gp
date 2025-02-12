@@ -1,4 +1,4 @@
-set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 16cm, 12cm       # sets output format, font and plotsize
+set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 15cm, 12cm       # sets output format, font and plotsize
 set samples 600                                                                         # sets count for the amount of sampled points
 
 set output "variance.pdf"          # name of the output pdf
@@ -40,14 +40,16 @@ set datafile separator ','
 U = 1.0
 J = 0.1
 
+set key opaque
+
 # axes and label
 set xrange [:12.5] 
 set xtics 1
 set mxtics 5
 set xlabel "time [1/U]"
 
-set ylabel "Var(E per site)  [U²]"
-set yrange []
+set ylabel "Var(E) per site [U²]"
+set yrange [:4.22]
 set ytics log
 set ytics 0.05
 set mytics 5

@@ -1,4 +1,4 @@
-set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 30cm, 30cm       # sets output format, font and plotsize
+set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 25cm, 33cm       # sets output format, font and plotsize
 set samples 900                                                                         # sets count for the amount of sampled points
 
 set output "pauli-measurements.pdf"          # name of the output pdf
@@ -42,7 +42,7 @@ pauli_ops = "00 0x 0y 0z x0 xx xy xz y0 yx yy yz z0 zx zy zz"
 do for [pauli_op in pauli_ops] {
      if (pauli_op eq "00") {
           set yrange [0.999:1.001]
-          set label "x-Axis: time [1/U]" at graph 0.23,0.92
+          set label "x-Axis: time [1/U]" at graph 0.13,0.92
 
           set key Left                                                            # key text justify left
           set key bottom center                                                   # moves legend

@@ -26,4 +26,7 @@ for observable in "${observables[@]}"; do
     done
 done
 
-gnuplot j-sweep.gp
+gnuplot single-occ-center.gp
+gnuplot double-occ-border.gp
+gnuplot current-border.gp
+gnuplot current-center.gp

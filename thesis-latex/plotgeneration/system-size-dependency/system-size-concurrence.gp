@@ -1,4 +1,4 @@
-set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 16cm, 20cm       # sets output format, font and plotsize
+set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 15cm, 16cm       # sets output format, font and plotsize
 set samples 600                                                                         # sets count for the amount of sampled points
 
 set output "system-size-concurrence.pdf"          # name of the output pdf
@@ -41,7 +41,7 @@ U = 1.0
 # axes and label
 set xrange [] 
 set xtics 1
-set mxtics 2
+set mxtics 5
 set xlabel "time [1/U]"
 
 set ylabel "Concurrence (horizontal)"
@@ -51,32 +51,32 @@ set mytics 5
 
 # plot 1,1
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue      title " n=2", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen     title " n=4", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred       title " n=6", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerpink      title " n=8", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markermint      title " n=10", \
-     "comparevcn_size2-mc-concurrencehoriz.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerblue, \
-     "comparevcn_size4-mc-concurrencehoriz.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markergreen, \
-     "comparevcn_size6-mc-concurrencehoriz.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerred, \
-     "comparevcn_size8-mc-concurrencehoriz.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerpink, \
-     "comparevcn_size10-mc-concurrencehoriz.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markermint
+     NaN with points pt 5 pointsize 0.6 lc rgb markerblue     title " n=2", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerorange   title " n=4", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen    title " n=6", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerred      title " n=8", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markercyan     title " n=10", \
+     "comparevcn_size2-mc-concurrencehoriz.csv"      using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markerblue, \
+     "comparevcn_size4-mc-concurrencehoriz.csv"      using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markerorange, \
+     "comparevcn_size6-mc-concurrencehoriz.csv"      using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markergreen, \
+     "comparevcn_size8-mc-concurrencehoriz.csv"      using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markerred, \
+     "comparevcn_size10-mc-concurrencehoriz.csv"     using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markercyan
 # end plot 1,1
 
 set ylabel "Concurrence (vertical)"
 
 # plot 1,1
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue      title " n=2", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen     title " n=4", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred       title " n=6", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerpink      title " n=8", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markermint      title " n=10", \
-     "comparevcn_size2-mc-concurrencevert.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerblue, \
-     "comparevcn_size4-mc-concurrencevert.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markergreen, \
-     "comparevcn_size6-mc-concurrencevert.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerred, \
-     "comparevcn_size8-mc-concurrencevert.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerpink, \
-     "comparevcn_size10-mc-concurrencevert.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markermint
+     NaN with points pt 5 pointsize 0.6 lc rgb markerblue     title " n=2", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerorange   title " n=4", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen    title " n=6", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerred      title " n=8", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markercyan     title " n=10", \
+     "comparevcn_size2-mc-concurrencevert.csv"      using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markerblue, \
+     "comparevcn_size4-mc-concurrencevert.csv"      using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markerorange, \
+     "comparevcn_size6-mc-concurrencevert.csv"      using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markergreen, \
+     "comparevcn_size8-mc-concurrencevert.csv"      using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markerred, \
+     "comparevcn_size10-mc-concurrencevert.csv"     using ($1 * U):($2/U) notitle      axis x1y1 with linespoints pointtype 16 pointsize 1.0 linecolor rgb markercyan
 # end plot 1,1
      
      

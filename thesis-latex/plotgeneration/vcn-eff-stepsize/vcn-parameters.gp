@@ -1,4 +1,4 @@
-set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 25cm, 25cm       # sets output format, font and plotsize
+set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 25cm, 33cm       # sets output format, font and plotsize
 set samples 900                                                                         # sets count for the amount of sampled points
 
 set output "vcn-parameters.pdf"          # name of the output pdf
@@ -42,14 +42,22 @@ parameters = "param0 param1 param2 param3 param4 param5"
 
 do for [i = 1:words(parameters)] {
      vcnparam = word(parameters, i)
-     if (vcnparam eq "param0") {
-          set label "x-Axis: time [1/U]" at graph 0.20,0.92
+     if (vcnparam eq "param1" || vcnparam eq "param0") {
+          if (vcnparam eq "param0") {
+               set label "x-Axis: time [1/U]" at graph 0.36,0.06
+          } else {
+               unset label
+          }
 
-          set key Left                                                            # key text justify left
-          set key at graph 0.40,0.31                                              # moves legend
-          set style line 999 dashtype 1 linewidth 1 linecolor rgb "#000008"       # legend linestyle
-          set key box linestyle 999                                               # apply box style
-          set key spacing 1                                                       # vertical spacing of entries
+          if (vcnparam eq "param1") {
+               set key Left                                                            # key text justify left
+               set key at graph 0.40,0.31                                              # moves legend
+               set style line 999 dashtype 1 linewidth 1 linecolor rgb "#000008"       # legend linestyle
+               set key box linestyle 999                                               # apply box style
+               set key spacing 1                                                       # vertical spacing of entries
+          } else {
+               unset key     
+          }
      } else {
           unset key
           unset label
@@ -58,11 +66,11 @@ do for [i = 1:words(parameters)] {
      plot \
           NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " Re(ana.)", \
           NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " Im(ana.)", \
-          NaN with points pt 5 pointsize 0.6 lc rgb markermint   title " Re(var.)", \
+          NaN with points pt 5 pointsize 0.6 lc rgb markercyan   title " Re(var.)", \
           NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " Im(var.)", \
           sprintf("comparevcnanalytical-exact-param%dre.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markerblue, \
           sprintf("comparevcnanalytical-exact-param%dim.csv", i-1)       using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markerred, \
-          sprintf("comparevcn0006-exact-param%dre.csv", i-1)             using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markermint, \
+          sprintf("comparevcn0006-exact-param%dre.csv", i-1)             using ($1 * U):2 notitle      axis x1y1 with line linewidth 1.8 linecolor rgb markercyan, \
           sprintf("comparevcn0006-exact-param%dim.csv", i-1)             using ($1 * U):2 notitle      axis x1y1 with line dashtype 2 linewidth 2.0 linecolor rgb markerorange
           
 }

@@ -18,4 +18,5 @@ for samplenumber in "${samplenumbers[@]}"; do
     python3 ./../convert-json-zip-to-csv.py         --zip_file_name "${samplenumber}samples" --observable_index 8 --out_file_suffix "${samplenumber}-single_occ_3"
 done
 
-gnuplot mc-variance.gp
+gnuplot spin-current.gp
+gnuplot occupation.gp

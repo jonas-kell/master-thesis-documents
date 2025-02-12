@@ -1,7 +1,7 @@
-set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 16cm, 12cm       # sets output format, font and plotsize
+set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 15cm, 10cm       # sets output format, font and plotsize
 set samples 600                                                                         # sets count for the amount of sampled points
 
-set output "mc-variance.pdf"          # name of the output pdf
+set output "spin-current.pdf"          # name of the output pdf
 
 # legend
 set key Left                                                            # key text justify left
@@ -35,6 +35,7 @@ linegray="#444444"
 set datafile separator ','
 
 U = 1.0
+J = 0.1
 
 # axes and label
 set xrange [] 
@@ -43,23 +44,24 @@ set mxtics 10
 set xlabel "time [1/U]"
 
 set logscale y 10
-set ylabel "std-dev"
-set yrange [:0.004]
+set ylabel "std-dev [J]"
+set yrange [:0.07]
 set ytics log
 set mytics 10
 set format y "10^{%+03T}";
+set key opaque
 
 # plot 1,1
-set label 1 "J = 0.1⋅U" at graph 0.27,0.96
+set label 1 "Spin Current" at graph 0.10,0.94
 plot \
      NaN with points pt 5 pointsize 0.6 lc rgb markerred title " 400 samples", \
      NaN with points pt 5 pointsize 0.6 lc rgb markergreen title " 2000 samples", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerblue title " 4000 samples", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " 20000 samples", \
      NaN with points pt 5 pointsize 0.6 lc rgb markerpink title " 40000 samples", \
-       "compareo2-mc-400-current.csv" using ($1 * U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred, \
-      "compareo2-mc-2000-current.csv" using ($1 * U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
-      "compareo2-mc-4000-current.csv" using ($1 * U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
-     "compareo2-mc-20000-current.csv" using ($1 * U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
-     "compareo2-mc-40000-current.csv" using ($1 * U):3 notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerpink
+       "compareo2-mc-400-current.csv" using ($1 * U):($3 / J) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerred, \
+      "compareo2-mc-2000-current.csv" using ($1 * U):($3 / J) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markergreen, \
+      "compareo2-mc-4000-current.csv" using ($1 * U):($3 / J) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerblue, \
+     "compareo2-mc-20000-current.csv" using ($1 * U):($3 / J) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerorange, \
+     "compareo2-mc-40000-current.csv" using ($1 * U):($3 / J) notitle      axis x1y1 pointtype 16 pointsize 0.8 linecolor rgb markerpink
 # end plot 1,1

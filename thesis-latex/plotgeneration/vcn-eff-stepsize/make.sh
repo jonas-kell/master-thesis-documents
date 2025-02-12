@@ -20,5 +20,5 @@ for observableindex in "${!observables[@]}"; do
     done
 done
 
-gnuplot vcn-energy.gp
+gnuplot energy-variance.gp
 gnuplot vcn-parameters.gp

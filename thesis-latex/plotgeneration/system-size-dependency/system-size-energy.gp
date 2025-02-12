@@ -1,4 +1,4 @@
-set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 16cm, 20cm       # sets output format, font and plotsize
+set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 15cm, 16cm       # sets output format, font and plotsize
 set samples 600                                                                         # sets count for the amount of sampled points
 
 set output "system-size-energy.pdf"          # name of the output pdf
@@ -54,32 +54,32 @@ set mytics 5
 set ylabel "Energy per site [U]"
 # plot 1,1
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue      title " n=2", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen     title " n=4", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred       title " n=6", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerpink      title " n=8", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markermint      title " n=10", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerblue     title " n=2", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerorange   title " n=4", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen    title " n=6", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerred      title " n=8", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markercyan     title " n=10", \
      "comparevcn_size2-mc-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerblue, \
-     "comparevcn_size4-mc-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markergreen, \
-     "comparevcn_size6-mc-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerred, \
-     "comparevcn_size8-mc-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerpink, \
-     "comparevcn_size10-mc-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markermint
+     "comparevcn_size4-mc-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerorange, \
+     "comparevcn_size6-mc-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markergreen, \
+     "comparevcn_size8-mc-energy.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerred, \
+     "comparevcn_size10-mc-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markercyan
 # end plot 1,1
 
 set key right top                                                       # moves legend
-set ylabel "Var(E per site) [U²]"
+set ylabel "Var(E) per site [U²]"
 set ytics 0.5
 
 # plot 2,1
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue      title " n=2", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen     title " n=4", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred       title " n=6", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerpink      title " n=8", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markermint      title " n=10", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerblue     title " n=2", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerorange   title " n=4", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markergreen    title " n=6", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markerred      title " n=8", \
+     NaN with points pt 5 pointsize 0.6 lc rgb markercyan     title " n=10", \
      "comparevcn_size2-mc-variance.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerblue, \
-     "comparevcn_size4-mc-variance.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markergreen, \
-     "comparevcn_size6-mc-variance.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerred, \
-     "comparevcn_size8-mc-variance.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerpink, \
-     "comparevcn_size10-mc-variance.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markermint
+     "comparevcn_size4-mc-variance.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerorange, \
+     "comparevcn_size6-mc-variance.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markergreen, \
+     "comparevcn_size8-mc-variance.csv"      using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markerred, \
+     "comparevcn_size10-mc-variance.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.0 linecolor rgb markercyan
 # end plot 2,1

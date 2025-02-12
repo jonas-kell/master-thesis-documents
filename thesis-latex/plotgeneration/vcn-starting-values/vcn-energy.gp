@@ -1,4 +1,4 @@
-set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 16cm, 20cm       # sets output format, font and plotsize
+set terminal pdfcairo font "Libertinus Serif, 12pt" fontscale 0.68 size 15cm, 12cm       # sets output format, font and plotsize
 set samples 600                                                                         # sets count for the amount of sampled points
 
 set output "vcn-energy.pdf"          # name of the output pdf
@@ -43,25 +43,18 @@ J = 0.1
 # axes and label
 set xrange [:] 
 set xtics 0.1
-set mxtics 1
+set mxtics 5
 set xlabel "time [1/U]"
 
 set yrange []
-set ytics 0.05
-set mytics 5
+set ytics 0.04
+set mytics 4
 
-# set logscale y2 10
-# set y2tics log
-# set my2tics 5
+unset key
 
 set ylabel "Energy per site [U]"
 # plot 1,1
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " a", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " a", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " a", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " a", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerpink   title " a", \
      "11-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerred, \
      "22-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markergreen, \
      "33-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerblue, \
@@ -69,16 +62,13 @@ plot \
      "55-exact-energy.csv"     using ($1 * U):($2/U) notitle      axis x1y1 pointtype 17 pointsize 1.1 linecolor rgb markerpink  #, \
 # end plot 1,1
 
-set key left bottom                                                       # moves legend
-set ylabel "Var(E per site) [U²]"
-set ytics 0.05
+set ylabel "Var(E) per site [U²]"
+set yrange [16.15:16.5]
+set ytics 0.1
+set mytics 5
+
 # plot 2,1
 plot \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerred    title " a", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markergreen  title " a", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerblue   title " a", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerorange title " a", \
-     NaN with points pt 5 pointsize 0.6 lc rgb markerpink   title " a", \
      "11-exact-variance.csv"      using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerred, \
      "22-exact-variance.csv"     using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markergreen, \
      "33-exact-variance.csv"    using ($1 * U):($2/U/U) notitle      axis x1y1 pointtype 16 pointsize 1.2 linecolor rgb markerblue, \
