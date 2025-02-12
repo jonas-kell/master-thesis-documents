@@ -1,4 +1,4 @@
-The system in question is described by a \emph{Hubbard Model Hamiltonian}, that includes an electrical field. It is shown in \autoref{eq:main-hamiltonian}.
+The system in question is described by a \emph{Hubbard model Hamiltonian}, that includes an electrical field. It is shown in \autoref{eq:main-hamiltonian}.
 
 
 \begin{equation}
@@ -57,17 +57,17 @@ The reason for the truncation is to reduce thy system size for the verification 
 While such a modification necessarily affects the physical properties, it is fine for verification of convergence.
 Also interesting physical - system-size independent - effects only manifest in experiments with lattice site numbers far beyond any possible exact diagonalization anyway.
 
-The Hubbard Model \cite{hubbardModelOriginalDerivation} is a spin-dependent quantum-mechanical model. 
+The Hubbard model \cite{hubbardModelOriginalDerivation} is a spin-dependent quantum-mechanical model. 
 Because of this, the Hamiltonian includes terms for both the spin directions $\up$ and $\down$ (most of the time denoted by a summation over $\sigma$).
 
 In principle, the operators $\withspinhcop[]{l}{\sigma}{(\dagger)}$ can be any type of quantum-mechanical ladder operator, like the aforementioned bosonic or fermionic ones.
 In this application the decision was made to use \emph{hard-core bosons} \cite[]{hardCoreBosonsBasics} for they happen to obey multiple useful properties.
 
-Typically for bosons, the Hubbard Model is transformed into the \emph{Bose-Hubbard Model} \cite{boseHubbardModelOriginalDerivation}.
+Typically for bosons, the Hubbard model is transformed into the \emph{Bose-Hubbard model} \cite{boseHubbardModelOriginalDerivation}.
 However, hard-core bosons have the added property that they can only have the occupation numbers of $0$ and $1$ per-spin-and-site in the investigated energy range.
 This means they behave like fermions, only that their wave-function symmetrizes instead of anti-symmetrizes \cite{schwablBook}.
-Because of the restriction, one term of the Bose-Hubbard Model drops out and the studied model in equations \ref{eq:main-hamiltonian}, \ref{eq:main-hamiltonian-h0} and \ref{eq:main-hamiltonian-perturbation} is produced.
-Also, the typical Bose-Hubbard Model is not spin-dependent, while this property is kept here.
+Because of the restriction, one term of the Bose-Hubbard model drops out and the studied model in equations \ref{eq:main-hamiltonian}, \ref{eq:main-hamiltonian-h0} and \ref{eq:main-hamiltonian-perturbation} is produced.
+Also, the typical Bose-Hubbard model is not spin-dependent, while this property is kept here.
 Hard-core bosons on their own have relevant properties that make them worth studying. 
 Experimental research on hard-core bosons can give insight into e.g. \emph{ultra-cold gasses} and \emph{Bose-Einstein condensation} \cite{hardCoreBosonsBasics}. 
 In this case it is important for the following derivations, that the operators on different sites commute, the number operator is idempotent (\ref{eq:hc-counting-op-idempotent}) and can be mapped to spin-basis notation (\ref{eq:jordan-wigner-spin-hcb}).
