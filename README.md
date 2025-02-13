@@ -13,11 +13,9 @@ This currently only contains the finished Report and Presentation held at the Un
 
 The Thesis is not yet available, therefore final usage instructions are not completed.
 
-<!--
-# Pre-compiled Document
+## Pre-compiled Document
 
-The pre-compiled version of the thesis is available # TODO
- -->
+The pre-compiled version of the thesis is available [Here](Classical%20networks%20for%20the%20Hubbard%20model%20with%20a%20tilted%20potential%20-%20Master%20Thesis%20Jonas%20Kell.pdf).
 
 ## Submodules
 
