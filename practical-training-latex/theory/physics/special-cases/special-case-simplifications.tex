@@ -98,7 +98,7 @@ This makes 32 differently-shaped terms, or combined with the pre-factors 96 term
 
 Different notation could be used, to lessen the number of calculations, but this seemed unnecessarily complex.
 
-A simpler solution was in fact, to let a python script generate all the final simplified analytical terms and output them as usable functions into a python script to include in the rest of the code.
+A simpler solution was in fact, to let a Python script generate all the final simplified analytical terms and output them as usable functions into a Python script to include in the rest of the code.
 The generating script can be found here: 
 
 \filepath{\cite{selfCode}}{/calculation-helpers/simplificationtermhelper.py}
@@ -108,7 +108,7 @@ and the output with the analytically fully optimized calculations in a unified f
 
 As this needs to be run quite often, it is useful to reduce the number of calculations as much as possible and avoid running unnecessary calculations on every iteration (e.g. $n_{l,\,\up} + 1 - (1 + n_{l,\,\up})$ which is definitely 0, no matter the value of $n_{l,\,\up}$).
 For this reason, the terms were pre-optimized as much as possible, by trying to pre-evaluate to definite zeros or constants terms. 
-This was performed automatically with the python package \emph{SymPy} \cite{sympyPackage}.
+This was performed automatically with the Python package \emph{SymPy} \cite{sympyPackage}.
 
 More details on how this was calculated can be found in \fullref{sec:implementation-analytical-calculations} and further resources, that that section redirects towards.
 

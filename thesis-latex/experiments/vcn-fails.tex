@@ -1,6 +1,6 @@
 As previously hinted in the theoretical derivation, this section does not present successful measurements.
 For a comparably long time, an unknown error was preventing the suggested variational classical networks algorithm from working.
-The problem lay, as previously revealed, in the explicit time-dependency of the base-energy that hade not been properly dealt with.
+The problem lay, as previously revealed, in the explicit time-dependency of the base-energy that had not been properly dealt with.
 Before coming back to successful verifications of the described methods, this segment is meant to briefly outline the discovery process that led to finding the reason of the misbehavior.
 
 In \autoref{fig:vcn-fail-energy-variance} an energy and variance measurement is presented. 
@@ -22,9 +22,9 @@ In the appendix at \ref{appendix:vcn-fail-parameters}, the VCN-parameters and th
     \label{fig:vcn-fail-energy-variance}
 \end{figure}
 
-At the start of the debugging-process, a relatively large remaining imaginary part kept appearing for the measurements of all observables, as long as an effective Hamiltonian parametrized by VCN was used.
+At the start of the debugging-process a relatively large remaining imaginary part kept appearing for the measurements of all observables, as long as an effective Hamiltonian parametrized by VCN was used.
 However, this problem could be isolated to a sub-class in the implementation, that was incorrectly missing an overwrite for one of the methods of its parent class.
-The imaginary part that was remaining after this had been fixed, is sufficiently small to be attributed to numerical noise, as studying \autoref{fig:vcn-fail-energy-variance} reveals.
+The imaginary part that was remaining after this had been fixed is sufficiently small to be attributed to numerical noise, as studying \autoref{fig:vcn-fail-energy-variance} reveals.
 
 Yet, the resulting architecture is still not able to keep the energy nor variance constant - which is an inherent property of the theoretical model.
 One could hypothesize, that the problem lies in a numerical integration-step that is too large.

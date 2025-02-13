@@ -16,6 +16,6 @@ Instead of manually identifying more symmetries to arrive at a short and still g
 
 The generating script is \filepath{\cite{selfCode}}{/calculation-helpers/simplificationtermhelper.py} and the generated script \filepath{\cite{selfCode}}{/computation-scripts/analyticalcalcfunctions.py}.
 It is efficient to (during this step) reduce the number of operations as much as possible and avoid running unnecessary calculations on every iteration (e.g. $n_{l,\,\up} + 1 - (1 + n_{l,\,\up})$ which is definitely 0, no matter the value of $n_{l,\,\up}$).
-For this reason, the terms were folded by trying to pre-evaluate to definite zeros or constants terms.
-This was performed automatically with the python package \emph{SymPy} \cite{sympyPackage}.
-It is only possible to pre-calculate this information in the case of generated code - for general code the work would need to be done during the runtime.
+For this reason, the terms were folded by trying to pre-evaluate to definite zeros or constant terms.
+This was performed automatically with the Python package \emph{SymPy} \cite{sympyPackage}.
+It is only possible to pre-calculate this information in the case of generated code - for general code the work would need to be done during runtime.

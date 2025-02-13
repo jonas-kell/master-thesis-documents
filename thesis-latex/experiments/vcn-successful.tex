@@ -3,7 +3,7 @@ Firstly, the validation measurements in \autoref{fig:vcn-energy-conservation-wor
 Comparing the scale of the y-axis with the plots from previous sections, it becomes evident that these results are significantly closer to conserving energy and variance than the results from first order cumulative methods (for reasons of readability not included in these plots).
 Furthermore, the experiment shows that a convergence towards the elusive constant function seems to be present and can be systematically reached by reducing the step size far enough.
 
-It is however unlikely, that perfect convergence can be achieved by just raising this one parameter.
+It is however unlikely that perfect convergence can be achieved by just raising this one parameter.
 For one, it should be stressed that each of the consecutive series in \autoref{fig:vcn-energy-conservation-works} is twice as expensive to evaluate as the one before it.
 Halving the size of the intermediate integration steps requires doubling the number of sampled states and consequently also at least doubles the calculation time.
 Secondly, the trend to which the presented curves converge does not seem to be perfectly constant.
@@ -55,6 +55,7 @@ Yet again, the results obtained by using 20 intermediate steps seem to be a good
 
 Although the hyperparameters between the experiments are practically identical, the corse of the measurements in \ref{appendix:vcn-success-big} has a qualitatively different trend.
 This could be attributed to the overwhelming influence of edge effects for such small systems. 
+
 It could, however, also be the result of an \emph{even-odd-effect}, between the experiment with side length $n=2$ and $n=3$.
 To rule out this last possibility, for the last remaining experiment a series of systems with only even side lengths has been examined.
 

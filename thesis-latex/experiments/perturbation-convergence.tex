@@ -24,19 +24,19 @@ For the first verification, therefore the \autoref{fig:j-sweep-single-occ-center
     \label{fig:j-sweep-single-occ-center}
 \end{figure}
 
-To balance the amount of space that is taken up by the numerous plots in the subsequent sections, supplementary plots without a direct reference are added in the end of the thesis.
+To balance the amount of space that is taken up by the numerous plots in the subsequent sections, supplementary plots without a direct reference ore less importance are added in the end of the thesis.
 In this case, three more plots (showing different observables but otherwise from the same experimental dataset) are included in the appendix at \ref{appendix:more-jsweep-plots}.
 
-The measurements show the expected tendencies: The relative error is the smallest for times close to $t=0$. For larger times, the relative error continuously grows.
-In the start, the perturbative measurement and the exact measurement are identical.
+The measurements show the expected tendencies: The relative error is the smallest for times close to $t=0$. For larger times the relative error continuously grows.
+In the start the perturbative measurement and the exact measurement are identical.
 Then, for later times, the relative error constantly grows.
-This is expected, as the perfect alignment from $t=0$ is constantly worsening due to errors, resulting from the truncated expansion, that accumulate in the perturbative calculation.
+This is expected, as the perfect alignment from $t=0$ is constantly worsening due to errors, resulting from the truncated expansion, that accumulate in the perturbative calculation until the relative error is maximal at the point of total de-phasing.
 The reference \cite{variationalClassicalNetworksPaper} suggests that the approximation on the basis of the cumulant expansion provides a correct description for timescales on the order of \bigo{J^{-1}}.
 No quantitative analysis of that statement has been carried out, yet the suggested dependency seems to be in-line with the trend seen in the data.
 
 Furthermore, the correct behavior for a limit of a small perturbative parameter $J$ can be also attested.
 The data shows a clear downwards-shift to smaller relative errors for the whole measurement series, the closer $J/\,U$ comes to zero.
-At the limit $J=0$, the error should also vanish, as the is no perturbation left in the system.
+At the limit $J=0$, the error should also vanish, as there is no perturbation left in the system.
 
 Viewed from the opposite side, it must be stressed that the expansion only is viable to predict the behavior of systems with weak quantum fluctuations. 
 Were the interactions too large, the expansion could not be safely truncated after few terms \cite{variationalClassicalNetworksPaper}.
@@ -47,7 +47,7 @@ Were the interactions too large, the expansion could not be safely truncated aft
     \caption{
             Plot of the course of the energy over time, for the case of a system with chain geometry and $n=4$ sites.
             The exact energy has been calculated with exact diagonalization for all times (real measurements).
-            Both plots show the same data, but the zeroth order approximation has been omitted from the lower graph in order to better visualize the differences between first- and second order.
+            Both plots show the same data, but the zeroth order approximation has been omitted from the lower graph in order to better visualize the differences between first and second order.
             The sampling strategy for the perturbative approximations has been exact sampling.
         }
     \label{fig:energy-variance-energy}
@@ -62,19 +62,19 @@ It is therefore a measurement of the quality of a perturbative method, how good 
     \makebox[\textwidth][c]{\includegraphics[width=\textwidth]{plotgeneration/energy-variance/variance.pdf}}
     \caption{
             Plot of the variance measurements corresponding to the energy from \autoref{fig:energy-variance-energy}.
-            Again, both plots show the same data, only the second graph omits the zeroth order and presents the differences between first- and second order in a zoomed-in fashion.
-            The measurements in the lower consists still only of individual data points, but the plot here is done with lines to allow to differentiate the curves in the beginning section.
+            Again, both plots show the same data, only the second graph omits the zeroth order and presents the differences between first and second order in a zoomed-in fashion.
+            The measurements in the lower graph consist still only of individual data points, but the plot here is done with lines to allow to differentiate the curves in the beginning section.
         }
     \label{fig:energy-variance-variance}
 \end{figure}
 
 The conservation of energy and variance is perfectly validated by the measurements from exact diagonalization (here in blue).
 From this point on, measurements will be labeled as having \glqq exact sampling\grqq, if for the calculations all possible base-states were examined and their normalized probabilities were calculated.
-The chosen sampling strategy is independent of the used effective hamiltonian. 
+The chosen sampling strategy is independent of the used effective Hamiltonian. 
 
 In this case, for the blue curves the effective Hamiltonian has been calculated by exact diagonalization and the sampling has been exact - making the full measurement having no approximations.
 Because of the two spin-degrees per site and the exponential nature of the number of base states, a system of size $n=4$ is already close to the limit that can be reasonably diagonalized exactly - at least with the presented setup.
-By applying more optimizations to the exact diagonalization, a few more sites can be achieved, yet in this case the focus will be put on optimizing the perturbative approach.
+By applying more optimizations to the exact diagonalization, a few more sites can be considered, yet in this case the focus will be put on optimizing the perturbative approach.
 
 The three degrees of perturbative measurements, while having exact sampling, rely on an effective Hamiltonian that is obtained from the truncated cumulant expansion - making the methods approximations and not exact.
 Effects of additionally replacing the sampling strategy with non-exact ones will be investigated in following sections.
@@ -97,7 +97,7 @@ If it was worth deriving the second order effective Hamiltonian will be examined
 
 Lastly, a more involved observable will be calculated.
 As \fullref{sec:theory-observables-density-matrix} describes, the reduced density matrix of a small subsystem can be extracted only from the measurement of local observables.
-This process was performed for a system with chain geometry and $n=4$ (to allow having access to the exact diagonalization for the purpose of comparison).
+This process was performed for a system with chain geometry and $n=4$ (to allow still having access to the exact diagonalization for the purpose of comparison).
 In \autoref{fig:concurrence-first-experiment} and \autoref{fig:purity-first-experiment}, the concurrence and purity of such a density matrix of two adjacent spin-up particles are displayed.
 The values of the individual observables for the Pauli operator basis for the same subsystem can be found in the appendix at \ref{appendix:pauli-measurements}.
 
@@ -134,7 +134,7 @@ This verifies the described method of obtaining a reduced density matrix without
 The concurrence measurements now clearly show the superiority of the second order cumulant expansion.
 Position and shape of the second peak are clearly replicated much more precise by the second order calculations, than by the first order ones.
 It can also be noted, that while the purity measurement for the zeroth order is not totally off, the zeroth order calculation completely fails to replicate the features which are necessary to calculate the concurrence.
-Not even the first peak (which even first order replicates perfectly) can be reproduced while the interaction $J$ is ignored.
+Not even the first peak (which also the first order replicates perfectly) can be reproduced while the interaction $J$ is ignored.
 
-Looking at the observables from which this density matrix was obtained (appendix \ref{appendix:pauli-measurements}), it can be clearly seen that the observables corresponding to Pauli-z are seem to be the most difficult to replicate.
+Looking at the observables from which this density matrix was obtained (see appendix, \ref{appendix:pauli-measurements}), it can be clearly seen that the observables corresponding to Pauli-z seem to be the most difficult to replicate.
 A Pauli-z measurement is equivalent to a re-scaled measurement of a single occupation.
