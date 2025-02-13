@@ -13,7 +13,7 @@ The variance \varianceOft of this quantity (\autoref{eq:variance-main}) describe
 \end{equation}
 
 Without any additional constrictions, %(like e.g. conservation of particle number) 
-the energy - as well as all other cumulants of the Hamiltonian operator - must be conserved under normal time evolution, as \autoref{eq:energy-conserved} shows. 
+the energy -- as well as all other cumulants of the Hamiltonian operator -- must be conserved under normal time evolution, as \autoref{eq:energy-conserved} shows. 
 This comes from the fact that an exact Hamiltonian commutes with itself in all instances and allows to show that the energy $\energyOft = \energyOft[t=0]$.
 With equivalent reasoning, also the higher order cumulants must necessarily be constant for all times.
 The energy as first cumulant % https://en.wikipedia.org/wiki/Cumulant (yes, energy is the first, not the zeroth) 
@@ -275,7 +275,7 @@ There are multiple ways to get around this, though. First, there is the possibil
 
 $I_\text{occ}\left(N,l,m,\sigma,a,b,\mu\right)$ is in this relation a four-way interaction term depending on the occupations of the state \ketN and the indices $l$, $m$, $a$ and $b$, as well as the spin directions $\sigma$ and $\mu$. It must take the cases into account where $\sigma = \mu$ and $l=a$ or $l=b$ or $m=a$ or $m=b$ and treat them accordingly.
 Through the introduction of the extra terms, \autoref{eq:v-squared-hard-computation} first seems overly complicated and yet still \bigo{\left[\text{\#}(\text{sites})\right]^2}, because of the two sums over $l$ and $a$. 
-However, because of the limited interaction range of \HeffOft[\ast] - based on the order of expansion that is taken into account - under specific conditions (which will be touched in \fullref{sec:theory-optimizations-geometry}), the bracket will in fact cancel for terms with sites $l$ and $a$ far enough apart.
+However, because of the limited interaction range of \HeffOft[\ast] -- based on the order of expansion that is taken into account -- under specific conditions (which will be touched in \fullref{sec:theory-optimizations-geometry}), the bracket will in fact cancel for terms with sites $l$ and $a$ far enough apart.
 For larger systems basically all sites are \glqq far enough\grqq{} apart, meaning the expression can be reduced to a single sum \bigo{\text{\#}(\text{sites})} that for each site only needs to cover the \emph{sphere of possible interactions}.
 All terms between the states $\ketN[\vphantom{N}\smash{\tilde{N}}(\ast)] \leftrightarrow \ketN$  have been previously stated to be possible to be evaluated efficiently if connected by a two-occupation-swap.
 And also the four-occupation-interactions between $\ketN[\vphantom{N}\smash{\tildetilde{N}}(\ast)] \leftrightarrow \ketN$ can each be reduced to two two-occupation-swaps.
@@ -347,7 +347,7 @@ Starting with an operator that is a second power of any other operator and can b
     \end{split}
 \end{equation}
 
-Compared to the previous expression, the result is now much cheaper to compute - as \autoref{eq:energy-local-observable} pins the value of the sum in the absolute square to $E_V(N,\,t)$.
+Compared to the previous expression, the result is now much cheaper to compute -- as \autoref{eq:energy-local-observable} pins the value of the sum in the absolute square to $E_V(N,\,t)$.
 Combining the two methods of employing locality and strategic expansion of the time evolved wave-function makes it possible to efficiently evaluate most observables.
 Also, the result from \autoref{eq:simple-variance-terms} for $\ObservableOp = {\HzeroHamiltonian[\schroedingerPicture]}^2$ holds, as $E_0(N,\,t)$ is real-valued.
 
@@ -357,5 +357,5 @@ Also, the result from \autoref{eq:simple-variance-terms} for $\ObservableOp = {\
         \absSquare{E_\text{V}(N,\,t)}
 \end{equation}
 
-So now, to get the full expectation value for the energy fluctuations, it is only necessary to measure $E_0(N,\,t)$ and $E_V(N,\,t)$ for each sampled state - making it exactly as expensive to compute as the energy itself.
+So now, to get the full expectation value for the energy fluctuations, it is only necessary to measure $E_0(N,\,t)$ and $E_V(N,\,t)$ for each sampled state -- making it exactly as expensive to compute as the energy itself.
 Then however, it requires aggregating $E_0(N,\,t)$, $E_V(N,\,t)$, $\left(E_0(N,\,t)\right)^2$, $\absSquare{E_V(N,\,t)}$ and $E_0(N,\,t) \cdot E_\text{V}(N,\,t) + \left[E_0(N,\,t) \cdot E_\text{V}(N,\,t) \right]^\ast$ separately (scaled with the probability) for all sampled states to be able to combine all terms according to \autoref{eq:variance-split} in the end.

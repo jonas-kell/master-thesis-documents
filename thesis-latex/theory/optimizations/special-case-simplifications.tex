@@ -1,9 +1,9 @@
 Generally, handling the computation of the difference of the effective Hamiltonian for two states $\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]$ is the most expensive computation that is required up to this point.
 For one, it is e.g. required in \autoref{eq:form-heff-difference} for the calculation of the spin-polarized kinetics.
-Furthermore - as stated in \fullref{sec:theory-optimizations-monte-carlo} - it is also needed to compute the transition probability between two sampled states in \autoref{eq:transition-probability-final}.
+Furthermore -- as stated in \fullref{sec:theory-optimizations-monte-carlo} -- it is also needed to compute the transition probability between two sampled states in \autoref{eq:transition-probability-final}.
 The calculation of $\HeffOft[N]$ on its own requires an effort of \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})}.
 However, for states \ketN[N] and \ketN[{\vphantom{N}\smash{\tilde{N}}}] that are connected with only small changes, most of the elements in the sum cancel and the complexity may here even be reduced to \bigo{$\text{\#}(\text{nearest neighbors})$}.
-This is quite attractive, because it de-couples the per-step computational costs from the number of lattice sites - a vital step for simulating large systems efficiency - however this requires extra analytical calculations.
+This is quite attractive, because it de-couples the per-step computational costs from the number of lattice sites -- a vital step for simulating large systems efficiency -- however this requires extra analytical calculations.
 
 In this section analytical simplifications are presented to get the objects $E_0(N)-E_0(\vphantom{N}\smash{\tilde{N}})$ and $\HNOft - \HNOft[\vphantom{N}\smash{\tilde{N}}]$. 
 Caution, do not miss the extra \emph{minus} required, to calculate the required $\HeffOft[\vphantom{N}\smash{\tilde{N}}]-\HeffOft[N]$ from this!
@@ -130,7 +130,7 @@ Differences are shown in \autoref{table:hopping-is-swapping}.
     \label{table:hopping-is-swapping}
 \end{table}
 
-For the case of swapping, \autoref{eq:simplified-base-energy-hopping} shows the base-energy difference $E_0(N)-E_0(\vphantom{N}\smash{\tilde{N}})$ - the double flipping implementation would be constructed analogously to \autoref{eq:simplified-base-energy-flipping}.
+For the case of swapping, \autoref{eq:simplified-base-energy-hopping} shows the base-energy difference $E_0(N)-E_0(\vphantom{N}\smash{\tilde{N}})$ -- the double flipping implementation would be constructed analogously to \autoref{eq:simplified-base-energy-flipping}.
 
 \begin{equation}
     \label{eq:simplified-base-energy-hopping}

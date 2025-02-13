@@ -1,5 +1,5 @@
 Typically, the \emph{density matrix} $\rho = \ketpsiof[]{t}\brapsiof[]{t}$ encodes the full quantum information of the state. 
-Because the number of entries in the matrix is the number of base-states squared - which is exponential in the number of sites, exactly what the approximation is supposed to avoid - it is not feasible to access this quantity.
+Because the number of entries in the matrix is the number of base-states squared -- which is exponential in the number of sites, exactly what the approximation is supposed to avoid -- it is not feasible to access this quantity.
 
 While it is not possible to access the complete matrix, there exists one closely related entity, with multiple uses that are going to be utilized in the subsequent section.
 The \emph{reduced density matrix} $\rho_A$ is obtained upon \emph{tracing out} (\autoref{eq:tracing-out}, \cite{partialTraceEntanglementOfSubsystemsBlochVector}) the part $B$ from a system that is completely partitioned into two parts $A$ and $B$.
@@ -11,7 +11,7 @@ Notice the order of basis states starting with $\ketN[1\dots1]$ then $\ketN[1\do
     \rho_A = \partialTrace{B}{\rho_{AB}} = \sum\limits_{k=0}^{M} \left(\one[A]\otimes\braN[\Chi_k] \right)\rho_{AB}\left(\one[A]\otimes\ketN[\Chi_k]\right)
 \end{equation}
 
-If - for this application - the part $A$ is reduced to contain only two particles $l, \sigma$ and $m, \mu$, then $\rho_A$ will be a complex $4\times 4$ matrix.
+If -- for this application -- the part $A$ is reduced to contain only two particles $l, \sigma$ and $m, \mu$, then $\rho_A$ will be a complex $4\times 4$ matrix.
 As it is again not feasible to obtain via tracing out, the matrix can be calculated by rewriting it in the basis of Pauli matrices (\ref{sec:particles}) \cite{isingDynamicsWithClassicalNetworks}:
 
 \begin{equation}

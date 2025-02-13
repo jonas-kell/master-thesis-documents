@@ -28,7 +28,7 @@ As can be seen in the probability in \autoref{eq:probability-isolated}, that was
     }
 \end{equation}
 However, by employing the \emph{Metropolis-Hastings-Algorithm} instead of only the \emph{Metropolis-Algorithm} to decide on the acceptance/rejection of proposed states, the requirement of normalizing the probability can be dropped.
-In \autoref{eq:transition-probability-final} the \emph{acceptance-ratio} $\alpha$ - that is necessary for the Metropolis-Hastings-Algorithm to work - is derived (as per \cite{metropolisHastingsAlgorithmGeneral}) to decide on the transition from state \ketN[N] to \ketN[{\vphantom{N}\smash{\tilde{N}}}].
+In \autoref{eq:transition-probability-final} the \emph{acceptance-ratio} $\alpha$ -- that is necessary for the Metropolis-Hastings-Algorithm to work -- is derived (as per \cite{metropolisHastingsAlgorithmGeneral}) to decide on the transition from state \ketN[N] to \ketN[{\vphantom{N}\smash{\tilde{N}}}].
 The algorithm proposes to generate a new state \ketN[{\vphantom{N}\smash{\tilde{N}}}] and calculate the corresponding $\alpha$. Then it requires generating a random number $u$ between $0$ and $1$, pulled from a uniform distribution.
 If $u \leq \alpha$, \ketN[{\vphantom{N}\smash{\tilde{N}}}] is accepted and will be used as the new current state in the next step of the sampling. 
 If $u>\alpha$, the proposed state is rejected and \ketN[N] will be used again as the next state.

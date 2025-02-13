@@ -14,7 +14,7 @@ As experiments in \fullref{sec:experiments-vcn-fails} show, this simple parametr
 Upon closer inspection, the resulting changes to the variational parameters seem to be more or less independent from the initial values.
 After implementation reasons for this behavior were ruled out to the best possible degree, it seemed unclear what was the cause for this.
 
-Yet the algorithm \emph{must} conserve the system's energy - for small enough time-steps - most importantly already at the very first variational time-step.
+Yet the algorithm \emph{must} conserve the system's energy -- for small enough time-steps -- most importantly already at the very first variational time-step.
 This leads to the solution, because the only remaining thing to influence the effective Hamiltonian (at $t=0$, where all introduced variational parameters are approximately zero) is the base-energy with its explicit time-dependency.
 
 Presenting this realization in this case out-of-order (presenting and doing experiments on a clearly still unviable model before presenting the correct one) is supposed to reflect the work-process that was necessary to arrive at this final version.

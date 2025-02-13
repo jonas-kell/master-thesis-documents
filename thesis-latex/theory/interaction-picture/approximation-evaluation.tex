@@ -755,7 +755,7 @@ But again, because of the limited interaction range (for second order the range 
 \bigo{\text{\#}(\text{sites}) \cdot \text{\#}(\text{nearest neighbors})^2} by using the sparse nature of the operators.
 
 The Operator $\VhamiltonianOperatorPart[]{$X$}{l}{m}\VhamiltonianOperatorPart[]{$Y$}{j}{k}$ is actually already far too complicated to write down any of its mixed terms in an ordered, closed form.
-To get around this, in the implementation the first half is applied to the left, the state modified accordingly and then the second half is applied - as this is much more efficient than calculating the closed form.
+To get around this, in the implementation the first half is applied to the left, the state modified accordingly and then the second half is applied -- as this is much more efficient than calculating the closed form.
 
 See \filepath{\cite{selfCode}}{/calculation-helpers/generatesecondorder.py} on how this could be done.
 

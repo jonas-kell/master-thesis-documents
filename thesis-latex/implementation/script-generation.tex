@@ -7,7 +7,7 @@ Not all scripts were written by hand though.
 Previously stated in \fullref{sec:theory-optimizations-analytical}, the difference $\HNOft - \HNOft[\vphantom{N}\smash{\tilde{N}}]$ can be optimized from a simple canonical implementation to a case specific re-write, that however has constant time-complexity instead of it being linearly dependent on the number of lattice sites.
 
 As described in the accompanying report \filepath{\cite{selfDocument}}{/practical-training-latex}, some calculations need to manage a quickly growing number of terms.
-The comparatively high base-complexity is caused by the two-dimensional geometry and two spin-degrees on each site - both of which make for a relatively high number of interactions that need to be taken into account.
+The comparatively high base-complexity is caused by the two-dimensional geometry and two spin-degrees on each site -- both of which make for a relatively high number of interactions that need to be taken into account.
 Exemplary, each of the three \VhamiltonianOperatorPart{A}{l}{m}, \VhamiltonianOperatorPart{B}{l}{m} and \VhamiltonianOperatorPart{C}{l}{m} is composed of a sum of four summands, as one can see in \autoref{eq:interaction-picture-v-ham-parts}.
 Each of those must be treated for four cases: $(\sigma_i = \,\up \land \,\sigma_j = \,\up)$, $(\sigma_i = \,\up \land \,\sigma_j = \,\down)$, $(\sigma_i = \,\down \land \,\sigma_j = \,\up)$ and $(\sigma_i = \,\down \land \,\sigma_j = \,\down)$ (treats the interacting spin-combinations that occur in \fullref{sec:theory-optimization-hopping}).
 This makes 16 differently-shaped terms, or combined with the pre-factors 48 terms to fully write down with possible differences for x- and y-direction not yet taken into account.
@@ -18,4 +18,4 @@ The generating script is \filepath{\cite{selfCode}}{/calculation-helpers/simplif
 It is efficient to (during this step) reduce the number of operations as much as possible and avoid running unnecessary calculations on every iteration (e.g. $n_{l,\,\up} + 1 - (1 + n_{l,\,\up})$ which is definitely 0, no matter the value of $n_{l,\,\up}$).
 For this reason, the terms were folded by trying to pre-evaluate to definite zeros or constant terms.
 This was performed automatically with the Python package \emph{SymPy} \cite{sympyPackage}.
-It is only possible to pre-calculate this information in the case of generated code - for general code the work would need to be done during runtime.
+It is only possible to pre-calculate this information in the case of generated code -- for general code the work would need to be done during runtime.

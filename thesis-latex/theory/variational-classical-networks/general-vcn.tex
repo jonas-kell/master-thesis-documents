@@ -8,12 +8,12 @@ Both reach the same expressions for the advancement of the parameters to later t
 This section reiterates the equations, unifying the parts where different conventions might be used.
 
 \HNOft from \autoref{eq:cumulant-expansion} should be approximated with a parametrized expression \Hvcn{\vec{\eta}(t)}.
-This means - compared with \autoref{eq:time-evolution-target} - the effective Hamiltonian is now expressed as $\HeffOft[N,\,\vec{\eta}] = -i E_0(N) t + \Hvcn{\vec{\eta}(t)}$.
+This means -- compared with \autoref{eq:time-evolution-target} -- the effective Hamiltonian is now expressed as $\HeffOft[N,\,\vec{\eta}] = -i E_0(N) t + \Hvcn{\vec{\eta}(t)}$.
 The Hamiltonian depends on the choice of the complex parameter vector $\vec{\eta}(t)$.
 
 Historically, the TDVP was derived for real-valued parameters \cite{originalDerivationTimeDependendVariationalPrinciple}.
 To extend the principle to complex parameters, the networks structure could be adapted through the introduction of two real-valued parameters per complex parameter \cite{TDVPcomplexPrefactors}.
-For \emph{holomorphic} functions the following also follows from an action-principle \cite{probabilitySamplingRequirementVCN} - or in short: for fully complex differentiable \cite{complexDifferentiation} parametrizations no special treatment is required.
+For \emph{holomorphic} functions the following also follows from an action-principle \cite{probabilitySamplingRequirementVCN} -- or in short: for fully complex differentiable \cite{complexDifferentiation} parametrizations no special treatment is required.
 
 Generally, then the following method is applied: To begin with, $\vec{\eta}(t)$ is initialized to a known value for $t=0$ to try to achieve $\Hvcn{\vec{\eta}(t)} \vert_{t=0} \approx 0$.
 The initialized parameters should additionally have some small noise added to them to prevent unwanted dead-points like an unstable equilibrium.
@@ -46,7 +46,7 @@ Meaning the observable-sampling-expression from \autoref{eq:expectation-value} m
     \end{gathered}
 \end{equation}
 
-All of the previous and following steps are performed for one fixed time $t$ - if not stated otherwise.
+All of the previous and following steps are performed for one fixed time $t$ -- if not stated otherwise.
 For that reason, one can write $\vec{\eta}$ for $\vec{\eta}(t)$, as the specific time-point $t$ is implied until explicitly referenced.
 Here, $\ast^{-1}$ is the pseudo inverse of a square matrix (that might not be invertible normally, as it might not have full rank or very small eigenvalues making the inversion numerically instable).
 

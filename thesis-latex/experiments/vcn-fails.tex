@@ -26,7 +26,7 @@ At the start of the debugging-process a relatively large remaining imaginary par
 However, this problem could be isolated to a sub-class in the implementation, that was incorrectly missing an overwrite for one of the methods of its parent class.
 The imaginary part that was remaining after this had been fixed is sufficiently small to be attributed to numerical noise, as studying \autoref{fig:vcn-fail-energy-variance} reveals.
 
-Yet, the resulting architecture is still not able to keep the energy nor variance constant - which is an inherent property of the theoretical model.
+Yet, the resulting architecture is still not able to keep the energy nor variance constant -- which is an inherent property of the theoretical model.
 One could hypothesize, that the problem lies in a numerical integration-step that is too large.
 For this reason, the experiment varies the effective step size that is used for integration.
 While this results in changes to the resulting values of the observables, it does not result in differences of the ability of the parametrization to conserve the energy.
