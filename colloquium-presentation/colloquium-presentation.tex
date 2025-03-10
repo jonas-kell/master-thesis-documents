@@ -1,0 +1,103 @@
+\documentclass[aspectratio=169]{beamer} % includes \pause in render
+% \documentclass[aspectratio=169, handout]{beamer} % do not include \pause in render
+
+\usetheme[neutralbackground]{uniamntf}
+
+\title[Master Colloquium Presentation]{\vspace{-2em}Classical networks for the Hubbard model with a tilted potential}
+\subtitle{ - Master Thesis Colloquium - }
+
+\author{Jonas Kell}
+\institute[TP III]{Chair for theoretical Physics III}
+
+\date[12.03.2024]{$12^{\text{th}}$ of March 2024}
+
+\acknowledgement{
+    Jonas Kell\\
+    University of Augsburg\\
+    jonas.kell@student.uni-augsburg.de\\
+    www.uni-augsburg.de
+}
+
+\newcommand{\blankfootnote}[1]{%
+\let\thefootnote\relax\footnotetext{#1}%
+}
+\newcommand{\tab}{%
+\,\,\,\,
+}
+
+% bibtex/biber
+\usepackage[backend=biber, style=phys, biblabel=brackets]{biblatex} % citations with "modern" backend and an physics-accepted citation style
+\addbibresource{literature.bib}
+
+\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{0.3em}}{\enditemize}
+
+%! notes control
+
+%\setbeameroption{hide notes} % Only slides
+%\setbeameroption{show only notes} % Only notes
+\setbeameroption{show notes on second screen=right} % Both, use for pympress mode
+
+% presentation tool https://github.com/Cimbali/pympress
+% run: pympress colloquium-presentation.pdf 
+
+%! notes control
+
+\begin{document}
+    \begin{frame}[t,plain] 
+        \maketitle
+    \end{frame}
+
+    \note[enumerate]{
+        \item General notes for Master Thesis Colloquium
+    }
+
+    \begin{frame}
+        \frametitle{Outline}
+        \tableofcontents[pausesections] % pause toc before each section
+        % \tableofcontents % all toc at once
+
+        % toc notes do need to live inside the frame, to appear on all animated slides
+        \note[item] {
+            General notes during the toc slides
+            \begin{itemize}
+                \item TODO
+            \end{itemize}
+        }
+    \end{frame}
+
+
+    \input{main-content/introduction.tex}
+
+    \section*{Summary \& Conclusion}
+    {
+        \setbeamertemplate{frametitle}[uniamntfack] % use the acknowledgment-style for this slide
+        \begin{frame}[plain]{Acknowledgment}
+            \vspace{1cm}
+
+            Thank you for your kind attention\\
+
+            \vspace{1cm}
+            \makebox[0.4\textwidth][c]{
+                \includegraphics[width=0.3\textwidth]{extra-slides/qr-github.png}
+            }
+        \end{frame}
+    }
+
+    \note[enumerate]{
+        \item Thank you for your kind attention
+        \item All tools and other resources are referenced in the presentation
+        \item You can also find everything on my Github
+    }
+
+    \begingroup % group to not count pages from here
+        \begin{frame}[allowframebreaks,noframenumbering]
+            \frametitle{References}
+            \nocite{*}
+            \printbibliography[title={Bibliography}]
+        \end{frame}
+        
+        \section*{Extra slides}
+            \input{extra-slides/extra.tex}
+    \endgroup
+
+\end{document}
