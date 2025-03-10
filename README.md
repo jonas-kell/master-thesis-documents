@@ -9,7 +9,7 @@ The work for my Master-Thesis is split into multiple repositories (links for qui
 
 ## Pre-compiled Document
 
-The pre-compiled version of the thesis is available [Here](Classical%20networks%20for%20the%20Hubbard%20model%20with%20a%20tilted%20potential%20-%20Master%20Thesis%20Jonas%20Kell.pdf).
+The pre-compiled version of the thesis is available [Here](./pre-compiled-documents/Classical%20networks%20for%20the%20Hubbard%20model%20with%20a%20tilted%20potential%20-%20Master%20Thesis%20Jonas%20Kell.pdf).
 It has been submitted on the 13th of February 2025.
 
 Furthermore, the respective folders contain the Report and Presentation held at the University of Augsburg on the 15th of May 2024.

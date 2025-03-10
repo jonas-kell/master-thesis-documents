@@ -32,4 +32,5 @@ echo "Compiling Main Thesis"
 (cd thesis-latex; sudo --preserve-env=PATH env latexmk --shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=. master-thesis-jonas-kell.tex)
 
 echo "Compiling Colloquium Presentation"
+# !! THIS ONLY COMPILES AFTER A SUCCESSFUL COMPILATION OF THE MAIN DOCUMENT
 (cd colloquium-presentation; sudo --preserve-env=PATH env latexmk --shell-escape -synctex=1 -interaction=nonstopmode -file-line-error -pdf -outdir=. colloquium-presentation.tex)

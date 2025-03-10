@@ -22,6 +22,7 @@
 **/*.pth
 **/nohup.out
 
-# project-work-presentation.pdf
-# practical-training-report-jonas-kell.pdf
+project-work-presentation.pdf
+practical-training-report-jonas-kell.pdf
 master-thesis-jonas-kell.pdf
+colloquium-presentation.pdf
