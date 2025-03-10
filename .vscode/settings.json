@@ -24,6 +24,9 @@
         "**/*.minted": true,
         "thesis-latex/plotgeneration/**/*.json": true,
         "thesis-latex/plotgeneration/**/*.csv": true,
+        "**/beamerthemeuniamntf.sty": true,
+        "**/beamercolorthemeuniamntf.sty": true,
+        "**/slide-background-images": true,
         "thesis-latex/plotgeneration/runtime-complexity/*.csv": false // deosn't work... https://github.com/microsoft/vscode/issues/869
     },
     "latex-workshop.latex.tools": [

@@ -24,11 +24,15 @@ git pull --recurse-submodules
 ```
 
 <!--
-Create The symbolic links
+Create The symbolic links (run in main folder)
 
 ln -sf ./../latex-beamer-template/beamerthemeuniamntf.sty project-work-presentation/
 ln -sf ./../latex-beamer-template/beamercolorthemeuniamntf.sty project-work-presentation/
 ln -sf ./../latex-beamer-template/slide-background-images/ project-work-presentation/
+
+ln -sf ./../latex-beamer-template/beamerthemeuniamntf.sty colloquium-presentation/
+ln -sf ./../latex-beamer-template/beamercolorthemeuniamntf.sty colloquium-presentation/
+ln -sf ./../latex-beamer-template/slide-background-images/ colloquium-presentation/
  -->
 
 ## Compiling
