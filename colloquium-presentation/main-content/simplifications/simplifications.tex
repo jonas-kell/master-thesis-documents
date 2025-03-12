@@ -37,6 +37,13 @@
         \note[item] {
             Normalization requires knowing exponential amount of states and we need to sample an exponential amount to get all
         }
+        \note[item] {
+            switch to METROPOLIS HASTINGS algorithm
+            \begin{itemize}
+                \item only fixed number of samples required (depends on the desired precision)
+                \item No normalization needed, because it cancels in the division
+            \end{itemize}
+        }
     \end{frame}
 
     \begin{frame}[t]
@@ -68,6 +75,9 @@
         % notes 
         \onslide % on all slides of frame
         \note[item] {
-            TODO
+            Choose the helpful \emph{initial state} with all base states having the same probability
+        }
+        \note[item] {
+            because of this the divisions of Psi-N over Psi-K everywhere give 1 and many terms cancel (outside of the local interaction ragne of the modificaiton)
         }
     \end{frame}

@@ -21,7 +21,17 @@
         % notes 
         \onslide % on all slides of frame
         \note[item] {
-            TODO
+            Goal: evaluate the time-evolution for different observables (effectively)
+        }
+        \note[item] {
+            Brute-force calculation is at least NP-hard, definitely exponential and one of the hardest problems to solve computationally generally
+        }
+        \note[item] {
+            Strategy: perform a controlled expansion in the perturbation V and re-express the formulas as a dependency on a operator-free "effective Hamiltonian"
+            \begin{itemize}
+                \item Can be re-ordered without concern as no operators
+                \item For the re-formulation we will use the interaction picture
+            \end{itemize}
         }
     \end{frame}
 
@@ -45,7 +55,11 @@
         % notes 
         \onslide % on all slides of frame
         \note[item] {
-            TODO
+            Comprised of two parts:
+            \begin{itemize}
+                \item Simple, quickly stated term that depends on the base energy 
+                \item Complicated one that will be expanded in the perturbation
+            \end{itemize}
         }
     \end{frame}
 
@@ -74,7 +88,13 @@
         % notes 
         \onslide % on all slides of frame
         \note[item] {
-            Solving the equations of motions in the interaction picture requires the number operator being \emph{idempotent}
+            Need: V-Operator in the Interaction picture 
+        }
+        \note[item] {
+            For that: first solve the equations of motion for the ladder operators and the plug in
+        }
+        \note[item] {
+            Solving the equations of motions in the interaction picture requires their number operator being \emph{idempotent}
         }
     \end{frame}
 
@@ -97,7 +117,11 @@
         % notes 
         \onslide % on all slides of frame
         \note[item] {
-            TODO
+            Inserting yields TWO kinds of terms
+            \begin{itemize}
+                \item time-dependent analytical pre-factors (or their integral as one sees later)
+                \item dressed hopping terms, basically only depending on the occupation of the state N
+            \end{itemize}
         }
     \end{frame}
 
@@ -121,7 +145,16 @@
         % notes 
         \onslide % on all slides of frame
         \note[item] {
-            TODO
+            Generally any expansion possible, but here we expand the \emph{argument of the exponential} - cumulant
+        }
+        \note[item] {
+            first order easily derivable with the info from the previous slide (integrate)
+        }
+        \note[item] {
+            second and higher orders very complicated occupation terms and the pre-factors require quite a lot of edge-cases to integrate with the time-ordering operator
+            \begin{itemize}
+                \item Hint onto the thesis for this exact derivation
+            \end{itemize}
         }
     \end{frame}
 
@@ -131,7 +164,7 @@
         \begin{itemize}
             \item This allows for general evaluation of expectation values \pause
             \begin{itemize}
-                \item Requires a transition probability
+                \item Requires a probability for the state
                 \item Requires a local observable
             \end{itemize}
         \end{itemize}
@@ -149,12 +182,19 @@
         % notes 
         \onslide % on all slides of frame
         \note[item] {
-            Does only require difference of effective Hamiltonian for evaluation (notice for later)
+            Why? General evaluation of an expectation value for an observable.
+            \begin{itemize}
+                \item Probability for state
+                \item Local observable (can be swapped for many different ones)
+            \end{itemize}
+        }
+        \note[item] {
+            Does ONLY require difference of effective Hamiltonian for evaluation (notice for later)
         }
     \end{frame}
 
     \begin{frame}[t]
-        \frametitle{Simple Observalbles}
+        \frametitle{Simple Observables}
 
         \begin{itemize}
             \item Local observable for double occupation measurement \pause
@@ -183,7 +223,10 @@
         % notes 
         \onslide % on all slides of frame
         \note[item] {
-            Complex observable, make sure this cancels
+            Complex valued observable, make sure this cancels in the case of approximations
+        }
+        \note[item] {
+            \emph{SHOULD MENTION:} Energy and variance (most expensive ones, are assumed to keep constant, can be used to gauge the quality of the expansion)
         }
     \end{frame}
 
@@ -216,7 +259,13 @@
         % notes 
         \onslide % on all slides of frame
         \note[item] {
-            TODO
+            Quite interesting, because of this extra mentioned the Pauli operators
+        }
+        \note[item] {
+            No access to the full density matrix, can not trace out, because too many states to trace out
+        }
+        \note[item] {
+            BUT: as the complex 4x4 matrix can be written in the base of the kronecker product of two pauli matrices, can be expressed (because the pauli operators can be translated into hard-core bosonic ones again and for these we have the general fromula for expectation values)
         }
     \end{frame}
 
@@ -230,6 +279,9 @@
         % notes 
         \onslide % on all slides of frame
         \note[item] {
-            TODO
+            Sixteen terms (with missing cases trivially derived from the ones that are given)
+        }
+        \note[item] {
+            Again all depend on the difference of effective hamiltonians between two states ith local modifications
         }
     \end{frame}

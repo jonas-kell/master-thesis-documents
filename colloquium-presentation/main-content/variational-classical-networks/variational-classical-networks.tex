@@ -37,10 +37,23 @@
         % notes 
         \onslide % on all slides of frame
         \note[item] {
-            Time dependent variational principle (TDVP)
+            Argument:
+            \begin{itemize}
+                \item Could go on performing the controlled expansion for all perturbation-strengths and get nice result
+                \item But higher orders complicated and expensive
+                \item Try to get more from the lower orders, by using Variational parameters (optimized by the problem, we hope they can incorperate influence from higher order terms without them being present)
+            \end{itemize}
         }
         \note[item] {
-            Variational classical network (VCN)
+            Time dependent variational principle (TDVP)
+            \begin{itemize}
+                \item Find a parametrized \emph{wavefunction}
+                \item Update the parameters so that a tiny nudge into the direction of the \emph{time DERIVATIVE} of the parameter vector has the same effect as a time evolution with the full hamiltonian
+                \item The first order numerical integration (could do higher orders, but for the concept here)
+            \end{itemize}
+        }
+        \note[item] {
+            O: Variational derivative\,\,\,            E: local energy (we had already earlier)
         }
     \end{frame}
 
@@ -85,6 +98,15 @@
         \note[item] {
             Pseudo inversion
         }
+        \note[item] {
+            S: covariance matrix
+        }
+        \note[item] {
+            F: TDVP force
+        }
+        \note[item] {
+            \emph{time DERIVATIVE}
+        }
     \end{frame}
 
     \begin{frame}[t]
@@ -114,7 +136,10 @@
         % notes 
         \onslide % on all slides of frame
         \note[item] {
-            TODO
+            Idea: replace prefactors that depend on the time and keep the shape of teh terms that depend on the occupation of the state
+        }
+        \note[item] {
+            Verification: as the TDVP is also derived from an \emph{action principle} that must mean as per noethers theorem that the energy MUST be conserved by a correct TDVP step
         }
     \end{frame}
 
@@ -149,6 +174,9 @@
         % notes 
         \onslide % on all slides of frame
         \note[item] {
-            TODO
+            Fails because not taken the explicit time-dependency into account as it was \emph{differentiated away} wrongfully 
+        }
+        \note[item] {
+            As a solution: introduce variational base-energy factors - which is a successful strategy
         }
     \end{frame}
