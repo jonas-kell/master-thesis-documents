@@ -2,6 +2,10 @@
 \begin{frame}[noframenumbering]{Extra Plots: Overview}
     \begin{itemize}
         \item \hyperlink{plot:exact-comparison}{Exact comparison density matrix}
+        \item \hyperlink{plot:energy-variance}{First orders: energy and variance comparison}
+        \item \hyperlink{plot:j-sweep}{J parameter sweep}
+        \item \hyperlink{plot:mc-convergence}{Monte Carlo sampling convergence}
+        \item \hyperlink{plot:runtime-comparison}{Runtime validation}
     \end{itemize}
 \end{frame}
 
@@ -34,21 +38,77 @@
     }
 \end{frame}
 
+\begin{frame}[noframenumbering]{First Orders: Energy Comparison}
+    \label{plot:energy-variance}
+    \vspace{-0.4cm}
+    \makebox[\textwidth][c]{\includegraphics[height=.8\paperheight]{./../thesis-latex/plotgeneration/energy-variance/energy.pdf}}
+    \note[item]{
+        Second picture zoomed in
+    }
+\end{frame}
+\begin{frame}[noframenumbering]{First Orders: Variance Comparison}
+    \vspace{-0.4cm}
+    \makebox[\textwidth][c]{\includegraphics[height=.8\paperheight]{./../thesis-latex/plotgeneration/energy-variance/variance.pdf}}
+    \note[item]{
+        Second picture zoomed in
+    }
+\end{frame}
 
-% \includegraphics[height=.7\paperheight]{./../thesis-latex/plotgeneration/energy-variance/}
+\begin{frame}[noframenumbering]{J-Sweep: Current Border}
+    \label{plot:j-sweep}
+    \vspace{-0.4cm}
+    \makebox[\textwidth][c]{\includegraphics[height=.8\paperheight]{./../thesis-latex/plotgeneration/j-sweep/current-border.pdf}}
+    \note[item]{
+        Logarithmic plot
+    }
+    \note[item]{
+        Measurements show the trend of the convergence of the relative error for small perturbations
+    }
+    \note[item]{
+        Depends on the observable though, still
+    }
+\end{frame}
+\begin{frame}[noframenumbering]{J-Sweep: Current Center}
+    \vspace{-0.4cm}
+    \makebox[\textwidth][c]{\includegraphics[height=.8\paperheight]{./../thesis-latex/plotgeneration/j-sweep/current-center.pdf}}
+\end{frame}
+\begin{frame}[noframenumbering]{J-Sweep: Single Occupation Center}
+    \vspace{-0.4cm}
+    \makebox[\textwidth][c]{\includegraphics[height=.8\paperheight]{./../thesis-latex/plotgeneration/j-sweep/single-occ-center.pdf}}
+\end{frame}
+\begin{frame}[noframenumbering]{J-Sweep: Double Occupation Border}
+    \vspace{-0.4cm}
+    \makebox[\textwidth][c]{\includegraphics[height=.8\paperheight]{./../thesis-latex/plotgeneration/j-sweep/double-occ-border.pdf}}
+\end{frame}
 
-% \includegraphics[height=.7\paperheight]{./../thesis-latex/plotgeneration/j-sweep/}
+\begin{frame}[noframenumbering]{Monte Carlo Convergence: Occupation}
+    \label{plot:mc-convergence}
+    \vspace{-0.4cm}
+    \makebox[\textwidth][c]{\includegraphics[height=.8\paperheight]{./../thesis-latex/plotgeneration/monte-carlo-variance-test/occupation.pdf}}
+    \note[item]{
+        Well as we can see, the appriximation converges as the variance gos to zero
+    }
+\end{frame}
+\begin{frame}[noframenumbering]{Monte Carlo Convergence: Occupation}
+    \vspace{-0.4cm}
+    \makebox[\textwidth][c]{\includegraphics[height=.8\paperheight]{./../thesis-latex/plotgeneration/monte-carlo-variance-test/spin-current.pdf}}
+\end{frame}
 
-% \includegraphics[height=.7\paperheight]{./../thesis-latex/plotgeneration/monte-carlo-variance-test/}
+\begin{frame}[noframenumbering]{Runtime Validation}
+    \label{plot:runtime-comparison}
+    \vspace{-0.4cm}
+    \makebox[\textwidth][c]{\includegraphics[height=.8\paperheight]{./../thesis-latex/plotgeneration/runtime-complexity/runtime.pdf}}
+\end{frame}
 
-% \includegraphics[height=.7\paperheight]{./../thesis-latex/plotgeneration/runtime-complexity/}
+% \makebox[\textwidth][c]{\includegraphics[height=.8\paperheight]{./../thesis-latex/plotgeneration/vcn-eff-stepsize/}}
+% \makebox[\textwidth][c]{\includegraphics[height=.8\paperheight]{./../thesis-latex/plotgeneration/vcn-energy-conservation/}}
+% \makebox[\textwidth][c]{\includegraphics[height=.8\paperheight]{./../thesis-latex/plotgeneration/vcn-square-comparison/}}
+% \makebox[\textwidth][c]{\includegraphics[height=.8\paperheight]{./../thesis-latex/plotgeneration/vcn-square-small/}}
+% \makebox[\textwidth][c]{\includegraphics[height=.8\paperheight]{./../thesis-latex/plotgeneration/system-size-dependency/}}
 
-% \includegraphics[height=.7\paperheight]{./../thesis-latex/plotgeneration/system-size-dependency/}
-
-% \includegraphics[height=.7\paperheight]{./../thesis-latex/plotgeneration/vcn-eff-stepsize/}
-
-% \includegraphics[height=.7\paperheight]{./../thesis-latex/plotgeneration/vcn-energy-conservation/}
-
-% \includegraphics[height=.7\paperheight]{./../thesis-latex/plotgeneration/vcn-square-comparison/}
-
-% \includegraphics[height=.7\paperheight]{./../thesis-latex/plotgeneration/vcn-square-small/}
+% \begin{frame}[noframenumbering]{}
+%     \label{plot:exact-comparison}
+%     \vspace{-0.4cm}
+%     \note[item]{
+%     }
+% \end{frame}
