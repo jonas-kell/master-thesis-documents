@@ -106,7 +106,7 @@ Plugging this into the rearranged result from \autoref{eq:time-evolution-target}
 \begin{equation}
     \label{eq:cumulant-expansion}
     \begin{split}
-        \braketHelper{N}{\picturePsi[\schroedingerPicture]{}} \cdot e^{\HNOft} &\stackrel{\ref{eq:time-evolution-target}}{=} \frac{\bracketHelper{N}{\timeEvolutionOperator[\interactionPicture]}{\picturePsi[\schroedingerPicture]{}}}{\braketHelper{N}{\picturePsi[\schroedingerPicture]{}}}
+        \braketHelper{N}{\picturePsi[\schroedingerPicture]{}} \cdot e^{\HNOft} &\stackrel{\ref{eq:time-evolution-target}}{=} \bracketHelper{N}{\timeEvolutionOperator[\interactionPicture]}{\picturePsi[\schroedingerPicture]{}}
         \stackrel{\ref{eq:solve-equation-of-motion}}{=}
         \bracketHelper{N}{
             \timeOrderingOperator e^{-i\int\limits_0^t \text{d} t' \VhamiltonianOf[\interactionPicture]{t'}}
